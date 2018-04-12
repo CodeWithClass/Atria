@@ -1,0 +1,45 @@
+page-login {
+   .bkground{
+     background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+     background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+     background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+     background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+
+  }
+
+  .center{
+    padding-top: 50%;
+  }
+  .center ion-col{
+
+    margin: 0 auto;
+  }
+
+  .center ion-title, .center p{
+    text-align: center;
+    font-size: 2rem !important;
+    color: color($colors, darktext);
+  }
+
+
+  .loginInput{
+    border-radius: 4px;
+    background-color: #96ffba;
+
+
+  }
+
+    .loginInput .item-inner{
+      border-bottom: none !important;
+      color: #999;
+    }
+
+  .loginButton{
+    background-color: #fff;
+    padding: 25px 0 25px 0;
+    color: color($colors, darktext);
+    border-radius: 4px;
+    box-shadow: none;
+
+  }
+}
