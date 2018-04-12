@@ -7,7 +7,7 @@
   <div class="center">
 
   <ion-title>
-    App Name
+    App Logo
   </ion-title>
 
   <p>
@@ -34,7 +34,14 @@
 
     <ion-row>
       <ion-col  col-9 col-lg-4 col-xl-3>
-        <button ion-button block class="loginButton">Sign In</button>
+        <button ion-button block class="loginButton" (click)="login()">Sign In</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row  class="signup">
+      <ion-col  col-6 col-lg-2 col-xl-1>
+        <p>Don't yet have an account?</p>
+        <button ion-button block class="signupButton" (click)="signup()">Sign Up</button>
       </ion-col>
     </ion-row>
 
