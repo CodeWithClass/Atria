@@ -1,8 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { RoundProgressModule } from 'angular-svg-round-progressbar'; 
+
 
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -28,6 +30,7 @@ import { MyStatsPage } from '../pages/mystats/mystats';
   ],
   imports: [
     BrowserModule,
+    RoundProgressModule,     
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
