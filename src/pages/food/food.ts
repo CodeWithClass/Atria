@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { SettingsPage } from '../settings/settings';
 /**
  * Generated class for the FoodPage page.
  *
@@ -18,8 +18,9 @@ export class FoodPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FoodPage');
+  launchSettings() {
+    this.navCtrl.push(SettingsPage, {}, { animate: true  , direction: 'forward' });
   }
+
 
 }

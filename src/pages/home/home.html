@@ -7,12 +7,37 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>home</ion-title>
+    <ion-title>
+      Home
+      <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
+      </ion-icon>
+    </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="home-page">
+
+  <ion-card class="card1">
+    <!-- <ion-img id="bp-img" src="assets/imgs/bp.png"></ion-img> -->
+    <div class="card-title">Blood Pressure</div>
+    <div class="card-subtitle">41 Listings</div>
+  </ion-card>
+  
+  <ion-card class="card2">
+    <div class="card-title">Amsterdam</div>
+    <div class="card-subtitle">64 Listings</div>
+  </ion-card>
+  
+  <ion-card class="card3">
+    <div class="card-title">San Francisco</div>
+    <div class="card-subtitle">72 Listings</div>
+  </ion-card>
+  
+  <ion-card class="card4">
+    <div class="card-title">Madison</div>
+    <div class="card-subtitle">28 Listings</div>
+  </ion-card>
 
 </ion-content>

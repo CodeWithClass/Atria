@@ -45,16 +45,8 @@ $colors: (
   bkGradientbottom: #13a369
 );
 
-$text-input-placeholder-color: #777;
-$text-input-md-show-focus-highlight: false;
-$text-input-wp-show-focus-highlight: false;
-$text-input-md-highlight-color-invalid: transparent;
-$text-input-md-highlight-color-valid: transparent;
-$text-input-md-show-invalid-highlight: false;
-$text-input-md-highlight-color: transparent;
-$text-input-md-show-valid-highlight: transparent;
-$text-input-md-border-color: red;
-$text-input-wp-border-width:0px;
+
+
 
 // App iOS Variables
 // --------------------------------------------------
@@ -66,7 +58,14 @@ $text-input-wp-border-width:0px;
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
-
+$text-input-placeholder-color: #777;
+$text-input-md-show-focus-highlight: false;
+$text-input-md-highlight-color-invalid: transparent;
+$text-input-md-highlight-color-valid: transparent;
+$text-input-md-show-invalid-highlight: false;
+$text-input-md-highlight-color: transparent;
+$text-input-md-show-valid-highlight: transparent;
+$toolbar-background: color($colors, bkGradienttop);
 
 
 
