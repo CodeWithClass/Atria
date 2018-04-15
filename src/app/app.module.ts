@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,6 +14,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { SettingsPage } from '../pages/settings/settings';
 import { FoodPage } from '../pages/food/food';
 import { MyStatsPage } from '../pages/mystats/mystats';
+
 
 
 
@@ -50,4 +51,7 @@ import { MyStatsPage } from '../pages/mystats/mystats';
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+
+}

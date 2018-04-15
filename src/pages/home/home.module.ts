@@ -19,7 +19,8 @@ export class HomePageModule {
   constructor(private _config: RoundProgressConfig) {
     _config.setDefaults({
       color: '#red',
-      background: '#0f0'
+      background: '#0f0',
+
     });
   }
 }

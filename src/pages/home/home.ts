@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
+import { ThrowStmt } from '@angular/compiler';
 
 /**
  * Generated class for the HomePage page.
@@ -16,12 +17,29 @@ import { SettingsPage } from '../settings/settings';
 })
 export class HomePage {
 
+  maxCalories: string = "2000";
+  currCalories: string = "1560";
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
   launchSettings(){
     this.navCtrl.push(SettingsPage);
   }
   
+  getCurrCalories(){
+    return this.currCalories;    
+  }
+
+  getMaxCalories(){
+    return this.maxCalories
+  }
+
+  setCurrCalories(Curr){
+  }
+
+  setMaxCalories(Max) {
+  }
 
 }

@@ -23,15 +23,14 @@
     <div class="card-content">
       <!-- <ion-img id="bp-img" src="assets/imgs/bp.png"></ion-img> -->
       <div class="card-title">Blood Pressure</div>
-      <div class="card-subtitle">41 Listings</div>
     </div>
   </ion-card>
   
   <ion-card class="card2">
     <div class="card-content">
       <round-progress id="round-progress"
-                      current="27"
-                      max="50"
+                      [current]="getCurrCalories()"
+                      [max]="getMaxCalories()"
                       [color]="'#45ccce'"
                       [background]="'#eaeaea'" 
                       [radius]="80" 
@@ -44,19 +43,17 @@
                       [stroke]="4"
       ></round-progress>
       <div class="progress-text">
-        <h2>32/54</h2>
+        <h2>{{getCurrCalories()}}<hr>{{getMaxCalories()}}</h2>
       </div>
     </div>
   </ion-card>
   
   <ion-card class="card3">
     <div class="card-title">San Francisco</div>
-    <div class="card-subtitle">72 Listings</div>
   </ion-card>
   
   <ion-card class="card4">
     <div class="card-title">Madison</div>
-    <div class="card-subtitle">28 Listings</div>
   </ion-card>
 
 </ion-content>
