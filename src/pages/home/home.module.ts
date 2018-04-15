@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { RoundProgressModule } from 'angular-svg-round-progressbar'; 
+import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar'; 
 import { HomePage } from './home';
 
 @NgModule({
@@ -15,4 +15,11 @@ import { HomePage } from './home';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class HomePageModule {}
+export class HomePageModule {
+  constructor(private _config: RoundProgressConfig) {
+    _config.setDefaults({
+      color: '#red',
+      background: '#0f0'
+    });
+  }
+}

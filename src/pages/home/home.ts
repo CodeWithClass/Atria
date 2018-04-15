@@ -22,5 +22,6 @@ export class HomePage {
   launchSettings(){
     this.navCtrl.push(SettingsPage);
   }
+  
 
 }
