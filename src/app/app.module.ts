@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { RoundProgressModule } from 'angular-svg-round-progressbar'; 
+import {ChartsModule} from 'ng2-charts';
 
 
 import { MyApp } from './app.component';
@@ -31,7 +32,8 @@ import { MyStatsPage } from '../pages/mystats/mystats';
   ],
   imports: [
     BrowserModule,
-    RoundProgressModule,     
+    RoundProgressModule, 
+    ChartsModule,    
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

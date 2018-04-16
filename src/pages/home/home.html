@@ -21,8 +21,21 @@
 
   <ion-card class="card1">
     <div class="card-content">
-      <!-- <ion-img id="bp-img" src="assets/imgs/bp.png"></ion-img> -->
       <div class="card-title">Blood Pressure</div>
+      <ion-row>
+        <ion-col col-11 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+          <canvas baseChart height="180" 
+            [datasets]="lineChartData" 
+            [labels]="lineChartLabels" 
+            [options]="lineChartOptions"
+            [colors]="lineChartColors" 
+            [legend]="lineChartLegend" 
+            [chartType]="lineChartType" 
+            (chartHover)="chartHovered($event)" 
+            (chartClick)="chartClicked($event)">
+          </canvas>
+        </ion-col>
+      </ion-row>
     </div>
   </ion-card>
   
