@@ -66,6 +66,12 @@ $text-input-md-show-invalid-highlight: false;
 $text-input-md-highlight-color: transparent;
 $text-input-md-show-valid-highlight: transparent;
 $toolbar-background: color($colors, bkGradienttop);
+$grid-breakpoints: (
+  xs: 0px,
+  sm: 400px,
+  md: 768px,
+  lg: 1024px
+);
 
 
 

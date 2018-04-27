@@ -22,8 +22,26 @@
   <ion-card class="card1">
     <div class="card-content">
       <div class="card-title">Blood Pressure</div>
-      <ion-row>
-        <ion-col col-11 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+      <ion-row class="bp-readings">
+        <ion-col col-12 col-sm-3 col-md-1 class="previous">
+            <h3 class="systolic">{{getBP('earlier')[0]}}</h3>
+            <h3 class="diastolic">{{getBP('earlier')[1]}}</h3>
+            <h3 class="label">Previous</h3>           
+        </ion-col>
+        <ion-col>
+          <div class="current">
+            <h3 class="systolic">{{getBP('current')[0]}}</h3>
+            <h3 class="diastolic">{{getBP('current')[1]}}</h3>
+            <h3 class="label">Current</h3>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-sm-3  col-md-1 class="predicted">
+          <h3 class="systolic">{{getBP('predicted')[0]}}</h3>
+          <h3 class="diastolic">{{getBP('predicted')[1]}}</h3>
+          <h3 class="label">Predicted</h3>
+        </ion-col>
+      
+        <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
           <canvas baseChart height="180" 
             [datasets]="lineChartData" 
             [labels]="lineChartLabels" 
@@ -40,14 +58,16 @@
   </ion-card>
   
   <ion-card class="card2">
+    <div class="card-title">Diet</div>
+    <div class="card-subtitle">Calories</div>
     <div class="card-content">
       <round-progress id="round-progress"
                       [current]="getCurrCalories()"
                       [max]="getMaxCalories()"
                       [color]="'#45ccce'"
                       [background]="'#eaeaea'" 
-                      [radius]="80" 
-                      [stroke]="8" 
+                      [radius]="100" 
+                      [stroke]="4" 
                       [semicircle]="false" 
                       [responsive]="false" 
                       [duration]="800" 
@@ -58,15 +78,30 @@
       <div class="progress-text">
         <h2>{{getCurrCalories()}}<hr>{{getMaxCalories()}}</h2>
       </div>
+      <ion-row class="macro-container">
+        <ion-col col-4>
+          <h3>Protein</h3>
+          <h3>35%</h3>
+        </ion-col>
+        <ion-col col-4>
+          <h3>Carbs</h3>
+          <h3>45%</h3>
+        </ion-col>
+        <ion-col col-4>
+          <h3>Fats</h3>
+          <h3>20%</h3>
+        </ion-col>
+      </ion-row>
+
     </div>
   </ion-card>
   
   <ion-card class="card3">
-    <div class="card-title">San Francisco</div>
+    <div class="card-title">Recomened</div>
   </ion-card>
   
   <ion-card class="card4">
-    <div class="card-title">Madison</div>
+    <div class="card-title">Blank</div>
   </ion-card>
 
 </ion-content>

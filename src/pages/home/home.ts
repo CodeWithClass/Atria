@@ -19,15 +19,39 @@ export class HomePage {
 
   maxCalories: string = "2000";
   currCalories: string = "1560";
+  bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
+                      { data: [85, 79, 80, 96], label: 'Diastolic' },
+                        ];
+  bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
 
-  public lineChartData: Array<any> = [
-    { data: [148, 159, 135, 128], label: 'Systolic' },
-    { data: [85, 79, 80, 96], label: 'Diastolic' },
-    //{ data: [70, 84, 77, 63], label: 'Heart Rate' }
-  ];
-  public lineChartLabels: Array<any> = ['Earlier', 'Previous', 'Current', 'Predicted'];
+  public lineChartData: Array<any> = this.bpMetrics;
+  public lineChartLabels: Array<any> = this.bpTimeline;
   public lineChartOptions: any = {
-    responsive: true
+    responsive: true,
+    legend: {
+      labels: {
+        fontColor: "white",
+      }
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false,
+        },
+        ticks: {
+          fontColor: "white",
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          display: false,
+        },
+        ticks: {
+          fontColor: "white",
+          stepSize: 20,
+        }
+      }]
+    }
   };
   public lineChartColors: Array<any> = [
     { // dark grey
@@ -78,6 +102,43 @@ export class HomePage {
 
   launchSettings(){
     this.navCtrl.push(SettingsPage);
+  }
+
+  getBP(reading: string): number[]{
+
+    if(reading == 'earlier'){
+      let Systolic:  number = this.bpMetrics[0].data[0];
+      let Diastolic: number = this.bpMetrics[1].data[0];
+      let earlierBP: number[] = [Systolic, Diastolic];
+      return earlierBP;  
+    }
+    else if (reading == 'pevious') {
+      let Systolic: number = this.bpMetrics[0].data[1];
+      let Diastolic: number = this.bpMetrics[1].data[1];
+      let previousBP: number[] = [Systolic, Diastolic];
+      return previousBP;
+    }
+    else if(reading == 'current'){
+      let Systolic: number = this.bpMetrics[0].data[2];
+      let Diastolic: number = this.bpMetrics[1].data[2];
+      let currentBP: number[] = [Systolic, Diastolic];
+      return currentBP;
+    }
+    else if (reading == 'predicted') {
+      let Systolic: number = this.bpMetrics[0].data[3];
+      let Diastolic: number = this.bpMetrics[1].data[3];
+      let predictedBP: number[] = [Systolic, Diastolic];
+      return predictedBP;
+    }
+    else{
+      let notfound: any[] = [999,999]
+      return notfound;
+    }
+      
+      
+
+
+    
   }
   
   getCurrCalories(){

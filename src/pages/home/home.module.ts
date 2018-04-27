@@ -16,5 +16,10 @@ import { HomePage } from './home';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class HomePageModule {
-  
+  constructor(private _config: RoundProgressConfig) {
+    _config.setDefaults({
+      // color: '#red',  
+      // background: '#0f0'
+    });
+  }
 }

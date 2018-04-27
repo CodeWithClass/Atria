@@ -12,15 +12,16 @@ page-home {
 
         .card-title {
             
-            font-size: 1.5em;
+            font-size: 1.7em;
             color: #fff;
-            margin: 4%;
+            margin: 4% 4% 1% 4%;
         }
 
-        // .card-subtitle {
-        //     font-size: 1.0em;
-        //     color: #fff;
-        // }
+        .card-subtitle {
+            font-size: 1.2em;
+            color: #fff;
+            margin: 0 %4 %4 4%
+        }
 
         
         ion-card ion-img {
@@ -29,23 +30,68 @@ page-home {
         }
         
         .card1{
-                //background-image: url("../../assets/imgs/bp.png");
-                background: tomato;
-                background-size: 120%;
-                border-radius: 10px;
+            //background-image: url("../../assets/imgs/bp.png");
+            background: tomato;
+            background-size: 120%;
+            border-radius: 10px;
 
-                .bp-chart {
-                    color: #fff !important;
-                    margin-left: 4%;
-                }
-    
+            .bp-chart {
+                color: #fff !important;
+                margin: 4% auto;
             }
+
+            .bp-readings{
+                margin: 10% 5% 5%;
+                text-align: center;
+
+                .previous h3, .predicted h3{
+                    font-size: 16px;
+                    font-weight: 600;                    
+                    color: #ccc;
+                    
+                   
+                }
+
+                .previous .label, .predicted .label{
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+
+                .current{
+                    border: solid 2px white;
+                    border-radius: 50%;
+                    margin:0 auto;
+                    width: 150px;
+                    height: 150px;
+
+                    .systolic {
+                        font-size: 2.5em;
+                        color: white; 
+                        margin: 10% 10% 0 10%;                  
+                    }
+                    .diastolic {
+                        font-size: 2.5em;
+                        color: white;                   
+                    }
+                    .label{
+                        color: white;
+                    }
+                }
+                
+
+
+            }
+
+            
+
+        }
         
         .card2{
             background: slateblue;
 
-                .card-content round-progress{
-                    position: absolute;
+            .card-content{
+                round-progress{
+                    display: block;
                     top: 10%;
                     left: 0;
                     right: 0;
@@ -53,26 +99,41 @@ page-home {
                     width: 25%;
                 }
 
-                .card-content .progress-text{
+                .progress-text{
                     position: absolute;
-                    top: 37%;
+                    top: 35%;
                     left: 0;
                     right: 0;
                     margin: auto;
                     text-align: center;
                 }
 
-                .card-content .progress-text h2{
-                    font-size: 25px;
+                .progress-text h2{
+                    font-size: 30px;
                     font-weight: 300;
                     color:rgb(234, 234, 234);
                 }
 
-                .card-content .progress-text hr{
+                .progress-text hr{
                     width: 15%;
+                    max-width: 66px;
                     margin: 0 auto;
                     height: 3px;
+
                 }
+
+                .macro-container{
+                    // display: block;
+                    margin: 30px 20% ;
+
+                    h3{
+                        font-size: 18px;
+                        font-weight: 400;
+                        text-align: center;
+                        color:rgb(234, 234, 234);
+                    }
+                }
+            }
 
         }
 
