@@ -25,3 +25,20 @@
     float: right;
     font-size: 25px;
 }
+
+.custom-title{
+    padding: 5% 5% 10% 5%;
+    margin-bottom: 0px;
+    background-color: color($colors, food);
+    text-align: center;
+
+    .toolbar-title{
+    color: white;
+        
+    }
+    
+    ion-icon{
+        float: right;
+        
+    }
+}

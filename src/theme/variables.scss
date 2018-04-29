@@ -42,7 +42,10 @@ $colors: (
   base:       #02d37f,
   darktext:   #444,
   bkGradienttop: #2ffcaa,
-  bkGradientbottom: #13a369
+  bkGradientbottom: #13a369,
+  bloodpressure: tomato,
+  food: slateblue,
+  
 );
 
 
@@ -67,7 +70,7 @@ $text-input-md-highlight-color: transparent;
 $text-input-md-show-valid-highlight: transparent;
 $toolbar-background: color($colors, bkGradienttop);
 $grid-breakpoints: (
-  xs: 0px,
+  // xs: 0px,
   sm: 400px,
   md: 768px,
   lg: 1024px

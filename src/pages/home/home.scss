@@ -31,7 +31,7 @@ page-home {
         
         .card1{
             //background-image: url("../../assets/imgs/bp.png");
-            background: tomato;
+            background-color: color($colors, bloodpressure);
             background-size: 120%;
             border-radius: 10px;
 
@@ -43,34 +43,50 @@ page-home {
             .bp-readings{
                 margin: 10% 5% 5%;
                 text-align: center;
+                
+                .previous{
+                    margin-top: 4vh;
 
-                .previous h3, .predicted h3{
-                    font-size: 16px;
-                    font-weight: 600;                    
-                    color: #ccc;
-                    
-                   
+                    h3{
+                        font-size: 5vw;
+                        font-weight: 600;
+                        color: white
+                    }
+                    .label{
+                        font-size: 4vw;
+                        font-weight: 500;
+                    }
                 }
 
-                .previous .label, .predicted .label{
-                        font-size: 14px;
+                .predicted{
+                    margin-top: 4vh;
+
+                    h3{
+                        font-size: 5vw;
+                        font-weight: 500;
+                        color: white
+                    }
+                    .label{
+                        font-size: 4vw;
                         font-weight: 400;
                     }
+                }
+
 
                 .current{
                     border: solid 2px white;
                     border-radius: 50%;
                     margin:0 auto;
-                    width: 150px;
-                    height: 150px;
+                    width: 30vw;
+                    height: 30vw;
 
                     .systolic {
-                        font-size: 2.5em;
+                        font-size: 8vw;
                         color: white; 
                         margin: 10% 10% 0 10%;                  
                     }
                     .diastolic {
-                        font-size: 2.5em;
+                        font-size: 8vw;
                         color: white;                   
                     }
                     .label{
@@ -87,7 +103,7 @@ page-home {
         }
         
         .card2{
-            background: slateblue;
+            background-color: color($colors, food);
 
             .card-content{
                 round-progress{

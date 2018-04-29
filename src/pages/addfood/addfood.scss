@@ -1,0 +1,41 @@
+page-addfood {
+
+    ion-header{
+        background-color: color($colors, food);
+        
+        .toolbar-background{
+            background-color: color($colors, food) !important;
+            
+        }
+
+        .toolbar-title{
+            color: white;
+        }
+
+        
+    }
+
+    .static-bar{
+        background-color: color($colors, food);
+        h5{
+            color: white;
+            text-align: center;
+            padding: 10%;
+            margin: 0px auto 20px auto;
+        }
+    }
+
+    ion-card .breakfast-card{
+        //margin-top: 100px;
+    }
+
+    ion-card-header{
+        background-color: color($colors, food);
+        color: white !important;
+    }
+    
+    ion-card-content{
+        padding: 10% !important;
+    }
+
+}

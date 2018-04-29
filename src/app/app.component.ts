@@ -5,7 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 // import { LoginPage } from '../pages/login/login';
-
+// import { FoodPage } from '../pages/food/food';
+//just uncomment and change root property below
 
 @Component({
   templateUrl: 'app.html'

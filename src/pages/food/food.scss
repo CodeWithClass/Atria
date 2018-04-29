@@ -1,3 +1,27 @@
 page-food {
 
+    ion-header{
+        background-color: color($colors, food);
+        
+        .toolbar-background{
+            background-color: color($colors, food) !important;
+            
+        }
+
+        .toolbar-title{
+            color: white;
+        }
+
+
+        
+    }
+
+    .ion-content{
+        // margin: 0 auto;
+    }
+    .food-background{
+        background-color: color($colors, food);
+        min-height: 100vh;
+    }
+
 }

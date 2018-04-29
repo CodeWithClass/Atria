@@ -14,6 +14,7 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { SettingsPage } from '../pages/settings/settings';
 import { FoodPage } from '../pages/food/food';
+import { AddFoodPage } from '../pages/addfood/addfood';
 import { MyStatsPage } from '../pages/mystats/mystats';
 
 
@@ -27,6 +28,7 @@ import { MyStatsPage } from '../pages/mystats/mystats';
     SignupPage,
     SettingsPage,
     FoodPage,
+    AddFoodPage,
     MyStatsPage,
     TabsPage,
   ],
@@ -44,6 +46,7 @@ import { MyStatsPage } from '../pages/mystats/mystats';
     SignupPage,
     SettingsPage,
     FoodPage,
+    AddFoodPage,
     MyStatsPage,
     TabsPage,
   ],
