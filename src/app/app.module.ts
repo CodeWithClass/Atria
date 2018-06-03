@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { RoundProgressModule } from 'angular-svg-round-progressbar'; 
 import {ChartsModule} from 'ng2-charts';
+import { HttpClientModule } from '@angular/common/http'; 
 
 
 import { MyApp } from './app.component';
@@ -16,6 +17,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { FoodPage } from '../pages/food/food';
 import { AddFoodPage } from '../pages/addfood/addfood';
 import { MyStatsPage } from '../pages/mystats/mystats';
+import { UserStatsProvider } from '../providers/user-stats/user-stats';
 
 
 
@@ -36,7 +38,8 @@ import { MyStatsPage } from '../pages/mystats/mystats';
     BrowserModule,
     RoundProgressModule, 
     ChartsModule,    
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -53,7 +56,8 @@ import { MyStatsPage } from '../pages/mystats/mystats';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserStatsProvider
   ]
 })
 export class AppModule {

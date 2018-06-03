@@ -19,25 +19,29 @@
 
 <ion-content padding class="home-page">
 
+  <ion-card class="card3">
+    <div class="card-title">Recomened</div>
+  </ion-card>
+
   <ion-card class="card1">
     <div class="card-content">
       <div class="card-title">Blood Pressure</div>
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
-            <h3 class="systolic">{{getBP('earlier')[0]}}</h3>
-            <h3 class="diastolic">{{getBP('earlier')[1]}}</h3>
+            <h3 class="systolic">{{userStats.getBP('earlier')[0]}}</h3>
+            <h3 class="diastolic">{{userStats.getBP('earlier')[1]}}</h3>
             <h3 class="label">Previous</h3>           
         </ion-col>
         <ion-col>
           <div class="current">
-            <h3 class="systolic">{{getBP('current')[0]}}</h3>
-            <h3 class="diastolic">{{getBP('current')[1]}}</h3>
+            <h3 class="systolic">{{userStats.getBP('current')[0]}}</h3>
+            <h3 class="diastolic">{{userStats.getBP('current')[1]}}</h3>
             <h3 class="label">Current</h3>
           </div>
         </ion-col>
         <ion-col col-12 col-sm-3  col-md-1 class="predicted">
-          <h3 class="systolic">{{getBP('predicted')[0]}}</h3>
-          <h3 class="diastolic">{{getBP('predicted')[1]}}</h3>
+          <h3 class="systolic">{{userStats.getBP('predicted')[0]}}</h3>
+          <h3 class="diastolic">{{userStats.getBP('predicted')[1]}}</h3>
           <h3 class="label">Predicted</h3>
         </ion-col>
       
@@ -62,8 +66,8 @@
     <div class="card-subtitle">Calories</div>
     <div class="card-content">
       <round-progress id="round-progress"
-                      [current]="getCurrCalories()"
-                      [max]="getMaxCalories()"
+                      [current]="userStats.getCurrCalories()"
+                      [max]="userStats.getMaxCalories()"
                       [color]="'#45ccce'"
                       [background]="'#eaeaea'" 
                       [radius]="100" 
@@ -76,7 +80,7 @@
                       [stroke]="4"
       ></round-progress>
       <div class="progress-text">
-        <h2>{{getCurrCalories()}}<hr>{{getMaxCalories()}}</h2>
+        <h2>{{userStats.getCurrCalories()}}<hr>{{userStats.getMaxCalories()}}</h2>
       </div>
       <ion-row class="macro-container">
         <ion-col col-4>
@@ -96,9 +100,7 @@
     </div>
   </ion-card>
   
-  <ion-card class="card3">
-    <div class="card-title">Recomened</div>
-  </ion-card>
+  
   
   <ion-card class="card4">
     <div class="card-title">Blank</div>

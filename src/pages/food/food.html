@@ -15,10 +15,51 @@
     <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
     </ion-icon>
   </ion-title>
-  <div class="food-background">
-    
 
+  <ion-grid  class="food-background">
+    <ion-row>
+      <ion-col col-lg-6 class="area1">
+        <div class="title"><h2>Diet</h2></div>
+      
+        <round-progress id="round-progress" 
+                        [current]="userStats.getCurrCalories()"
+                        [max]="userStats.getMaxCalories()"
+                        [color]="'#45ccce'"
+                        [background]="'#eaeaea'" 
+                        [radius]="100" 
+                        [stroke]="4" 
+                        [semicircle]="false" 
+                        [responsive]="false" 
+                        [duration]="800" 
+                        [animation]="'easeInOutQuart'"
+                        [animationDelay]="0"
+                        [stroke]="4">
+        </round-progress>
+        <div class="progress-text">
+          <h2>{{userStats.getCurrCalories()}}
+          <hr>{{userStats.getMaxCalories()}}</h2>
+          <h5>Calories</h5>
+        </div>
+        <ion-row class="macro-container">
+          <ion-col col-4>
+            <h3>Protein</h3>
+            <h3>35%</h3>
+          </ion-col>
+          <ion-col col-4>
+            <h3>Carbs</h3>
+            <h3>45%</h3>
+          </ion-col>
+          <ion-col col-4>
+            <h3>Fats</h3>
+            <h3>20%</h3>
+          </ion-col>
+        </ion-row>
 
-  </div>
+        <button ion-button block class="addFoodButton" (click)="launchAddFoodPage()">Add Food</button>
+         
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  
 </ion-content>

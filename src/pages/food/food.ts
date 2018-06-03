@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
+import { AddFoodPage } from '../addfood/addfood';
+
+import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+
 /**
  * Generated class for the FoodPage page.
  *
@@ -13,14 +17,20 @@ import { SettingsPage } from '../settings/settings';
   selector: 'page-food',
   templateUrl: 'food.html',
 })
-export class FoodPage {
+export class FoodPage{
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userStats: UserStatsProvider) {
   }
 
   launchSettings() {
     this.navCtrl.push(SettingsPage, {}, { animate: true  , direction: 'forward' });
   }
+
+  launchAddFoodPage(){
+    this.navCtrl.push(AddFoodPage, {}, { animate: true, direction: 'forward' });
+  }
+
+  testy: any = this.userStats.sayHello();
 
 
 }

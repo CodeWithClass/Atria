@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
-import { ThrowStmt } from '@angular/compiler';
+import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+
 
 /**
  * Generated class for the HomePage page.
@@ -17,15 +18,12 @@ import { ThrowStmt } from '@angular/compiler';
 })
 export class HomePage {
 
-  maxCalories: string = "2000";
-  currCalories: string = "1560";
-  bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
-                      { data: [85, 79, 80, 96], label: 'Diastolic' },
-                        ];
-  bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
+  constructor(public navCtrl: NavController, public navParams: NavParams, public userStats: UserStatsProvider) {
 
-  public lineChartData: Array<any> = this.bpMetrics;
-  public lineChartLabels: Array<any> = this.bpTimeline;
+  }
+
+  public lineChartData: Array<any> = this.userStats.bpMetrics;
+  public lineChartLabels: Array<any> = this.userStats.bpTimeline;
   public lineChartOptions: any = {
     responsive: true,
     legend: {
@@ -85,7 +83,7 @@ export class HomePage {
 
   
 
-  // events
+  // line chart events
   public chartClicked(e: any): void {
     console.log(e);
   }
@@ -94,9 +92,6 @@ export class HomePage {
     console.log(e);
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-  }
 
 
 
@@ -104,55 +99,5 @@ export class HomePage {
     this.navCtrl.push(SettingsPage);
   }
 
-  getBP(reading: string): number[]{
-
-    if(reading == 'earlier'){
-      let Systolic:  number = this.bpMetrics[0].data[0];
-      let Diastolic: number = this.bpMetrics[1].data[0];
-      let earlierBP: number[] = [Systolic, Diastolic];
-      return earlierBP;  
-    }
-    else if (reading == 'pevious') {
-      let Systolic: number = this.bpMetrics[0].data[1];
-      let Diastolic: number = this.bpMetrics[1].data[1];
-      let previousBP: number[] = [Systolic, Diastolic];
-      return previousBP;
-    }
-    else if(reading == 'current'){
-      let Systolic: number = this.bpMetrics[0].data[2];
-      let Diastolic: number = this.bpMetrics[1].data[2];
-      let currentBP: number[] = [Systolic, Diastolic];
-      return currentBP;
-    }
-    else if (reading == 'predicted') {
-      let Systolic: number = this.bpMetrics[0].data[3];
-      let Diastolic: number = this.bpMetrics[1].data[3];
-      let predictedBP: number[] = [Systolic, Diastolic];
-      return predictedBP;
-    }
-    else{
-      let notfound: any[] = [999,999]
-      return notfound;
-    }
-      
-      
-
-
-    
-  }
-  
-  getCurrCalories(){
-    return this.currCalories;    
-  }
-
-  getMaxCalories(){
-    return this.maxCalories
-  }
-
-  setCurrCalories(Curr){
-  }
-
-  setMaxCalories(Max) {
-  }
 
 }

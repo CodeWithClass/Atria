@@ -1,13 +1,11 @@
 page-food {
+    ion-content{
+            background-color: color($colors, food) !important;
+        
+    }
 
     ion-header{
-        background-color: color($colors, food);
         
-        .toolbar-background{
-            background-color: color($colors, food) !important;
-            
-        }
-
         .toolbar-title{
             color: white;
         }
@@ -16,12 +14,82 @@ page-food {
         
     }
 
-    .ion-content{
-        // margin: 0 auto;
-    }
     .food-background{
-        background-color: color($colors, food);
-        min-height: 100vh;
+        min-height: 30vh;
+
+        .area1{
+            padding:5%;
+            color: #fff;
+
+            .title{
+                
+                h2{
+                    font-size: 30px;
+                    max-width: 100px;
+                    font-weight: 300;
+                }
+            }
+            .subtitle{
+                font-size: 4vw;
+            }
+                            
+            round-progress{
+                display: block;
+                top: 10%;
+                left: 0;
+                right: 0;
+                margin: auto;
+                width: 25%;
+            }
+
+            .progress-text{
+                    position: absolute;
+                    top: 30%;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    text-align: center;
+                
+
+                h2{
+                    font-size: 30px;
+                    font-weight: 300;
+                    color:rgb(234, 234, 234);
+                }
+
+                h5{
+                    font-weight: 300;
+                }
+                
+                hr{
+                    width: 15%;
+                    max-width: 66px;
+                    margin: 0 auto;
+                    height: 3px;
+
+                }
+
+            }
+
+            .macro-container{
+               
+                margin: 40% 20% 20% 20% ;
+
+                h3{
+                    font-size: 18px;
+                    font-weight: 400;
+                    text-align: center;
+                    color:rgb(234, 234, 234);
+                }
+            }
+
+            .addFoodButton{
+                color: white;
+                background-color: #45ccce;
+                
+            }
+        
+        }
     }
 
 }
