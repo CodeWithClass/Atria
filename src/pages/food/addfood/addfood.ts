@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AddBreakfastPage } from './addbreakfast/addbreakfast';
 
 /**
  * Generated class for the AddfoodPage page.
@@ -18,8 +19,7 @@ export class AddFoodPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AddfoodPage');
+  launchAddFoodSubPage(){
+    this.navCtrl.push(AddBreakfastPage, {}, {animate: true , direction: 'forward'});
   }
-
 }

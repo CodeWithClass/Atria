@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+import { FoodPage } from "../food/food";
 
 
 /**
@@ -93,7 +94,9 @@ export class HomePage {
   }
 
 
-
+  private launchAddFoodPage() {
+    this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });
+  }
 
   launchSettings(){
     this.navCtrl.push(SettingsPage);

@@ -25,9 +25,6 @@ page-addfood {
         }
     }
 
-    ion-card .breakfast-card{
-        //margin-top: 100px;
-    }
 
     ion-card-header{
         background-color: color($colors, food);
@@ -35,7 +32,16 @@ page-addfood {
     }
     
     ion-card-content{
-        padding: 10% !important;
+        button{
+            padding:20px 0 !important;
+            color: #555 !important;
+
+        }
+    }
+
+    .addfood-card{
+
+        
     }
 
 }

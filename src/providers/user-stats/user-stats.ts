@@ -12,7 +12,7 @@ export class UserStatsProvider {
 
   constructor(public http: HttpClient) {
     console.log('Hello UserStatsProvider Provider');
-    
+      
   }
 
   maxCalories: string = "2000";

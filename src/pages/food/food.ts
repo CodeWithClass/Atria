@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
-import { AddFoodPage } from '../addfood/addfood';
+import { AddFoodPage } from './addfood/addfood';
 
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
 
@@ -30,7 +30,7 @@ export class FoodPage{
     this.navCtrl.push(AddFoodPage, {}, { animate: true, direction: 'forward' });
   }
 
-  testy: any = this.userStats.sayHello();
+  // testy: any = this.userStats.sayHello();
 
 
 }

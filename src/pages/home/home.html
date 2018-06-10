@@ -17,15 +17,39 @@
 </ion-header>
 
 
-<ion-content padding class="home-page">
-
-  <ion-card class="card3">
-    <div class="card-title">Recomened</div>
-  </ion-card>
+<ion-content class="home-page">
 
   <ion-card class="card1">
+    <div class="card-title">Recomenedations</div>
+    <div class="card-content">    
+      <ion-item class="recommendation">
+        <ion-label><ion-icon name="thumbs-up"></ion-icon>&nbsp;&nbsp; Drink 16 oz of water</ion-label>
+        <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
+      </ion-item>
+      <ion-item class="recommendation">
+        <ion-label>
+          <ion-icon name="thumbs-up"></ion-icon>&nbsp;&nbsp; Perform 20 Squats</ion-label>
+        <ion-checkbox item-right [(ngModel)]="squats"></ion-checkbox>
+      </ion-item>
+      <img class="card-img" src="../../assets/imgs/run.jpg">
+      <!-- <div class="card-subtitle">Avoid</div>
+      <ion-item class="recommendation">
+        <ion-label>
+          <ion-icon name="thumbs-down"></ion-icon>&nbsp;&nbsp; Inactivity for 30mins</ion-label>
+      </ion-item>
+      <ion-item class="recommendation">
+        <ion-label>
+          <ion-icon name="thumbs-down"></ion-icon>&nbsp;&nbsp; Foods high in sodium</ion-label>
+      </ion-item> -->
+      <p>**Based on your activity level, blood pressure and diet.</p>
+    </div>
+  </ion-card>
+
+  <ion-card class="card2">
     <div class="card-content">
       <div class="card-title">Blood Pressure</div>
+      <ion-icon class="chevron" name="ios-arrow-forward"></ion-icon>
+      
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
             <h3 class="systolic">{{userStats.getBP('earlier')[0]}}</h3>
@@ -45,7 +69,7 @@
           <h3 class="label">Predicted</h3>
         </ion-col>
       
-        <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+        <!-- <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
           <canvas baseChart height="180" 
             [datasets]="lineChartData" 
             [labels]="lineChartLabels" 
@@ -56,21 +80,25 @@
             (chartHover)="chartHovered($event)" 
             (chartClick)="chartClicked($event)">
           </canvas>
-        </ion-col>
+        </ion-col> -->
       </ion-row>
     </div>
+    <img class="card-img" src="../../assets/imgs/bp.png">
   </ion-card>
   
-  <ion-card class="card2">
+  <ion-card class="card3">
     <div class="card-title">Diet</div>
     <div class="card-subtitle">Calories</div>
+    <ion-icon class="chevron" name="ios-arrow-forward" (click)="launchAddFoodPage()"></ion-icon>
+    
+    
     <div class="card-content">
       <round-progress id="round-progress"
                       [current]="userStats.getCurrCalories()"
                       [max]="userStats.getMaxCalories()"
                       [color]="'#45ccce'"
                       [background]="'#eaeaea'" 
-                      [radius]="100" 
+                      [radius]="70" 
                       [stroke]="4" 
                       [semicircle]="false" 
                       [responsive]="false" 
@@ -82,7 +110,7 @@
       <div class="progress-text">
         <h2>{{userStats.getCurrCalories()}}<hr>{{userStats.getMaxCalories()}}</h2>
       </div>
-      <ion-row class="macro-container">
+      <!-- <ion-row class="macro-container">
         <ion-col col-4>
           <h3>Protein</h3>
           <h3>35%</h3>
@@ -95,15 +123,20 @@
           <h3>Fats</h3>
           <h3>20%</h3>
         </ion-col>
-      </ion-row>
-
+      </ion-row> -->
     </div>
+    <img class="card-img" src="../../assets/imgs/food.png">    
   </ion-card>
   
   
   
   <ion-card class="card4">
-    <div class="card-title">Blank</div>
+    <div class="card-title">Sleep</div>
+    <ion-icon class="chevron" name="ios-arrow-forward"></ion-icon>
+    
+    
+    <img class="card-img" src="../../assets/imgs/sleep.jpg">
+    
   </ion-card>
 
 </ion-content>

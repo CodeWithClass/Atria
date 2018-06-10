@@ -6,13 +6,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../pages/tabs/tabs';
 // import { LoginPage } from '../pages/login/login';
 // import { FoodPage } from '../pages/food/food';
+// import {AddBreakfastPage} from '../pages/food/addfood/addbreakfast/addbreakfast';
+//import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
 //just uncomment and change root property below
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage: any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
