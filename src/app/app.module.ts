@@ -26,7 +26,7 @@ import { MyStatsPage } from '../pages/mystats/mystats';
 
 import { UserStatsProvider } from '../providers/user-stats/user-stats';
 import { FoodServiceProvider } from '../providers/foodservice/foodservice';
-
+import { MongoosedbProvider } from '../providers/mongoosedb/mongoosedb';
 
 
 
@@ -71,7 +71,8 @@ import { FoodServiceProvider } from '../providers/foodservice/foodservice';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserStatsProvider,
-    FoodServiceProvider
+    FoodServiceProvider,
+    MongoosedbProvider,
   ]
 })
 export class AppModule {

@@ -48,7 +48,31 @@ page-home {
             margin: 0 %4 %4 4%
         }
 
-        
+        .card0{
+            background:#333;
+            padding: 5%;
+            color: #fff;
+            
+            .left{
+                width: 40%;
+
+
+                img{
+                    border-radius: 50%;
+                    width: 70%;
+                    margin: 0 auto;
+                }
+
+                h4{
+                    color: #fff;
+                    margin: 5% 0 0 0;
+                    font-size: 150%;
+                    text-align: center;
+                }
+            }
+
+            
+        }        
 
         .card1{
             //  background: steelblue;

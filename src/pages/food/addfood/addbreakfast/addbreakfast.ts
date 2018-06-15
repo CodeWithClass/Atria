@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
 import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
 
@@ -26,7 +26,7 @@ export class AddBreakfastPage {
     public navParams: NavParams, 
     public foodServ: FoodServiceProvider,
     public modalCtrl: ModalController,
-    public viewCtrl: ViewController) {   
+    ) {   
   }
   
   getSearchInput(searchbar) {
@@ -51,9 +51,7 @@ export class AddBreakfastPage {
 
   }
 
-  closeModal(){
-    this.viewCtrl.dismiss();
-  }
+  
 
 
 }

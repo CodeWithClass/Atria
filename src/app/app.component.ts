@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
-// import { LoginPage } from '../pages/login/login';
+ import { LoginPage } from '../pages/login/login';
 // import { FoodPage } from '../pages/food/food';
 // import {AddBreakfastPage} from '../pages/food/addfood/addbreakfast/addbreakfast';
 //import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
@@ -14,7 +14,7 @@ import { TabsPage } from '../pages/tabs/tabs';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = LoginPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

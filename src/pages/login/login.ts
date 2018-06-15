@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { TabsPage } from '../tabs/tabs';
+//import { MongoosedbProvider } from '../../providers/mongoosedb/mongoosedb'
 
 @Component({
   selector: 'page-login',
@@ -9,9 +10,11 @@ import { TabsPage } from '../tabs/tabs';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {
-
+  constructor(public navCtrl: NavController, /*public MongoDB: MongoosedbProvider*/) {
+    
   }
+
+
 
   login(){
     this.navCtrl.push(TabsPage);
@@ -19,5 +22,6 @@ export class LoginPage {
 
   signup(){
     this.navCtrl.push(SignupPage);
+  
   }
 }
