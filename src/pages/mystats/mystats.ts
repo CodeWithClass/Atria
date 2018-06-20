@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
+import { DBService } from '../../services/db.service'
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database"; 
+
+import { log } from 'util';
 /**
  * Generated class for the MystatsPage page.
  *
@@ -14,12 +18,25 @@ import { SettingsPage } from '../settings/settings';
   templateUrl: 'mystats.html',
 })
 export class MyStatsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  dataToAdd;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public fdb: AngularFireDatabase,
+  ) {
   }
 
   launchSettings() {
     this.navCtrl.push(SettingsPage);
+  }
+
+  callDB(){
+    console.log(this.fdb.arrData);
+    console.log(this.fdb.getDataFromDB());
+  }
+
+  addData() {
+    this.fdb.list('heros/').push(this.dataToAdd);
   }
 
 }

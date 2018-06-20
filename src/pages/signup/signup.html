@@ -1,9 +1,4 @@
-<!--
-  Generated template for the SignupPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
@@ -14,5 +9,30 @@
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="signup()" [formGroup]="form">
+    <ion-list inset>
+  
+      <ion-item >
+        <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+      </ion-item>
+  
+      <div ngxErrors="email" >
+        <!-- <div [ngxError]="['email', 'required']" [when]="['touched']">It should be a valid email</div> -->
+      </div>
+  
+      <ion-item>
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+      </ion-item>
+  
+      <div ngxErrors="password" >
+        <!-- <div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 6 characters</div> -->
+      </div>
+    </ion-list>
+  
+    <div padding-horizontal>
+      <div class="form-error">{{signupError}}</div>
+  
+      <button ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
+    </div>
+  </form>
 </ion-content>

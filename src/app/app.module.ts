@@ -1,12 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicStorageModule } from '@ionic/storage';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { RoundProgressModule } from 'angular-svg-round-progressbar'; 
-import {ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseConfig } from '../config';
+import { AuthService } from '../services/auth.service';
+import { DBService } from '../services/db.service';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 
 
 import { MyApp } from './app.component';
@@ -26,7 +35,6 @@ import { MyStatsPage } from '../pages/mystats/mystats';
 
 import { UserStatsProvider } from '../providers/user-stats/user-stats';
 import { FoodServiceProvider } from '../providers/foodservice/foodservice';
-import { MongoosedbProvider } from '../providers/mongoosedb/mongoosedb';
 
 
 
@@ -49,8 +57,12 @@ import { MongoosedbProvider } from '../providers/mongoosedb/mongoosedb';
     RoundProgressModule, 
     ChartsModule,    
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebaseConfig.fire),
+    AngularFireDatabaseModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -72,7 +84,9 @@ import { MongoosedbProvider } from '../providers/mongoosedb/mongoosedb';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserStatsProvider,
     FoodServiceProvider,
-    MongoosedbProvider,
+    AngularFireAuth,
+    AuthService,
+    DBService,
   ]
 })
 export class AppModule {
