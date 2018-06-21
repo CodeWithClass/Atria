@@ -31,8 +31,8 @@ export class MyStatsPage {
   }
 
   callDB(){
-    console.log(this.fdb.arrData);
-    console.log(this.fdb.getDataFromDB());
+    // console.log(this.fdb.arrData);
+    // console.log(this.fdb.getDataFromDB());
   }
 
   addData() {

@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Http, Response} from '@angular/http'
 import { Injectable } from '@angular/core';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
+
 
 
 /*
@@ -17,17 +16,30 @@ export class FoodServiceProvider {
   public foodSearchdata: any[] = [];
 
   constructor(public http: HttpClient) {
-    
   }
   
 
-  makeAPICall(url) {
+  public makeAPICall(url) {
+    console.log(url);
     return this.http.get(url).subscribe(Response => this.processAPIresponse(Response))
   }
 
-  processAPIresponse(Response){
-    this.foodSearchdata = Response.hints;
-    console.log(this.foodSearchdata);
-    // console.log(Response.hints.food.label);
+  processAPIresponse(response){  
+
+    if(response.list != []){
+      this.foodSearchdata = response.list.item;
+    }
+    else
+      this.foodSearchdata = ["No results, maybe try being less specific"];
+  }
+
+  public strTruncate(str){
+    let STR = str.toLowerCase();
+        STR = STR.split(', upc')[0];
+        STR = STR.split(', gtin')[0];
+    return STR; 
+
   }
 }
+
+

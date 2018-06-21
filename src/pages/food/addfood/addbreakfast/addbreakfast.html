@@ -17,10 +17,10 @@
   <ion-searchbar (search)="getSearchInput($event)"></ion-searchbar>
   
   <ion-item *ngFor="let food of foodServ.foodSearchdata" class="searchResult" (click)="addFoodModal()">
-    <h3>{{food.food.label}}</h3>
-    <p>{{food.food.brand}}</p>
+    <h3>{{foodServ.strTruncate(food.name)}}</h3>
+    <p>{{food.manu}}</p>
     <span item-right>
-      {{food.food.nutrients.ENERC_KCAL | number:'1.0-0'}}
+      <!-- {{food.food.nutrients.ENERC_KCAL | number:'1.0-0'}} -->
     </span>
   </ion-item>
 

@@ -36,8 +36,7 @@ export class AddBreakfastPage {
   }
 
   genURL(searchQuery) {
-    this.url = "https://api.edamam.com/api/food-database/parser?ingr=" + searchQuery + "&app_id=e377c6b9&app_key=96dfe8d0cc43da2ac99a89ee8fa1ec04&page=0";
-    console.log(this.url)
+    this.url = "https://api.nal.usda.gov/ndb/search/?format=json&q=" + searchQuery + "&sort=n&max=200&offset=0&api_key=dxWIz33dZG11ZFOt5MgAixHizWiH6uGT4W9Jx9JS ";
     this.getSearchResponse(this.url);
   }
 
