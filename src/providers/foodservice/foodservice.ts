@@ -13,7 +13,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class FoodServiceProvider {
 
-  public foodSearchdata: any[] = [];
+  public foodSearchdata = [];
+  public foodSearchdata2 = [];
 
   constructor(public http: HttpClient) {
   }
@@ -24,16 +25,20 @@ export class FoodServiceProvider {
     return this.http.get(url).subscribe(Response => this.processAPIresponse(Response))
   }
 
-  processAPIresponse(response){  
+  processAPIresponse(response){
+      //if foodSearchdata is empty then populate 
+      //esle populate foodSearch2 and concat.
+      if(!this.foodSearchdata)
+        return this.foodSearchdata = response.list.item;
+      else{
+        this.foodSearchdata2 = response.list.item;
+        return this.foodSearchdata = this.foodSearchdata.concat(this.foodSearchdata2);
+      }
 
-    if(response.list != []){
-      this.foodSearchdata = response.list.item;
-    }
-    else
-      this.foodSearchdata = ["No results, maybe try being less specific"];
   }
 
-  public strTruncate(str){
+
+  public strTruncate(str = "no results"){
     let STR = str.toLowerCase();
         STR = STR.split(', upc')[0];
         STR = STR.split(', gtin')[0];
