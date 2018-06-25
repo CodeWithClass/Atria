@@ -15,10 +15,13 @@
 
 <ion-content padding>
   <ion-searchbar [(ngModel)]="searchInput" (search)="getSearchInput($event)"></ion-searchbar>
-  <ion-item *ngFor="let food of foodServ.foodSearchdata" class="searchResult" (click)="addFoodModal()">
+  <ion-item *ngFor="let food of foodServ.foodSearchdata" class="searchResult" >
     <h3>{{foodServ.strTruncate(food.name)}}</h3>
     <p>{{food.manu}}</p>
-  </ion-item>
+    <span item-right (click)="addFoodModal(this.food.ndbno)">
+      <ion-icon name="ios-arrow-forward"></ion-icon>
+    </span>
+</ion-item>
     
 
 

@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Http, Response} from '@angular/http'
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
+
 
 
 
@@ -15,27 +18,54 @@ export class FoodServiceProvider {
 
   public foodSearchdata = [];
   public foodSearchdata2 = [];
+  public foodNutdata = [{}];
 
   constructor(public http: HttpClient) {
   }
   
 
-  public makeAPICall(url) {
+  public makeFoodAPICall(url) {
     console.log(url);
-    return this.http.get(url).subscribe(Response => this.processAPIresponse(Response))
+    return this.http.get(url).subscribe(Response => this.processFoodAPIresponse(Response));
   }
 
-  processAPIresponse(response){
+  public makeNutAPICall(url){
+    console.log(url);
+    this.http.get(url)
+         
+       .subscribe(
+          response => {
+            return this.processNutAPIresponse(response);
+            },
+          err =>{
+            console.log(err);
+          }
+    );
+
+
+
+  }
+
+  processFoodAPIresponse(response){
       //if foodSearchdata is empty then populate 
       //esle populate foodSearch2 and concat.
       if(!this.foodSearchdata)
         return this.foodSearchdata = response.list.item;
       else{
         this.foodSearchdata2 = response.list.item;
-        return this.foodSearchdata = this.foodSearchdata.concat(this.foodSearchdata2);
+         this.foodSearchdata = this.foodSearchdata.concat(this.foodSearchdata2);
       }
 
   }
+
+  processNutAPIresponse(response) {
+
+     this.foodNutdata = response.report.food.nutrients;
+    //  console.log(this.foodNutdata);
+     return;
+
+  }
+
 
 
   public strTruncate(str = "no results"){
