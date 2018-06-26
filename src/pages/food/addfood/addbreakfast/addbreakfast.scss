@@ -4,15 +4,28 @@ page-addbreakfast {
         min-height: 70px;
 
         h3{
-            padding: 2% 0 0;
+            padding: 2% 0 0 4%;
             text-transform: capitalize !important;
             // word-wrap: break-word !important;
+        }
+        p{
+            padding-left: 4%;
         }
 
         span{
             font-size: 20px;
-            padding: 0 20px;
+            padding: 0 10px 0 5px;
             color: #555;
+        }
+
+        .calories{
+            font-size: 10px;
+            text-align: center;
+
+            span{
+                margin: 0; padding: 0;
+                font-size: larger;
+            }
         }
     }
 

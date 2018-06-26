@@ -20,9 +20,11 @@ export class AddBreakfastPage {
   // private url: string = "https://api.edamam.com/api/food-database/parser?ingr=chicken&app_id=e377c6b9&app_key=96dfe8d0cc43da2ac99a89ee8fa1ec04&page=0";
   
   private url: string = "";
-  private api_key = "dxWIz33dZG11ZFOt5MgAixHizWiH6uGT4W9Jx9JS";
+  private app_id = "e377c6b9";
+  private app_key = "8c62b43a92fbc94c0de54c53f714f9ab"
+  private x: number = 0;
   searchInput: string = "";
-  searchOffset: number = 0;
+  pageNo: number = 1;
 
 
   
@@ -46,48 +48,57 @@ export class AddBreakfastPage {
 
   //receives a search query and offset, uses them to
   //composes a url and passes the url to getSearchResponse
-  genFoodUrl(searchQuery, offset = 0) {
-    this.url = "https://api.nal.usda.gov/ndb/search/?format=json&q="+searchQuery+"&ort=n&max=20&offset="+offset+"&api_key="+this.api_key;
+  genFoodUrl(searchQuery, page = 1) {
+    this.url = "https://api.edamam.com/api/food-database/parser?ingr=" + searchQuery + "&app_id=" + this.app_id + "&app_key="+this.app_key+"&page="+page;
     return this.foodServ.makeFoodAPICall(this.url);
   }
 
-  genNutritionUrl(ndbno) {
-    this.url = "https://api.nal.usda.gov/ndb/reports/?ndbno=" + ndbno + "&type=b&format=json&api_key=" + this.api_key;
-
-
-    return this.foodServ.makeNutAPICall(this.url);
+  genNutritionUrl(uri, measures) {
+    this.url = "https://api.edamam.com/api/food-database/nutrients?app_id=" + this.app_id + "&app_key=" + this.app_key;
+    return this.foodServ.makeNutAPICall(this.url, uri, measures);
   }
 
-  showMoreFood(offset): Promise<any> {
+  showMoreFood(): Promise<any> {
     
-    this.searchOffset += offset;
+    this.pageNo++;
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.genFoodUrl(this.searchInput, this.searchOffset);
+        this.genFoodUrl(this.searchInput, this.pageNo);
         resolve();
-      }, 500);
+      }, 100);
     })
   }
 
-  doAsyncTask(NDBno) {
-    var promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        this.genNutritionUrl(NDBno);
-        resolve();
-      }, 1000);
-    });
-    return promise;
+  // doAsyncTask(NDBno) {
+  //   var promise = new Promise((resolve, reject) => {
+  //     setTimeout(() => {
+  //       this.genNutritionUrl(NDBno);
+  //       resolve();
+  //     }, 1000);
+  //   });
+  //   return promise;
+  // }
+
+
+
+
+  strToLower(str = "no results") {
+    let STR = str.toLowerCase();
+    return STR;
+
   }
 
-  addFoodModal(_NDBno){ 
-
-    this.genNutritionUrl(_NDBno);
+  addFoodModal(uri, _measures){ 
+    let measures = _measures[1].uri;
+    console.log(measures)    
+    this.genNutritionUrl(uri, measures);
      
-    let addFoodModal = this.modalCtrl.create(AddFoodModal, { NDBno: _NDBno })
+    let addFoodModal = this.modalCtrl.create(AddFoodModal)
     addFoodModal.present();
     
-
   }
+
+
 
   
 

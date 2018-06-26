@@ -16,7 +16,7 @@ import { FoodServiceProvider } from '../../../../providers/foodservice/foodservi
 })
 export class AddFoodModal {
   ndbno;
-  data = [{}] = this.foodServ.foodNutdata;
+  data = this.foodServ.foodNutdata;
 
 
   constructor(
@@ -31,23 +31,6 @@ export class AddFoodModal {
 
   }
 
- 
-  getFoodNutdata(property:string){
-    let arr = [] = this.foodServ.foodNutdata;
-    try{
-      if (typeof arr[1] === "object" && typeof arr[1][property] !== "undefined"){
-  
-          console.log(arr[1][property])
-          return arr[1][property]
-        }
-        
-    }
-    catch(err){
-    }
-
-    return
-      
-  }
 
   closeModal() {
     this.viewCtrl.dismiss();

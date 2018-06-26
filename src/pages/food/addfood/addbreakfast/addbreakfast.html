@@ -14,18 +14,22 @@
 
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="searchInput" (search)="getSearchInput($event)"></ion-searchbar>
-  <ion-item *ngFor="let food of foodServ.foodSearchdata" class="searchResult" >
-    <h3>{{foodServ.strTruncate(food.name)}}</h3>
-    <p>{{food.manu}}</p>
-    <span item-right (click)="addFoodModal(this.food.ndbno)">
-      <ion-icon name="ios-arrow-forward"></ion-icon>
-    </span>
-</ion-item>
-    
+
+  <ion-searchbar [(ngModel)]="searchInput" (change)="getSearchInput($event)"></ion-searchbar>
+
+    <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata" class="searchResult" >
+      <!-- <h3>{{getFoodData('label')}}</h3> -->
+      <h3>{{foodRecord.food.label}}</h3>
+
+      <p>{{foodRecord.food.brand}}</p>
+      <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal<br>(per 100g)</span>
+      <span item-right (click)="addFoodModal(foodRecord.food.uri, foodRecord.measures)">
+        <ion-icon name="ios-arrow-forward"></ion-icon>
+      </span>
+    </ion-item>
 
 
-  <ion-infinite-scroll (ionInfinite)="$event.waitFor(showMoreFood(20))">
+  <ion-infinite-scroll (ionInfinite)="$event.waitFor(showMoreFood())">
     <ion-infinite-scroll-content>
 
     </ion-infinite-scroll-content>
