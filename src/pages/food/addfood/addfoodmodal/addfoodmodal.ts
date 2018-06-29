@@ -16,8 +16,13 @@ import { FoodServiceProvider } from '../../../../providers/foodservice/foodservi
 })
 export class AddFoodModal {
   ndbno;
-  data = this.foodServ.foodNutdata;
-
+  nutData = this.foodServ.foodNutdata;
+  brand = this.navParams.get('Brand');
+  label = this.navParams.get('Label');
+  measures = this.navParams.get('Measures');
+  NoOfServ: number = 1;
+  ServingSize: number = 0;
+  cow = 0;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,13 +33,22 @@ export class AddFoodModal {
     
   }
   ionViewDidLoad(){
-
+    console.log(this.measures)
   }
 
-
+  
   closeModal() {
     this.viewCtrl.dismiss();
   }
   
+  getNutdata(_macro: string, _quantity: string){  
+    if (typeof this.foodServ.foodNutdata.totalNutrients[_macro] === "object"){
+      // console.log(this.foodServ.foodNutdata.totalNutrients[_macro][_quantity]);
+      return this.foodServ.foodNutdata.totalNutrients[_macro][_quantity];
+    }
+    else{
+      return 0;
+    }
+  }
 
 }

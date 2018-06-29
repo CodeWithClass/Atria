@@ -17,16 +17,19 @@
 
   <ion-searchbar [(ngModel)]="searchInput" (change)="getSearchInput($event)"></ion-searchbar>
 
+  <div *ngIf="this.hasSearched">
+
     <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata" class="searchResult" >
       <!-- <h3>{{getFoodData('label')}}</h3> -->
       <h3>{{foodRecord.food.label}}</h3>
 
       <p>{{foodRecord.food.brand}}</p>
-      <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal<br>(per 100g)</span>
-      <span item-right (click)="addFoodModal(foodRecord.food.uri, foodRecord.measures)">
+      <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal</span>
+      <span item-right (click)="addFoodModal(foodRecord.food.uri, foodRecord.measures, foodRecord.food.label, foodRecord.food.brand)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </span>
     </ion-item>
+  </div>
 
 
   <ion-infinite-scroll (ionInfinite)="$event.waitFor(showMoreFood())">
@@ -39,4 +42,4 @@
 
 
 
-</ion-content>s
+</ion-content>

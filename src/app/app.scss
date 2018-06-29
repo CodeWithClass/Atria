@@ -56,7 +56,7 @@
 }
 
 .col-4{
-    width: 400px;
+    width: 40%;
 }
 
 .col-5{
@@ -81,4 +81,8 @@
 
 .col-10{
     width: 100%;
+}
+
+.col-50{
+    width: (width + 50%);
 }

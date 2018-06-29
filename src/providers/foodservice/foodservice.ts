@@ -40,6 +40,7 @@ export class FoodServiceProvider {
     "uri": "http://www.edamam.com/ontologies/edamam.owl#77e6bbe0-f22d-4554-80a5-fe5809d681be",
     "yield": 1,
     "calories": 283,
+    "brand": "pug",
     "totalWeight": 566.9904625,
     "dietLabels": [
       "LOW_FAT",
@@ -65,42 +66,42 @@ export class FoodServiceProvider {
                 "totalNutrients": {
     "ENERC_KCAL": {
       "label": "Energy",
-        "quantity": 283.49523125,
+        "quantity": 0,
           "unit": "kcal"
     },
     "CHOCDF": {
       "label": "Carbs",
-        "quantity": 68.49244743742061,
+        "quantity": 0,
           "unit": "g"
     },
     "SUGAR": {
       "label": "Sugars",
-        "quantity": 61.405066656170604,
+        "quantity": 0,
           "unit": "g"
     },
     "PROCNT": {
       "label": "Protein",
-        "quantity": 2.3813598681504167,
+        "quantity": 0,
           "unit": "g"
     },
     "MG": {
       "label": "Magnesium",
-        "quantity": 39.689332375,
+        "quantity": 0,
           "unit": "mg"
     },
     "K": {
       "label": "Potassium",
-        "quantity": 992.233309375,
+        "quantity": 0,
           "unit": "mg"
     },
     "P": {
       "label": "Phosphorus",
-        "quantity": 45.359237,
+        "quantity": 0,
           "unit": "mg"
     },
     "VITC": {
       "label": "Vitamin C",
-        "quantity": 141.747615625,
+        "quantity": 0,
           "unit": "mg"
     }
   },
@@ -159,7 +160,9 @@ export class FoodServiceProvider {
       ]
     }
   ]
-}
+  }
+  public micros = Object.values(this.foodNutdata.totalNutrients);
+
   public x: number = 0;
 
   constructor(public http: HttpClient) {
@@ -184,44 +187,40 @@ export class FoodServiceProvider {
           }
         ]
       }
-    )
-         
-       .subscribe(
-          response => {
-            return this.processNutAPIresponse(response);
-            },
-          err =>{
-            console.log(err);
-          }
+    ) 
+    .subscribe(
+      response => {
+        return this.processNutAPIresponse(response);
+        },
+      err =>{
+        console.log(err);
+      }
     );
-
-
-
   }
 
   processFoodAPIresponse(response){
       //if foodSearchdata is empty then populate 
       //esle populate foodSearch2 and concat.
+    if(!(response.hints.length < 1)){
+
       if(!this.foodSearchdata){
-        this.foodSearchdata = response.hints;
+         this.foodSearchdata = response.hints;
         console.log(this.foodSearchdata)
-
-
       }
-        
       else{
         this.foodSearchdata2 = response.hints;
         this.foodSearchdata = this.foodSearchdata.concat(this.foodSearchdata2);
         console.log(this.foodSearchdata)
-
        }
+    }
 
   }
 
   processNutAPIresponse(response) {
-
-     this.foodNutdata = response;
-     return;
+    console.log(response);
+    this.micros = Object.values(response.totalNutrients);
+    console.log(this.micros)
+    return this.foodNutdata = response;
 
   }
 

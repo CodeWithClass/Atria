@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
 import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
+import { resolve } from 'path';
 
 
 /**
@@ -22,10 +23,10 @@ export class AddBreakfastPage {
   private url: string = "";
   private app_id = "e377c6b9";
   private app_key = "8c62b43a92fbc94c0de54c53f714f9ab"
-  private x: number = 0;
+  hasSearched: boolean = false;
   searchInput: string = "";
   pageNo: number = 1;
-
+ 
 
   
 
@@ -42,6 +43,7 @@ export class AddBreakfastPage {
   getSearchInput(searchText) {
     this.searchInput = searchText.srcElement.value;
     this.foodServ.foodSearchdata = [];
+    this.hasSearched = true;
     this.genFoodUrl(this.searchInput);
     
   }
@@ -56,6 +58,12 @@ export class AddBreakfastPage {
   genNutritionUrl(uri, measures) {
     this.url = "https://api.edamam.com/api/food-database/nutrients?app_id=" + this.app_id + "&app_key=" + this.app_key;
     return this.foodServ.makeNutAPICall(this.url, uri, measures);
+    // return new Promise((resolve) =>{
+    //   setTimeout(()=>{
+    //     this.foodServ.makeNutAPICall(this.url, uri, measures);
+    //     resolve();
+    //   }, 1000);
+    // })
   }
 
   showMoreFood(): Promise<any> {
@@ -65,19 +73,9 @@ export class AddBreakfastPage {
       setTimeout(() => {
         this.genFoodUrl(this.searchInput, this.pageNo);
         resolve();
-      }, 100);
+      }, 1000);
     })
   }
-
-  // doAsyncTask(NDBno) {
-  //   var promise = new Promise((resolve, reject) => {
-  //     setTimeout(() => {
-  //       this.genNutritionUrl(NDBno);
-  //       resolve();
-  //     }, 1000);
-  //   });
-  //   return promise;
-  // }
 
 
 
@@ -88,13 +86,15 @@ export class AddBreakfastPage {
 
   }
 
-  addFoodModal(uri, _measures){ 
+  addFoodModal(uri, _measures, _brand, _label){ 
     let measures = _measures[1].uri;
-    console.log(measures)    
+
+    // console.log(_brand)
     this.genNutritionUrl(uri, measures);
-     
-    let addFoodModal = this.modalCtrl.create(AddFoodModal)
+    
+    let addFoodModal = this.modalCtrl.create(AddFoodModal, {Label: _label, Brand: _brand, Measures:_measures})
     addFoodModal.present();
+    
     
   }
 
