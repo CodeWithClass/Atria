@@ -2,15 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
 import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
-import { resolve } from 'path';
 
-
-/**
- * Generated class for the AddbreakfastPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,7 +10,6 @@ import { resolve } from 'path';
   templateUrl: 'addbreakfast.html',
 })
 export class AddBreakfastPage {
-  // private url: string = "https://api.edamam.com/api/food-database/parser?ingr=chicken&app_id=e377c6b9&app_key=96dfe8d0cc43da2ac99a89ee8fa1ec04&page=0";
   
   private url: string = "";
   private app_id = "e377c6b9";
@@ -27,8 +18,6 @@ export class AddBreakfastPage {
   searchInput: string = "";
  
 
-  
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -36,10 +25,22 @@ export class AddBreakfastPage {
     public modalCtrl: ModalController,
     ) {   
   }
-  
-  //get the serach element and extract the search value.
-  //then pass the value to genFoodUrl
-  getSearchInput(searchText) {
+
+
+  /*
+	Function: getSearchInput(searchText)
+	Parameter: searchText
+  Return: none
+
+  - get the serach element and extract the search value.
+  - clear the previously retreived search data 
+  - set hasSearch as true for search results div to be displayed.
+  - reset search results offset to 0 for api call url.
+  - finally pass the search text to genFoodUrl
+
+  */
+
+  getSearchInput(searchText){
     this.searchInput = searchText.srcElement.value;
     this.foodServ.foodSearchdata.item = [];
     this.hasSearched = true;
@@ -48,26 +49,49 @@ export class AddBreakfastPage {
     
   }
 
-  //receives a search query and offset, uses them to
-  //composes a url and passes the url to getSearchResponse
-  genFoodUrl(_searchQuery) {
+
+  /*
+	Function: genFoodUrl(_searchQuery)
+	Parameter: _searchQuery
+  Return: function
+
+  receives a search query and offset, uses them to
+  composes a url and passes the url to foodServ.makeFoodAPICall
+  */
+
+  genFoodUrl(_searchQuery){
     let searchQuery = encodeURIComponent(_searchQuery);
     this.url = "https://api.nal.usda.gov/ndb/search/?format=json&q=" + searchQuery + "&sort=r&max=20&offset=" +this.foodServ.offset+"&api_key="+this.app_key;
     return this.foodServ.makeFoodAPICall(this.url);
   }
 
+
+    /*
+	Function: genNutritionUrl(_ndbno)
+	Parameter: _ndbno
+  Return: function
+
+  receives a search query and offset, uses them to
+  composes a url and passes the url to foodServ.makeNutAPICall
+  */
   genNutritionUrl(_ndbno) {
     let ndbno = encodeURIComponent(_ndbno);
     this.url = "https://api.nal.usda.gov/ndb/V2/reports?ndbno=" + ndbno + "&type=b&format=json&api_key=" + this.app_key;
     return this.foodServ.makeNutAPICall(this.url);
-    // return new Promise((resolve) =>{
-    //   setTimeout(()=>{
-    //     this.foodServ.makeNutAPICall(this.url, uri, measures);
-    //     resolve();
-    //   }, 1000);
-    // })
+    
   }
+  
 
+
+  /*
+	Function: showMoreFood()
+	Parameter: none
+	Return: Promise
+	
+  Returns a promise that genFoodUrl will be called and passed
+  the search input so that more search results can be retreive
+  for Infinite scroll
+  */
   showMoreFood(): Promise<any> {
     
     return new Promise((resolve) => {
@@ -80,20 +104,25 @@ export class AddBreakfastPage {
 
 
 
+  /*
+	Function: addFoodModal(_ndbno, _name, _manu)
+	Parameter: _ndbno, _name, _manu
+  Return: none
 
+  Recieves _ndbno (ndbno number) for selected food,
+  _name (name) of the food, _manu (manufacturer).
+  Makes a genNutritionUrl call with the ndbno number
+  Create modal object, passing _name, manu then
+  presenting modal.
 
-
+  */
   addFoodModal(_ndbno, _name, _manu){ 
 
     this.genNutritionUrl(_ndbno);
-    
+
     let addFoodModal = this.modalCtrl.create(AddFoodModal, { Name: _name, Manu: _manu})
     addFoodModal.present();
   }
-
-
-
-  
 
 
 }

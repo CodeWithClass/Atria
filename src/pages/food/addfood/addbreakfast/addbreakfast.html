@@ -1,48 +1,39 @@
-<!--
-  Generated template for the AddbreakfastPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Breakfast</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
-
+  <!-- =============== Search Input ============= -->
   <ion-searchbar [(ngModel)]="searchInput" (change)="getSearchInput($event)"></ion-searchbar>
 
   <div *ngIf="this.hasSearched">
-
+    <!-- ============= Serach result sections ========== -->
     <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata.item" class="searchResult" >
-      <!-- <h3>{{getFoodData('label')}}</h3> -->
       <h3>{{foodServ.strToLower(foodRecord.name)}}</h3>
       <p>{{foodRecord.manu}}</p>
-      <!-- <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal</span> -->
       <span item-right (click)="addFoodModal(foodRecord.ndbno, foodRecord.name, foodRecord.manu)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </span>
     </ion-item>
+
+
+    <!-- =============== No result section ============= -->
     <ion-item *ngIf="this.foodServ.noResult">
       <h3>No Results</h3>
       <p>Try a less specific search terms</p>  
     </ion-item>
   </div>
 
-
+  
+  <!-- ============= Infinite scroll section =========== -->
   <ion-infinite-scroll (ionInfinite)="$event.waitFor(showMoreFood())">
     <ion-infinite-scroll-content>
-
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
   
-
-
-
 </ion-content>
