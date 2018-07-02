@@ -1,17 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the UserStatsProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class UserStatsProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello UserStatsProvider Provider');
       
   }
 
@@ -21,7 +15,11 @@ export class UserStatsProvider {
   { data: [85, 79, 80, 96], label: 'Diastolic' },
   ];
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
-  
+  foodIntake =[];
+
+
+
+
   getBP(reading: string): number[] {
 
     if (reading == 'earlier') {

@@ -19,15 +19,18 @@
 
   <div *ngIf="this.hasSearched">
 
-    <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata" class="searchResult" >
+    <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata.item" class="searchResult" >
       <!-- <h3>{{getFoodData('label')}}</h3> -->
-      <h3>{{foodRecord.food.label}}</h3>
-
-      <p>{{foodRecord.food.brand}}</p>
-      <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal</span>
-      <span item-right (click)="addFoodModal(foodRecord.food.uri, foodRecord.measures, foodRecord.food.label, foodRecord.food.brand)">
+      <h3>{{foodServ.strToLower(foodRecord.name)}}</h3>
+      <p>{{foodRecord.manu}}</p>
+      <!-- <span item-right class="calories"><span>{{foodRecord.food.nutrients.ENERC_KCAL | number:'1.0-0'}}</span> kcal</span> -->
+      <span item-right (click)="addFoodModal(foodRecord.ndbno, foodRecord.name, foodRecord.manu)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </span>
+    </ion-item>
+    <ion-item *ngIf="this.foodServ.noResult">
+      <h3>No Results</h3>
+      <p>Try a less specific search terms</p>  
     </ion-item>
   </div>
 

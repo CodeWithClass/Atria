@@ -22,10 +22,9 @@ export class AddBreakfastPage {
   
   private url: string = "";
   private app_id = "e377c6b9";
-  private app_key = "8c62b43a92fbc94c0de54c53f714f9ab"
+  private app_key = "dxWIz33dZG11ZFOt5MgAixHizWiH6uGT4W9Jx9JS"
   hasSearched: boolean = false;
   searchInput: string = "";
-  pageNo: number = 1;
  
 
   
@@ -42,22 +41,25 @@ export class AddBreakfastPage {
   //then pass the value to genFoodUrl
   getSearchInput(searchText) {
     this.searchInput = searchText.srcElement.value;
-    this.foodServ.foodSearchdata = [];
+    this.foodServ.foodSearchdata.item = [];
     this.hasSearched = true;
+    this.foodServ.offset = 0;
     this.genFoodUrl(this.searchInput);
     
   }
 
   //receives a search query and offset, uses them to
   //composes a url and passes the url to getSearchResponse
-  genFoodUrl(searchQuery, page = 1) {
-    this.url = "https://api.edamam.com/api/food-database/parser?ingr=" + searchQuery + "&app_id=" + this.app_id + "&app_key="+this.app_key+"&page="+page;
+  genFoodUrl(_searchQuery) {
+    let searchQuery = encodeURIComponent(_searchQuery);
+    this.url = "https://api.nal.usda.gov/ndb/search/?format=json&q=" + searchQuery + "&sort=r&max=20&offset=" +this.foodServ.offset+"&api_key="+this.app_key;
     return this.foodServ.makeFoodAPICall(this.url);
   }
 
-  genNutritionUrl(uri, measures) {
-    this.url = "https://api.edamam.com/api/food-database/nutrients?app_id=" + this.app_id + "&app_key=" + this.app_key;
-    return this.foodServ.makeNutAPICall(this.url, uri, measures);
+  genNutritionUrl(_ndbno) {
+    let ndbno = encodeURIComponent(_ndbno);
+    this.url = "https://api.nal.usda.gov/ndb/V2/reports?ndbno=" + ndbno + "&type=b&format=json&api_key=" + this.app_key;
+    return this.foodServ.makeNutAPICall(this.url);
     // return new Promise((resolve) =>{
     //   setTimeout(()=>{
     //     this.foodServ.makeNutAPICall(this.url, uri, measures);
@@ -68,10 +70,9 @@ export class AddBreakfastPage {
 
   showMoreFood(): Promise<any> {
     
-    this.pageNo++;
     return new Promise((resolve) => {
       setTimeout(() => {
-        this.genFoodUrl(this.searchInput, this.pageNo);
+        this.genFoodUrl(this.searchInput);
         resolve();
       }, 1000);
     })
@@ -80,22 +81,14 @@ export class AddBreakfastPage {
 
 
 
-  strToLower(str = "no results") {
-    let STR = str.toLowerCase();
-    return STR;
 
-  }
 
-  addFoodModal(uri, _measures, _brand, _label){ 
-    let measures = _measures[1].uri;
+  addFoodModal(_ndbno, _name, _manu){ 
 
-    // console.log(_brand)
-    this.genNutritionUrl(uri, measures);
+    this.genNutritionUrl(_ndbno);
     
-    let addFoodModal = this.modalCtrl.create(AddFoodModal, {Label: _label, Brand: _brand, Measures:_measures})
+    let addFoodModal = this.modalCtrl.create(AddFoodModal, { Name: _name, Manu: _manu})
     addFoodModal.present();
-    
-    
   }
 
 
