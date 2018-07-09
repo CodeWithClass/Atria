@@ -36,6 +36,7 @@ export class MyStatsPage {
   }
 
   addData() {
+    console.log('tryin')
     this.fdb.list('heros/').push(this.dataToAdd);
   }
 

@@ -98,8 +98,7 @@ export class FoodServiceProvider {
   If there is no response then catch errors and set noResult to true.
   */
   processFoodAPIresponse(response){
-      //if foodSearchdata is empty then populate 
-      //esle populate foodSearch2 and concat.
+  
     try{
       if(!this.foodSearchdata){
         this.foodSearchdata = response.list.item;

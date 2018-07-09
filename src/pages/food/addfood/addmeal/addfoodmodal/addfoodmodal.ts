@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
-import { UserStatsProvider } from '../../../../providers/user-stats/user-stats';
+import { FoodServiceProvider } from '../../../../../providers/foodservice/foodservice';
+import { UserStatsProvider } from '../../../../../providers/user-stats/user-stats';
+import { DBService } from '../../../../../services/db.service';
 
 /**
  * Generated class for the AddfoodmodalPage page.
@@ -16,9 +17,11 @@ import { UserStatsProvider } from '../../../../providers/user-stats/user-stats';
   templateUrl: 'addfoodmodal.html',
 })
 export class AddFoodModal {
+  pageTitle
   ndbno;
-  name = this.navParams.get('Name');
-  manu = this.navParams.get('Manu');
+  record = this.navParams.get('Record');
+  name = this.record.name
+  manu = this.record.manu
   NoOfServ: number = 1;
   showMicroNutrients = false;
 
@@ -27,11 +30,11 @@ export class AddFoodModal {
     public navParams: NavParams, 
     public viewCtrl: ViewController,
     public foodServ: FoodServiceProvider,
-    public userStats: UserStatsProvider
+    public userStats: UserStatsProvider,
+    public dbService: DBService,
   
   ) {
-    
-    
+    this.pageTitle = navParams.get('PageTitle'); 
   }
   
  
@@ -52,13 +55,27 @@ export class AddFoodModal {
         macro = macroArr.find((element) => {
           return element.name == _macro;
         });
+
+        if(macro) {
+          return parseInt(macro.value) * this.NoOfServ;
+        }
+        else if (_macro == 'Energy'){
+          console.log('no kcal value, must calculate')
+          let cals = ((4 * this.getMacroData('Protein') + (4 * this.getMacroData('Carbohydrate, by difference') + (9 * this.getMacroData('Total lipid (fat)'))))) 
+          this.foodServ.foodNutdata.push({ "nutrient_id": "208", "name": "Energy", "derivation": "LCCS", "group": "Proximates", "unit": "kcal", "value": cals })
+          
+          return cals;
+        }
+
+        else{
+          return 0;
+        }
+
       }
       catch(err) {
         console.log(err)
       }
-      if(macro){
-        return parseInt(macro.value) * this.NoOfServ;
-      }
+      
 
     }
   }
@@ -75,7 +92,7 @@ export class AddFoodModal {
   by the number of servings (NoOfServ). Else it returns the nutrient.prop.
     */
   getAllNutrients(record, prop){
-    if(prop == "value"){
+    if(prop == "value" && record.value){
       return parseInt(record.value) * this.NoOfServ;
     }
     else{
@@ -140,14 +157,31 @@ export class AddFoodModal {
 
   */
   saveAndCloseModal(){
-    let fullDate = new Date();        
-    let today = fullDate.getFullYear() + "-" + (fullDate.getMonth()+1) + "-" + fullDate.getDate();
-    this.foodServ.foodNutdata.date = today;
 
-    this.userStats.foodIntake.push(this.foodServ.foodNutdata);
+    this.record.date = this.userStats.todaysDate;
+    this.record.meal = this.pageTitle;
+    
+    this.foodServ.foodNutdata.push(this.record);
 
+    //update serving size of selected food
+    this.foodServ.foodNutdata.forEach(element => {
+
+      //find calories and set it as a property of the last element
+      if(element.name == 'Energy'){
+        let lastArrElement = this.foodServ.foodNutdata[this.foodServ.foodNutdata.length -1]
+        lastArrElement.calories = ((parseInt(element.value) * this.NoOfServ) || 0);
+        lastArrElement.servings = this.NoOfServ;
+        lastArrElement.uid = Math.random();
+      }
+      element.value = ((parseInt(element.value) * this.NoOfServ) || 0);        
+    });
+
+
+    this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
     this.closeModal();
   }
+  
+
   
 
 

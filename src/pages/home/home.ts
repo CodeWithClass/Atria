@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+import { DBService } from '../../services/db.service'
 import { FoodPage } from "../food/food";
 
 
@@ -19,7 +20,12 @@ import { FoodPage } from "../food/food";
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userStats: UserStatsProvider) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public userStats: UserStatsProvider,
+              public dbServ: DBService) {
+      
+    this.dbServ.loadDBdata();
 
   }
 

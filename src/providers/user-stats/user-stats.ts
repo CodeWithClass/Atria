@@ -1,24 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { resolve } from 'dns';
 
 @Injectable()
 export class UserStatsProvider {
-
-  constructor(public http: HttpClient) {
-      
-  }
-
+  
+  todaysDate;
+  foodIntake;
+  bpData;
+ 
   maxCalories: string = "2000";
   currCalories: string = "1560";
   bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
   { data: [85, 79, 80, 96], label: 'Diastolic' },
   ];
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
-  foodIntake =[];
 
 
 
+  constructor(public http: HttpClient) {
+    let fullDate = new Date();
+    this.todaysDate = fullDate.getFullYear() + "-" + fullDate.getMonth() + "-" + fullDate.getDate();
+  }
+  
+  
 
   getBP(reading: string): number[] {
 

@@ -8,7 +8,7 @@ import { AuthService } from '../services/auth.service';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 // import { FoodPage } from '../pages/food/food';
- import {AddBreakfastPage} from '../pages/food/addfood/addbreakfast/addbreakfast';
+ import {addmealPage} from '../pages/food/addfood/addmeal/addmeal';
 //import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
 //just uncomment and change root property below
 
@@ -35,8 +35,9 @@ export class MyApp {
       .subscribe(
         user => {
           if (user) {
-            this.rootPage = AddBreakfastPage;
-          } else {
+            this.rootPage = TabsPage;
+          }
+          else {
             this.rootPage = LoginPage;
           }
         },

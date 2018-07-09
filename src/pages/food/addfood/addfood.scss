@@ -32,6 +32,32 @@ page-addfood {
     }
     
     ion-card-content{
+        ion-item {
+            * {
+                text-transform: capitalize;
+            }
+
+            ion-label{
+                margin: 8px 2px !important;
+
+            }
+
+            .calories{
+                position: relative;
+                left: 10px;
+            }
+
+            ion-icon{
+                position: relative;
+                left: 10px;
+                color:red;
+            }
+            background-color: #eee !important;
+            margin-top: 10px !important;
+            padding: 0px initial !important;
+            border: solid 2px red;
+        
+        }
         button{
             padding:20px 0 !important;
             color: #555 !important;

@@ -9,7 +9,7 @@
 <ion-content>
   <!--================ Header =================== -->
   <div class="modal-header">
-    <h2 class="title">Add Food
+    <h2 class="title">Add {{this.pageTitle}}
       <ion-icon name="close" item-right (click)="closeModal()"></ion-icon>
     </h2>
   <!--===================== -->
@@ -89,7 +89,7 @@
     <!-- =========================================== -->
 
     <!--============ Add food button =============== -->
-    <button ion-button  full color="dark" class="addFoodButton" (click)="saveAndCloseModal()" [disabled]="NoOfServ < 1">
+    <button ion-button  full color="dark" class="addFoodButton" (click)="saveAndCloseModal()" [disabled]="NoOfServ < 0.001">
       Add to food diary&nbsp;&nbsp;&nbsp;<ion-icon name="md-checkmark"></ion-icon>
     </button>
     <!-- =========================================== -->

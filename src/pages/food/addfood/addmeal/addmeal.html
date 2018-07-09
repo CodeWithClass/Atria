@@ -1,13 +1,13 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>Breakfast</ion-title>
+    <ion-title>{{this.pageTitle}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <!-- =============== Search Input ============= -->
+  <!-- ================== Search Input =============== -->
   <ion-searchbar [(ngModel)]="searchInput" (change)="getSearchInput($event)"></ion-searchbar>
 
   <div *ngIf="this.hasSearched">
@@ -15,7 +15,7 @@
     <ion-item *ngFor="let foodRecord of foodServ.foodSearchdata.item" class="searchResult" >
       <h3>{{foodServ.strToLower(foodRecord.name)}}</h3>
       <p>{{foodRecord.manu}}</p>
-      <span item-right (click)="addFoodModal(foodRecord.ndbno, foodRecord.name, foodRecord.manu)">
+      <span item-right (click)="addFoodModal(this.foodRecord)">
         <ion-icon name="ios-arrow-forward"></ion-icon>
       </span>
     </ion-item>

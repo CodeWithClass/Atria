@@ -27,8 +27,8 @@ import { SettingsPage } from '../pages/settings/settings';
 
 import { FoodPage } from '../pages/food/food';
 import { AddFoodPage } from '../pages/food/addfood/addfood';
-import { AddBreakfastPage } from '../pages/food/addfood/addbreakfast/addbreakfast';
-import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
+import { addmealPage } from '../pages/food/addfood/addmeal/addmeal';
+import { AddFoodModal } from '../pages/food/addfood/addmeal/addfoodmodal/addfoodmodal';
 
 
 import { MyStatsPage } from '../pages/mystats/mystats';
@@ -47,7 +47,7 @@ import { FoodServiceProvider } from '../providers/foodservice/foodservice';
     SettingsPage,
     FoodPage,
     AddFoodPage,
-    AddBreakfastPage,
+    addmealPage,
     AddFoodModal,    
     MyStatsPage,
     TabsPage,
@@ -73,7 +73,7 @@ import { FoodServiceProvider } from '../providers/foodservice/foodservice';
     SettingsPage,
     FoodPage,
     AddFoodPage,
-    AddBreakfastPage,
+    addmealPage,
     AddFoodModal,
     MyStatsPage,
     TabsPage,

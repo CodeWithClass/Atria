@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
-import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
+import { AddFoodModal } from './addfoodmodal/addfoodmodal';
 
 
 @IonicPage()
 @Component({
-  selector: 'page-addbreakfast',
-  templateUrl: 'addbreakfast.html',
+  selector: 'page-addmeal',
+  templateUrl: 'addmeal.html',
 })
-export class AddBreakfastPage {
+export class addmealPage {
   
+  pageTitle;
   private url: string = "";
   private app_id = "e377c6b9";
   private app_key = "dxWIz33dZG11ZFOt5MgAixHizWiH6uGT4W9Jx9JS"
@@ -23,7 +24,9 @@ export class AddBreakfastPage {
     public navParams: NavParams, 
     public foodServ: FoodServiceProvider,
     public modalCtrl: ModalController,
-    ) {   
+    ) {
+    this.pageTitle = navParams.get('PageTitle');
+      
   }
 
 
@@ -116,11 +119,10 @@ export class AddBreakfastPage {
   presenting modal.
 
   */
-  addFoodModal(_ndbno, _name, _manu){ 
+  addFoodModal(_foodrecord){ 
+    this.genNutritionUrl(_foodrecord.ndbno);
 
-    this.genNutritionUrl(_ndbno);
-
-    let addFoodModal = this.modalCtrl.create(AddFoodModal, { Name: _name, Manu: _manu})
+    let addFoodModal = this.modalCtrl.create(AddFoodModal, { PageTitle: this.pageTitle, Record: _foodrecord})
     addFoodModal.present();
   }
 

@@ -35,7 +35,9 @@ export class LoginPage {
   loginWithGoogle() {
     this.auth.signInWithGoogle()
       .then(
-        () => this.navCtrl.setRoot(TabsPage),
+        () => {
+          this.navCtrl.setRoot(TabsPage);
+        },
         error => console.log(error.message)
       );
   }
@@ -49,7 +51,6 @@ export class LoginPage {
     }
     
     this.saveLastEmail(data.email);
-    // console.log(this.getLastEmail());
     
     let credentials = {
       email: data.email,
@@ -65,7 +66,6 @@ export class LoginPage {
 
   signup(){
     this.navCtrl.push(SignupPage);
-  
   }
 
   saveLastEmail(email){
@@ -77,7 +77,6 @@ export class LoginPage {
   }
   
   getLastEmail(){
-    
     this.storage.get('lastEmail')
       .then((val) => { 
         console.log(val);

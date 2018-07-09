@@ -12,55 +12,105 @@
       
     </ion-title>
   </ion-navbar>
-  
-
 </ion-header>
 
 
 <ion-content>
-  <div class="static-bar">
-    <h5>2000 - 1590 + exercise = 410</h5>
-  </div>
-
+  <!-- -=============Breakfast============= -->
   <ion-card class="breakfast-card addfood-card">
     <ion-card-header>
       Breakfast
     </ion-card-header>
     <ion-card-content>
-      <button ion-button clear full icon-start (click)="launchAddFoodSubPage()">
+      <ion-item *ngFor="let food of displayMeals('Breakfast')">
+        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
+          <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
+          <p class="col-1 calories" item-right>
+            {{food.calories}}<br><small>kcal</small>
+          </p>
+          <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Breakfast')"></ion-icon>
+      </ion-item>
+
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Breakfast')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
     </ion-card-content>
   </ion-card>
+
+
+
+
+
+
+  <!-- -=============Lunch============= -->
   <ion-card class="lunch-card addfood-card">
     <ion-card-header>
       Lunch
     </ion-card-header>
     <ion-card-content>
-      <button ion-button clear full icon-start>
+      <ion-item *ngFor="let food of displayMeals('Lunch')">
+        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
+        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
+        <p class="col-1 calories" item-right>
+          {{food.calories}}
+          <br>
+          <small>kcal</small>
+        </p>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Lunch')"></ion-icon>
+      </ion-item>
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Lunch')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
     </ion-card-content>
   </ion-card>
+
+
+
+  <!-- -=============Dinner============= -->
   <ion-card class="dinner-card addfood-card">
     <ion-card-header>
       Dinner
     </ion-card-header>
     <ion-card-content>
-      <button ion-button clear full icon-start>
+      <ion-item *ngFor="let food of displayMeals('Dinner')">
+        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
+        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
+        <p class="col-1 calories" item-right>
+          {{food.calories}}
+          <br>
+          <small>kcal</small>
+        </p>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Dinner')"></ion-icon>
+      </ion-item>
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Dinner')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
     </ion-card-content>
   </ion-card>
+
+
+
+
+  <!-- -=============Snacks============= -->
   <ion-card class="snacks-card addfood-card">
     <ion-card-header>
       Snacks
     </ion-card-header>
     <ion-card-content>
-      <button ion-button clear full icon-start>
+      <ion-item *ngFor="let food of displayMeals('Snacks')">
+        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
+        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
+        <p class="col-1 calories" item-right>
+          {{food.calories}}
+          <br>
+          <small>kcal</small>
+        </p>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(this.food)"></ion-icon>
+      </ion-item>
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Snacks')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
