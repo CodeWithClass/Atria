@@ -16,13 +16,19 @@ import { log } from 'util';
 @Component({
   selector: 'page-mystats',
   templateUrl: 'mystats.html',
-})
+}) 
 export class MyStatsPage {
   dataToAdd;
+  mystats = {
+    age: 99,
+    maxCalories: 2000
+  };
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public fdb: AngularFireDatabase,
+    public dbService: DBService,
   ) {
   }
 
@@ -37,7 +43,7 @@ export class MyStatsPage {
 
   addData() {
     console.log('tryin')
-    this.fdb.list('heros/').push(this.dataToAdd);
+    this.dbService.writeStatsToDB(this.mystats)
   }
 
 }

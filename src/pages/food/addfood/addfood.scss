@@ -3,6 +3,7 @@ page-addfood {
     ion-header{
         background-color: color($colors, food);
         
+
         .toolbar-background{
             background-color: color($colors, food) !important;
             
@@ -15,13 +16,26 @@ page-addfood {
         
     }
 
-    .static-bar{
-        background-color: color($colors, food);
-        h5{
-            color: white;
-            text-align: center;
-            padding: 10%;
-            margin: 0px auto 20px auto;
+    ion-content{
+        margin-top: 50px;
+    }
+    .time-travel{
+        background-color: #555;
+        // color: white;
+        padding: 2%;
+        text-align: center;
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+
+        span{
+            margin: 0 auto;
+            font-size: 20px;
+        }
+
+        ion-icon{
+            padding: 0 12%;
+            font-size: 24px;
         }
     }
 

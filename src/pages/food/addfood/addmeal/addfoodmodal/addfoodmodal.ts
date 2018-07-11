@@ -52,7 +52,7 @@ export class AddFoodModal {
     if(this.foodServ.foodNutdata){
       try {
         let macroArr = this.foodServ.foodNutdata;
-        macro = macroArr.find((element) => {
+        macro = this.foodServ.foodNutdata.find((element) => {
           return element.name == _macro;
         });
 
@@ -160,27 +160,49 @@ export class AddFoodModal {
 
     this.record.date = this.userStats.todaysDate;
     this.record.meal = this.pageTitle;
+    let statRecord = {};
+
+    if(this.userStats.userNutStats[this.userStats.todaysDate]){
+      statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    }
     
     this.foodServ.foodNutdata.push(this.record);
 
     //update serving size of selected food
     this.foodServ.foodNutdata.forEach(element => {
 
-      //find calories and set it as a property of the last element
       if(element.name == 'Energy'){
         let lastArrElement = this.foodServ.foodNutdata[this.foodServ.foodNutdata.length -1]
         lastArrElement.calories = ((parseInt(element.value) * this.NoOfServ) || 0);
         lastArrElement.servings = this.NoOfServ;
         lastArrElement.uid = Math.random();
       }
-      element.value = ((parseInt(element.value) * this.NoOfServ) || 0);        
+   
+      //calculate values by multiplying number of servings
+      element.value = ((parseInt(element.value) * this.NoOfServ) || 0);
+      
+      //check if element already exits or if name is not food's name
+      if (!statRecord[element.name] && element.name != this.record.name){
+        statRecord[element.name] = 0;
+      }
+      //check if name is not food's name
+      if(element.name != this.record.name){
+        statRecord[element.name] += element.value;
+      }
+  
+
     });
 
-
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
+    this.dbService.writeDailyStatsToDB(this.record.date, statRecord);   
+    
     this.closeModal();
   }
   
+  strCleanUp(str) {
+    let STR = str.replace(/:[.#$\[\]\///\._]/g, ' ');
+    return STR;
+  }
 
   
 

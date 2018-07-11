@@ -18,8 +18,10 @@ export class DBService{
     loadDBdata(){
         this.fdb.list('users/'+this.authService.getUID()).valueChanges().subscribe(
             data => {
-                this.userStats.foodIntake = data[0];
-                this.userStats.bpData = data[1]
+                this.userStats.foodIntake = data[2];
+                this.userStats.userNutStats = data[1] || {};
+                console.log(data)
+
             }
         )
     }
@@ -31,12 +33,20 @@ export class DBService{
 
     removeFromDB(date, meal, foodname){
         console.log("removal of "+foodname)
-        this.fdb.list('users/' + this.authService.getUID() + '/meals/' + date + '/' + meal).remove(this.strCleanUp(foodname));
+        this.fdb.list('users/' + this.authService.getUID() + '/3meals/' + date + '/' + meal).remove(this.strCleanUp(foodname));
 
     }
 
+    writeDailyStatsToDB(date, data){
+        this.fdb.list('users/' + this.authService.getUID() + '/2dailyStats').set(date, data);
+    }
+
+    writeStatsToDB(data){
+        this.fdb.list('users/' + this.authService.getUID()).set('1stats', data);
+    }
+
     strCleanUp(str) {
-        let STR = str.replace(/[.#$\[\]\/_]/g, ' ');
+        let STR = str.replace(/:[..#$\[\]\///\._]/g, ' ');
         return STR;
     }
 

@@ -19,8 +19,9 @@
   <ion-grid  class="food-background">
     <ion-row>
       <ion-col col-lg-6 class="area1">
-        <!-- <div class="title"><h2>Diet</h2></div> -->
-      
+        <div class="refresh">
+          <ion-icon name="refresh" (click)="this.refresh()"></ion-icon>
+        </div>
         <round-progress id="round-progress" 
                         [current]="userStats.getCurrCalories()"
                         [max]="userStats.getMaxCalories()"
@@ -43,15 +44,15 @@
         <ion-row class="macro-container">
           <ion-col col-4>
             <h3>Protein</h3>
-            <h3>35%</h3>
+            <h3>{{userStats.calcMacros('Protein', 4) | number:'1.0-0'}}%</h3>
           </ion-col>
           <ion-col col-4>
             <h3>Carbs</h3>
-            <h3>45%</h3>
+            <h3>{{userStats.calcMacros('Carbohydrate, by difference', 4) | number:'1.0-0'}}%</h3>
           </ion-col>
           <ion-col col-4>
             <h3>Fats</h3>
-            <h3>20%</h3>
+            <h3>{{userStats.calcMacros('Total lipid (fat)', 9) | number:'1.0-0'}}%</h3>
           </ion-col>
         </ion-row>
 

@@ -12,15 +12,12 @@
       <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
       </ion-icon>
     </ion-title>
-    
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-item>
-    <ion-input [(ngModel)]="dataToAdd"></ion-input>
+    <ion-input [(ngModel)]="mystats.maxCalories"></ion-input>
   </ion-item>
   <button (click)="addData()">clicky click</button>
 

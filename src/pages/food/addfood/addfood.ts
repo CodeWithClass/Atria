@@ -19,6 +19,10 @@ import { DBService } from '../../../services/db.service';
 })
 export class AddFoodPage {
   
+  addfoodDate:any = {};
+  dateCounter = 0;
+  fullDate;
+  dateColor = "white";
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -26,6 +30,8 @@ export class AddFoodPage {
               public userStats: UserStatsProvider,
               public dbService: DBService
             ) {
+
+    this.fullDate = new Date()
   }
 
   launchAddFoodSubPage(_pageTitle){
@@ -44,13 +50,7 @@ export class AddFoodPage {
         
         //take each of the meal entries  
         allMealEntries.forEach((element)=>{
-          // let _element;
-          // //dig deep for array nested in objects
-          // while ((element).constructor === Object){
-          //   _element = Object.values(element)
-          //   element = _element[0]       
-          // }
-
+        
           if (element instanceof Array){
             //check last array of each for matching meal
             let mealEntry = element[element.length - 1];
@@ -96,5 +96,26 @@ export class AddFoodPage {
         counter++;
     });
     
+  }
+
+  changeDay(timeTravel){
+
+    if(timeTravel == 'past'){
+      this.fullDate.setDate(this.fullDate.getDate() - 1);
+      this.addfoodDate = this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate();    
+      this.userStats.todaysDate = this.addfoodDate;
+    }
+    else if(timeTravel == 'future'){
+      this.fullDate.setDate(this.fullDate.getDate() + 1);
+      this.addfoodDate = this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate();
+      this.userStats.todaysDate = this.addfoodDate;
+    }
+
+    if (this.userStats.todaysDate != this.userStats.ABSOLUTE_DATE){
+      this.dateColor = "#ff2626";
+    }
+    else{
+      this.dateColor = "white";
+    }
   }
 }

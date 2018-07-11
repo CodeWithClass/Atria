@@ -9,13 +9,20 @@
   <ion-navbar>
     <ion-title>
       Food
-      
     </ion-title>
   </ion-navbar>
+  <div class="time-travel"  [style.color]="this.dateColor">
+    <ion-icon (click)="changeDay('past')" name="ios-arrow-back"></ion-icon>
+    <span>{{this.userStats.todaysDate}}</span>
+    <ion-icon (click)="changeDay('future')" name="ios-arrow-forward"></ion-icon>
+  </div>
 </ion-header>
 
 
 <ion-content>
+  
+
+
   <!-- -=============Breakfast============= -->
   <ion-card class="breakfast-card addfood-card">
     <ion-card-header>

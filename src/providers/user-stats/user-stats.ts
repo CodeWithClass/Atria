@@ -5,12 +5,15 @@ import { resolve } from 'dns';
 @Injectable()
 export class UserStatsProvider {
   
-  todaysDate;
+  todaysDate ='0000-00-00';
+  ABSOLUTE_DATE ='0000-00-00';
   foodIntake;
   bpData;
  
-  maxCalories: string = "2000";
-  currCalories: string = "1560";
+  userNutStats = { };
+  maxCalories: number = 2000;
+  currCalories: number = 0;
+ 
   bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
   { data: [85, 79, 80, 96], label: 'Diastolic' },
   ];
@@ -20,7 +23,7 @@ export class UserStatsProvider {
 
   constructor(public http: HttpClient) {
     let fullDate = new Date();
-    this.todaysDate = fullDate.getFullYear() + "-" + fullDate.getMonth() + "-" + fullDate.getDate();
+    this.todaysDate = this.ABSOLUTE_DATE = fullDate.getFullYear() + "-" + fullDate.getMonth() + "-" + fullDate.getDate();
   }
   
   
@@ -59,7 +62,27 @@ export class UserStatsProvider {
   }
 
   getCurrCalories() {
-    return this.currCalories;
+    try{
+      if (this.userNutStats[this.todaysDate])
+        return this.userNutStats[this.todaysDate]['Energy'];
+    }
+    catch(e){
+      // console.log(e)
+      // return 0;
+    }
+  }
+
+  calcMacros(macro, multiplier){
+    let percent;
+
+    try{
+      if (this.userNutStats[this.todaysDate])
+        percent = (((this.userNutStats[this.todaysDate][macro] * multiplier)/ this.getCurrCalories()) * 100)
+        return percent
+    }
+    catch(e){
+
+    }
   }
 
   getMaxCalories() {
