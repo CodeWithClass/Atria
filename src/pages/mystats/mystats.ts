@@ -3,8 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { DBService } from '../../services/db.service'
 import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database"; 
+import { UserStatsProvider } from '../../providers/user-stats/user-stats'
 
 import { log } from 'util';
+import { User } from 'firebase';
 /**
  * Generated class for the MystatsPage page.
  *
@@ -19,16 +21,14 @@ import { log } from 'util';
 }) 
 export class MyStatsPage {
   dataToAdd;
-  mystats = {
-    age: 99,
-    maxCalories: 2000
-  };
+  mystats = this.userStats.userStatsConatiner;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public fdb: AngularFireDatabase,
     public dbService: DBService,
+    public userStats: UserStatsProvider,
   ) {
   }
 
@@ -42,7 +42,7 @@ export class MyStatsPage {
   }
 
   addData() {
-    console.log('tryin')
+    // console.log('writing stats to DB')
     this.dbService.writeStatsToDB(this.mystats)
   }
 

@@ -16,9 +16,28 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item>
-    <ion-input type="number"[(ngModel)]="mystats.maxCalories"></ion-input>
-  </ion-item>
-  <button (click)="addData()">clicky click</button>
+  <form (ngSubmit)="addData()" class="userStatsForm">
+    <!-- ================= Age ================== -->
+    <ion-item>
+      <ion-label color="base">Age</ion-label>
+      <ion-input type="number" [(ngModel)]="mystats.age" name="age"></ion-input>
+    </ion-item>
+    <!-- ================= Height ================== -->
+    <ion-item>
+      <ion-label color="base">Height</ion-label>
+      <ion-select [(ngModel)]="mystats.heightFeet" multiple="false" name="height">
+        <ion-option *ngFor="let i of [1,2,3,4,5,6,7]">{{i}}<span>&nbsp;ft</span></ion-option>
+      </ion-select>
+      <ion-select [(ngModel)]="mystats.heightInches" multiple="false" name="height">
+        <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]">{{i}}<span>&nbsp;inches</span></ion-option>
+      </ion-select>
+    </ion-item>
+    <!-- ================= Max/Goal Calories ================== -->
+    <ion-item>
+      <ion-label color="base">Goal Calories</ion-label>
+      <ion-input type="number" [(ngModel)]="mystats.goalCalories" name="goalCalories"></ion-input>
+    </ion-item>
 
+    <button ion-button type="submit"  color="base">Save</button>
+  </form>
 </ion-content>

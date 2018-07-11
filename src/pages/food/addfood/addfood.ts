@@ -4,6 +4,7 @@ import { addmealPage } from './addmeal/addmeal';
 import { FoodServiceProvider } from '../../../providers/foodservice/foodservice';
 import { UserStatsProvider } from '../../../providers/user-stats/user-stats';
 import { DBService } from '../../../services/db.service';
+import { stat } from 'fs';
 
 /**
  * Generated class for the AddfoodPage page.
@@ -80,8 +81,10 @@ export class AddFoodPage {
     let counter = 0;
     let _element
 
+    
+
     allMealEntries.forEach(element => {
-      
+      console.log(element)
       //convert obj to arr
       element=Object.values(element)
  
@@ -90,16 +93,31 @@ export class AddFoodPage {
   
       //if the both the uid of the record and element matches (date is just extra checking)
       if ((metaData.uid == record['uid']) && (metaData.date == this.userStats.todaysDate)){
-        this.dbService.removeFromDB(metaData.date, metaData.meal, metaData.name);  
+        this.dbService.removeFromDB(metaData.date, metaData.meal, metaData.name);
+        this.delRecordNut(element)
       }
       else
         counter++;
+
     });
     
   }
 
-  changeDay(timeTravel){
+  delRecordNut(record){
+    let statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    //pop last record into metaData
+    let metaData = record.pop();
+    //for each elment in the record subtract its value from the total 
+    record.forEach((element) => {
+      statRecord[element.name] -= element.value;
+    });
+    //call db service to write new nutrition stats
+    this.dbService.writeDailyStatsToDB(metaData.date, statRecord);
 
+  }
+
+  changeDay(timeTravel){
+    //depending on the argument, either decrement or increment the date
     if(timeTravel == 'past'){
       this.fullDate.setDate(this.fullDate.getDate() - 1);
       this.addfoodDate = this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate();    
@@ -110,7 +128,8 @@ export class AddFoodPage {
       this.addfoodDate = this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate();
       this.userStats.todaysDate = this.addfoodDate;
     }
-
+    
+    //if the date is not == today's date change the date to red
     if (this.userStats.todaysDate != this.userStats.ABSOLUTE_DATE){
       this.dateColor = "#ff2626";
     }

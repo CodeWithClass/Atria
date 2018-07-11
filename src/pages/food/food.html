@@ -24,7 +24,7 @@
         </div>
         <round-progress id="round-progress" 
                         [current]="userStats.getCurrCalories()"
-                        [max]="userStats.getMaxCalories()"
+                        [max]="userStats.getgoalCalories()"
                         [color]="'#45ccce'"
                         [background]="'#eaeaea'" 
                         [radius]="100" 
@@ -37,8 +37,8 @@
                         [stroke]="4">
         </round-progress>
         <div class="progress-text">
-          <h2>{{userStats.getCurrCalories()}}
-          <hr>{{userStats.getMaxCalories()}}</h2>
+          <h2>{{userStats.getCurrCalories() | number:'1.0-0'}}
+          <hr>{{userStats.getgoalCalories()}}</h2>
           <h5>Calories</h5>
         </div>
         <ion-row class="macro-container">

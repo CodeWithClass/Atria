@@ -10,9 +10,9 @@ export class UserStatsProvider {
   foodIntake;
   bpData;
  
-  userNutStats = { };
+  userNutStats;
   userStatsConatiner = {};
-  maxCalories: number = 2000;
+  goalCalories: number = 2000;
   currCalories: number = 0;
  
   bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
@@ -92,22 +92,24 @@ export class UserStatsProvider {
     }
   }
 
-  getMaxCalories() {
-    // try{
-    //   if (this.userStatsConatiner != {}){
-        // return this.userStatsConatiner['maxCalories'];
-    //   }
-    // }
-    // catch(e){
-    //   return 0;
-    // }
-    return this.maxCalories;
+  getgoalCalories() {
+    try{
+      if (Object.keys(this.userStatsConatiner).length > 0){
+        return this.userStatsConatiner['goalCalories']
+      }
+      else{
+        return 0
+      }
+    }
+    catch(e){
+      return 0;
+    }
   }
 
   setCurrCalories(Curr) {
   }
 
-  setMaxCalories(Max) {
+  setgoalCalories(Max) {
   }
 
   sayHello(){

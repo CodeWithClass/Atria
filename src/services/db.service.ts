@@ -18,18 +18,19 @@ export class DBService{
     loadDBdata(){
         this.fdb.list('users/'+this.authService.getUID()).valueChanges().subscribe(
             data => {
-                this.userStats.userStatsConatiner = data[0] || {};
+                this.userStats.userStatsConatiner = data[0];
                 this.userStats.foodIntake = data[2] || {};
                 this.userStats.userNutStats = data[1] || {};
+                console.log(data)
                 
-                
+                    
             }
         )
     }
 
 
     writeFoodToDB(date, meal, foodname, data){
-        this.fdb.list('users/'+this.authService.getUID()+'/meals/'+date+'/'+meal).set(this.strCleanUp(foodname), data);
+        this.fdb.list('users/'+this.authService.getUID()+'/3meals/'+date+'/'+meal).set(this.strCleanUp(foodname), data);
     }
 
     removeFromDB(date, meal, foodname){

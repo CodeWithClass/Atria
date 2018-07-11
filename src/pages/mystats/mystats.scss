@@ -1,3 +1,20 @@
 page-mystats {
-    
+    .userStatsForm{
+
+         ion-item{
+            margin: 5% auto;
+            // border-bottom: #eee solid 2px;
+
+            ion-input .text-input{
+            text-align: right;
+            }
+        }
+        
+       
+        button{
+            width: 80%;
+            display: block;
+            margin: 10% auto;
+        }
+    }
 }   

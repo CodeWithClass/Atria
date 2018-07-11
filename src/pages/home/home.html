@@ -102,7 +102,7 @@
     <div class="card-content">
       <round-progress id="round-progress"
                       [current]="userStats.getCurrCalories()"
-                      [max]="userStats.getMaxCalories()"
+                      [max]="userStats.getgoalCalories()"
                       [color]="'#45ccce'"
                       [background]="'#eaeaea'" 
                       [radius]="70" 
@@ -115,22 +115,8 @@
                       [stroke]="4"
       ></round-progress>
       <div class="progress-text">
-        <h2>{{userStats.getCurrCalories()}}<hr>{{userStats.getMaxCalories()}}</h2>
+        <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}<hr>{{userStats.getgoalCalories()}}</h2>
       </div>
-      <!-- <ion-row class="macro-container">
-        <ion-col col-4>
-          <h3>Protein</h3>
-          <h3>35%</h3>
-        </ion-col>
-        <ion-col col-4>
-          <h3>Carbs</h3>
-          <h3>45%</h3>
-        </ion-col>
-        <ion-col col-4>
-          <h3>Fats</h3>
-          <h3>20%</h3>
-        </ion-col>
-      </ion-row> -->
     </div>
     <img class="card-img" src="assets/imgs/food.png">    
   </ion-card>

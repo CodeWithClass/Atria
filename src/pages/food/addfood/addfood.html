@@ -33,7 +33,7 @@
         <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
           <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
           <p class="col-1 calories" item-right>
-            {{food.calories}}<br><small>kcal</small>
+            {{food.calories | number:'1.0-0'}}<br><small>kcal</small>
           </p>
           <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Breakfast')"></ion-icon>
       </ion-item>
@@ -60,7 +60,7 @@
         <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
         <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
         <p class="col-1 calories" item-right>
-          {{food.calories}}
+          {{food.calories | number:'1.0-0'}}
           <br>
           <small>kcal</small>
         </p>
@@ -85,7 +85,7 @@
         <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
         <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
         <p class="col-1 calories" item-right>
-          {{food.calories}}
+          {{food.calories | number:'1.0-0'}}
           <br>
           <small>kcal</small>
         </p>
@@ -100,7 +100,6 @@
 
 
 
-
   <!-- -=============Snacks============= -->
   <ion-card class="snacks-card addfood-card">
     <ion-card-header>
@@ -111,7 +110,7 @@
         <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
         <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
         <p class="col-1 calories" item-right>
-          {{food.calories}}
+          {{food.calories | number:'1.0-0'}}
           <br>
           <small>kcal</small>
         </p>

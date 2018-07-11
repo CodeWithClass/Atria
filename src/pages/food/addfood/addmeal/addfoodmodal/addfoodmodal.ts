@@ -189,7 +189,6 @@ export class AddFoodModal {
       if(element.name != this.record.name){
         statRecord[element.name] += element.value;
       }
-  
 
     });
 
