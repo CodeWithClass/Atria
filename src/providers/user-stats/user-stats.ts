@@ -11,6 +11,7 @@ export class UserStatsProvider {
   bpData;
  
   userNutStats = { };
+  userStatsConatiner = {};
   maxCalories: number = 2000;
   currCalories: number = 0;
  
@@ -22,6 +23,7 @@ export class UserStatsProvider {
 
 
   constructor(public http: HttpClient) {
+
     let fullDate = new Date();
     this.todaysDate = this.ABSOLUTE_DATE = fullDate.getFullYear() + "-" + fullDate.getMonth() + "-" + fullDate.getDate();
   }
@@ -64,7 +66,9 @@ export class UserStatsProvider {
   getCurrCalories() {
     try{
       if (this.userNutStats[this.todaysDate])
-        return this.userNutStats[this.todaysDate]['Energy'];
+        return this.userNutStats[this.todaysDate]['Energy']
+      else
+        return 0;
     }
     catch(e){
       // console.log(e)
@@ -76,9 +80,12 @@ export class UserStatsProvider {
     let percent;
 
     try{
-      if (this.userNutStats[this.todaysDate])
+      if (this.userNutStats[this.todaysDate]){
         percent = (((this.userNutStats[this.todaysDate][macro] * multiplier)/ this.getCurrCalories()) * 100)
         return percent
+      }
+      else
+        return 0;
     }
     catch(e){
 
@@ -86,7 +93,15 @@ export class UserStatsProvider {
   }
 
   getMaxCalories() {
-    return this.maxCalories
+    // try{
+    //   if (this.userStatsConatiner != {}){
+        // return this.userStatsConatiner['maxCalories'];
+    //   }
+    // }
+    // catch(e){
+    //   return 0;
+    // }
+    return this.maxCalories;
   }
 
   setCurrCalories(Curr) {

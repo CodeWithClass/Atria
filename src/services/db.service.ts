@@ -18,10 +18,11 @@ export class DBService{
     loadDBdata(){
         this.fdb.list('users/'+this.authService.getUID()).valueChanges().subscribe(
             data => {
-                this.userStats.foodIntake = data[2];
+                this.userStats.userStatsConatiner = data[0] || {};
+                this.userStats.foodIntake = data[2] || {};
                 this.userStats.userNutStats = data[1] || {};
-                console.log(data)
-
+                
+                
             }
         )
     }
