@@ -33,6 +33,10 @@ export class FoodPage{
     this.navCtrl.push(AddFoodPage, {}, { animate: true, direction: 'forward' });
   }
 
+  public popFoodPage() {
+    this.navCtrl.pop();
+  }
+
   // testy: any = this.userStats.sayHello();
 
 

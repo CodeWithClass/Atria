@@ -1,7 +1,6 @@
 page-food {
     ion-content{
-            background-color: color($colors, food) !important;
-        
+            background-color: color($colors, food) !important;    
     }
 
     ion-header{
@@ -10,9 +9,17 @@ page-food {
             color: white;
         }
 
-
         
     }
+
+
+
+    .refresh{
+            float: right;
+        }
+    
+        
+
 
     .food-background{
 
@@ -34,11 +41,7 @@ page-food {
                 font-size: 4vw;
             }
 
-            .refresh{
-                font-size: 24px;
-                text-align: right;
-                padding: 0 10%;
-            }
+            
                             
             round-progress{
                 display: block;
@@ -51,7 +54,7 @@ page-food {
 
             .progress-text{
                     position: absolute;
-                    top: 18%;
+                    top: 15%;
                     left: 0;
                     right: 0;
                     margin: auto;

@@ -11,17 +11,16 @@
 <ion-content>
   
   <ion-title class="custom-title">
+    <span class="back-arrow"><ion-icon name="arrow-back" (click)="popFoodPage()"></ion-icon></span>
     Food
-    <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
-    </ion-icon>
+    <!-- <span class="settingsCog"><ion-icon name="settings" (click)="launchSettings()"></ion-icon></span> -->
+    <span class="refresh"><ion-icon name="refresh" (click)="this.refresh()"></ion-icon></span>
   </ion-title>
 
   <ion-grid  class="food-background">
     <ion-row>
       <ion-col col-lg-6 class="area1">
-        <div class="refresh">
-          <ion-icon name="refresh" (click)="this.refresh()"></ion-icon>
-        </div>
+        
         <round-progress id="round-progress" 
                         [current]="userStats.getCurrCalories()"
                         [max]="userStats.getgoalCalories()"

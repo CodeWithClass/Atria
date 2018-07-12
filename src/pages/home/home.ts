@@ -4,6 +4,7 @@ import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
 import { DBService } from '../../services/db.service'
 import { FoodPage } from "../food/food";
+import { MyStatsPage } from '../mystats/mystats';
 
 
 /**
@@ -100,9 +101,25 @@ export class HomePage {
   }
 
 
-  private launchAddFoodPage() {
+  public pushFoodPage() {
     this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });
   }
+
+  public popFoodPage(){
+    this.navCtrl.pop();
+  }
+
+  public pushPage(page, swipe = {offsetDirection: 0}){
+    
+    if (swipe.offsetDirection === 2 || swipe.offsetDirection === 0){
+    // console.log(direction)
+      if(page == 'food')
+        this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });  
+      else if(page == 'stats')
+        this.navCtrl.push(MyStatsPage, {}, { animate: true, direction: 'forward' });  
+    }
+  
+    }
 
   launchSettings(){
     this.navCtrl.push(SettingsPage);

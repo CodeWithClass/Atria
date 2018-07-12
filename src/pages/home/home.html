@@ -18,7 +18,8 @@
 
 
 <ion-content class="home-page">
-  <ion-card class="card0">
+  <ion-card class="card0" (swipe)="pushPage('stats', $event)">
+    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>
     <div class="left">
       <img src="assets/imgs/dp.jpg">
       <h4>Dominic</h4>
@@ -93,10 +94,10 @@
     <img class="card-img" src="assets/imgs/bp.png">
   </ion-card>
   
-  <ion-card class="card3">
+  <ion-card class="card3" (swipe)="pushPage('food', $event)">
     <div class="card-title">Diet</div>
     <div class="card-subtitle">Calories</div>
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="launchAddFoodPage()"></ion-icon>
+    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon>
     
     
     <div class="card-content">
