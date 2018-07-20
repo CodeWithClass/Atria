@@ -5,7 +5,7 @@ import { HomePage } from './home';
 
 @NgModule({
   declarations: [
-    HomePage, RoundProgressModule
+    HomePage,
   ],
   imports: [
     IonicPageModule.forChild(HomePage),

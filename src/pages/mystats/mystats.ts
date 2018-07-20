@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { DBService } from '../../services/db.service'
-import { AngularFireDatabase, AngularFireObject, AngularFireList } from "angularfire2/database"; 
+import { AngularFireDatabase } from "angularfire2/database"; 
 import { UserStatsProvider } from '../../providers/user-stats/user-stats'
+import { HomePage } from '../home/home';
 
-import { log } from 'util';
-import { User } from 'firebase';
+// import { log } from 'util';
+// import { User } from 'firebase';
 /**
  * Generated class for the MystatsPage page.
  *
@@ -44,6 +45,7 @@ export class MyStatsPage {
   addData() {
     // console.log('writing stats to DB')
     this.dbService.writeStatsToDB(this.mystats)
+    this.navCtrl.pop()
   }
 
 }

@@ -30,7 +30,7 @@ export class FoodServiceProvider {
     ]
   };
   public foodSearchdata2;
-  public foodNutdata;
+  public foodNutdata = []
   public offset: number = 0;
   public noResult: boolean = false;
   public measures;

@@ -56,9 +56,13 @@ page-addfood {
 
             }
 
-            .calories{
-                position: relative;
-                left: 10px;
+            .importVals{
+                *{
+                text-transform: none !important;                    
+                }
+                display: inline-block;
+                padding: 2% 4%;
+                text-align: center;
             }
 
             ion-icon{

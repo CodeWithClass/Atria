@@ -13,7 +13,6 @@ export class addmealPage {
   
   pageTitle;
   private url: string = "";
-  private app_id = "e377c6b9";
   private app_key = "dxWIz33dZG11ZFOt5MgAixHizWiH6uGT4W9Jx9JS"
   hasSearched: boolean = false;
   searchInput: string = "";

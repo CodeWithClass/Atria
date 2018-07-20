@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { addmealPage } from './addmeal/addmeal';
 import { FoodServiceProvider } from '../../../providers/foodservice/foodservice';
 import { UserStatsProvider } from '../../../providers/user-stats/user-stats';
 import { DBService } from '../../../services/db.service';
-import { stat } from 'fs';
-
+// import { AddFoodModal } from './addmeal/addfoodmodal/addfoodmodal';
+import { EditfoodModal } from './editfoodmodal/editfoodmodal';
 /**
  * Generated class for the AddfoodPage page.
  *
@@ -27,9 +27,11 @@ export class AddFoodPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public modalCtrl: ModalController,
               public foodServ: FoodServiceProvider,
               public userStats: UserStatsProvider,
-              public dbService: DBService
+              public dbService: DBService,
+
             ) {
 
     this.fullDate = new Date()
@@ -45,7 +47,7 @@ export class AddFoodPage {
       
       let mealEntries = [];
       allMealEntries = Object.values(allMealEntries[this.userStats.todaysDate][meal])
-
+      
       //if there logged meals [not empty]
       if(allMealEntries.length > 0){
         
@@ -136,5 +138,11 @@ export class AddFoodPage {
     else{
       this.dateColor = "white";
     }
+  }
+
+
+  reopenFoodModal(_foodrecord) {
+    let editModal = this.modalCtrl.create(EditfoodModal, { PageTitle: 'Edit', Record: _foodrecord })
+    editModal.present();
   }
 }

@@ -22,12 +22,21 @@ export class DBService{
                 this.userStats.foodIntake = data[2] || {};
                 this.userStats.userNutStats = data[1] || {};
                 console.log(data)
+                // this.setIfStats(data[0]['goalCalories']);
+                // console.log(data[0]['goalCalories'])
                 
                     
             }
         )
     }
 
+    public setIfStats(userProfileStats) { 
+        if(userProfileStats)
+            this.userStats.userStatsConatiner['nodata'] = false;
+        else{
+            this.userStats.userStatsConatiner['nodata'] = true;
+        }
+    }
 
     writeFoodToDB(date, meal, foodname, data){
         this.fdb.list('users/'+this.authService.getUID()+'/3meals/'+date+'/'+meal).set(this.strCleanUp(foodname), data);

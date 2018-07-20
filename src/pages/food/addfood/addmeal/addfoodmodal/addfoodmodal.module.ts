@@ -10,4 +10,4 @@ import { AddFoodModal } from './addfoodmodal';
     IonicPageModule.forChild(AddFoodModal),
   ],
 })
-export class AddfoodmodalPageModule {}
+export class AddfoodModalModule {}

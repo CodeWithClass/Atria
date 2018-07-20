@@ -1,11 +1,11 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar'; 
 import { FoodPage } from './food';
 
 @NgModule({
   declarations: [
-    FoodPage, RoundProgressModule
+    FoodPage
   ],
   imports: [
     IonicPageModule.forChild(FoodPage),

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from "angularfire2/database"; 
+
 
 
 /**
@@ -24,14 +26,18 @@ export class SettingsPage {
     public navParams: NavParams, 
     public app: App,
     public auth: AuthService,
+    private fdb: AngularFireDatabase,
     public afAuth: AngularFireAuth,
     ) {
   }
 
-  logout(): Promise<void> {
-    this.app.getRootNavs()[0].setRoot(LoginPage);
-    return this.afAuth.auth.signOut();
+  logout(){
+    
+  this.afAuth.auth.signOut().then(() => {
+      
+      // this.fdb.database.goOffline();
+      this.navCtrl.setRoot(LoginPage);
+
+    });
   }
-
-
 }

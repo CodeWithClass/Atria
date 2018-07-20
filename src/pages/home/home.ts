@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
 import { DBService } from '../../services/db.service'
 import { FoodPage } from "../food/food";
 import { MyStatsPage } from '../mystats/mystats';
+
 
 
 /**
@@ -20,14 +22,16 @@ import { MyStatsPage } from '../mystats/mystats';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  
+  
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams, 
+              public navParams: NavParams,
+              private NativePageTrans: NativePageTransitions,
               public userStats: UserStatsProvider,
               public dbServ: DBService) {
       
-    this.dbServ.loadDBdata();
-
+    this.dbServ.loadDBdata();    
   }
 
   public lineChartData: Array<any> = this.userStats.bpMetrics;
@@ -90,7 +94,6 @@ export class HomePage {
   public lineChartType: string = 'line';
 
   
-
   // line chart events
   public chartClicked(e: any): void {
     console.log(e);
@@ -100,26 +103,59 @@ export class HomePage {
     console.log(e);
   }
 
+  public checkIfStats(){
+    // console.log(this.userStats.userStatsConatiner['nodata'])
+    if (this.userStats.userStatsConatiner['nodata'] == true){
+      this.navCtrl.setRoot(MyStatsPage, {}, { animate: true, direction: 'forward' });
+    }
+    else{
+
+    }
+  }
+
 
   public pushFoodPage() {
     this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });
   }
 
   public popFoodPage(){
+
+    let options: NativeTransitionOptions = {
+      direction: 'right',
+      duration: 200,
+      androiddelay: 10,
+      iosdelay: 10
+    };
+    
+    this.NativePageTrans.slide(options);
     this.navCtrl.pop();
+
   }
 
   public pushPage(page, swipe = {offsetDirection: 0}){
+    let options: NativeTransitionOptions = {
+      direction: 'left',
+      duration: 200,
+      androiddelay: 0,
+      iosdelay: 0,
+      // slowdownfactor: 23,
+
+    };
     
     if (swipe.offsetDirection === 2 || swipe.offsetDirection === 0){
-    // console.log(direction)
-      if(page == 'food')
+      
+      if(page == 'food'){
+        // this.NativePageTrans.slide(options);
         this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });  
-      else if(page == 'stats')
+
+      }
+      else if(page == 'stats'){
+        // this.NativePageTrans.slide(options);
         this.navCtrl.push(MyStatsPage, {}, { animate: true, direction: 'forward' });  
-    }
+      }
   
     }
+  }
 
   launchSettings(){
     this.navCtrl.push(SettingsPage);

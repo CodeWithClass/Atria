@@ -30,12 +30,17 @@
     </ion-card-header>
     <ion-card-content>
       <ion-item *ngFor="let food of displayMeals('Breakfast')">
-        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
-          <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
-          <p class="col-1 calories" item-right>
-            {{food.calories | number:'1.0-0'}}<br><small>kcal</small>
-          </p>
-          <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Breakfast')"></ion-icon>
+        <div (click)="reopenFoodModal(food)">
+          <h3>{{foodServ.strToLower(food.name)}}</h3>
+          <p>{{foodServ.strToLower(food.manu)}}</p>
+          <span class="importVals">
+            {{food.calories | number:'1.0-0'}}<br><small>Kcal</small>
+          </span>
+          <span class="importVals"  [style.color]="food.sodium.color || 'black'">
+            {{food.sodium.value | number:'1.0-0' || 0}}<br><small [style.color]="'black'">Sodium ({{food.sodium.unit || "mg"}})</small>
+          </span>
+        </div>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Breakfast')"></ion-icon>
       </ion-item>
 
       <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Breakfast')">
@@ -56,17 +61,25 @@
       Lunch
     </ion-card-header>
     <ion-card-content>
-      <ion-item *ngFor="let food of displayMeals('Lunch')">
-        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
-        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
-        <p class="col-1 calories" item-right>
-          {{food.calories | number:'1.0-0'}}
-          <br>
-          <small>kcal</small>
-        </p>
-        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Lunch')"></ion-icon>
+      <ion-item *ngFor="let food of displayMeals('lunch')">
+        <div (click)="reopenFoodModal(food)">
+          <h3>{{foodServ.strToLower(food.name)}}</h3>
+          <p>{{foodServ.strToLower(food.manu)}}</p>
+          <span class="importVals">
+            {{food.calories | number:'1.0-0'}}
+            <br>
+            <small>Kcal</small>
+          </span>
+          <span class="importVals" [style.color]="food.sodium.color || 'black'">
+            {{food.sodium.value | number:'1.0-0' || 0}}
+            <br>
+            <small [style.color]="'black'">Sodium ({{food.sodium.unit || "mg"}})</small>
+          </span>
+        </div>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'lunch')"></ion-icon>
       </ion-item>
-      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Lunch')">
+  
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('lunch')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
@@ -81,17 +94,25 @@
       Dinner
     </ion-card-header>
     <ion-card-content>
-      <ion-item *ngFor="let food of displayMeals('Dinner')">
-        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
-        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
-        <p class="col-1 calories" item-right>
-          {{food.calories | number:'1.0-0'}}
-          <br>
-          <small>kcal</small>
-        </p>
-        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'Dinner')"></ion-icon>
+      <ion-item *ngFor="let food of displayMeals('dinner')">
+        <div (click)="reopenFoodModal(food)">
+          <h3>{{foodServ.strToLower(food.name)}}</h3>
+          <p>{{foodServ.strToLower(food.manu)}}</p>
+          <span class="importVals">
+            {{food.calories | number:'1.0-0'}}
+            <br>
+            <small>Kcal</small>
+          </span>
+          <span class="importVals" [style.color]="food.sodium.color || 'black'">
+            {{food.sodium.value | number:'1.0-0' || 0}}
+            <br>
+            <small [style.color]="'black'">Sodium ({{food.sodium.unit || "mg"}})</small>
+          </span>
+        </div>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'dinner')"></ion-icon>
       </ion-item>
-      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Dinner')">
+  
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('dinner')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>
@@ -106,17 +127,25 @@
       Snacks
     </ion-card-header>
     <ion-card-content>
-      <ion-item *ngFor="let food of displayMeals('Snacks')">
-        <h3 class="col-8">{{foodServ.strToLower(food.name)}}</h3>
-        <p class="col-8">{{foodServ.strToLower(food.manu)}}</p>
-        <p class="col-1 calories" item-right>
-          {{food.calories | number:'1.0-0'}}
-          <br>
-          <small>kcal</small>
-        </p>
-        <ion-icon class="col-1" name="close" item-right (click)="delRecord(this.food)"></ion-icon>
+      <ion-item *ngFor="let food of displayMeals('snacks')">
+        <div (click)="reopenFoodModal(food)">
+          <h3>{{foodServ.strToLower(food.name)}}</h3>
+          <p>{{foodServ.strToLower(food.manu)}}</p>
+          <span class="importVals">
+            {{food.calories | number:'1.0-0'}}
+            <br>
+            <small>Kcal</small>
+          </span>
+          <span class="importVals" [style.color]="food.sodium.color || 'black'">
+            {{food.sodium.value | number:'1.0-0' || 0}}
+            <br>
+            <small [style.color]="'black'">Sodium ({{food.sodium.unit || "mg"}})</small>
+          </span>
+        </div>
+        <ion-icon class="col-1" name="close" item-right (click)="delRecord(food, 'snacks')"></ion-icon>
       </ion-item>
-      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('Snacks')">
+  
+      <button ion-button clear full icon-start (click)="launchAddFoodSubPage('snacks')">
         <ion-icon name="add"></ion-icon>
         Add Food
       </button>

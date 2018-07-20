@@ -51,13 +51,12 @@ export class AddFoodModal {
     let macro;
     if(this.foodServ.foodNutdata){
       try {
-        let macroArr = this.foodServ.foodNutdata;
         macro = this.foodServ.foodNutdata.find((element) => {
           return element.name == _macro;
         });
 
         if(macro) {
-          return parseInt(macro.value) * this.NoOfServ;
+          return parseFloat(macro.value) * this.NoOfServ;
         }
         else if (_macro == 'Energy'){
           console.log('no kcal value, must calculate')
@@ -93,7 +92,7 @@ export class AddFoodModal {
     */
   getAllNutrients(record, prop){
     if(prop == "value" && record.value){
-      return parseInt(record.value) * this.NoOfServ;
+      return parseFloat(record.value) * this.NoOfServ;
     }
     else{
       return record[prop];
@@ -168,18 +167,35 @@ export class AddFoodModal {
     
     this.foodServ.foodNutdata.push(this.record);
 
+
+
+
     //update serving size of selected food
     this.foodServ.foodNutdata.forEach(element => {
+      let lastArrElement = this.foodServ.foodNutdata[this.foodServ.foodNutdata.length - 1]
 
       if(element.name == 'Energy'){
-        let lastArrElement = this.foodServ.foodNutdata[this.foodServ.foodNutdata.length -1]
-        lastArrElement.calories = ((parseInt(element.value) * this.NoOfServ) || 0);
+        lastArrElement.calories = ((parseFloat(element.value) * this.NoOfServ) || 0);
         lastArrElement.servings = this.NoOfServ;
         lastArrElement.uid = Math.random();
       }
-   
+      if(element.name == 'Sodium, Na'){
+        let color;
+        let value = (parseFloat(element.value) * this.NoOfServ);
+
+        if((value > 500 && element.unit == "mg") || (value > 50 && element.unit =="g"))
+          color = "red";
+        else if ((value > 299 && element.unit == "mg") || (value > 29 && element.unit == "g"))
+          color = "orange"
+        else
+          color = "black";
+
+        lastArrElement.sodium = { value: value || 0, unit: (element.unit.toLowerCase()|| "mg"), color: color}
+      }
+
+         
       //calculate values by multiplying number of servings
-      element.value = ((parseInt(element.value) * this.NoOfServ) || 0);
+      element.value = ((parseFloat(element.value)) || 0);
       
       //check if element already exits or if name is not food's name
       if (!statRecord[element.name] && element.name != this.record.name){
@@ -191,7 +207,7 @@ export class AddFoodModal {
       }
 
     });
-
+    console.log(this.foodServ.foodNutdata)
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
     this.dbService.writeDailyStatsToDB(this.record.date, statRecord);   
     

@@ -12,9 +12,9 @@
     <h2 class="title">{{this.pageTitle}}
       <ion-icon name="close" item-right (click)="closeModal()"></ion-icon>
     </h2>
-  <!--============================================= -->
+    <!--============================================= -->
   </div>
-  <div padding >
+  <div padding>
     <!--========= Food name and manufacturer ======= -->
     <ion-item class="foodName">
       <h3>{{foodServ.strToLower(name)}}</h3>
@@ -22,7 +22,7 @@
     </ion-item>
     <ion-item class="serving">
       <ion-label color="primary" fixed>Number of Servings</ion-label>
-      <ion-input type="number" [(ngModel)]="NoOfServ" [max]="100" [min]="0.1" [step]="0.1"></ion-input>
+      <ion-input type="number" [(ngModel)]="NoOfServ" (ionChange)="calcServings($event)" [max]="100" [min]="0.1" [step]="0.1"></ion-input>
     </ion-item>
     <!-- ========================================= -->
 
@@ -37,23 +37,27 @@
     <!--================= Calories and Macros== ==== -->
     <ion-item class="macro-container">
       <div class="macros">
-        <span class="value">{{getMacroData('Energy')| number:'1.0-0'}}</span><br>
+        <span class="value">{{getMacroData('Energy')| number:'1.0-0'}}</span>
+        <br>
         <p class="c_label">Calories</p>
       </div>
       <div class="macros">
-        <span class="value">{{getMacroData('Protein')| number:'1.0-0'}}<small>g</small>
+        <span class="value">{{getMacroData('Protein')| number:'1.0-0'}}
+          <small>g</small>
         </span>
         <br>
         <p class="label">Protein</p>
       </div>
       <div class="macros">
-        <span class="value">{{getMacroData('Carbohydrate, by difference')| number:'1.0-0'}}<small>g</small>
+        <span class="value">{{getMacroData('Carbohydrate, by difference')| number:'1.0-0'}}
+          <small>g</small>
         </span>
         <br>
         <p class="label">Carbs</p>
       </div>
       <div class="macros">
-        <span class="value">{{getMacroData('Total lipid (fat)')| number:'1.0-0'}}<small>g</small>
+        <span class="value">{{getMacroData('Total lipid (fat)')| number:'1.0-0'}}
+          <small>g</small>
         </span>
         <br>
         <p class="label">Fats</p>
@@ -70,27 +74,26 @@
 
     <!--============== All nutrients =============== -->
     <div *ngIf="showMicroNutrients">
-      <ion-item *ngFor="let nutrients of foodServ.foodNutdata" class="micro-nutrients">
+      <ion-item *ngFor="let nutrients of this.completeRecord | slice:1: this.completeRecord.length-1" class="micro-nutrients">
         {{getAllNutrients(nutrients, 'name')}}
         <span item-right>
-          {{getAllNutrients(nutrients, 'value') | number:'1.0-0'}}
-          {{getAllNutrients(nutrients, 'unit')}}
+          {{getAllNutrients(nutrients, 'value') | number:'1.0-0'}} {{getAllNutrients(nutrients, 'unit')}}
         </span>
       </ion-item>
     </div>
     <!-- ============================================ -->
 
     <!--========= Hide all nutrients button ========= -->
-    <button ion-button block color="light" class="collapseButtons"
-    *ngIf="showMicroNutrients" (click)="toggleMicroNutrients()">
+    <button ion-button block color="light" class="collapseButtons" *ngIf="showMicroNutrients" (click)="toggleMicroNutrients()">
       Collapse nutrients&nbsp;&nbsp;&nbsp;
       <ion-icon name="ios-arrow-up"></ion-icon>
     </button>
     <!-- =========================================== -->
 
     <!--============ Add food button =============== -->
-    <button ion-button  full color="dark" class="addFoodButton" (click)="saveAndCloseModal()" [disabled]="NoOfServ < 0.001">
-      Add to food diary&nbsp;&nbsp;&nbsp;<ion-icon name="md-checkmark"></ion-icon>
+    <button ion-button full color="dark" class="addFoodButton" (click)="saveAndCloseModal()" [disabled]="NoOfServ < 0.001">
+      Update food diary&nbsp;&nbsp;&nbsp;
+      <ion-icon name="md-checkmark"></ion-icon>
     </button>
     <!-- =========================================== -->
   </div>

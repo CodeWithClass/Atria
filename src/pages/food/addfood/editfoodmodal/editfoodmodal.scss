@@ -1,0 +1,85 @@
+page-editfoodmodal {
+   
+    .modal-header{
+        padding: 2% 5%;
+        background-color: color($colors, food);
+
+        h2{
+            width: 100%;
+            color: white;
+        
+            ion-icon{
+                    font-size: 30px;
+                    float: right;
+                    color:white;
+                }
+        }    
+    }
+
+    .foodName, .serving{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .foodName h3{
+        font-size: 16px;
+        text-transform: capitalize !important;
+    }
+
+    .serving {
+        ion-label{
+        width: 80% !important;
+        max-width: 250px;
+        min-width: 200px;
+        color: #333 !important;
+        }
+        ion-input .text-input{
+            text-align: right;
+        }
+
+
+    }
+
+    .serving-size h3{
+        text-transform: lowercase !important;
+    }
+
+    .macro-container{
+        padding-top: 5px;
+        padding-bottom: 15px;
+
+        .macros{
+            display: inline-block;
+            padding: 2% 5%;
+            text-align: center;
+        }
+        .macros:first-child .value{
+            font-size: 40px;
+        }
+        .value{
+            font-size: 20px;
+        }
+        p{
+            font-size: 12px;
+            color: #555;
+            
+        }
+    }
+    .micro-nutrients{
+        font-size: 14px;
+    }
+    .collapseButtons{
+        width:60%;
+        margin: 3% auto;
+        border-radius: 4px;
+    }
+    .addFoodButton{
+        padding: 7%;
+        background-color: color($colors, food);
+        color: white ;
+        margin-top: 50px;
+        border-radius: 4px;
+        font-size: 16px;
+
+    }
+}   

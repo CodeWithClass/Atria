@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
-import { TabsPage } from '../tabs/tabs';
+// import { TabsPage } from '../tabs/tabs';
+import { HomePage } from '../home/home';''
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Storage } from '@ionic/storage';
@@ -36,7 +37,7 @@ export class LoginPage {
     this.auth.signInWithGoogle()
       .then(
         () => {
-          this.navCtrl.setRoot(TabsPage);
+          this.navCtrl.setRoot(HomePage);
         },
         error => console.log(error.message)
       );
@@ -46,7 +47,7 @@ export class LoginPage {
   login() {
     let data = this.loginForm.value;
 
-    if (!data.email) {
+    if (!data.email){
       return;
     }
     
@@ -58,10 +59,9 @@ export class LoginPage {
     };
     this.auth.signInWithEmail(credentials)
       .then(
-        () => this.navCtrl.setRoot(TabsPage),
+        () => this.navCtrl.setRoot(HomePage),
         error => this.loginError = error.message
       );
-    
   }
 
   signup(){
