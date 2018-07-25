@@ -1,3 +1,30 @@
 page-signup {
+    .bkground{
+        background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+
+    }
+
+    .Input{
+        border-radius: 4px;
+        background-color: rgba(256, 256, 256, 0.7);
+        margin: 18px auto;
+    }
+
+    .Input .item-inner{
+        border-bottom: none !important;
+        color: color($colors, darktext);
+    }
+
+  .signupButton{
+        background-color: #fff;
+        // color: #fff;
+        padding: 25px 0 25px 0;
+        color: color($colors, darktext);
+        border-radius: 4px;
+  }
+
 
 }

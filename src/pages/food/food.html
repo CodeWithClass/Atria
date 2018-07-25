@@ -4,18 +4,24 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+<ion-header no-border>
+  <ion-navbar>
+    <ion-title>
+      Food
+      <!-- <span class="settingsCog"><ion-icon name="settings" (click)="launchSettings()"></ion-icon></span> -->
+      <span class="refresh">
+        <ion-icon name="refresh" (click)="this.refresh()"></ion-icon>
+      </span>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
 
 
 
 <ion-content>
   
-  <ion-title class="custom-title">
-    <span class="back-arrow"><ion-icon name="arrow-back" (click)="popFoodPage()"></ion-icon></span>
-    Food
-    <!-- <span class="settingsCog"><ion-icon name="settings" (click)="launchSettings()"></ion-icon></span> -->
-    <span class="refresh"><ion-icon name="refresh" (click)="this.refresh()"></ion-icon></span>
-  </ion-title>
+  
 
   <ion-grid  class="food-background">
     <ion-row>

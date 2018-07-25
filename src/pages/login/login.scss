@@ -7,6 +7,17 @@ page-login {
 
   }
 
+  
+  .logo-containter{
+    width: 100%;
+  }
+  
+  .logo{
+    width: 50%;
+    display: block;
+    margin: 20% auto;
+  }
+
   .center{
     padding-top: 50%;
   }
@@ -24,8 +35,8 @@ page-login {
 
   .loginInput{
     border-radius: 4px;
-    background-color: rgba(256, 256, 256, 0.3);
-    margin: 3px auto;
+    background-color: rgba(256, 256, 256, 0.7);
+    margin: 18px auto;
   }
 
     .loginInput .item-inner{
@@ -35,22 +46,20 @@ page-login {
 
   .loginButton{
     background-color: #fff;
+    color: #fff;
     padding: 25px 0 25px 0;
     color: color($colors, darktext);
     border-radius: 4px;
 
   }
 
-  .signup{
-    margin-top: 10%;
+  .forgotLink{
+    color: #fff;
   }
 
-  .signup p{
-    font-size: 1.2em;
-  }
-  .signup .signupButton{
-    adding: 25px 0 25px 0;
-    border-radius: 4px;
+  .signupButton{
+    color: #fff;
+    margin: 6% auto;
   }
 
 

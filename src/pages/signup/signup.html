@@ -1,38 +1,36 @@
 
-<ion-header>
+<ion-header no-border>
 
   <ion-navbar>
-    <ion-title>signup</ion-title>
+    <ion-title>Sign Up</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="bkground">
   <form (ngSubmit)="signup()" [formGroup]="form">
     <ion-list inset>
   
-      <ion-item >
+      <ion-item class="Input">
         <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
       </ion-item>
   
       <div ngxErrors="email" >
-        <!-- <div [ngxError]="['email', 'required']" [when]="['touched']">It should be a valid email</div> -->
       </div>
   
-      <ion-item>
+      <ion-item class="Input">
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
       </ion-item>
   
       <div ngxErrors="password" >
-        <!-- <div [ngxError]="['minlength', 'required']" [when]="['touched']">It should be at least 6 characters</div> -->
       </div>
     </ion-list>
   
     <div padding-horizontal>
       <div class="form-error">{{signupError}}</div>
   
-      <button ion-button full type="submit" [disabled]="!form.valid">Sign up</button>
+      <button ion-button full type="submit" [disabled]="!form.valid" block type="submit" color="light" class="signupButton">Sign up</button>
     </div>
   </form>
 </ion-content>

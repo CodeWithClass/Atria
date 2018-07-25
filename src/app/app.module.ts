@@ -9,6 +9,8 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { Keyboard } from '@ionic-native/keyboard';
+
 
 
 import { AngularFireModule } from 'angularfire2';
@@ -73,6 +75,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
     HttpClientModule,
     AngularFireModule.initializeApp(firebaseConfig.fire),
     AngularFireDatabaseModule,
+ 
 
     FoodPageModule,
     AddFoodPageModule,
@@ -113,6 +116,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
     AngularFireAuth,
     AuthService,
     DBService,
+    Keyboard,
   ]
 })
 export class AppModule {

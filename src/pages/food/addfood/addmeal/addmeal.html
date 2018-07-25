@@ -1,5 +1,5 @@
 
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
     <ion-title>{{this.pageTitle}}</ion-title>
   </ion-navbar>
@@ -9,6 +9,10 @@
 <ion-content padding>
   <!-- ================== Search Input =============== -->
   <ion-searchbar [(ngModel)]="searchInput" (change)="getSearchInput($event)"></ion-searchbar>
+
+  <div *ngIf="!this.hasSearched">
+    <p class="searchPromptMsg">Go ahead and search above.</p>
+  </div>
 
   <div *ngIf="this.hasSearched">
     <!-- ============= Serach result sections ========== -->

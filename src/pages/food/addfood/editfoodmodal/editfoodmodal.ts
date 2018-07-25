@@ -132,12 +132,18 @@ export class EditfoodModal {
     
   }
 
-
+/*
+	Function: findRecordData(record)
+	Parameter: Object
+  Return: Object of Arrays
+  
+  Finds and retreives 
+  the record we are trying to access  */
 
   findRecordData(record) {
-    //get all food loaded food data
+    //get the food loaded food data for today's date
     let relavantMealEntries = this.userStats.foodIntake[this.userStats.todaysDate][this.record.meal]
-    //filter foods logged today, and convert obj to array
+    //convert obj to array
     relavantMealEntries = Object.values(relavantMealEntries)
     let metaData;
     let counter = 0;
@@ -150,32 +156,42 @@ export class EditfoodModal {
       //get entire record then get the last element of said record
       metaData = element[element.length-1]
 
-      //if the both the uid of the record and element matches (date is just extra checking)
+      //if the both the uid of the record and arr element matches (date is just extra checking)
       if ((metaData.uid == record['uid']) && (metaData.date == this.userStats.todaysDate)) {
         this.completeRecord = _element = element
         return;
-        
       }
       else
         counter++;
-
     });
     return _element;
-
   }
 
-  delRecordNut(record) {
-    let statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
-
+  /*
+	Function: updateRecordNut(record)
+	Parameter: Array
+  Return: Array
+  
+  Gets todays userstats then decrements the current record (to be re-added)
+  */
+  updateRecordNut(record) {
+    let statRecord;
+    
+    if (this.userStats.userNutStats[this.userStats.todaysDate]) {
+      statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    }
     //for each elment in the record subtract its value from the total 
     record.forEach((element) => {
-      statRecord[element.name]
-      if (element.name == statRecord[element.name]){
-        statRecord[element.value] -= element.value;
+      try{
+        //ensure it is not food's name being decremented (causes NaN err)
+        if(element.name != this.name)
+          statRecord[element.name] -= element.value;
+      }
+      catch(err){
+        console.log(err)
       }
     });
-    //call db service to write new nutrition stats
-    this.dbService.writeDailyStatsToDB(this.userStats.todaysDate, statRecord);
+    return statRecord;
   }
 
 
@@ -205,14 +221,11 @@ export class EditfoodModal {
   */
   saveAndCloseModal() {
 
-    this.delRecordNut(this.completeRecord);
+    
     this.record.date = this.userStats.todaysDate;
     // this.record.meal = this.pageTitle;
-    let statRecord = {};
-    console.log(this.completeRecord)
-    if (this.userStats.userNutStats[this.userStats.todaysDate]) {
-      statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
-    }
+    let statRecord = this.updateRecordNut(this.completeRecord);
+    
 
     //update serving size of selected food
     this.completeRecord.forEach(element => {
@@ -246,7 +259,7 @@ export class EditfoodModal {
       }
       //check if name is not food's name
       if(element.name != this.name) {
-        statRecord[element.name] += element.value;
+        statRecord[element.name] += (element.value * this.NoOfServ);
       }
 
     });

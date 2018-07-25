@@ -8,7 +8,7 @@ import { DBService } from '../../services/db.service'
 import { HomePage } from '../home/home';
 
 @Component({
-  selector: 'as-page-signup',
+  selector: 'page-signup',
   templateUrl: './signup.html'
 })
 export class SignupPage {

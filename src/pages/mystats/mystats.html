@@ -4,7 +4,7 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-header>
+<ion-header no-border>
   <ion-navbar>
     <ion-title>
       My Stats
@@ -17,23 +17,23 @@
 <ion-content padding>
   <form (ngSubmit)="addData()" class="userStatsForm">
     <!-- ================= fName ================== -->
-    <ion-item>
-      <ion-label color="base">First Name</ion-label>
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">First Name</ion-label>
       <ion-input type="text" [(ngModel)]="mystats.fname" name="fname"></ion-input>
     </ion-item>
     <!-- ================= lName ================== -->
-    <ion-item>
-      <ion-label color="base">Last Name</ion-label>
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Last Name</ion-label>
       <ion-input type="text" [(ngModel)]="mystats.lname" name="lname"></ion-input>
     </ion-item>
     <!-- ================= Age ================== -->
-    <ion-item>
-      <ion-label color="base">Age</ion-label>
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Age</ion-label>
       <ion-input type="number" [(ngModel)]="mystats.age" name="age"></ion-input>
     </ion-item>
     <!-- ================= Height ================== -->
-    <ion-item>
-      <ion-label color="base">Height</ion-label>
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Height</ion-label>
       <ion-select [(ngModel)]="mystats.heightFeet" multiple="false" name="height">
         <ion-option *ngFor="let i of [1,2,3,4,5,6,7]">{{i}}<span>&nbsp;ft</span></ion-option>
       </ion-select>
@@ -42,11 +42,11 @@
       </ion-select>
     </ion-item>
     <!-- ================= Max/Goal Calories ================== -->
-    <ion-item>
-      <ion-label color="base">Goal Calories</ion-label>
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Goal Calories</ion-label>
       <ion-input type="number" [(ngModel)]="mystats.goalCalories" name="goalCalories"></ion-input>
     </ion-item>
 
-    <button ion-button type="submit"  color="base">Save</button>
+    <button ion-button type="submit" block color="base">Save</button>
   </form>
 </ion-content>

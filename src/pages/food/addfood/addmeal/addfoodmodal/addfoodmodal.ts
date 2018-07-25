@@ -168,8 +168,6 @@ export class AddFoodModal {
     this.foodServ.foodNutdata.push(this.record);
 
 
-
-
     //update serving size of selected food
     this.foodServ.foodNutdata.forEach(element => {
       let lastArrElement = this.foodServ.foodNutdata[this.foodServ.foodNutdata.length - 1]
@@ -203,7 +201,7 @@ export class AddFoodModal {
       }
       //check if name is not food's name
       if(element.name != this.record.name){
-        statRecord[element.name] += element.value;
+        statRecord[element.name] += (element.value * this.NoOfServ);
       }
 
     });

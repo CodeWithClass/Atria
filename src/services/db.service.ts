@@ -21,7 +21,7 @@ export class DBService{
                 this.userStats.userStatsConatiner = data[0];
                 this.userStats.foodIntake = data[2] || {};
                 this.userStats.userNutStats = data[1] || {};
-                console.log(data)
+                // console.log(data[2])
                 // this.setIfStats(data[0]['goalCalories']);
                 // console.log(data[0]['goalCalories'])
                 

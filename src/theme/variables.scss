@@ -69,9 +69,10 @@ $text-input-md-show-invalid-highlight: false;
 $text-input-md-highlight-color: #333;
 $text-input-md-show-valid-highlight: transparent;
 // $toolbar-background: color($colors, bkGradienttop);
-$toolbar-background: #333;
-$tabs-background	:#333;
-$tabs-md-tab-icon-color: #fff;
+$toolbar-background: transparent;
+
+// $tabs-background	:#333;
+// $tabs-md-tab-icon-color: #333;
 
 $grid-breakpoints: (
   // xs: 0px,
