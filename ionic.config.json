@@ -1,8 +1,9 @@
 {
   "name": "hellworld",
-  "app_id": "e11affdf",
-  "type": "ionic-angular",
   "integrations": {
     "cordova": {}
-  }
+  },
+  "type": "ionic-angular",
+  "pro_id": "e11affdf",
+  "app_id": ""
 }

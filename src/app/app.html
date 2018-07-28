@@ -1,4 +1,13 @@
-<ion-nav id="nav" [root]="rootPage" #nav swipeBackEnabled="false"></ion-nav>
+<ion-nav id="nav" [root]="rootPage" #nav swipeBackEnabled="true"></ion-nav>
+
+<div *ngIf="showSplash" class="splash">
+  <div class="spinner">
+    <img src="../resources/spinner.gif">
+  </div>
+</div>
+
+
+
 
 <!-- <ion-menu [content]="nav">
 

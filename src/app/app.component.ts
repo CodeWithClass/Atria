@@ -12,23 +12,27 @@ import { HomePage } from '../pages/home/home';
 //import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
 //just uncomment and change root property below
 
+import { timer } from 'rxjs/observable/timer'
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   rootPage: any = LoginPage;
+  public showSplash: boolean = true;
 
   constructor(
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
     private auth: AuthService
-  ) {
+  ){
+  
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
+      this.splashScreen.hide();
+      this.showSplash = false;
     });
 
     this.auth.afAuth.authState
@@ -42,5 +46,10 @@ export class MyApp {
           this.rootPage = LoginPage;
         }
       );
+  
   }
+
+
+
+  
 } 

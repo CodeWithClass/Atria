@@ -37,7 +37,6 @@ export class FoodPage{
     this.navCtrl.pop();
   }
 
-  // testy: any = this.userStats.sayHello();
 
 
 }

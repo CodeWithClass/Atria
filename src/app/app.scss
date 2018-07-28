@@ -15,6 +15,24 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.splash{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+    background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+    background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+    background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+    .spinner{
+
+        
+    }
+}
+
 .toolbar-title {
     text-align: center;
     display: inline-block;
