@@ -6,6 +6,7 @@ import { UserStatsProvider } from '../../providers/user-stats/user-stats';
 import { DBService } from '../../services/db.service'
 import { FoodPage } from "../food/food";
 import { MyStatsPage } from '../mystats/mystats';
+import { BloodPressurePage } from '../bloodpressure/bloodpressure';
 
 
 
@@ -119,7 +120,6 @@ export class HomePage {
   }
 
   public popFoodPage(){
-
     let options: NativeTransitionOptions = {
       direction: 'right',
       duration: 200,
@@ -129,7 +129,6 @@ export class HomePage {
     
     this.NativePageTrans.slide(options);
     this.navCtrl.pop();
-
   }
 
   public pushPage(page, swipe = {offsetDirection: 0}){
@@ -143,14 +142,15 @@ export class HomePage {
     };
     
     if (swipe.offsetDirection === 2 || swipe.offsetDirection === 0){
-      
-      if(page == 'food'){
-        // this.NativePageTrans.slide(options);
-        this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });  
+     
+      if (page == 'bloodpressure') {
+        this.navCtrl.push(BloodPressurePage, {}, { animate: true, direction: 'forward' });
+      }
 
+      else if(page == 'food'){
+        this.navCtrl.push(FoodPage, {}, { animate: true, direction: 'forward' });  
       }
       else if(page == 'stats'){
-        // this.NativePageTrans.slide(options);
         this.navCtrl.push(MyStatsPage, {}, { animate: true, direction: 'forward' });  
       }
   

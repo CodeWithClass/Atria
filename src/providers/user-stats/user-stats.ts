@@ -10,7 +10,7 @@ export class UserStatsProvider {
   foodIntake;
   bpData;
  
-  userNutStats;
+  userDailyStats;
   userStatsConatiner = {};
   goalCalories: number = 2000;
   currCalories: number = 0;
@@ -65,8 +65,8 @@ export class UserStatsProvider {
 
   getCurrCalories() {
     try{
-      if (this.userNutStats[this.todaysDate])
-        return this.userNutStats[this.todaysDate]['Energy']
+      if (this.userDailyStats[this.todaysDate])
+        return this.userDailyStats[this.todaysDate]['nutrients']['Energy']
       else
         return 0;
     }
@@ -80,8 +80,8 @@ export class UserStatsProvider {
     let percent;
 
     try{
-      if (this.userNutStats[this.todaysDate]){
-        percent = (((this.userNutStats[this.todaysDate][macro] * multiplier)/ this.getCurrCalories()) * 100)
+      if (this.userDailyStats[this.todaysDate]){
+        percent = (((this.userDailyStats[this.todaysDate]['nutrients'][macro] * multiplier)/ this.getCurrCalories()) * 100)
         return percent
       }
       else

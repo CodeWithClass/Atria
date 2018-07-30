@@ -28,18 +28,20 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { SettingsPage } from '../pages/settings/settings';
-import { FoodPage } from '../pages/food/food';
+import { FoodPage } from '../pages/food/food'; 
 import { AddFoodPage } from '../pages/food/addfood/addfood';
+import { BloodPressurePage } from '../pages/bloodpressure/bloodpressure';
 import { addmealPage } from '../pages/food/addfood/addmeal/addmeal';
 import { AddFoodModal } from '../pages/food/addfood/addmeal/addfoodmodal/addfoodmodal';
 import { EditfoodModal} from '../pages/food/addfood/editfoodmodal/editfoodmodal';
 import { MyStatsPage } from '../pages/mystats/mystats';
 //Page modules
-import { FoodPageModule, } from '../pages/food/food.module';
 import { AddFoodPageModule } from '../pages/food/addfood/addfood.module';
 import { addmealPageModule } from '../pages/food/addfood/addmeal/addmeal.module';
 import { AddfoodModalModule } from '../pages/food/addfood/addmeal/addfoodmodal/addfoodmodal.module';
-import { EditfoodModalModule } from '../pages/food/addfood/editfoodmodal/editfoodmodal.module'
+import { BloodPressurePageModule } from '../pages/bloodpressure/bloodpressure.module';
+import { EditfoodModalModule } from '../pages/food/addfood/editfoodmodal/editfoodmodal.module';
+import { FoodPageModule, } from '../pages/food/food.module';
 import { MystatsPageModule } from '../pages/mystats/mystats.module';
 import { HomePageModule } from '../pages/home/home.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -79,6 +81,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
 
     FoodPageModule,
     AddFoodPageModule,
+    BloodPressurePageModule,
     EditfoodModalModule,
     addmealPageModule,
     AddfoodModalModule,
@@ -98,6 +101,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
     LoginPage,
     SignupPage,
     SettingsPage,
+    BloodPressurePage,
     FoodPage,
     AddFoodPage,
     addmealPage,

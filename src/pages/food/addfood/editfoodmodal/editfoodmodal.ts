@@ -177,8 +177,8 @@ export class EditfoodModal {
   updateRecordNut(record) {
     let statRecord;
     
-    if (this.userStats.userNutStats[this.userStats.todaysDate]) {
-      statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    if (this.userStats.userDailyStats[this.userStats.todaysDate]) {
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
     }
     //for each elment in the record subtract its value from the total 
     record.forEach((element) => {
@@ -265,7 +265,7 @@ export class EditfoodModal {
     });
 
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.completeRecord);
-    this.dbService.writeDailyStatsToDB(this.record.date, statRecord);
+    this.dbService.writeDailyStatsToDB(this.record.date, statRecord, "nutrients");
 
     this.closeModal();
   }

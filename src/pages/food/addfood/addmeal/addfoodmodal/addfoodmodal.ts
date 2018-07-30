@@ -161,8 +161,8 @@ export class AddFoodModal {
     this.record.meal = this.pageTitle;
     let statRecord = {};
 
-    if(this.userStats.userNutStats[this.userStats.todaysDate]){
-      statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    if(this.userStats.userDailyStats[this.userStats.todaysDate]){
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
     }
     
     this.foodServ.foodNutdata.push(this.record);
@@ -207,7 +207,7 @@ export class AddFoodModal {
     });
     console.log(this.foodServ.foodNutdata)
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
-    this.dbService.writeDailyStatsToDB(this.record.date, statRecord);   
+    this.dbService.writeDailyStatsToDB(this.record.date, statRecord, "nutrients");   
     
     this.closeModal();
   }

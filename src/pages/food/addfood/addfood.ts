@@ -106,7 +106,7 @@ export class AddFoodPage {
   }
 
   delRecordNut(record){
-    let statRecord = this.userStats.userNutStats[this.userStats.todaysDate];
+    let statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
     //pop last record into metaData
     let metaData = record.pop();
     //for each elment in the record subtract its value from the total 

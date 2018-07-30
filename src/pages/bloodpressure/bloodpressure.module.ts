@@ -1,25 +1,30 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+import { BloodPressurePage } from './bloodpressure';
 import { RoundProgressModule, RoundProgressConfig } from 'angular-svg-round-progressbar'; 
-import { HomePage } from './home';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
-  declarations: [
-    HomePage,
+  declarations: [ 
+    BloodPressurePage,
   ],
   imports: [
-    IonicPageModule.forChild(HomePage),
-    RoundProgressModule, 
+    IonicPageModule.forChild(BloodPressurePage),
+    RoundProgressModule,
+    ChartsModule,
   ],
   exports: [
-    RoundProgressModule,
+    RoundProgressModule
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ],
 })
-export class HomePageModule {
+export class BloodPressurePageModule {
   constructor(private _config: RoundProgressConfig) {
     _config.setDefaults({
-     
+
     });
   }
 }

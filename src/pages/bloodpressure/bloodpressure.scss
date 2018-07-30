@@ -1,0 +1,77 @@
+page-bloodpressure {
+    ion-content{
+        background-color: color($colors, bloodpressure) !important;
+    
+
+        .bp-readings{
+            margin: 10% 5% 5%;
+            text-align: center;
+            
+            .previous{
+                margin-top: 4vh;
+
+                h3{
+                    font-size: 5vw;
+                    font-weight: 600;
+                    color: white
+                }
+                .label{
+                    font-size: 4vw;
+                    font-weight: 500;
+                }
+            }
+
+            .predicted{
+                margin-top: 4vh;
+
+                h3{
+                    font-size: 5vw;
+                    font-weight: 500;
+                    color: white
+                }
+                .label{
+                    font-size: 4vw;
+                    font-weight: 400;
+                }
+            }
+
+
+            .current{
+                border: solid 2px white;
+                border-radius: 50%;
+                margin:0 auto;
+                width: 30vw;
+                height: 30vw;
+
+                .systolic {
+                    font-size: 8vw;
+                    color: white; 
+                    margin: 10% 10% 0 10%;                  
+                }
+                .diastolic {
+                    font-size: 8vw;
+                    color: white;                   
+                }
+                .label{
+                    color: white;
+                }
+            }
+
+        }
+    
+    
+        .bp-chart {
+                color: #fff !important;
+                margin: 15% auto;
+        }
+
+        .addBPButton{
+            padding: 25px 0;
+            color: #333;
+        }
+        
+    
+    
+    }
+    
+}

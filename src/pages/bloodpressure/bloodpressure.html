@@ -1,0 +1,51 @@
+<!--
+  Generated template for the BloodpressurePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar>
+    <ion-title>Blood Pressure</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-row class="bp-readings">
+    <ion-col col-12 col-sm-3 col-md-1 class="previous">
+      <h3 class="systolic">{{userStats.getBP('earlier')[0]}}</h3>
+      <h3 class="diastolic">{{userStats.getBP('earlier')[1]}}</h3>
+      <h3 class="label">Previous</h3>
+    </ion-col>
+    <ion-col>
+      <div class="current">
+        <h3 class="systolic">{{userStats.getBP('current')[0]}}</h3>
+        <h3 class="diastolic">{{userStats.getBP('current')[1]}}</h3>
+        <h3 class="label">Current</h3>
+      </div>
+    </ion-col>
+    <ion-col col-12 col-sm-3 col-md-1 class="predicted">
+      <h3 class="systolic">{{userStats.getBP('predicted')[0]}}</h3>
+      <h3 class="diastolic">{{userStats.getBP('predicted')[1]}}</h3>
+      <h3 class="label">Predicted</h3> 
+    </ion-col>
+  
+    <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+            <canvas baseChart height="180" 
+              [datasets]="lineChartData" 
+              [labels]="lineChartLabels" 
+              [options]="lineChartOptions"
+              [colors]="lineChartColors" 
+              [legend]="lineChartLegend" 
+              [chartType]="lineChartType" 
+              (chartHover)="chartHovered($event)" 
+              (chartClick)="chartClicked($event)">
+            </canvas>
+          </ion-col>
+  </ion-row>
+  <button ion-button block color="light" class="addBPButton">Manual Update</button>
+
+</ion-content>

@@ -20,8 +20,8 @@ export class DBService{
             data => {
                 this.userStats.userStatsConatiner = data[0];
                 this.userStats.foodIntake = data[2] || {};
-                this.userStats.userNutStats = data[1] || {};
-                // console.log(data[2])
+                this.userStats.userDailyStats = data[1] || {};
+                console.log(data[1])
                 // this.setIfStats(data[0]['goalCalories']);
                 // console.log(data[0]['goalCalories'])
                 
@@ -48,8 +48,8 @@ export class DBService{
 
     }
 
-    writeDailyStatsToDB(date, data){
-        this.fdb.list('users/' + this.authService.getUID() + '/2dailyStats').set(date, data);
+    writeDailyStatsToDB(date, data, cat){
+        this.fdb.list('users/' + this.authService.getUID() + '/2dailyStats/' + date).set(cat, data);
     }
 
     writeStatsToDB(data){
