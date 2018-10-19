@@ -7,10 +7,10 @@ page-home {
         ion-card {
             position: relative;
             min-height: 250px;
-            width: 100%;
-            margin: 0;
-            // border-radius: 2%;
-            // margin-top: 5%;
+            // width: 100%;
+            // margin: 0;
+            border-radius: 4%;
+            margin-top: 5%;
             
         }
 
@@ -47,35 +47,11 @@ page-home {
             color: #fff;
             margin: 0 %4 %4 4%
         }
-
-        .card0{
-            background:#333;
-            padding: 5%;
-            color: #fff;
-            
-            .left{
-                width: 40%;
-
-
-                img{
-                    border-radius: 50%;
-                    width: 70%;
-                    margin: 0 auto;
-                }
-
-                h4{
-                    color: #fff;
-                    margin: 5% 0 0 0;
-                    font-size: 150%;
-                    text-align: center;
-                }
-            }
-
-            
-        }        
-
+        
+  
         .card1{
             //  background: steelblue;
+            color: #fff;
             background-color: rgba(0,128,128,0.9);
             
 
@@ -83,7 +59,25 @@ page-home {
                 margin-bottom: 0;
             }
             .card-content{
-                padding: 5% 10% 0 10%;
+                padding: 5% 10% 10% 10%;
+
+                .left{
+                    width: 50%;
+
+
+                    img{
+                        border-radius: 50%;
+                        width: 50%;
+                        margin: 0 auto;
+                    }
+
+                    h4{
+                        color: #fff;
+                        margin: 5% 0 0 0;
+                        font-size: 100%;
+                        text-align: center;
+                    }
+                }
 
                 .recommendation{
                     background-color: rgba(255,255,255,0.6);
@@ -99,10 +93,9 @@ page-home {
                 p{  
                     color: white;
                     margin-top: 20px;
-                    font-size: smaller;
+                    font-size: 8px;
                 }
             }
-            
             
         }
         
@@ -181,40 +174,39 @@ page-home {
             //   background-color: color($colors, food);
             background-color: rgba(106,90,205,0.9);
             .card-content{
-                round-progress{
-                    display: block;
-                    top: 10%;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    width: 25%;
+                .prog-container{
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+
+                    .progress-text{
+                        position: absolute;
+                        left: 50;
+                        right: -50;
+                        // text-align: center;
+                    }
+
+                    .progress-text h2{
+                        font-size: 30px;
+                        font-weight: 300;
+                        color:rgb(234, 234, 234);
+                        text-align: center;
+
+                    }
+
+                    .progress-text hr{
+                        width: 90%;
+                        max-width: 100px;
+                        margin: 0 auto;
+                        height: 2px;
+                        background-color:#888;
+
+                    }
                 }
 
-                .progress-text{
-                    position: absolute;
-                    top: 40%;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    text-align: center;
-                }
-
-                .progress-text h2{
-                    font-size: 30px;
-                    font-weight: 300;
-                    color:rgb(234, 234, 234);
-                }
-
-                .progress-text hr{
-                    width: 20%;
-                    max-width: 66px;
-                    margin: 0 auto;
-                    height: 2px;
-                    background-color:#888;
-
-                }
-
-                .macro-container{
+                .meta-container{
                     // display: block;
                     margin: 30px 20% ;
 
@@ -233,6 +225,62 @@ page-home {
 
         .card4{
             background-color: rgba(70,130,180,0.8);
+            .card-content{
+                display: flex;
+                justify-content: center;
+                .chart-key{
+                    width:48%;
+                    // float: left;
+
+                    ul{
+                        list-style: none;
+                        width:100%;
+                        li{
+                            color: #fff;
+                            margin: 0% 0 15% 0%;
+                            font-size: larger;
+                            text-align: center;
+                            border-radius: 14px;
+                            padding: 3% 0;
+                            
+                        }
+
+                        li:first-of-type{
+                            background:#af5ac9;
+                        }
+                        li:nth-of-type(2){
+                            background: #6e59c9;
+                        }
+                        li:nth-of-type(3){
+                            background:#55ade0;
+                        }
+                    }
+
+                    
+
+                }
+                
+                .chart-container{
+                    width: 50%;
+                    height: 160px;
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    .chart-total{
+                        position: absolute;
+                        left: 50;
+                        right: -50;
+                        text-align: center;
+                        color: #fff;
+                        font-size: 20px;
+
+                    }
+                 
+                }
+                
+            }
         }
     }
 }

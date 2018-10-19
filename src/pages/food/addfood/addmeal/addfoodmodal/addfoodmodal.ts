@@ -162,7 +162,7 @@ export class AddFoodModal {
     let statRecord = {};
 
     if(this.userStats.userDailyStats[this.userStats.todaysDate]){
-      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"];
     }
     
     this.foodServ.foodNutdata.push(this.record);
@@ -205,8 +205,9 @@ export class AddFoodModal {
       }
 
     });
-    console.log(this.foodServ.foodNutdata)
+    console.log(statRecord)
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
+    console.log(this.record.date, statRecord, "nutrients")
     this.dbService.writeDailyStatsToDB(this.record.date, statRecord, "nutrients");   
     
     this.closeModal();

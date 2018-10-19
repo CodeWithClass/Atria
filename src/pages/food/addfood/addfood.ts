@@ -106,15 +106,17 @@ export class AddFoodPage {
   }
 
   delRecordNut(record){
-    let statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
+    let statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"];
     //pop last record into metaData
     let metaData = record.pop();
+    console.log(metaData)
     //for each elment in the record subtract its value from the total 
+     console.log(record)
     record.forEach((element) => {
-      statRecord[element.name] -= element.value;
+      statRecord[element.name] -= (element.value * metaData['servings']);
     });
     //call db service to write new nutrition stats
-    this.dbService.writeDailyStatsToDB(metaData.date, statRecord);
+    this.dbService.writeDailyStatsToDB(metaData.date, statRecord, "nutrients");
 
   }
 

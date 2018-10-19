@@ -11,15 +11,14 @@ export class UserStatsProvider {
   bpData;
  
   userDailyStats;
-  userStatsConatiner = {};
+  userStatsConatiner = { fname: '', lname: '', age: 0, heightFeet: '', heightInches: '', goalCalories: 0};
   goalCalories: number = 2000;
   currCalories: number = 0;
  
-  bpMetrics: any[] = [{ data: [148, 159, 135, 128], label: 'Systolic' },
-  { data: [85, 79, 80, 96], label: 'Diastolic' },
+  bpMetrics: any[] = [{ data: [0, 0, 0, 0], label: 'Systolic' },
+  { data: [0, 0, 0, 0], label: 'Diastolic' },
   ];
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
-
 
 
   constructor(public http: HttpClient) {

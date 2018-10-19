@@ -1,0 +1,31 @@
+<!--
+  Generated template for the ManualbpPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header no-border>
+
+  <ion-navbar>
+    <ion-title>Manual Add BP</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="addData()" class="userStatsForm">
+    <ion-item class="Input">
+      <ion-label color="bloodpressure">Systolic Measurement</ion-label>
+      <ion-input type="number" [(ngModel)]="systolic" name="systolic"></ion-input>
+    </ion-item>
+
+    <ion-item class="Input">
+      <ion-label color="bloodpressure">Diastolic Measurement</ion-label>
+      <ion-input type="number" [(ngModel)]="diastolic" name="diastolic"></ion-input>
+    </ion-item>
+
+    <button type="submit" color="light" ion-button block>ADD</button>
+  </form>
+
+</ion-content>

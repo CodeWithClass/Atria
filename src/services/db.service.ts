@@ -16,12 +16,20 @@ export class DBService{
     }
 
     loadDBdata(){
-        this.fdb.list('users/'+this.authService.getUID()).valueChanges().subscribe(
+        this.fdb.object('users/'+this.authService.getUID()).valueChanges().subscribe(
             data => {
-                this.userStats.userStatsConatiner = data[0];
-                this.userStats.foodIntake = data[2] || {};
-                this.userStats.userDailyStats = data[1] || {};
-                console.log(data[1])
+
+                try{
+                    this.userStats.userStatsConatiner = data['stats'];
+                    this.userStats.foodIntake = data['meals']|| {};
+                    // console.log(this.userStats.foodIntake = data['meals'])
+                    this.userStats.userDailyStats = data['dailyStats'] || {};
+                    this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'] || this.userStats.bpMetrics;
+                }
+                catch(e){
+                    
+                }
+                // console.log(data)
                 // this.setIfStats(data[0]['goalCalories']);
                 // console.log(data[0]['goalCalories'])
                 
@@ -39,21 +47,21 @@ export class DBService{
     }
 
     writeFoodToDB(date, meal, foodname, data){
-        this.fdb.list('users/'+this.authService.getUID()+'/3meals/'+date+'/'+meal).set(this.strCleanUp(foodname), data);
+        this.fdb.list('users/'+this.authService.getUID()+'/meals/'+date+'/'+meal).set(this.strCleanUp(foodname), data);
     }
 
     removeFromDB(date, meal, foodname){
         console.log("removal of "+foodname)
-        this.fdb.list('users/' + this.authService.getUID() + '/3meals/' + date + '/' + meal).remove(this.strCleanUp(foodname));
+        this.fdb.list('users/' + this.authService.getUID() + '/meals/' + date + '/' + meal).remove(this.strCleanUp(foodname));
 
     }
 
     writeDailyStatsToDB(date, data, cat){
-        this.fdb.list('users/' + this.authService.getUID() + '/2dailyStats/' + date).set(cat, data);
+        this.fdb.list('users/' + this.authService.getUID() + '/dailyStats/' + date).set(cat, data);
     }
 
     writeStatsToDB(data){
-        this.fdb.list('users/' + this.authService.getUID()).set('1stats', data);
+        this.fdb.list('users/' + this.authService.getUID()).set('stats', data);
     }
 
     strCleanUp(str) {

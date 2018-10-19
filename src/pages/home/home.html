@@ -17,25 +17,28 @@
 
 
 <ion-content class="home-page">
-  <ion-card class="card0" (swipe)="pushPage('stats', $event)">
+  <!-- <ion-card class="card0" (swipe)="pushPage('stats', $event)">
     <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>
     <div class="left">
       <img src="assets/imgs/dp.jpg">
       <h4>Dominic</h4>
     </div>
 
-  </ion-card>
+  </ion-card> -->
 
-  <ion-card class="card1">
-    <div class="card-title">Recomenedations</div>
-    <div class="card-content">    
+  <ion-card class="card1" (swipe)="pushPage('stats', $event)">
+    <div class="card-content">
+      <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>    
+      <div class="left">
+        <img src="assets/imgs/dp.jpg">
+        <h4>Dominic</h4>
+      </div>   
       <ion-item class="recommendation">
-        <ion-label><ion-icon name="thumbs-up"></ion-icon>&nbsp;&nbsp; Drink 16 oz of water</ion-label>
+        <ion-label>Drink 16 oz of water</ion-label>
         <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
       </ion-item>
       <ion-item class="recommendation">
-        <ion-label>
-          <ion-icon name="thumbs-up"></ion-icon>&nbsp;&nbsp; Perform 20 Squats</ion-label>
+        <ion-label>Perform 20 Squats</ion-label>
         <ion-checkbox item-right [(ngModel)]="squats"></ion-checkbox>
       </ion-item>
       <img class="card-img" src="assets/imgs/run.jpg">
@@ -92,22 +95,29 @@
     
     
     <div class="card-content">
-      <round-progress id="round-progress"
-                      [current]="userStats.getCurrCalories()"
-                      [max]="userStats.getgoalCalories()"
-                      [color]="'#45ccce'"
-                      [background]="'#eaeaea'" 
-                      [radius]="70" 
-                      [stroke]="4" 
-                      [semicircle]="false" 
-                      [responsive]="false" 
-                      [duration]="800" 
-                      [animation]="'easeInOutQuart'"
-                      [animationDelay]="0" 
-                      [stroke]="4"
-      ></round-progress>
-      <div class="progress-text">
-        <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}<hr>{{userStats.getgoalCalories()}}</h2>
+      <div class="prog-container">
+        <round-progress id="round-progress"
+                        [current]="userStats.getCurrCalories()"
+                        [max]="userStats.getgoalCalories()"
+                        [color]="'#45ccce'"
+                        [background]="'rgba(159, 147, 237, 0.7)'" 
+                        [radius]="80" 
+                        [stroke]="6" 
+                        [semicircle]="false" 
+                        [responsive]="false" 
+                        [duration]="800" 
+                        [animation]="'easeInOutQuart'"
+                        [animationDelay]="0" 
+                        [stroke]="4"
+        ></round-progress>
+        <div class="progress-text">
+          <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}
+            <hr>{{userStats.getgoalCalories()}}
+          </h2>
+        </div>
+      </div>
+      <div>
+
       </div>
     </div>
     <img class="card-img" src="assets/imgs/food.jpg">    
@@ -115,13 +125,34 @@
   
   
   
-  <ion-card class="card4">
+  <ion-card class="card4" (swipe)="pushPage('sleep', $event)">
     <div class="card-title">Sleep</div>
-    <ion-icon class="chevron" name="ios-arrow-forward"></ion-icon>
-    
-    
+    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('sleep')"></ion-icon>
+      <div class="card-content">
+        <div class="chart-key">
+          <ul>
+            <li>Deep Sleep</li>
+            <li>Light Sleep</li>
+            <li>Wake Sleep</li>
+          </ul>
+        </div>
+        <div class="chart-container">
+          <div class="chart-total">
+            {{sleepTotal[0]}}h<br>{{sleepTotal[1]}}m
+          </div>
+          <canvas baseChart
+              [data]="sleepChartData"  
+              [chartType]="sleepChartType"
+              [labels]="sleepChartLabels"
+              [colors] = "sleepChartColors"
+              [options]="sleepChartOptions"
+              (chartClick)="chartClicked($event)">
+          </canvas>
+        </div>
+        
+        
+      </div>
     <img class="card-img" src="assets/imgs/sleep.jpg">
-    
   </ion-card>
 
 </ion-content>

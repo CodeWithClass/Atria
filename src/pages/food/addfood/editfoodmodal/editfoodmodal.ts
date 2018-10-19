@@ -176,16 +176,18 @@ export class EditfoodModal {
   */
   updateRecordNut(record) {
     let statRecord;
-    
     if (this.userStats.userDailyStats[this.userStats.todaysDate]) {
-      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate];
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"];
     }
+ 
+    let metaData = record[record.length - 1]
+
     //for each elment in the record subtract its value from the total 
     record.forEach((element) => {
       try{
         //ensure it is not food's name being decremented (causes NaN err)
         if(element.name != this.name)
-          statRecord[element.name] -= element.value;
+          statRecord[element.name] -= (element.value * metaData['servings']);
       }
       catch(err){
         console.log(err)

@@ -1,10 +1,8 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
-import { BaseChartDirective } from 'ng2-charts/ng2-charts';
-import { ManualbpPage } from './manualbp/manualbp';
 /**
- * Generated class for the BloodpressurePage page.
+ * Generated class for the SleepPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,15 +10,12 @@ import { ManualbpPage } from './manualbp/manualbp';
 
 @IonicPage()
 @Component({
-  selector: 'page-bloodpressure',
-  templateUrl: 'bloodpressure.html',
+  selector: 'page-sleep',
+  templateUrl: 'sleep.html',
 })
+export class SleepPage {
 
-export class BloodPressurePage {
-  @ViewChild(BaseChartDirective)
-
-  public chart: BaseChartDirective;
-  public lineChartData: Array<any>;
+  public lineChartData: Array<any> = this.userStats.bpMetrics;
   public lineChartLabels: Array<any> = this.userStats.bpTimeline;
   public lineChartOptions: any = {
     responsive: true,
@@ -79,48 +74,14 @@ export class BloodPressurePage {
   public lineChartLegend: boolean = true;
   public lineChartType: string = 'line';
 
-
- 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              public userStats: UserStatsProvider,
-            ) {
-      
-    let chartBPdataSys = this.userStats.bpMetrics[0]['data']
-    let chartBPdataDia = this.userStats.bpMetrics[1]['data']
-    chartBPdataSys = chartBPdataSys.splice(chartBPdataSys.length - 4, chartBPdataSys.length)
-    chartBPdataDia = chartBPdataDia.splice(chartBPdataDia.length - 4, chartBPdataDia.length)
-
-    let displayBPMetrics = this.userStats.bpMetrics
-    displayBPMetrics[0]['data'] = chartBPdataSys;
-    displayBPMetrics[1]['data'] = chartBPdataDia;
-    
-    this.lineChartData = displayBPMetrics;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public userStats: UserStatsProvider){
   }
 
-   // line chart events
-  public chartClicked(e: any): void {
-    console.log(e)
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad SleepPage');
   }
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
-
-  launchManualAdd(){
-    this.navCtrl.push(ManualbpPage, {}, { animate: true, direction: 'forward' });
-  }
-
-  ngAfterViewInit() {
-
-  }
-
-  ionViewDidLoad(){
-  }
-
-  public refresh(){
-    this.chart.ngOnChanges({});
-  }
-
 
 }
