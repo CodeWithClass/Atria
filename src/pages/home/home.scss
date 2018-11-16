@@ -1,8 +1,8 @@
 page-home {
     .home-page {
 
-        //background-color: color($colors, bkGradientbottom);
-        background-color: #555;
+        background-color: color($colors, bkGradientbottom);
+        // background-color: #555;
   
         ion-card {
             position: relative;
@@ -21,6 +21,7 @@ page-home {
             top: 0;
             left: 0;
             z-index: -1;
+            display: none;
         }
 
         .chevron{
@@ -54,7 +55,7 @@ page-home {
         .card1{
             //  background: steelblue;
             color: #fff;
-            background-color: rgba(0,128,128,0.9);
+            background-color: rgba(0,128,128,1);
             
 
             .card-subtitle{
@@ -103,7 +104,7 @@ page-home {
         
         .card2{
             // background-color: color($colors, bloodpressure);
-                background-color: rgba(255, 99, 71, 0.9);
+                background-color: rgba(255, 99, 71, 1);
 
             .bp-chart {
                 color: #fff !important;
@@ -174,7 +175,7 @@ page-home {
         
         .card3{
             //   background-color: color($colors, food);
-            background-color: rgba(106,90,205,0.9);
+            background-color: rgba(106,90,205,1);
             .card-content{
                 .prog-container{
                     width: 100%;

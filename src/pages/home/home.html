@@ -35,7 +35,7 @@
             <h4>Dominic</h4>
           </div>    -->
           <ion-item class="recommendation">
-            <ion-label>Drink 16 oz of {{this.width}}</ion-label>
+            <ion-label>Drink 16 oz of water</ion-label>
             <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
           </ion-item>
           <ion-item class="recommendation">
@@ -74,7 +74,7 @@
               <h3 class="label">Predicted</h3>
             </ion-col>
           
-            <!-- <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+            <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
               <canvas baseChart height="180" 
                 [datasets]="lineChartData" 
                 [labels]="lineChartLabels" 
@@ -82,10 +82,9 @@
                 [colors]="lineChartColors" 
                 [legend]="lineChartLegend" 
                 [chartType]="lineChartType" 
-                (chartHover)="chartHovered($event)" 
                 (chartClick)="chartClicked($event)">
               </canvas>
-            </ion-col> -->
+            </ion-col>
           </ion-row>
         </div>
         <img class="card-img" src="assets/imgs/bp.jpg">
