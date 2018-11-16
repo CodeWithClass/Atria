@@ -162,7 +162,7 @@ export class AddFoodModal {
     let statRecord = {};
 
     if(this.userStats.userDailyStats[this.userStats.todaysDate]){
-      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"];
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"] || {};
     }
     
     this.foodServ.foodNutdata.push(this.record);
@@ -196,6 +196,7 @@ export class AddFoodModal {
       element.value = ((parseFloat(element.value)) || 0);
       
       //check if element already exits or if name is not food's name
+     
       if (!statRecord[element.name] && element.name != this.record.name){
         statRecord[element.name] = 0;
       }
@@ -205,7 +206,6 @@ export class AddFoodModal {
       }
 
     });
-    console.log(statRecord)
     this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.foodServ.foodNutdata);   
     console.log(this.record.date, statRecord, "nutrients")
     this.dbService.writeDailyStatsToDB(this.record.date, statRecord, "nutrients");   
