@@ -25,134 +25,140 @@
     </div>
 
   </ion-card> -->
+  <ion-slides style="width: 100%; height: 100%" spaceBetween="-50">
+    <ion-slide>
+      <ion-card class="card1">
+        <div class="card-content">
+          <ion-icon class="chevron" name="ios-arrow-forward"></ion-icon>    
+          <!-- <div class="left">
+            <img src="assets/imgs/dp.jpg">
+            <h4>Dominic</h4>
+          </div>    -->
+          <ion-item class="recommendation">
+            <ion-label>Drink 16 oz of {{this.width}}</ion-label>
+            <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
+          </ion-item>
+          <ion-item class="recommendation">
+            <ion-label>Perform 20 Squats</ion-label>
+            <ion-checkbox item-right [(ngModel)]="squats"></ion-checkbox>
+          </ion-item>
+          <img class="card-img" src="assets/imgs/run.jpg">
 
-  <ion-card class="card1" (swipe)="pushPage('stats', $event)">
-    <div class="card-content">
-      <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>    
-      <div class="left">
-        <img src="assets/imgs/dp.jpg">
-        <h4>Dominic</h4>
-      </div>   
-      <ion-item class="recommendation">
-        <ion-label>Drink 16 oz of water</ion-label>
-        <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
-      </ion-item>
-      <ion-item class="recommendation">
-        <ion-label>Perform 20 Squats</ion-label>
-        <ion-checkbox item-right [(ngModel)]="squats"></ion-checkbox>
-      </ion-item>
-      <img class="card-img" src="assets/imgs/run.jpg">
-
-      <p>**Based on your activity level, blood pressure and diet.</p>
-    </div>
-  </ion-card>
-
-  <ion-card class="card2" (swipe)="pushPage('bloodpressure', $event)">
-    <div class="card-content">
-      <div class="card-title">Blood Pressure</div>
-      <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('bloodpressure')"></ion-icon>
-      
-      <ion-row class="bp-readings">
-        <ion-col col-12 col-sm-3 col-md-1 class="previous">
-            <h3 class="systolic">{{userStats.getBP('earlier')[0]}}</h3>
-            <h3 class="diastolic">{{userStats.getBP('earlier')[1]}}</h3>
-            <h3 class="label">Previous</h3>           
-        </ion-col>
-        <ion-col>
-          <div class="current">
-            <h3 class="systolic">{{userStats.getBP('current')[0]}}</h3>
-            <h3 class="diastolic">{{userStats.getBP('current')[1]}}</h3>
-            <h3 class="label">Current</h3>
-          </div>
-        </ion-col>
-        <ion-col col-12 col-sm-3  col-md-1 class="predicted">
-          <h3 class="systolic">{{userStats.getBP('predicted')[0]}}</h3>
-          <h3 class="diastolic">{{userStats.getBP('predicted')[1]}}</h3>
-          <h3 class="label">Predicted</h3>
-        </ion-col>
-      
-        <!-- <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
-          <canvas baseChart height="180" 
-            [datasets]="lineChartData" 
-            [labels]="lineChartLabels" 
-            [options]="lineChartOptions"
-            [colors]="lineChartColors" 
-            [legend]="lineChartLegend" 
-            [chartType]="lineChartType" 
-            (chartHover)="chartHovered($event)" 
-            (chartClick)="chartClicked($event)">
-          </canvas>
-        </ion-col> -->
-      </ion-row>
-    </div>
-    <img class="card-img" src="assets/imgs/bp.jpg">
-  </ion-card>
-  
-  <ion-card class="card3" (swipe)="pushPage('food', $event)">
-    <div class="card-title">Diet</div>
-    <div class="card-subtitle">Calories</div>
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon>
+          <p>**Based on your activity level, blood pressure and diet.</p>
+        </div>
+      </ion-card>
+    </ion-slide>
     
-    
-    <div class="card-content">
-      <div class="prog-container">
-        <round-progress id="round-progress"
-                        [current]="userStats.getCurrCalories()"
-                        [max]="userStats.getgoalCalories()"
-                        [color]="'#45ccce'"
-                        [background]="'rgba(159, 147, 237, 0.7)'" 
-                        [radius]="80" 
-                        [stroke]="6" 
-                        [semicircle]="false" 
-                        [responsive]="false" 
-                        [duration]="800" 
-                        [animation]="'easeInOutQuart'"
-                        [animationDelay]="0" 
-                        [stroke]="4"
-        ></round-progress>
-        <div class="progress-text">
-          <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}
-            <hr>{{userStats.getgoalCalories()}}
-          </h2>
+    <ion-slide>
+      <ion-card class="card2">
+        <div class="card-content">
+          <div class="card-title">Blood Pressure</div>
+          <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('bloodpressure')"></ion-icon>
+          
+          <ion-row class="bp-readings">
+            <ion-col col-12 col-sm-3 col-md-1 class="previous">
+                <h3 class="systolic">{{userStats.getBP('earlier')[0]}}</h3>
+                <h3 class="diastolic">{{userStats.getBP('earlier')[1]}}</h3>
+                <h3 class="label">Previous</h3>           
+            </ion-col>
+            <ion-col>
+              <div class="current">
+                <h3 class="systolic">{{userStats.getBP('current')[0]}}</h3>
+                <h3 class="diastolic">{{userStats.getBP('current')[1]}}</h3>
+                <h3 class="label">Current</h3>
+              </div>
+            </ion-col>
+            <ion-col col-12 col-sm-3  col-md-1 class="predicted">
+              <h3 class="systolic">{{userStats.getBP('predicted')[0]}}</h3>
+              <h3 class="diastolic">{{userStats.getBP('predicted')[1]}}</h3>
+              <h3 class="label">Predicted</h3>
+            </ion-col>
+          
+            <!-- <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
+              <canvas baseChart height="180" 
+                [datasets]="lineChartData" 
+                [labels]="lineChartLabels" 
+                [options]="lineChartOptions"
+                [colors]="lineChartColors" 
+                [legend]="lineChartLegend" 
+                [chartType]="lineChartType" 
+                (chartHover)="chartHovered($event)" 
+                (chartClick)="chartClicked($event)">
+              </canvas>
+            </ion-col> -->
+          </ion-row>
         </div>
-      </div>
-      <div>
+        <img class="card-img" src="assets/imgs/bp.jpg">
+      </ion-card>
+    </ion-slide>
 
-      </div>
-    </div>
-    <img class="card-img" src="assets/imgs/food.jpg">    
-  </ion-card>
-  
-  
-  
-  <ion-card class="card4" (swipe)="pushPage('sleep', $event)">
-    <div class="card-title">Sleep</div>
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('sleep')"></ion-icon>
-      <div class="card-content">
-        <div class="chart-key">
-          <ul>
-            <li>Deep Sleep</li>
-            <li>Light Sleep</li>
-            <li>Wake Sleep</li>
-          </ul>
-        </div>
-        <div class="chart-container">
-          <div class="chart-total">
-            {{sleepTotal[0]}}h<br>{{sleepTotal[1]}}m
-          </div>
-          <canvas baseChart
-              [data]="sleepChartData"  
-              [chartType]="sleepChartType"
-              [labels]="sleepChartLabels"
-              [colors] = "sleepChartColors"
-              [options]="sleepChartOptions"
-              (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
+    <ion-slide>
+      <ion-card class="card3">
+        <div class="card-title">Diet</div>
+        <div class="card-subtitle">Calories</div>
+        <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon>
         
         
-      </div>
-    <img class="card-img" src="assets/imgs/sleep.jpg">
-  </ion-card>
+        <div class="card-content">
+          <div class="prog-container">
+            <round-progress id="round-progress"
+                            [current]="userStats.getCurrCalories()"
+                            [max]="userStats.getgoalCalories()"
+                            [color]="'#45ccce'"
+                            [background]="'rgba(159, 147, 237, 0.7)'" 
+                            [radius]="80" 
+                            [stroke]="6" 
+                            [semicircle]="false" 
+                            [responsive]="false" 
+                            [duration]="800" 
+                            [animation]="'easeInOutQuart'"
+                            [animationDelay]="0" 
+                            [stroke]="4"
+            ></round-progress>
+            <div class="progress-text">
+              <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}
+                <hr>{{userStats.getgoalCalories()}}
+              </h2>
+            </div>
+          </div>
+          <div>
 
+          </div>
+        </div>
+        <img class="card-img" src="assets/imgs/food.jpg">    
+      </ion-card>
+    </ion-slide>
+    
+    <ion-slide>
+      <ion-card class="card4">
+        <div class="card-title">Sleep</div>
+        <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('sleep')"></ion-icon>
+          <div class="card-content">
+            <div class="chart-key">
+              <ul>
+                <li>Deep Sleep</li>
+                <li>Light Sleep</li>
+                <li>Wake Sleep</li>
+              </ul>
+            </div>
+            <div class="chart-container">
+              <div class="chart-total">
+                {{sleepTotal[0]}}h<br>{{sleepTotal[1]}}m
+              </div>
+              <canvas baseChart
+                  [data]="sleepChartData"  
+                  [chartType]="sleepChartType"
+                  [labels]="sleepChartLabels"
+                  [colors] = "sleepChartColors"
+                  [options]="sleepChartOptions"
+                  (chartClick)="chartClicked($event)">
+              </canvas>
+            </div>
+            
+            
+          </div>
+        <img class="card-img" src="assets/imgs/sleep.jpg">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

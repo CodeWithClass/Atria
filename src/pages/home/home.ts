@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../providers/user-stats/user-stats';
@@ -24,6 +24,7 @@ import { SleepPage } from '../sleep/sleep';
   templateUrl: 'home.html',
 })
 export class HomePage {
+  public width; public height;
   public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
   public sleepChartType: string = 'doughnut';
   public sleepChartColors: any[] = [{ backgroundColor: ["#af5ac9", "#6e59c9", "#55ade0"] }];
@@ -52,7 +53,9 @@ export class HomePage {
               private NativePageTrans: NativePageTransitions,
               public userStats: UserStatsProvider,
               public dbServ: DBService) {
-      
+    this.width = window.innerWidth;
+    this.height = window.innerHeight
+    console.log(this.width +'x'+ this.height)
     this.dbServ.loadDBdata();    
   }
 

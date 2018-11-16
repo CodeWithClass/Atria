@@ -3,14 +3,16 @@ page-home {
 
         //background-color: color($colors, bkGradientbottom);
         background-color: #555;
-
+  
         ion-card {
             position: relative;
-            min-height: 250px;
-            // width: 100%;
-            // margin: 0;
-            border-radius: 4%;
-            margin-top: 5%;
+            width: 80vw;
+            margin: 0 auto;
+            border-radius: 20px;
+            // margin-top: 5%;
+            padding: 10% 0;
+            // min-height: 500px;
+            height: 80vh;
             
         }
 
