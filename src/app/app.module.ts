@@ -8,6 +8,7 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -54,10 +55,11 @@ import { SettingsPageModule } from '../pages/settings/settings.module';
 import { SleepPageModule } from '../pages/sleep/sleep.module';
 
 
-// Providers
-import { UserStatsProvider } from '../services/user-stats';
-import { FoodServiceProvider } from '../services/foodservice';
+// Services
+import { UserStatsProvider } from '../services/user.stats';
+import { FoodServiceProvider } from '../services/food.service';
 import { fromEventPattern } from '../../node_modules/rxjs';
+import { BPService } from '../services/bp.service';
 
 @NgModule({
   declarations: [
@@ -121,6 +123,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
     SleepPage,
   ],
   providers: [
+    HTTP,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
@@ -131,6 +134,7 @@ import { fromEventPattern } from '../../node_modules/rxjs';
     AuthService,
     DBService,
     Keyboard,
+    BPService,
   ]
 })
 export class AppModule {

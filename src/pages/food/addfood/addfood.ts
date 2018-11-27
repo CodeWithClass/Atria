@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { addmealPage } from '../addmeal/addmeal';
-import { FoodServiceProvider } from '../../../services/foodservice';
-import { UserStatsProvider } from '../../../services/user-stats';
+import { FoodServiceProvider } from '../../../services/food.service';
+import { UserStatsProvider } from '../../../services/user.stats';
 import { DBService } from '../../../services/db.service';
 // import { AddFoodModal } from './addmeal/addfoodmodal/addfoodmodal';
 import { EditfoodModal } from '../editfoodmodal/editfoodmodal';

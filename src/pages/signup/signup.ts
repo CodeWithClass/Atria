@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from 'ionic-angular';
 import { MyStatsPage } from '../mystats/mystats';
 import { AuthService } from '../../services/auth.service';
-import { UserStatsProvider } from '../../services/user-stats'
+import { UserStatsProvider } from '../../services/user.stats'
 import { DBService } from '../../services/db.service'
 import { HomePage } from '../home/home';
 

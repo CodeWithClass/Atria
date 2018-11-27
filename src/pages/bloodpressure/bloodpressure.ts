@@ -1,8 +1,12 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserStatsProvider } from '../../services/user-stats';
+import { UserStatsProvider } from '../../services/user.stats';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { ManualbpPage } from './manualbp/manualbp';
+import { BPService } from '../../services/bp.service'
+import { from } from 'rxjs';
+import { HTTP } from '@ionic-native/http';
+
 /**
  * Generated class for the BloodpressurePage page.
  *
@@ -84,6 +88,8 @@ export class BloodPressurePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public userStats: UserStatsProvider,
+              public bpService: BPService,
+              public http: HTTP
             ) {
       
     let chartBPdataSys = this.userStats.bpMetrics[0]['data']
@@ -106,7 +112,12 @@ export class BloodPressurePage {
   public chartHovered(e: any): void {
     console.log(e);
   }
-
+  bpAuth(){
+    this.bpService.loadBPdata()
+  }
+  manualSyncBP(){
+    
+  }
   launchManualAdd(){
     this.navCtrl.push(ManualbpPage, {}, { animate: true, direction: 'forward' });
   }
