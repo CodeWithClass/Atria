@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { AddFoodPage } from './addfood/addfood';
 
-import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+import { UserStatsProvider } from '../../services/user-stats';
 
 /**
  * Generated class for the FoodPage page.

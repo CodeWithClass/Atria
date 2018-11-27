@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { addmealPage } from './addmeal/addmeal';
-import { FoodServiceProvider } from '../../../providers/foodservice/foodservice';
-import { UserStatsProvider } from '../../../providers/user-stats/user-stats';
+import { addmealPage } from '../addmeal/addmeal';
+import { FoodServiceProvider } from '../../../services/foodservice';
+import { UserStatsProvider } from '../../../services/user-stats';
 import { DBService } from '../../../services/db.service';
 // import { AddFoodModal } from './addmeal/addfoodmodal/addfoodmodal';
-import { EditfoodModal } from './editfoodmodal/editfoodmodal';
+import { EditfoodModal } from '../editfoodmodal/editfoodmodal';
 /**
  * Generated class for the AddfoodPage page.
  *

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { FoodServiceProvider } from '../../../../../providers/foodservice/foodservice';
-import { UserStatsProvider } from '../../../../../providers/user-stats/user-stats';
-import { DBService } from '../../../../../services/db.service';
+import { FoodServiceProvider } from '../../../services/foodservice';
+import { UserStatsProvider } from '../../../services/user-stats';
+import { DBService } from '../../../services/db.service';
 
 /**
  * Generated class for the AddfoodmodalPage page.
@@ -11,7 +11,6 @@ import { DBService } from '../../../../../services/db.service';
  * Ionic pages and navigation.
  */ 
 
-@IonicPage()
 @Component({
   selector: 'page-addfoodmodal',
   templateUrl: 'addfoodmodal.html',

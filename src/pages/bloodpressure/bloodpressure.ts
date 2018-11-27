@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+import { UserStatsProvider } from '../../services/user-stats';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { ManualbpPage } from './manualbp/manualbp';
 /**

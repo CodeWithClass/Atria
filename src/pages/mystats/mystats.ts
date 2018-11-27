@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings';
 import { DBService } from '../../services/db.service'
 import { AngularFireDatabase } from "angularfire2/database"; 
-import { UserStatsProvider } from '../../providers/user-stats/user-stats'
+import { UserStatsProvider } from '../../services/user-stats'
 import { HomePage } from '../home/home';
 
 // import { log } from 'util';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from "angularfire2/database"; 
 import { AuthService } from "./auth.service";
-import { UserStatsProvider } from '../providers/user-stats/user-stats';
+import { UserStatsProvider } from './user-stats';
 
 @Injectable()
 

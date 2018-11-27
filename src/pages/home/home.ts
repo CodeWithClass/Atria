@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/native-page-transitions';
 import { SettingsPage } from '../settings/settings';
-import { UserStatsProvider } from '../../providers/user-stats/user-stats';
+import { UserStatsProvider } from '../../services/user-stats';
 import { DBService } from '../../services/db.service'
 import { FoodPage } from "../food/food";
 import { MyStatsPage } from '../mystats/mystats';

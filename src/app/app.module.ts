@@ -32,19 +32,19 @@ import { FoodPage } from '../pages/food/food';
 import { AddFoodPage } from '../pages/food/addfood/addfood';
 import { BloodPressurePage } from '../pages/bloodpressure/bloodpressure';
 import { ManualbpPage} from '../pages/bloodpressure/manualbp/manualbp';
-import { addmealPage } from '../pages/food/addfood/addmeal/addmeal';
-import { AddFoodModal } from '../pages/food/addfood/addmeal/addfoodmodal/addfoodmodal';
-import { EditfoodModal} from '../pages/food/addfood/editfoodmodal/editfoodmodal';
+import { addmealPage } from '../pages/food/addmeal/addmeal';
+import { AddFoodModal } from '../pages/food/addfoodmodal/addfoodmodal';
+import { EditfoodModal} from '../pages/food/editfoodmodal/editfoodmodal';
 import { MyStatsPage } from '../pages/mystats/mystats';
 import { SleepPage } from '../pages/sleep/sleep';
 
 //Page modules
 import { AddFoodPageModule } from '../pages/food/addfood/addfood.module';
-import { addmealPageModule } from '../pages/food/addfood/addmeal/addmeal.module';
-import { AddfoodModalModule } from '../pages/food/addfood/addmeal/addfoodmodal/addfoodmodal.module';
+import { addmealPageModule } from '../pages/food/addmeal/addmeal.module';
+import { AddfoodModalModule } from '../pages/food/addfoodmodal/addfoodmodal.module';
 import { BloodPressurePageModule } from '../pages/bloodpressure/bloodpressure.module';
 import { ManualbpPageModule } from '../pages/bloodpressure/manualbp/manualbp.module';
-import { EditfoodModalModule } from '../pages/food/addfood/editfoodmodal/editfoodmodal.module';
+import { EditfoodModalModule } from '../pages/food/editfoodmodal/editfoodmodal.module';
 import { FoodPageModule, } from '../pages/food/food.module';
 import { MystatsPageModule } from '../pages/mystats/mystats.module';
 import { HomePageModule } from '../pages/home/home.module';
@@ -55,8 +55,8 @@ import { SleepPageModule } from '../pages/sleep/sleep.module';
 
 
 // Providers
-import { UserStatsProvider } from '../providers/user-stats/user-stats';
-import { FoodServiceProvider } from '../providers/foodservice/foodservice';
+import { UserStatsProvider } from '../services/user-stats';
+import { FoodServiceProvider } from '../services/foodservice';
 import { fromEventPattern } from '../../node_modules/rxjs';
 
 @NgModule({

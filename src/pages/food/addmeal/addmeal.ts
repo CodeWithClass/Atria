@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
-import { FoodServiceProvider } from '../../../../providers/foodservice/foodservice';
-import { AddFoodModal } from './addfoodmodal/addfoodmodal';
+import { FoodServiceProvider } from '../../../services/foodservice';
+import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
 import { Keyboard } from '@ionic-native/keyboard';
 
 @IonicPage()
