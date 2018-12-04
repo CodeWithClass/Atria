@@ -5,19 +5,17 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserStatsProvider {
   
-  todaysDate ='0000-00-00';
-  ABSOLUTE_DATE ='0000-00-00';
+  todaysDate: string ='0000-00-00';
+  ABSOLUTE_DATE: string ='0000-00-00';
   foodIntake;
   bpData;
- 
+  iHealthAuth: object;
   userDailyStats;
   userStatsConatiner = { fname: '', lname: '', age: 0, heightFeet: '', heightInches: '', goalCalories: 0};
   goalCalories: number = 2000;
   currCalories: number = 0;
  
-  bpMetrics: any[] = [{ data: [0, 0, 0, 0], label: 'Systolic' },
-  { data: [0, 0, 0, 0], label: 'Diastolic' },
-  ];
+  bpMetrics: any[] = [{ HP: "", LP: "" }, { HP: "", LP: "" }, { HP: "", LP: "" }, { HP: "", LP: "" }]
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
 
 
@@ -31,29 +29,33 @@ export class UserStatsProvider {
 
   getBP(reading: string): number[] {
 
+    // let bpMetrics = this.bpMetrics
+    let eIndex = this.bpMetrics.length - 4
+    let pIndex = this.bpMetrics.length - 3
+    let cIndex = this.bpMetrics.length - 2
+    let predIndex = this.bpMetrics.length - 1
+    // console.log(this.bpMetrics)
+
     if (reading == 'earlier') {
-      let Systolic: number = this.bpMetrics[0].data[0];
-      let Diastolic: number = this.bpMetrics[1].data[0];
-      let earlierBP: number[] = [Systolic, Diastolic];
-      return earlierBP;
+      let Systolic: number = this.bpMetrics[eIndex]['HP'] || 0;
+      let Diastolic: number = this.bpMetrics[eIndex]['LP'] || 0;
+      return [Systolic, Diastolic];
     }
     else if (reading == 'pevious') {
-      let Systolic: number = this.bpMetrics[0].data[1];
-      let Diastolic: number = this.bpMetrics[1].data[1];
-      let previousBP: number[] = [Systolic, Diastolic];
-      return previousBP;
+      let Systolic: number = this.bpMetrics[pIndex]['HP'] || 0;
+      let Diastolic: number = this.bpMetrics[pIndex]['LP'] || 0;
+      return [Systolic, Diastolic];
     }
     else if (reading == 'current') {
-      let Systolic: number = this.bpMetrics[0].data[2];
-      let Diastolic: number = this.bpMetrics[1].data[2];
-      let currentBP: number[] = [Systolic, Diastolic];
-      return currentBP;
+      let Systolic: number = this.bpMetrics[cIndex]['HP'] || 0;
+      let Diastolic: number = this.bpMetrics[cIndex]['LP'] || 0;
+      return [Systolic, Diastolic];
+     
     }
     else if (reading == 'predicted') {
-      let Systolic: number = this.bpMetrics[0].data[3];
-      let Diastolic: number = this.bpMetrics[1].data[3];
-      let predictedBP: number[] = [Systolic, Diastolic];
-      return predictedBP;
+      let Systolic: number = this.bpMetrics[predIndex]['HP'] || 0;
+      let Diastolic: number = this.bpMetrics[predIndex]['LP'] || 0;
+      return [Systolic, Diastolic];
     }
     else {
       let notfound: any[] = [999, 999]

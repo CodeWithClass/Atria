@@ -22,7 +22,7 @@ import { HomePage } from '../home/home';
 }) 
 export class MyStatsPage {
   dataToAdd;
-  mystats = this.userStats.userStatsConatiner;
+  mystats = this.userStats.userStatsConatiner || {};
 
   constructor(
     public navCtrl: NavController, 

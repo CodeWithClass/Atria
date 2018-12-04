@@ -31,8 +31,9 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.splashScreen.hide();
-      this.showSplash = false;
+      this.splashScreen.show();
+      this.showSplash = true;            
+
     });
 
     this.auth.afAuth.authState
@@ -40,6 +41,8 @@ export class MyApp {
         user => {
           if (user) {
             this.rootPage = HomePage;
+            this.splashScreen.hide();
+            this.showSplash = false;            
           }
         },
         () => {

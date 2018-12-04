@@ -4,6 +4,7 @@ import { NativePageTransitions, NativeTransitionOptions } from '@ionic-native/na
 import { SettingsPage } from '../settings/settings';
 import { UserStatsProvider } from '../../services/user.stats';
 import { DBService } from '../../services/db.service'
+import { BPService } from '../../services/bp.service'
 import { FoodPage } from "../food/food";
 import { MyStatsPage } from '../mystats/mystats';
 import { BloodPressurePage } from '../bloodpressure/bloodpressure';
@@ -51,9 +52,14 @@ export class HomePage {
               public navParams: NavParams,
               private NativePageTrans: NativePageTransitions,
               public userStats: UserStatsProvider,
-              public dbServ: DBService) {
+              public dbServ: DBService,
+              public bpServ: BPService) {
       
-    this.dbServ.loadDBdata();    
+    this.dbServ.loadDBdata(() => { 
+      this.bpServ.fetchBPdata()
+    })
+ 
+
   }
 
 

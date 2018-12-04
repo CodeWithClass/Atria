@@ -5,7 +5,7 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { ManualbpPage } from './manualbp/manualbp';
 import { BPService } from '../../services/bp.service'
 import { from } from 'rxjs';
-import { HTTP } from '@ionic-native/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the BloodpressurePage page.
@@ -89,32 +89,42 @@ export class BloodPressurePage {
               public navParams: NavParams,
               public userStats: UserStatsProvider,
               public bpService: BPService,
-              public http: HTTP
+              public inAppBrowser: InAppBrowser
             ) {
-      
-    let chartBPdataSys = this.userStats.bpMetrics[0]['data']
-    let chartBPdataDia = this.userStats.bpMetrics[1]['data']
-    chartBPdataSys = chartBPdataSys.splice(chartBPdataSys.length - 4, chartBPdataSys.length)
-    chartBPdataDia = chartBPdataDia.splice(chartBPdataDia.length - 4, chartBPdataDia.length)
+     
+  
+    let myChartData = [
+      {data: [], label: "systolic"},
+      { data: [], label: "diastolic" }
+    ];
 
-    let displayBPMetrics = this.userStats.bpMetrics
-    displayBPMetrics[0]['data'] = chartBPdataSys;
-    displayBPMetrics[1]['data'] = chartBPdataDia;
-    
-    this.lineChartData = displayBPMetrics;
+    myChartData[0].data = this.userStats.bpMetrics.map(each=>{
+      return each.HP || 0
+    });
+    myChartData[1].data = this.userStats.bpMetrics.map(each => {
+      return each.LP || 0
+    });
+
+    this.lineChartData = myChartData;
   }
 
    // line chart events
-  public chartClicked(e: any): void {
-    console.log(e)
+  // public chartClicked(e: any): void {
+  //   console.log(e)
+  // }
+
+  // public chartHovered(e: any): void {
+  //   console.log(e);
+  // }
+
+  bpAuth(){
+    this.bpService.iHealthAuth(); 
   }
 
-  public chartHovered(e: any): void {
-    console.log(e);
+  getBPdata(){
+    this.bpService.fetchBPdata();
   }
-  bpAuth(){
-    this.bpService.loadBPdata()
-  }
+
   manualSyncBP(){
     
   }

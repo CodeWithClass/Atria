@@ -8,7 +8,7 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
-import { HTTP } from '@ionic-native/http';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -123,7 +123,7 @@ import { BPService } from '../services/bp.service';
     SleepPage,
   ],
   providers: [
-    HTTP,
+    InAppBrowser,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},

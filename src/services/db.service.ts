@@ -7,7 +7,7 @@ import { UserStatsProvider } from './user.stats';
 
 export class DBService{
     public arrData;
-
+    public fireDBload = false;
     constructor(
     private fdb: AngularFireDatabase,
     public authService: AuthService,
@@ -15,27 +15,29 @@ export class DBService{
     ){
     }
 
-    loadDBdata(){
-        this.fdb.object('users/'+this.authService.getUID()).valueChanges().subscribe(
+    loadDBdata(cb){
+        this.fdb.object('users/' + this.authService.getUID()).valueChanges().subscribe(
             data => {
-
-                try{
+                try {
                     this.userStats.userStatsConatiner = data['stats'];
-                    this.userStats.foodIntake = data['meals']|| {};
+                    this.userStats.foodIntake = data['meals'] || {};
                     // console.log(this.userStats.foodIntake = data['meals'])
                     this.userStats.userDailyStats = data['dailyStats'] || {};
                     this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'] || this.userStats.bpMetrics;
+                    this.userStats.iHealthAuth = data['iHealthAuth'] || {};
+                    cb();                           
                 }
-                catch(e){
-                    
+                catch (e) {
+
                 }
                 // console.log(data)
                 // this.setIfStats(data[0]['goalCalories']);
                 // console.log(data[0]['goalCalories'])
-                
-                    
+
+
             }
-        )
+        )        
+
     }
 
     public setIfStats(userProfileStats) { 
@@ -63,6 +65,13 @@ export class DBService{
     writeStatsToDB(data){
         this.fdb.list('users/' + this.authService.getUID()).set('stats', data);
     }
+
+    storeiHealthAuth(data){
+        this.fdb.list('users/' + this.authService.getUID()).set('iHealthAuth', data);
+    }
+
+
+
 
     strCleanUp(str) {
         let STR = str.replace(/:[..#$\[\]\///\._]/g, ' ');
