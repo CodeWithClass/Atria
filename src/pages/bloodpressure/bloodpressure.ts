@@ -104,6 +104,11 @@ export class BloodPressurePage {
     myChartData[1].data = this.userStats.bpMetrics.map(each => {
       return each.LP || 0
     });
+    
+    //ensure only last 4 readings
+    let noOfBpReadings = this.userStats.bpMetrics.length
+    myChartData[0].data.slice(noOfBpReadings - 4, noOfBpReadings -1)
+    myChartData[1].data.slice(noOfBpReadings - 4, noOfBpReadings- 1)
 
     this.lineChartData = myChartData;
   }
