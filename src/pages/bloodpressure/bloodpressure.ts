@@ -123,11 +123,11 @@ export class BloodPressurePage {
   // }
 
   bpAuth(){
-    this.bpService.iHealthAuth(); 
+    this.bpService.withingsAuth(); 
   }
 
   getBPdata(){
-    this.bpService.fetchBPdata();
+    // this.bpService.fetchBPdata();
   }
 
   manualSyncBP(){

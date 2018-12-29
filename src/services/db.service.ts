@@ -21,18 +21,19 @@ export class DBService{
                 try {
                     this.userStats.userStatsConatiner = data['stats'];
                     this.userStats.foodIntake = data['meals'] || {};
-                    // console.log(this.userStats.foodIntake = data['meals'])
                     this.userStats.userDailyStats = data['dailyStats'] || {};
                     this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'] || this.userStats.bpMetrics;
-                    this.userStats.iHealthAuth = data['iHealthAuth'] || {};
+                    this.userStats.withingsAuth = data['withingsAuth'] || {};
                     cb();                           
                 }
                 catch (e) {
 
                 }
-                // console.log(data)
+                console.log(data)
+                console.log(this.userStats.bpMetrics[0].measurement.systolic)
+
                 // this.setIfStats(data[0]['goalCalories']);
-                // console.log(data[0]['goalCalories'])
+                // console.log(this.userStats.bpMetrics)
 
 
             }
@@ -66,8 +67,8 @@ export class DBService{
         this.fdb.list('users/' + this.authService.getUID()).set('stats', data);
     }
 
-    storeiHealthAuth(data){
-        this.fdb.list('users/' + this.authService.getUID()).set('iHealthAuth', data);
+    storewithingsAuth(data){
+        this.fdb.list('users/' + this.authService.getUID()).set('withingsAuth', data);
     }
 
 

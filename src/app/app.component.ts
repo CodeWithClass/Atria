@@ -3,6 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
+import { DBService } from '../services/db.service';
 
 
 // import { TabsPage } from '../pages/tabs/tabs';
@@ -25,14 +26,15 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    private auth: AuthService
+    private auth: AuthService,
+    private dbServ: DBService
   ){
   
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.splashScreen.show();
-      this.showSplash = true;            
+      this.showSplash = true;           
 
     });
 
@@ -40,9 +42,11 @@ export class MyApp {
       .subscribe(
         user => {
           if (user) {
-            this.rootPage = HomePage;
-            this.splashScreen.hide();
-            this.showSplash = false;            
+            this.dbServ.loadDBdata(() => { 
+              this.rootPage = HomePage;
+              this.splashScreen.hide();
+              this.showSplash = false;   
+            })
           }
         },
         () => {

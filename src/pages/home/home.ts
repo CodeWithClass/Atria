@@ -54,10 +54,11 @@ export class HomePage {
               public userStats: UserStatsProvider,
               public dbServ: DBService,
               public bpServ: BPService) {
-      
-    this.dbServ.loadDBdata(() => { 
-      this.bpServ.fetchBPdata()
-    })
+    
+    this.bpServ.fetchBPdata()
+    // this.dbServ.loadDBdata(() => { 
+    //   this.bpServ.fetchBPdata()
+    // })
  
 
   }

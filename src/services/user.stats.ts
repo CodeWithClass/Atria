@@ -9,7 +9,7 @@ export class UserStatsProvider {
   ABSOLUTE_DATE: string ='0000-00-00';
   foodIntake;
   bpData;
-  iHealthAuth: object;
+  withingsAuth: object;
   userDailyStats;
   userStatsConatiner = { fname: '', lname: '', age: 0, heightFeet: '', heightInches: '', goalCalories: 0};
   goalCalories: number = 2000;
@@ -22,13 +22,15 @@ export class UserStatsProvider {
   constructor(public http: HttpClient) {
 
     let fullDate = new Date();
-    this.todaysDate = this.ABSOLUTE_DATE = fullDate.getFullYear() + "-" + fullDate.getMonth() + "-" + fullDate.getDate();
+    this.todaysDate = this.ABSOLUTE_DATE = fullDate.getFullYear() + "-" + 
+    (fullDate.getMonth()+1) + "-" + fullDate.getDate();
   }
   
   
 
   getBP(reading: string): number[] {
-
+    if(!this.bpMetrics)
+      return [0,0]
     // let bpMetrics = this.bpMetrics
     let eIndex = this.bpMetrics.length - 4
     let pIndex = this.bpMetrics.length - 3
