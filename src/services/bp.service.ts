@@ -17,6 +17,8 @@ export class BPService {
     private redirect_uri: string = "http://atria.coach/api/withings/auth"
     private withingsAuthURL: string = "https://account.withings.com/oauth2_user/authorize2?"
     private withingsDataUrl: string = "http://atria.coach/api/withings/fetchdata?"
+    private withingsRefreshTokenUrl: string = "http://atria.coach/api/withings/refresh_token?"
+
 
     private AuthObj: object;
 
@@ -58,11 +60,12 @@ export class BPService {
     }
 
     public fetchBPdata(){
-        if (!this.userStats.withingsAuth)
-            return
+        if (this.userStats.withingsAuth == {})
+            return this.refreshToken()
 
+        console.log(this.userStats.withingsAuth)
         let params = new URLSearchParams();
-        params.set("access_token", this.userStats.withingsAuth['access_token'])
+        params.set("access_token", this.userStats.withingsAuth['access_token'] || "none")
         params.set("action", "getmeas")
         params.set("Uid", this.authService.getUID())
         params.set("date", this.userStats.todaysDate)
@@ -73,11 +76,36 @@ export class BPService {
             .subscribe(
                 res => {
                     console.log(res)
+                    if(res['response']['status'] == 401)
+                        this.refreshToken()
+                        
+                        
                 },
                 err => {
                     console.log(err);
                 }
             );
+    }
+
+    public refreshToken(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        if (Object.keys(this.userStats.withingsAuth).length === 0)
+            return this.withingsAuth()
+
+        let params = new URLSearchParams();
+        params.set("RefreshToken", this.userStats.withingsAuth['refresh_token'] || "none")
+        params.set("Uid", this.authService.getUID() || "none")
+
+        let url = this.withingsRefreshTokenUrl + params.toString()
+        this.http.get(url)
+            .subscribe(
+                res => {
+                    console.log(res)
+                },
+                err => {
+                    console.log(err);
+                }
+            );
+
     }
    
 }

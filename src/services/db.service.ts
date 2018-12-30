@@ -29,9 +29,7 @@ export class DBService{
                 catch (e) {
 
                 }
-                console.log(data)
-                console.log(this.userStats.bpMetrics[0].measurement.systolic)
-
+                // console.log(data)
                 // this.setIfStats(data[0]['goalCalories']);
                 // console.log(this.userStats.bpMetrics)
 
