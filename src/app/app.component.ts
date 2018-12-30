@@ -43,6 +43,8 @@ export class MyApp {
         user => {
           if (user) {
             this.dbServ.loadDBdata(() => { 
+              console.log('its happening')
+
               this.rootPage = HomePage;
               this.splashScreen.hide();
               this.showSplash = false;   

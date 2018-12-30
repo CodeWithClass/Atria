@@ -15,7 +15,14 @@ export class UserStatsProvider {
   goalCalories: number = 2000;
   currCalories: number = 0;
  
-  bpMetrics: any[] = [{ HP: "", LP: "" }, { HP: "", LP: "" }, { HP: "", LP: "" }, { HP: "", LP: "" }]
+  bpMetrics: any[] = [
+    {
+      measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 }
+    },
+    {
+      measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 }
+    }
+  ]
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted'];
 
 

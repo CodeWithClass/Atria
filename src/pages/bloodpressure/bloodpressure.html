@@ -20,20 +20,20 @@
 <ion-content padding>
   <ion-row class="bp-readings">
     <ion-col col-12 col-sm-3 col-md-1 class="previous">
-      <h3 class="systolic">{{userStats.getBP('pevious')[0]}}</h3>
-      <h3 class="diastolic">{{userStats.getBP('pevious')[1]}}</h3>
+      <h3 class="systolic">{{userStats.bpMetrics[1].measurement.systolic || 0}}</h3>
+      <h3 class="diastolic">{{userStats.bpMetrics[1].measurement.diastolic || 0}}</h3>
       <h3 class="label">Previous</h3>
     </ion-col>
     <ion-col>
       <div class="current">
-        <h3 class="systolic">{{userStats.getBP('current')[0]}}</h3>
-        <h3 class="diastolic">{{userStats.getBP('current')[1]}}</h3>
+        <h3 class="systolic">{{userStats.bpMetrics[0].measurement.systolic || 0}}</h3>
+        <h3 class="diastolic">{{userStats.bpMetrics[0].measurement.diastolic || 0}}</h3>
         <h3 class="label">Current</h3>
       </div>
     </ion-col>
     <ion-col col-12 col-sm-3 col-md-1 class="predicted">
-      <h3 class="systolic">{{userStats.getBP('predicted')[0]}}</h3>
-      <h3 class="diastolic">{{userStats.getBP('predicted')[1]}}</h3>
+      <h3 class="systolic">{{false || 0}}</h3>
+      <h3 class="diastolic">{{false || 0}}</h3>
       <h3 class="label">Predicted</h3> 
     </ion-col>
   

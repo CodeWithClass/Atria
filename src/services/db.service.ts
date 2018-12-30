@@ -22,12 +22,12 @@ export class DBService{
                     this.userStats.userStatsConatiner = data['stats'];
                     this.userStats.foodIntake = data['meals'] || {};
                     this.userStats.userDailyStats = data['dailyStats'] || {};
-                    this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'] || this.userStats.bpMetrics;
-                    this.userStats.withingsAuth = data['withingsAuth'] || {};
+                    this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate] ? data['dailyStats'][this.userStats.todaysDate]['bp'] : this.userStats.bpMetrics;
+                    this.userStats.withingsAuth = data['withingsAuth'] || {};                    
                     cb();                           
                 }
                 catch (e) {
-
+                    console.log(e)
                 }
                 // console.log(data)
                 // this.setIfStats(data[0]['goalCalories']);

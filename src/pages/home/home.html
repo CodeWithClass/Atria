@@ -111,8 +111,8 @@
                         [stroke]="4"
         ></round-progress>
         <div class="progress-text">
-          <h2>{{userStats.getCurrCalories()| number:'1.0-0'}}
-            <hr>{{userStats.getgoalCalories()}}
+          <h2>{{(userStats.getCurrCalories()| number:'1.0-0') || 0}}
+            <hr>{{userStats.getgoalCalories() || 0}}
           </h2>
         </div>
       </div>

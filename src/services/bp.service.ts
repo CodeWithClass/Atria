@@ -60,18 +60,17 @@ export class BPService {
     }
 
     public fetchBPdata(){
-        if (this.userStats.withingsAuth == {})
+        if (this.userStats.withingsAuth == {} || !this.userStats.withingsAuth )
             return this.refreshToken()
 
-        console.log(this.userStats.withingsAuth)
+        // console.log(this.userStats.withingsAuth)
         let params = new URLSearchParams();
-        params.set("access_token", this.userStats.withingsAuth['access_token'] || "none")
+        params.set("access_token", this.userStats.withingsAuth ?  this.userStats.withingsAuth['access_token'] : "none")
         params.set("action", "getmeas")
         params.set("Uid", this.authService.getUID())
         params.set("date", this.userStats.todaysDate)
 
         let url = this.withingsDataUrl + params.toString()
-        console.log(url)
         this.http.get(url)
             .subscribe(
                 res => {
@@ -87,7 +86,9 @@ export class BPService {
             );
     }
 
-    public refreshToken(){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+    public refreshToken(){    
+        if (!this.userStats.withingsAuth )
+            return// this.withingsAuth()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         if (Object.keys(this.userStats.withingsAuth).length === 0)
             return this.withingsAuth()
 
