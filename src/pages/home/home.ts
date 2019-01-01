@@ -9,6 +9,7 @@ import { FoodPage } from "../food/food";
 import { MyStatsPage } from '../mystats/mystats';
 import { BloodPressurePage } from '../bloodpressure/bloodpressure';
 import { SleepPage } from '../sleep/sleep';
+import { WelcomePage } from '../welcome/welcome';
 
 
 
@@ -112,9 +113,13 @@ export class HomePage {
       else if(page == 'stats'){
         this.navCtrl.push(MyStatsPage, {}, { animate: true, direction: 'forward' });  
       }
-      else if (page == 'sleep') {
+      else if (page == 'sleep') 
         this.navCtrl.push(SleepPage, {}, { animate: true, direction: 'forward' });
-      }
+        
+      else if (page === 'welcome')
+        this.navCtrl.push(WelcomePage, {}, { animate: true, direction: 'forward' });
+        
+        
   
     }
   }

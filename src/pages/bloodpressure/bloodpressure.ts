@@ -5,7 +5,7 @@ import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { ManualbpPage } from './manualbp/manualbp';
 import { BPService } from '../../services/bp.service'
 import { from } from 'rxjs';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+// import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 /**
  * Generated class for the BloodpressurePage page.
@@ -89,7 +89,7 @@ export class BloodPressurePage {
               public navParams: NavParams,
               public userStats: UserStatsProvider,
               public bpService: BPService,
-              public inAppBrowser: InAppBrowser
+              // public inAppBrowser: InAppBrowser
             ) {
      
   

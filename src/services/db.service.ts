@@ -69,6 +69,10 @@ export class DBService{
         this.fdb.list('users/' + this.authService.getUID()).set('withingsAuth', data);
     }
 
+    newUser(data){
+        this.fdb.list('users/' + this.authService.getUID()).set('user', data);        
+    }
+
 
 
 

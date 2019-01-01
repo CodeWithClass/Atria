@@ -38,6 +38,7 @@ import { AddFoodModal } from '../pages/food/addfoodmodal/addfoodmodal';
 import { EditfoodModal} from '../pages/food/editfoodmodal/editfoodmodal';
 import { MyStatsPage } from '../pages/mystats/mystats';
 import { SleepPage } from '../pages/sleep/sleep';
+import { WelcomePage } from '../pages/welcome/welcome';
 
 //Page modules
 import { AddFoodPageModule } from '../pages/food/addfood/addfood.module';
@@ -53,6 +54,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { SleepPageModule } from '../pages/sleep/sleep.module';
+import { WelcomePageModule } from '../pages/welcome/welcome.module';
 
 
 // Services
@@ -100,6 +102,7 @@ import { BPService } from '../services/bp.service';
     SignupPageModule,
     SettingsPageModule,
     SleepPageModule,
+    WelcomePageModule,
 
 
     
@@ -121,6 +124,7 @@ import { BPService } from '../services/bp.service';
     MyStatsPage,
     TabsPage,
     SleepPage,
+    WelcomePage,
   ],
   providers: [
     InAppBrowser,

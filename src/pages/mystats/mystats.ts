@@ -22,7 +22,7 @@ import { HomePage } from '../home/home';
 }) 
 export class MyStatsPage {
   dataToAdd;
-  mystats = this.userStats.userStatsConatiner || {};
+  mystats = this.userStats.userStatsConatiner || { age: 0, fname: '', lname: '', goalCalories: 0, heightFeet: "", heightInches: "" };
 
   constructor(
     public navCtrl: NavController, 

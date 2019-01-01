@@ -15,6 +15,10 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.no-padding {
+    padding: 0px !important;
+}
+
 .splash{
     position: absolute;
     width: 100%;
@@ -22,14 +26,19 @@
     z-index: 999;
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
     background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
     background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
     background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
-    .spinner{
-
-        
+    .pulse{
+        width: 30%;
+        animation: shrink 1.5s;
+    }
+    .name{
+        margin-top: 10px;
+        width: 40%
     }
 }
 
@@ -49,13 +58,9 @@ ion-content{
     background-color: #444 !important;
 }
 
-.col-1{
-    width: 10%;
-}
+.col-1{ width: 10%; }
 
-.col-2{
-    width: 20%;
-}
+.col-2{ width: 20%; }
 
 .col-3{
     width: 30%;
@@ -91,4 +96,14 @@ ion-content{
 
 .col-50{
     width: (width + 50%);
+}
+
+@keyframes grow{
+    from { width: 30%; }
+    to   { width: 200%; }    
+}
+
+@keyframes shrink{
+    from { width: 200%; }
+    to   { width: 30%; }    
 }

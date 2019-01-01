@@ -1,0 +1,114 @@
+page-welcome {
+    .background {
+        background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+        background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+
+        display: flex;
+        height: 100%;
+        align-items: flex-end;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .logo-container{
+        width: 40%;
+        max-width: 200px;        
+        margin: 40% auto 0 auto;
+        position: relative;
+        animation: slideLeft 1s;
+
+    }
+    .title{
+        text-align: center;
+        font-weight: 300;
+        color: #fff;
+        font-size: 30px
+    }
+
+    .input{
+        border-radius: 4px;
+        background: rgba(256, 256, 256, 1);
+        width: 100%;
+    }
+    .input-err{
+        height: 15px;
+    }
+
+    // .input .item-inner{
+    //     border-bottom: none !important;
+    //     color: color($colors, darktext);
+    //     background: rgba(256, 256, 256, .001);
+
+    //     }
+    // .text-input-md{
+    //     margin: 0;
+    //     background: none;
+    // }
+    .card{
+        min-height: 200px;
+        margin: 3% auto;
+        background-color: rgba($color: #fff, $alpha: .2);
+        box-shadow: none;
+        border-radius: 4px;
+        padding: 8%;
+        max-width: 600px;
+        position: relative;
+        animation: slideLeft 1s;
+
+
+        p{  
+            margin-top: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px
+
+
+        }
+    }
+
+    .button{
+        margin: 3% auto;
+        width: 94%;
+        max-width: 600px;
+        border-radius: 4px;
+        height: 50px;
+        color: color($colors,bkGradientbottom);
+        
+
+    }
+    .slideLeft{
+        animation: slideLeft 1s;
+    }
+    .slideRight{
+        animation: slideRight 1s;
+    }
+
+    .smallButton{
+        width: 46%;
+        margin-left: 2%;
+    }
+
+    .whiteText{
+        color: #fff;
+    }
+
+
+
+    @keyframes slideLeft {
+        from {right: -100%; }
+        to{right: 0;}
+    }
+
+    @keyframes slideRight {
+        from {left: -100%; }
+        to{left: 0;}
+    }
+
+    @keyframes slideUp {
+        from {top: 30%; }
+        to{top: 0%;}
+    }
+
+    
+}

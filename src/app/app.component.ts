@@ -9,6 +9,8 @@ import { DBService } from '../services/db.service';
 // import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import { WelcomePage } from '../pages/welcome/welcome';
+
 //  import {addmealPage} from '../pages/food/addfood/addmeal/addmeal';
 //import { AddFoodModal } from '../pages/food/addfood/addfoodmodal/addfoodmodal';
 //just uncomment and change root property below
@@ -19,7 +21,7 @@ import { timer } from 'rxjs/observable/timer'
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage: any = LoginPage;
+  rootPage;
   public showSplash: boolean = true;
 
   constructor(
@@ -33,23 +35,22 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.splashScreen.show();
+      // this.splashScreen.show();
       this.showSplash = true;           
 
     });
 
     this.auth.afAuth.authState
       .subscribe(
-        user => {
+        (user)=>{
           if (user) {
-            this.dbServ.loadDBdata(() => { 
-              console.log('its happening')
-
-              this.rootPage = HomePage;
-              this.splashScreen.hide();
-              this.showSplash = false;   
+            this.dbServ.loadDBdata(() => {
+              this.rootPage = WelcomePage;
             })
           }
+          setTimeout(() => {
+            this.showSplash = false; 
+          }, 1500);
         },
         () => {
           this.rootPage = LoginPage;
