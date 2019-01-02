@@ -28,9 +28,9 @@
 
   </ion-card> -->
 
-  <ion-card class="card1" (swipe)="pushPage('stats', $event)">
+  <ion-card class="card1" (click)="pushPage('stats')">
     <div class="card-content">
-      <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>    
+      <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>     -->
       <!-- <div class="left">
         <img src="assets/imgs/dp.jpg">
         <h4>Dominic</h4>
@@ -49,10 +49,10 @@
     </div>
   </ion-card>
 
-  <ion-card class="card2" (swipe)="pushPage('bloodpressure', $event)">
+  <ion-card class="card2" (click)="pushPage('bloodpressure')">
     <div class="card-content">
       <div class="card-title">Blood Pressure</div>
-      <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('bloodpressure')"></ion-icon>
+      <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('bloodpressure')"></ion-icon> -->
       
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
@@ -90,10 +90,10 @@
     <!-- <img class="card-img" src="assets/imgs/bp.jpg"> -->
   </ion-card>
   
-  <ion-card class="card3" (swipe)="pushPage('food', $event)">
+  <ion-card class="card3" (click)="pushPage('food')">
     <div class="card-title">Diet</div>
     <div class="card-subtitle">Calories</div>
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon>
+    <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon> -->
     
     
     <div class="card-content">
@@ -127,9 +127,9 @@
   
   
   
-  <ion-card class="card4" (swipe)="pushPage('sleep', $event)">
+  <ion-card class="card4" (click)="pushPage('sleep')">
     <div class="card-title">Sleep</div>
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('sleep')"></ion-icon>
+    <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('sleep')"></ion-icon> -->
       <div class="card-content">
         <div class="chart-key">
           <ul>
@@ -156,9 +156,7 @@
       </div>
     <!-- <img class="card-img" src="assets/imgs/sleep.jpg"> -->
   </ion-card>
-    <button ion-button color="light" (click)="pushPage('welcome')">
-      Welcome page
-    </button>
+    
 
 
 </ion-content>

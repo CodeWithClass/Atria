@@ -12,6 +12,9 @@
 
 
 <ion-content padding>
+  <button ion-button color="light" (click)="pushPage('welcome')">
+    Welcome page
+  </button>
   <div class="userEmail" *ngIf="auth.getEmail()">{{auth.getEmail()}}</div>
   <button ion-button block color="danger" (click)="logout()"> Log Out</button>
 

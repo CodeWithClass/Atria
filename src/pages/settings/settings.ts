@@ -4,15 +4,8 @@ import { LoginPage } from '../login/login';
 import { AuthService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from "angularfire2/database"; 
+import { WelcomePage } from '../welcome/welcome';
 
-
-
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -39,5 +32,9 @@ export class SettingsPage {
       this.navCtrl.setRoot(LoginPage);
 
     });
+  }
+  public pushPage(page) {
+    this.navCtrl.push(WelcomePage, {}, { animate: true, direction: 'forward' });
+
   }
 }

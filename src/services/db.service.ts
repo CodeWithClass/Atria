@@ -26,7 +26,7 @@ export class DBService{
                     this.userStats.userDailyStats = data['dailyStats'] || {};
                     if (data['dailyStats'])
                         if (data['dailyStats'][this.userStats.todaysDate])
-                            this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'];
+                            this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'] || this.userStats.bpMetrics;
                     this.userStats.withingsAuth = data['withingsAuth'] || {};                    
                     return cb(data);                           
                 }
