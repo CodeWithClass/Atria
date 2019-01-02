@@ -28,7 +28,7 @@ import { WelcomePage } from '../welcome/welcome';
 export class HomePage {
   public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
   public sleepChartType: string = 'doughnut';
-  public sleepChartColors: any[] = [{ backgroundColor: ["#af5ac9", "#6e59c9", "#55ade0"] }];
+  public sleepChartColors: any[] = [{ backgroundColor: ["rgba(167,72,195,0.8)", "rgba(110,89,201,0.8)", "rgba(85,173,224,0.8)"] }];
   public sleepChartData: any[] = [350, 450, 100];
   public sleepTotal: number[] = [8,39];
   public sleepChartOptions: any= {
@@ -36,7 +36,7 @@ export class HomePage {
     maintainAspectRatio: false,
     elements: {
       arc: {
-        borderWidth: 1
+        borderWidth: 0
       }
     },
     legend: {

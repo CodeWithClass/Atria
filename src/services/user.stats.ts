@@ -73,18 +73,6 @@ export class UserStatsProvider {
 
   }
 
-  getCurrCalories() {
-    try{
-      if (this.userDailyStats[this.todaysDate])
-        return this.userDailyStats[this.todaysDate]['nutrients']['Energy']
-      else
-        return 0;
-    }
-    catch(e){
-      // console.log(e)
-      // return 0;
-    }
-  }
 
   calcMacros(macro, multiplier){
     let percent;
@@ -102,6 +90,19 @@ export class UserStatsProvider {
     }
   }
 
+  getCurrCalories() {
+    try {
+      if (this.userDailyStats[this.todaysDate])
+        return this.userDailyStats[this.todaysDate]['nutrients']['Energy']
+      else
+        return 0;
+    }
+    catch (e) {
+      // console.log(e)
+      // return 0;
+    }
+  }
+  
   getgoalCalories() {
     try{
       if (Object.keys(this.userStatsConatiner).length > 0){

@@ -44,9 +44,15 @@ export class MyApp {
       .subscribe(
         (user)=>{
           if (user) {
-            this.dbServ.loadDBdata(() => {
-              this.rootPage = WelcomePage;
+            this.dbServ.loadDBdata((data = { user: { completedWelcome: false } }) => {
+              if(data.user.completedWelcome)
+                this.rootPage = HomePage;
+              else
+                this.rootPage = WelcomePage;
             })
+          }
+          else{
+            this.rootPage = LoginPage;
           }
           setTimeout(() => {
             this.showSplash = false; 

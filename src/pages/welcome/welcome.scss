@@ -5,18 +5,17 @@ page-welcome {
         background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
         background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
 
-        display: flex;
-        height: 100%;
-        align-items: flex-end;
-        justify-content: center;
-        flex-direction: column;
+        
     }
     .logo-container{
         width: 40%;
         max-width: 200px;        
-        margin: 40% auto 0 auto;
+        margin: 20% auto 0 auto;
         position: relative;
         animation: slideLeft 1s;
+        img{
+            margin-top: 20%;
+        }
 
     }
     .title{

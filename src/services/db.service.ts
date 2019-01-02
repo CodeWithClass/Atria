@@ -18,16 +18,21 @@ export class DBService{
     loadDBdata(cb){
         this.fdb.object('users/' + this.authService.getUID()).valueChanges().subscribe(
             data => {
+                if(!data)
+                    return cb();
                 try {
                     this.userStats.userStatsConatiner = data['stats'];
                     this.userStats.foodIntake = data['meals'] || {};
                     this.userStats.userDailyStats = data['dailyStats'] || {};
-                    this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate] ? data['dailyStats'][this.userStats.todaysDate]['bp'] : this.userStats.bpMetrics;
+                    if (data['dailyStats'])
+                        if (data['dailyStats'][this.userStats.todaysDate])
+                            this.userStats.bpMetrics = data['dailyStats'][this.userStats.todaysDate]['bp'];
                     this.userStats.withingsAuth = data['withingsAuth'] || {};                    
-                    cb();                           
+                    return cb(data);                           
                 }
                 catch (e) {
                     console.log(e)
+                    return cb();                    
                 }
                 // console.log(data)
                 // this.setIfStats(data[0]['goalCalories']);
@@ -69,7 +74,7 @@ export class DBService{
         this.fdb.list('users/' + this.authService.getUID()).set('withingsAuth', data);
     }
 
-    newUser(data){
+    user(data){
         this.fdb.list('users/' + this.authService.getUID()).set('user', data);        
     }
 

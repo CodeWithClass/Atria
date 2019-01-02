@@ -74,7 +74,6 @@ export class BPService {
         this.http.get(url)
             .subscribe(
                 res => {
-                    console.log(res)
                     if(res['response']['status'] == 401)
                         this.refreshToken()
                         

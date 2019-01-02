@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DBService } from '../../services/db.service';
 import { BPService } from '../../services/bp.service';
+import { UserStatsProvider } from '../../services/user.stats';
 import { HomePage } from '../home/home';
 
 /**
@@ -24,7 +25,7 @@ export class WelcomePage {
   withingsAuth: boolean = false;
   form: FormGroup;
   googlePlayUrl: string = 'https://play.google.com/store/apps/details?id=com.withings.wiscale2&hl=en'
-  stats = { age: 0, fname: '', lname: '', goalCalories: 0, heightFeet: "", heightInches: "" }
+  stats = { age: 0, fname: '', lname: '', goalCalories: 2000, heightFeet: '', heightInches: '' }
 
 
   constructor(public navCtrl: NavController, 
@@ -32,6 +33,7 @@ export class WelcomePage {
               public fb: FormBuilder,
               public dbService: DBService,
               public bpService: BPService,
+              public userStats: UserStatsProvider
             ) {
 
     this.form = fb.group({
@@ -48,7 +50,6 @@ export class WelcomePage {
 
   
   ionViewDidLoad() {
-    console.log(this.getStarted)
   }
   
   public push(page){
@@ -74,9 +75,14 @@ export class WelcomePage {
   }
   savePersonalDetails(page){
     
-    this.stats = this.form.value;
-    console.log(this.stats)
-    this.dbService.writeStatsToDB(this.stats)
+    let data = this.form.value;
+    for (var key in data) {
+      if (!data[key])
+        data[key] = this.stats[key]
+    }
+
+    console.log(data)
+    this.dbService.writeStatsToDB(data)
     return this.push(page)
   }
 
@@ -90,7 +96,12 @@ export class WelcomePage {
   }
 
   done(){
-    this.dbService.newUser({completedWelcome: true})
+    let withingsAuth = false      
+
+    if(this.userStats.withingsAuth)
+      withingsAuth = true      
+
+    this.dbService.user({ completedWelcome: true, withingsAuth}) //check if auth and write to db
     this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
   }
 

@@ -11,6 +11,7 @@ page-home {
             // margin: 0;
             border-radius: 4%;
             margin-top: 5%;
+            box-shadow: none;
             
         }
 
@@ -53,6 +54,8 @@ page-home {
             //  background: steelblue;
             color: #fff;
             background-color: rgba(0,128,128,0.9);
+            background: linear-gradient( 180deg,rgba(0,128,128, .7) 0%,rgba(255,255,255, 0) 100%);
+
             
 
             .card-subtitle{
@@ -101,7 +104,7 @@ page-home {
         
         .card2{
             // background-color: color($colors, bloodpressure);
-                background-color: rgba(255, 99, 71, 0.9);
+                background: linear-gradient( 180deg,rgba(255,99,71, .7) 0%,rgba(255,255,255, 0) 100%);
 
             .bp-chart {
                 color: #fff !important;
@@ -109,7 +112,7 @@ page-home {
             }
 
             .bp-readings{
-                margin: 10% 5% 5%;
+                margin: 5% 5% 15% 5%;
                 text-align: center;
                 
                 .previous{
@@ -117,7 +120,7 @@ page-home {
 
                     h3{
                         font-size: 5vw;
-                        font-weight: 600;
+                        font-weight: 200;
                         color: white
                     }
                     .label{
@@ -131,7 +134,7 @@ page-home {
 
                     h3{
                         font-size: 5vw;
-                        font-weight: 500;
+                        font-weight: 200;
                         color: white
                     }
                     .label{
@@ -142,9 +145,11 @@ page-home {
 
 
                 .current{
-                    border: solid 2px white;
+                    border: solid 5px rgba(255,255,255, 0);
                     border-radius: 50%;
+                    box-shadow: 0px 0px 14px 10px rgba(255,255,255, 0.8);
                     margin:0 auto;
+                    padding: 1%;
                     width: 30vw;
                     height: 30vw;
 
@@ -159,6 +164,7 @@ page-home {
                     }
                     .label{
                         color: white;
+                        margin-top: 30px;
                     }
                 }
                 
@@ -172,7 +178,9 @@ page-home {
         
         .card3{
             //   background-color: color($colors, food);
-            background-color: rgba(106,90,205,0.9);
+            // background-color: rgba(106,90,205,0.9);
+            background: linear-gradient( 180deg,rgba(106,90,205, .7) 0%,rgba(255,255,255, 0) 100%);
+
             .card-content{
                 .prog-container{
                     width: 100%;
@@ -224,12 +232,14 @@ page-home {
         
 
         .card4{
-            background-color: rgba(70,130,180,0.8);
+            // background-color: rgba(70,130,180,0.8);
+            background: linear-gradient( 180deg,rgba(70,130,180, .7) 0%,rgba(255,255,255, 0) 100%);
+
             .card-content{
                 display: flex;
                 justify-content: center;
                 .chart-key{
-                    width:48%;
+                    width:40%;
                     // float: left;
 
                     ul{
@@ -246,13 +256,17 @@ page-home {
                         }
 
                         li:first-of-type{
-                            background:#af5ac9;
+                            border-bottom: solid 4px rgba(167,72,195,0.8);
+                            background: rgba(167,72,195,0.8)//#af5ac9;
                         }
                         li:nth-of-type(2){
-                            background: #6e59c9;
+                            border-bottom: solid 4px rgba(110,89,201,0.8); //#6e59c9;
+                            background: rgba(110,89,201,0.8);//#af5ac9;
+
                         }
                         li:nth-of-type(3){
-                            background:#55ade0;
+                            border-bottom: solid 4px rgba(85,173,224,0.8);//#55ade0;
+                            background: rgba(85,173,224,0.8)//#af5ac9;
                         }
                     }
 

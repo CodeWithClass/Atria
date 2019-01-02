@@ -1,10 +1,5 @@
-<!--
-  Generated template for the HomePage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header no-border>
+<!-- <ion-header no-border>
   <ion-navbar>
     <ion-title>
       Atria
@@ -13,10 +8,17 @@
     </ion-title>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
 <ion-content class="home-page">
+  <ion-navbar>
+    <ion-title>
+      Atria
+      <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
+      </ion-icon>
+    </ion-title>
+  </ion-navbar>
   <!-- <ion-card class="card0" (swipe)="pushPage('stats', $event)">
     <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>
     <div class="left">
@@ -35,13 +37,13 @@
       </div>    -->
       <ion-item class="recommendation">
         <ion-label>Drink 16 oz of water</ion-label>
-        <ion-checkbox item-right [(ngModel)]="water"></ion-checkbox>
+        <ion-checkbox item-right ></ion-checkbox>
       </ion-item>
       <ion-item class="recommendation">
         <ion-label>Perform 20 Squats</ion-label>
-        <ion-checkbox item-right [(ngModel)]="squats"></ion-checkbox>
+        <ion-checkbox item-right ></ion-checkbox>
       </ion-item>
-      <img class="card-img" src="assets/imgs/run.jpg">
+      <!-- <img class="card-img" src="assets/imgs/run.jpg"> -->
 
       <p>**Based on your activity level, blood pressure and diet.</p>
     </div>
@@ -60,9 +62,9 @@
         </ion-col>
         <ion-col>
           <div class="current">
-            <h3 class="systolic">{{userStats.bpMetrics[0].measurement.systolic || 0}}</h3>
-            <h3 class="diastolic">{{userStats.bpMetrics[0].measurement.diastolic || 0}}</h3>
-            <h3 class="label">Current</h3>
+            <h3 class="systolic">{{userStats.bpMetrics[0].measurement.systolic || 120}}</h3>
+            <h3 class="diastolic">{{userStats.bpMetrics[0].measurement.diastolic || 80}}</h3>
+            <!-- <h3 class="label">Current</h3> -->
           </div>
         </ion-col>
         <ion-col col-12 col-sm-3  col-md-1 class="predicted">
@@ -85,7 +87,7 @@
         </ion-col> -->
       </ion-row>
     </div>
-    <img class="card-img" src="assets/imgs/bp.jpg">
+    <!-- <img class="card-img" src="assets/imgs/bp.jpg"> -->
   </ion-card>
   
   <ion-card class="card3" (swipe)="pushPage('food', $event)">
@@ -99,7 +101,7 @@
         <round-progress id="round-progress"
                         [current]="userStats.getCurrCalories()"
                         [max]="userStats.getgoalCalories()"
-                        [color]="'#45ccce'"
+                        [color]="'#45ccce'" 
                         [background]="'rgba(159, 147, 237, 0.7)'" 
                         [radius]="80" 
                         [stroke]="6" 
@@ -120,7 +122,7 @@
 
       </div>
     </div>
-    <img class="card-img" src="assets/imgs/food.jpg">    
+    <!-- <img class="card-img" src="assets/imgs/food.jpg">     -->
   </ion-card>
   
   
@@ -152,12 +154,11 @@
         
         
       </div>
-    <img class="card-img" src="assets/imgs/sleep.jpg">
+    <!-- <img class="card-img" src="assets/imgs/sleep.jpg"> -->
   </ion-card>
-  <ion-card>
-    <button (click)="pushPage('welcome')">
+    <button ion-button color="light" (click)="pushPage('welcome')">
       Welcome page
     </button>
-  </ion-card>
+
 
 </ion-content>
