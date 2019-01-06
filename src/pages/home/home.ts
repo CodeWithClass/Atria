@@ -126,7 +126,8 @@ export class HomePage {
   public chartClicked($event) { }
 
 
-  launchSettings(){
+  public launchSettings(){
+    console.log('que?')
     this.navCtrl.push(SettingsPage);
   }
 

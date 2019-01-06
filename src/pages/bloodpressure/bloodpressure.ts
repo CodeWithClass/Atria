@@ -126,8 +126,8 @@ export class BloodPressurePage {
     this.bpService.withingsAuth(); 
   }
 
-  getBPdata(){
-    // this.bpService.fetchBPdata();
+  fetchBPdata(manual){
+    this.bpService.fetchBPdata(manual);
   }
 
   manualSyncBP(){
@@ -145,6 +145,7 @@ export class BloodPressurePage {
   }
 
   public refresh(){
+    this.bpService.fetchBPdata(true);
     this.chart.ngOnChanges({});
   }
 

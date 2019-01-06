@@ -59,9 +59,18 @@ export class BPService {
  
     }
 
-    public fetchBPdata(){
-        if (this.userStats.withingsAuth == {} || !this.userStats.withingsAuth )
-            return this.refreshToken()
+    public fetchBPdata(manual: boolean = false){
+        
+        // console.log(this.userStats.withingsAuth, manual)
+        if (!this.userStats.withingsAuth && manual)
+            return this.withingsAuth()
+        else if (!this.userStats.withingsAuth)
+            return
+
+        if (Object.keys(this.userStats.withingsAuth).length === 0 && manual)
+            return this.withingsAuth()
+        else if (Object.keys(this.userStats.withingsAuth).length === 0)     
+            return   
 
         // console.log(this.userStats.withingsAuth)
         let params = new URLSearchParams();
@@ -87,7 +96,7 @@ export class BPService {
 
     public refreshToken(){    
         if (!this.userStats.withingsAuth )
-            return// this.withingsAuth()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+            return this.withingsAuth()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         if (Object.keys(this.userStats.withingsAuth).length === 0)
             return this.withingsAuth()
 

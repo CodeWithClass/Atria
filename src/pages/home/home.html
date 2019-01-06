@@ -15,26 +15,13 @@
   <ion-navbar>
     <ion-title>
       Atria
-      <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
-      </ion-icon>
+      <ion-icon class="settingsCog" name="settings" (click)="launchSettings()"></ion-icon>
     </ion-title>
   </ion-navbar>
-  <!-- <ion-card class="card0" (swipe)="pushPage('stats', $event)">
-    <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>
-    <div class="left">
-      <img src="assets/imgs/dp.jpg">
-      <h4>Dominic</h4>
-    </div>
 
-  </ion-card> -->
 
   <ion-card class="card1" (click)="pushPage('stats')">
     <div class="card-content">
-      <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('stats')"></ion-icon>     -->
-      <!-- <div class="left">
-        <img src="assets/imgs/dp.jpg">
-        <h4>Dominic</h4>
-      </div>    -->
       <ion-item class="recommendation">
         <ion-label>Drink 16 oz of water</ion-label>
         <ion-checkbox item-right ></ion-checkbox>
@@ -56,14 +43,14 @@
       
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
-            <h3 class="systolic">{{userStats.bpMetrics[1].measurement.systolic || 0}}</h3>
-            <h3 class="diastolic">{{userStats.bpMetrics[1].measurement.diastolic || 0}}</h3>
-            <h3 class="label">Previous</h3>           
+          <h3 class="systolic">{{(userStats.bpMetrics[1].measurement.systolic | number:'1.0-0') || 0}}</h3>
+          <h3 class="diastolic">{{(userStats.bpMetrics[1].measurement.diastolic | number:'1.0-0')|| 0}}</h3>
+          <h3 class="label">Previous</h3>
         </ion-col>
         <ion-col>
           <div class="current">
-            <h3 class="systolic">{{userStats.bpMetrics[0].measurement.systolic || 120}}</h3>
-            <h3 class="diastolic">{{userStats.bpMetrics[0].measurement.diastolic || 80}}</h3>
+            <h3 class="systolic">{{(userStats.bpMetrics[0].measurement.systolic | number:'1.0-0') || 0}}</h3>
+            <h3 class="diastolic">{{(userStats.bpMetrics[0].measurement.diastolic | number:'1.0-0') || 0}}</h3>
             <!-- <h3 class="label">Current</h3> -->
           </div>
         </ion-col>
@@ -92,7 +79,6 @@
   
   <ion-card class="card3" (click)="pushPage('food')">
     <div class="card-title">Diet</div>
-    <div class="card-subtitle">Calories</div>
     <!-- <ion-icon class="chevron" name="ios-arrow-forward" (click)="pushPage('food')"></ion-icon> -->
     
     
@@ -118,6 +104,8 @@
           </h2>
         </div>
       </div>
+      <div class="card-subtitle">Calories</div>
+
       <div>
 
       </div>

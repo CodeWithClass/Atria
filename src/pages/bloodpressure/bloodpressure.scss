@@ -1,6 +1,8 @@
 page-bloodpressure {
     ion-content{
-        background-color: color($colors, bloodpressure) !important;
+        // background-color: color($colors, bloodpressure) !important;
+        background: linear-gradient( 60deg,rgb(214, 68, 42) 0%,rgb(226, 143, 128) 100%) !important;
+
     
 
         .bp-readings{

@@ -2,8 +2,10 @@ page-home {
     .home-page {
 
         //background-color: color($colors, bkGradientbottom);
-        background-color: #555;
-
+        // background-color: #555;
+        ion-navbar{
+            background-color: rgba(2, 211, 127, 1) ;            
+        }
         ion-card {
             position: relative;
             min-height: 250px;
@@ -11,7 +13,7 @@ page-home {
             // margin: 0;
             border-radius: 4%;
             margin-top: 5%;
-            box-shadow: none;
+            // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
             
         }
 
@@ -53,8 +55,13 @@ page-home {
         .card1{
             //  background: steelblue;
             color: #fff;
-            background-color: rgba(0,128,128,0.9);
-            background: linear-gradient( 180deg,rgba(0,128,128, .7) 0%,rgba(255,255,255, 0) 100%);
+            background-color: rgba(2, 211, 127, 1);
+            background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
+            width: 100%;
+            margin: 0;
+            border-radius: 0%;
+            min-height: 200px;
+            box-shadow: none;
 
             
 
@@ -62,7 +69,7 @@ page-home {
                 margin-bottom: 0;
             }
             .card-content{
-                padding: 20% 10% 10% 10%;
+                padding: 5% 10% 5% 10%;
 
                 .left{
                     width: 50%;
@@ -104,7 +111,7 @@ page-home {
         
         .card2{
             // background-color: color($colors, bloodpressure);
-                background: linear-gradient( 180deg,rgba(255,99,71, .7) 0%,rgba(255,255,255, 0) 100%);
+                background: linear-gradient( 60deg,rgb(214, 68, 42) 0%,rgb(226, 143, 128) 100%);
 
             .bp-chart {
                 color: #fff !important;
@@ -167,9 +174,6 @@ page-home {
                         margin-top: 30px;
                     }
                 }
-                
-
-
             }
 
             
@@ -179,7 +183,7 @@ page-home {
         .card3{
             //   background-color: color($colors, food);
             // background-color: rgba(106,90,205,0.9);
-            background: linear-gradient( 180deg,rgba(106,90,205, .7) 0%,rgba(255,255,255, 0) 100%);
+            background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%);
 
             .card-content{
                 .prog-container{
@@ -213,6 +217,10 @@ page-home {
 
                     }
                 }
+                .card-subtitle{
+                    margin: 4%;
+                    text-align: center;
+                }
 
                 .meta-container{
                     // display: block;
@@ -233,7 +241,7 @@ page-home {
 
         .card4{
             // background-color: rgba(70,130,180,0.8);
-            background: linear-gradient( 180deg,rgba(70,130,180, .7) 0%,rgba(255,255,255, 0) 100%);
+            background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
 
             .card-content{
                 display: flex;

@@ -1,6 +1,8 @@
 page-food {
     ion-content{
-        background-color: color($colors, food) !important;    
+        // background-color: color($colors, food) !important;    
+        background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%) !important;
+
     }
 
     ion-header{
