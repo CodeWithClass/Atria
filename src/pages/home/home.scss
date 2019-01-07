@@ -5,7 +5,11 @@ page-home {
         // background-color: #fff !important;
 
         ion-navbar{
-            background-color: rgba(2, 211, 127, 1) ;            
+            background-color: transparent;
+
+            .atria-title{
+                color: color($colors, primary);
+            }
         }
         ion-card {
             position: relative;
@@ -15,7 +19,6 @@ page-home {
             border-radius: 4%;
             margin-top: 5%;
             // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
-            
         }
 
         .card-img{
@@ -56,8 +59,11 @@ page-home {
         .card1{
             //  background: steelblue;
             color: #fff;
-            background-color: rgba(2, 211, 127, 1);
-            background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
+            // background-color: rgba(2, 211, 127, 1);
+            // background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
+            // background-color: #445;
+            background-color: transparent;
+
             width: 100%;
             margin: 0;
             border-radius: 0%;
@@ -91,9 +97,11 @@ page-home {
                 }
 
                 .recommendation{
-                    background-color: rgba(255,255,255,0.6);
+                    // border: rgba(117, 255, 200, 0.6) 2px solid;
+                    background: rgba(255, 255, 255, 0.3);
+                    color: #fff;
                     border-radius: 4px;
-                    margin: 10px 0;
+                    margin: 20px 0;
                 }
             
                 h3{
