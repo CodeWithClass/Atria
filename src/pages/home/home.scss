@@ -13,11 +13,13 @@ page-home {
         }
         ion-card {
             position: relative;
-            min-height: 250px;
+            min-height: 200px;
             // width: 100%;
             // margin: 0;
             border-radius: 4%;
             margin-top: 5%;
+            box-shadow: none;
+            background: transparent;
             // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
         }
 
@@ -63,7 +65,6 @@ page-home {
             // background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
             // background-color: #445;
             background-color: transparent;
-
             width: 100%;
             margin: 0;
             border-radius: 0%;
@@ -119,9 +120,13 @@ page-home {
         }
         
         .card2{
-            // background-color: color($colors, bloodpressure);
-                background: linear-gradient( 60deg,rgb(214, 68, 42) 0%,rgb(226, 143, 128) 100%);
-
+            // background-color: transparent;
+                // background: linear-gradient( 60deg,rgb(214, 68, 42) 0%,rgb(226, 143, 128) 100%);
+            // border: solid 2px color($colors, bloodpressure);
+            
+            .card-title{
+                color: color($colors, bloodpressure);
+            }
             .bp-chart {
                 color: #fff !important;
                 margin: 4% auto;
@@ -137,7 +142,7 @@ page-home {
                     h3{
                         font-size: 5vw;
                         font-weight: 200;
-                        color: white
+                        color: color($colors, bloodpressure)
                     }
                     .label{
                         font-size: 4vw;
@@ -151,7 +156,7 @@ page-home {
                     h3{
                         font-size: 5vw;
                         font-weight: 200;
-                        color: white
+                        color: color($colors, bloodpressure);
                     }
                     .label{
                         font-size: 4vw;
@@ -163,7 +168,7 @@ page-home {
                 .current{
                     border: solid 5px rgba(255,255,255, 0);
                     border-radius: 50%;
-                    box-shadow: 0px 0px 14px 10px rgba(255,255,255, 0.8);
+                    box-shadow: 0px 0px 14px 10px rgba(255,99,71, 0.8);
                     margin:0 auto;
                     padding: 1%;
                     width: 30vw;
@@ -171,15 +176,15 @@ page-home {
 
                     .systolic {
                         font-size: 8vw;
-                        color: white; 
+                        color: color($colors, bloodpressure);
                         margin: 10% 10% 0 10%;                  
                     }
                     .diastolic {
                         font-size: 8vw;
-                        color: white;                   
+                        color: color($colors, bloodpressure);                  
                     }
                     .label{
-                        color: white;
+                        color: color($colors, bloodpressure);
                         margin-top: 30px;
                     }
                 }
@@ -192,7 +197,12 @@ page-home {
         .card3{
             //   background-color: color($colors, food);
             // background-color: rgba(106,90,205,0.9);
-            background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%);
+            // background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%);
+            // border: solid 2px rgb(174, 163, 247);
+
+            .card-title{
+                color: rgb(174, 163, 247);
+            }
 
             .card-content{
                 .prog-container{
@@ -249,12 +259,14 @@ page-home {
         
 
         .card4{
-            // background-color: rgba(70,130,180,0.8);
-            background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
-
+            background-color: transparent;
+            // background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
+            .card-title{
+                color: rgb(103, 180, 242);
+            }
             .card-content{
                 display: flex;
-                justify-content: center;
+                justify-content: space-around;
                 .chart-key{
                     width:40%;
                     // float: left;
@@ -262,6 +274,7 @@ page-home {
                     ul{
                         list-style: none;
                         width:100%;
+                        padding: 0;
                         li{
                             color: #fff;
                             margin: 0% 0 15% 0%;
