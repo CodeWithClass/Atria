@@ -1,8 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-// import { Http, Response} from '@angular/http'
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-// import { Observable } from 'rxjs/Observable';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { URLSearchParams } from '@angular/http'
 import { UserStatsProvider } from './user.stats'
@@ -14,10 +12,10 @@ export class BPService {
     private client_id: string = '5d81605593c6c4e8e1c3871f69fa3ed026659338266b7e27ba07a352bfb6d7fb'
     private client_secret: string = '2798f13818cc213ccce23a4c7c6e0e107a2156ff9aeffb275bc8e9eccde4dd63'
     private AccessCode: string;
-    private redirect_uri: string = "http://atria.coach/api/withings/auth"
+    private redirect_uri: string = "https://atria.coach/api/withings/auth"
     private withingsAuthURL: string = "https://account.withings.com/oauth2_user/authorize2?"
-    private withingsDataUrl: string = "http://atria.coach/api/withings/fetchdata?"
-    private withingsRefreshTokenUrl: string = "http://atria.coach/api/withings/refresh_token?"
+    private withingsDataUrl: string = "https://atria.coach/api/withings/fetchdata?"
+    private withingsRefreshTokenUrl: string = "https://atria.coach/api/withings/refresh_token?"
 
 
     private AuthObj: object;
@@ -80,6 +78,7 @@ export class BPService {
         params.set("date", this.userStats.todaysDate)
 
         let url = this.withingsDataUrl + params.toString()
+        console.log(url)
         this.http.get(url)
             .subscribe(
                 res => {

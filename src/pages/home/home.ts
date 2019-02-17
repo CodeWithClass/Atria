@@ -26,7 +26,7 @@ import { WelcomePage } from '../welcome/welcome';
   templateUrl: 'home.html',
 })
 export class HomePage {
-  public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
+  // public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
   public sleepChartType: string = 'doughnut';
   public sleepChartColors: any[] = [{ backgroundColor: ["rgba(167,72,195,0.8)", "rgba(110,89,201,0.8)", "rgba(85,173,224,0.8)"] }];
   public sleepChartData: any[] = [350, 450, 100];

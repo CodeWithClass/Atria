@@ -246,9 +246,17 @@ page-home {
 
         }
 
-        
-
         .card4{
+            // background-color: rgba(70,130,180,0.8);
+            background: linear-gradient( 60deg,rgb(16, 150, 79) 0%,rgb(104, 226, 162) 100%);
+
+            .card-content{
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .card5{
             // background-color: rgba(70,130,180,0.8);
             background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
 

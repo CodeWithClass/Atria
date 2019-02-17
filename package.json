@@ -1,8 +1,8 @@
 {
   "name": "Atria",
-  "version": "0.1.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "0.1.2",
+  "author": "Dominic Evans",
+  "homepage": "https://atria.coach/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
