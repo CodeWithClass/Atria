@@ -15,64 +15,22 @@ import { UserStatsProvider } from '../../services/user.stats';
 })
 export class SleepPage {
 
-  public lineChartData: Array<any> = this.userStats.bpMetrics;
-  public lineChartLabels: Array<any> = this.userStats.bpTimeline;
-  public lineChartOptions: any = {
+  public sleepChartType: string = 'doughnut';
+  public sleepChartColors: any[] = [{ backgroundColor: ["rgba(167,72,195,0.8)", "rgba(110,89,201,0.8)", "rgba(85,173,224,0.8)"] }];
+  public sleepChartData: any[] = [350, 450, 100];
+  public sleepTotal: number[] = [8, 39];
+  public sleepChartOptions: any = {
     responsive: true,
-    legend: {
-      labels: {
-        fontColor: "white",
+    maintainAspectRatio: false,
+    elements: {
+      arc: {
+        borderWidth: 0
       }
     },
-    scales: {
-      xAxes: [{
-        gridLines: {
-          display: false,
-        },
-        ticks: {
-          fontColor: "white",
-        }
-      }],
-      yAxes: [{
-        gridLines: {
-          display: false,
-        },
-        ticks: {
-          fontColor: "white",
-          stepSize: 20,
-        }
-      }]
-    }
-  };
-  public lineChartColors: Array<any> = [
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    legend: {
+      display: false
     },
-
-    { // grey
-      backgroundColor: 'rgba(256,256,256,0.8)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-  public lineChartLegend: boolean = true;
-  public lineChartType: string = 'line';
+  }
 
   constructor(
     public navCtrl: NavController, 
@@ -80,8 +38,8 @@ export class SleepPage {
     public userStats: UserStatsProvider){
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SleepPage');
-  }
+  ionViewDidLoad() { }
+  
+  public chartClicked($event) { }
 
 }

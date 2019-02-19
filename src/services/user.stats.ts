@@ -85,9 +85,20 @@ export class UserStatsProvider {
       else
         return 0;
     }
-    catch(e){
+    catch(e){}
+  }
 
+  getMicro(microNutrient){
+    let micro
+    try {
+      if (this.userDailyStats[this.todaysDate]) {
+        micro = this.userDailyStats[this.todaysDate]['nutrients'][microNutrient]
+        return micro
+      }
+      else
+        return 0;
     }
+    catch(e){}
   }
 
   getCurrCalories() {

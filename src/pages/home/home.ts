@@ -11,15 +11,6 @@ import { BloodPressurePage } from '../bloodpressure/bloodpressure';
 import { SleepPage } from '../sleep/sleep';
 import { WelcomePage } from '../welcome/welcome';
 
-
-
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */ 
-
 @IonicPage()
 @Component({
   selector: 'page-home',

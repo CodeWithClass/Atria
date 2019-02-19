@@ -83,16 +83,20 @@ page-food {
 
             }
 
-            .macro-container{
+            .breakdown {
+                margin: 10% auto;
+                max-width: 250px;
+                
+                .macro-container, .micro-containter{
                
-                margin: 20%;
-
-                h3{
-                    font-size: 18px;
-                    font-weight: 400;
-                    text-align: center;
-                    color:rgb(234, 234, 234);
+                    h3{
+                        font-size: 16px;
+                        font-weight: 400;
+                        text-align: center;
+                        color:rgb(234, 234, 234);
+                    }
                 }
+            
             }
 
             .addFoodButton{
