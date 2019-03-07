@@ -32,11 +32,9 @@ export class BPService {
         params.set("redirect_uri", this.redirect_uri)
         params.set("state", this.authService.getUID())
     
-        console.log(this.withingsAuthURL + params.toString())
         const browser = this.inAppBrowser.create(encodeURI(this.withingsAuthURL+params.toString()), "_self");
         try {
             browser.on('exit').subscribe(event => {
-                console.log('alldoner')
             });
         }
         catch (e) {
@@ -59,7 +57,7 @@ export class BPService {
 
         // console.log(this.userStats.withingsAuth)
         let params = new URLSearchParams();
-        params.set("access_token", this.userStats.withingsAuth ?  this.userStats.withingsAuth['access_token'] : "none")
+        params.set("access_token", this.userStats.withingsAuth ? this.userStats.withingsAuth['access_token'] : "none")
         params.set("action", "getmeas")
         params.set("Uid", this.authService.getUID())
         params.set("date", this.userStats.todaysDate)
@@ -78,7 +76,7 @@ export class BPService {
     }
 
     public refreshToken(){    
-        if (!this.userStats.withingsAuth )
+        if (!this.userStats.withingsAuth)
             return this.withingsAuth()                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         if (Object.keys(this.userStats.withingsAuth).length === 0)
             return this.withingsAuth()

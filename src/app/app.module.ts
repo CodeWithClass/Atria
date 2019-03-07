@@ -12,13 +12,10 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
 import { Keyboard } from '@ionic-native/keyboard';
 
-
-
+// Firebase
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { firebaseConfig } from '../config';
-import { AuthService } from '../services/auth.service';
-import { DBService } from '../services/db.service';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 
@@ -39,6 +36,7 @@ import { EditfoodModal} from '../pages/food/editfoodmodal/editfoodmodal';
 import { MyStatsPage } from '../pages/mystats/mystats';
 import { SleepPage } from '../pages/sleep/sleep';
 import { WelcomePage } from '../pages/welcome/welcome';
+import { ActivityPage }  from '../pages/activity/activity';
 
 //Page modules
 import { AddFoodPageModule } from '../pages/food/addfood/addfood.module';
@@ -55,26 +53,20 @@ import { SignupPageModule } from '../pages/signup/signup.module';
 import { SettingsPageModule } from '../pages/settings/settings.module';
 import { SleepPageModule } from '../pages/sleep/sleep.module';
 import { WelcomePageModule } from '../pages/welcome/welcome.module';
-
+import { ActivityPageModule } from '../pages/activity/activity.module'
 
 // Services
+import { AuthService } from '../services/auth.service';
+import { DBService } from '../services/db.service';
 import { UserStatsProvider } from '../services/user.stats';
 import { FoodServiceProvider } from '../services/food.service';
-import { fromEventPattern } from '../../node_modules/rxjs';
 import { BPService } from '../services/bp.service';
+import { FitbitService } from '../services/fitbit.service';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    // HomePage,
-    // LoginPage,
-    // SignupPage,
-    // SettingsPage,
-    // FoodPage,
-    // AddFoodPage,
-    // addmealPage,
-    // AddFoodModal,    
-    // MyStatsPage,
     TabsPage,
   ],
   imports: [
@@ -103,9 +95,7 @@ import { BPService } from '../services/bp.service';
     SettingsPageModule,
     SleepPageModule,
     WelcomePageModule,
-
-
-    
+    ActivityPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -125,6 +115,7 @@ import { BPService } from '../services/bp.service';
     TabsPage,
     SleepPage,
     WelcomePage,
+    ActivityPage,
   ],
   providers: [
     InAppBrowser,
@@ -139,9 +130,7 @@ import { BPService } from '../services/bp.service';
     DBService,
     Keyboard,
     BPService,
+    FitbitService,
   ]
 })
-export class AppModule {
-
-
-}
+export class AppModule {}

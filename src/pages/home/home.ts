@@ -10,6 +10,7 @@ import { MyStatsPage } from '../mystats/mystats';
 import { BloodPressurePage } from '../bloodpressure/bloodpressure';
 import { SleepPage } from '../sleep/sleep';
 import { WelcomePage } from '../welcome/welcome';
+import { ActivityPage } from '../activity/activity'
 
 @IonicPage()
 @Component({
@@ -103,6 +104,9 @@ export class HomePage {
       }
       else if(page == 'stats'){
         this.navCtrl.push(MyStatsPage, {}, { animate: true, direction: 'forward' });  
+      }
+      else if (page == 'activity') {
+        this.navCtrl.push(ActivityPage, {}, { animate: true, direction: 'forward' });
       }
       else if (page == 'sleep') 
         this.navCtrl.push(SleepPage, {}, { animate: true, direction: 'forward' });

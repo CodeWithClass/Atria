@@ -4,15 +4,6 @@ import { UserStatsProvider } from '../../services/user.stats';
 import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 import { ManualbpPage } from './manualbp/manualbp';
 import { BPService } from '../../services/bp.service'
-import { from } from 'rxjs';
-// import { InAppBrowser } from '@ionic-native/in-app-browser';
-
-/**
- * Generated class for the BloodpressurePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
