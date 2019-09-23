@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DBService } from '../../services/db.service';
-import { BPService } from '../../services/bp.service';
-import { UserStatsProvider } from '../../services/user.stats';
-import { HomePage } from '../home/home';
+import { Component } from "@angular/core"
+import { IonicPage, NavController, NavParams } from "ionic-angular"
+import { FormBuilder, FormGroup } from "@angular/forms"
+import { DBService } from "../../services/db.service"
+import { BPService } from "../../services/bp.service"
+import { UserStatsProvider } from "../../services/user.stats"
+import { HomePage } from "../home/home"
 
 /**
  * Generated class for the WelcomePage page.
@@ -15,94 +15,82 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-welcome',
-  templateUrl: 'welcome.html',
+	selector: "page-welcome",
+	templateUrl: "welcome.html",
 })
 export class WelcomePage {
-  getStarted: boolean = true;
-  personalDetails: boolean = false;
-  withings:  boolean = false;
-  withingsAuth: boolean = false;
-  form: FormGroup;
-  googlePlayUrl: string = 'https://play.google.com/store/apps/details?id=com.withings.wiscale2&hl=en'
-  stats = { age: 0, fname: '', lname: '', goalCalories: 2000, heightFeet: '', heightInches: '' }
+	getStarted: boolean = true
+	personalDetails: boolean = false
+	withings: boolean = false
+	withingsAuth: boolean = false
+	form: FormGroup
+	googlePlayUrl: string = "https://play.google.com/store/apps/details?id=com.withings.wiscale2&hl=en"
+	stats = { age: 0, fname: "", lname: "", goalCalories: 2000, heightFeet: "", heightInches: "" }
 
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public fb: FormBuilder,
+		public dbService: DBService,
+		public bpService: BPService,
+		public userStats: UserStatsProvider,
+	) {
+		this.form = fb.group({
+			fname: "",
+			lname: "",
+			age: "",
+			heightFeet: "",
+			heightInches: "",
+			goalCalories: "",
+		})
+	}
 
-  constructor(public navCtrl: NavController, 
-              public navParams: NavParams,
-              public fb: FormBuilder,
-              public dbService: DBService,
-              public bpService: BPService,
-              public userStats: UserStatsProvider
-            ) {
+	ionViewDidLoad() {}
 
-    this.form = fb.group({
-      fname: "",
-      lname: "",
-      age: "",
-      heightFeet: "",
-      heightInches: "",
-      goalCalories: "",
-    
-    });
-  }
+	public push(page) {
+		this.getStarted = this.personalDetails = this.withings = this.withingsAuth = false
 
+		switch (page) {
+			case "getStarted":
+				this.getStarted = true
+				break
+			case "personalDetails":
+				this.personalDetails = true
+				break
+			case "withings":
+				this.withings = true
+				break
+			case "withingsAuth":
+				this.withingsAuth = true
+				break
+		}
+	}
+	savePersonalDetails(page) {
+		let data = this.form.value
+		for (var key in data) {
+			if (!data[key]) data[key] = this.stats[key]
+		}
 
-  
-  ionViewDidLoad() {
-  }
-  
-  public push(page){
-    this.getStarted =
-    this.personalDetails = 
-    this.withings = 
-    this.withingsAuth = false;
+		console.log(data)
+		this.dbService.writeStatsToDB(data)
+		return this.push(page)
+	}
 
-    switch(page){
-      case 'getStarted':
-        this.getStarted = true;
-        break;
-      case 'personalDetails':
-        this.personalDetails = true;
-        break;
-      case 'withings':
-        this.withings = true;
-        break;
-      case 'withingsAuth':
-        this.withingsAuth = true;
-        break;
-    }
-  }
-  savePersonalDetails(page){
-    
-    let data = this.form.value;
-    for (var key in data) {
-      if (!data[key])
-        data[key] = this.stats[key]
-    }
+	goToPlayStore() {
+		window.open(this.googlePlayUrl, "_system")
+		return
+	}
 
-    console.log(data)
-    this.dbService.writeStatsToDB(data)
-    return this.push(page)
-  }
+	getWithingsAuth() {
+		this.bpService.withingsAuth()
+	}
 
-  goToPlayStore(){
-    window.open(this.googlePlayUrl, '_system');
-    return;
-  }
+	done() {
+		let withingsAuth = false
 
-  getWithingsAuth(){
-    this.bpService.withingsAuth(); 
-  }
+		if (this.userStats.withingsAuth) withingsAuth = true
 
-  done(){
-    let withingsAuth = false      
-
-    if(this.userStats.withingsAuth)
-      withingsAuth = true      
-
-    this.dbService.user({ completedWelcome: true, withingsAuth}) //check if auth and write to db
-    this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
-  }
-
+		this.dbService.user({ completedWelcome: true, withingsAuth }) //check if auth and write to db
+		this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: "forward" })
+	}
 }
