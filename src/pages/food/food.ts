@@ -22,9 +22,11 @@ export class FoodPage{
   constructor(public navCtrl: NavController, public navParams: NavParams, public userStats: UserStatsProvider) {
     this.refresh();
   }
+  
   refresh(){
     this.userStats.todaysDate = this.userStats.ABSOLUTE_DATE;
   }
+
   launchSettings() {
     this.navCtrl.push(SettingsPage, {}, { animate: true  , direction: 'forward' });
   }

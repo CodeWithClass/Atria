@@ -2,39 +2,20 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-
+interface foodSearchdata {
+  item: object []
+}
 
 @Injectable()
 export class FoodServiceProvider {
 
-  public foodSearchdata = {
-    "q": "butter",
-    "sr": "Legacy",
-    "ds": "any",
-    "start": 0,
-    "end": 2,
-    "total": 4550,
-    "group": "",
-    "sort": "r",
-    "item": [
-      {
-        "offset": 0,
-        "group": "Branded Food Products Database",
-        "name": "No results",
-        "ndbno": "45112260",
-        "ds": "LI",
-        "manu": "Try a less specific search"
-      }
-    ]
-  };
-  public foodSearchdata2;
+  public foodSearchdata: foodSearchdata = {item:[{ none: 0}]}
   public foodNutdata = []
-  public offset: number = 0;
-  public noResult: boolean = false;
+  public offset: number = 0
+  public noResult: boolean = false
   public measures;
 
-  constructor(public http: HttpClient) {
-  }
+  constructor(public http: HttpClient) {}
   
   /*
 	Function: makeFoodAPICall(url)
@@ -49,12 +30,8 @@ export class FoodServiceProvider {
     console.log(url);
     return this.http.get(url)
       .subscribe(
-        Response => {
-          this.processFoodAPIresponse(Response);
-        },
-        err =>{
-          console.log(err);
-        }
+        Response => this.processFoodAPIresponse(Response),
+        err => console.log(err)
       );
   }
 
@@ -72,12 +49,8 @@ export class FoodServiceProvider {
     console.log(url);
     this.http.get(url) 
       .subscribe(
-        response => {
-          return this.processNutAPIresponse(response);
-          },
-        err =>{
-          console.log(err);
-        }
+        response => this.processNutAPIresponse(response),
+        err => console.log(err)
       );
   }
 
@@ -96,23 +69,17 @@ export class FoodServiceProvider {
   If there is no response then catch errors and set noResult to true.
   */
   processFoodAPIresponse(response){
-  
+    this.noResult = false;
+    
     try{
-      if(!this.foodSearchdata){
+      if(!this.foodSearchdata)
         this.foodSearchdata = response.list.item;
-        this.noResult = false;
-        // console.log(this.foodSearchdata)
-      }
       else{
-        this.foodSearchdata2 = response.list;
-        this.foodSearchdata.item = this.foodSearchdata.item.concat(this.foodSearchdata2.item);
+        this.foodSearchdata.item = this.foodSearchdata.item.concat(response.list.item);
         this.offset+=20;
-        this.noResult = false;
-        // console.log(this.foodSearchdata)
        }
     }
     catch(err){
-      // console.log(err);
       this.noResult = true;
     }
   }
@@ -142,8 +109,8 @@ export class FoodServiceProvider {
   recieves a string and trucates UPC/GTIN and
   converts the string to to lowercase
   */
-  public strToLower(str = "no results") {
-    str = str.split(", UPC")[0];
+  public strToLower(_str = "no results") {
+    let str = _str.split(", UPC")[0];
     str = str.split(", GTIN")[0];
     str = str.toLocaleLowerCase();
     return str;

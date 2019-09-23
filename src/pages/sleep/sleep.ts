@@ -1,18 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { UserStatsProvider } from '../../services/user.stats';
-/**
- * Generated class for the SleepPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-sleep',
   templateUrl: 'sleep.html',
 })
+
 export class SleepPage {
 
   public sleepChartType: string = 'doughnut';
