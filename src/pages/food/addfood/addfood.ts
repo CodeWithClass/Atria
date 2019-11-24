@@ -112,12 +112,20 @@ export class AddFoodPage {
 		if (timeTravel == "past") {
 			this.fullDate.setDate(this.fullDate.getDate() - 1)
 			this.addfoodDate =
-				this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate()
+				this.fullDate.getFullYear() +
+				"-" +
+				(this.fullDate.getMonth() + 1) +
+				"-" +
+				this.fullDate.getDate()
 			this.userStats.todaysDate = this.addfoodDate
 		} else if (timeTravel == "future") {
 			this.fullDate.setDate(this.fullDate.getDate() + 1)
 			this.addfoodDate =
-				this.fullDate.getFullYear() + "-" + this.fullDate.getMonth() + "-" + this.fullDate.getDate()
+				this.fullDate.getFullYear() +
+				"-" +
+				(this.fullDate.getMonth() + 1) +
+				"-" +
+				this.fullDate.getDate()
 			this.userStats.todaysDate = this.addfoodDate
 		}
 
