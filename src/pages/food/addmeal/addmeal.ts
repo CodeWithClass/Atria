@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { FoodServiceProvider } from '../../../services/food.service';
 import { AddFoodModal } from '../addfoodmodal/addfoodmodal';
-import { Keyboard } from '@ionic-native/keyboard';
 
 @IonicPage()
 @Component({
@@ -23,7 +22,6 @@ export class addmealPage {
     public navParams: NavParams, 
     public foodServ: FoodServiceProvider,
     public modalCtrl: ModalController,
-    private keyboard: Keyboard,
     ) {
     this.pageTitle = navParams.get('PageTitle');
       
@@ -49,7 +47,6 @@ export class addmealPage {
     this.hasSearched = true;
     this.foodServ.offset = 0;
     this.genFoodUrl(this.searchInput);
-    this.keyboard.close();
   }
 
 
