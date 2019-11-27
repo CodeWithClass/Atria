@@ -10,34 +10,37 @@ import { WelcomePage } from '../welcome/welcome'
 
 @IonicPage()
 @Component({
-    selector: 'page-settings',
-    templateUrl: 'settings.html'
+  selector: 'page-settings',
+  templateUrl: 'settings.html'
 })
 export class SettingsPage {
-    constructor(
-        public navCtrl: NavController,
-        public navParams: NavParams,
-        public app: App,
-        public auth: AuthService,
-        // private fdb: AngularFireDatabase,
-        public afAuth: AngularFireAuth,
-        public fbService: FitbitService
-    ) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public app: App,
+    public auth: AuthService,
+    // private fdb: AngularFireDatabase,
+    public afAuth: AngularFireAuth,
+    public fbService: FitbitService
+  ) {}
 
-    logout() {
-        this.afAuth.auth.signOut().then(() => {
-            // this.fdb.database.goOffline();
-            this.navCtrl.setRoot(LoginPage)
-        })
-    }
-    public pushPage(page) {
-        this.navCtrl.push(
-            WelcomePage,
-            {},
-            { animate: true, direction: 'forward' }
-        )
-    }
-    fitbitAuth() {
-        return this.fbService.Auth()
-    }
+  logout() {
+    this.afAuth.auth.signOut().then(() => {
+      // this.fdb.database.goOffline();
+      this.navCtrl.setRoot(LoginPage)
+    })
+  }
+  public pushPage(page) {
+    this.navCtrl.push(WelcomePage, {}, { animate: true, direction: 'forward' })
+  }
+
+  fitbitAuth() {
+    return this.fbService.Auth()
+  }
+
+  revokefitbitAuth() {}
+
+  public fitbitAuthStatus() {
+    return this.fbService.getAuthStatus()
+  }
 }

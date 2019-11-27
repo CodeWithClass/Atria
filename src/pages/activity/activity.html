@@ -1,7 +1,17 @@
 <ion-header no-border>
-    <ion-navbar>
-        <ion-title>Activity</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Activity</ion-title>
+  </ion-navbar>
 </ion-header>
 
-<ion-content padding> </ion-content>
+<ion-content padding>
+  <button
+    *ngIf="!fitbitAuthStatus()"
+    ion-button
+    block
+    class="fitbitAuthBtn"
+    (click)="fitbitAuth()"
+  >
+    fitbit auth
+  </button>
+</ion-content>

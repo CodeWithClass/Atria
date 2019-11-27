@@ -5,19 +5,34 @@
   Ionic pages and navigation.
 -->
 <ion-header no-border>
-    <ion-navbar>
-        <ion-title>Settings</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <button ion-button color="light" (click)="pushPage('welcome')">
-        Welcome page
-    </button>
-    <button ion-button block class="fitbitAuthBtn" (click)="fitbitAuth()">
-        fitbit auth
-    </button>
+  <button ion-button color="light" (click)="pushPage('welcome')">
+    Welcome page
+  </button>
+  <button
+    *ngIf="!fitbitAuthStatus()"
+    ion-button
+    block
+    class="fitbitAuthBtn"
+    (click)="fitbitAuth()"
+  >
+    fitbit auth
+  </button>
+  <button
+    *ngIf="fitbitAuthStatus()"
+    ion-button
+    block
+    class="fitbitAuthBtn"
+    (click)="revokefitbitAuth()"
+  >
+    Unlink auth
+  </button>
 
-    <div class="userEmail" *ngIf="auth.getEmail()">{{auth.getEmail()}}</div>
-    <button ion-button block color="danger" (click)="logout()">Log Out</button>
+  <div class="userEmail" *ngIf="auth.getEmail()">{{auth.getEmail()}}</div>
+  <button ion-button block color="danger" (click)="logout()">Log Out</button>
 </ion-content>
