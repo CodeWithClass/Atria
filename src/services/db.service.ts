@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { AuthService } from './auth.service'
 import { UserStatsProvider } from './user.stats'
-
+import _ from 'lodash'
 @Injectable()
 export class DBService {
   public arrData
@@ -20,33 +20,36 @@ export class DBService {
       .subscribe(data => {
         if (!data) return cb()
         try {
-          this.userStats.userStatsConatiner = data['stats']
-          this.userStats.foodIntake = data['meals'] || {}
-          this.userStats.userDailyStats = data['dailyStats'] || {}
-          if (data['dailyStats'])
-            if (data['dailyStats'][this.userStats.todaysDate])
-              this.userStats.bpMetrics =
-                data['dailyStats'][this.userStats.todaysDate]['bp'] ||
-                this.userStats.bpMetrics
-          this.userStats.withingsAuth = data['withingsAuth'] || {}
-          this.userStats.fitbitAuth = data['fitbit'] || {}
+          const { todaysDate } = this.userStats
+          this.userStats.withingsAuth = _.get(data, 'withingsAuth', '')
+          this.userStats.fitbitAuth = _.get(data, 'fitbitAuth', '')
+          this.userStats.userStatsContainer = _.get(data, 'stats', '')
+          this.userStats.foodIntake = _.get(data, 'meals', '')
+          this.userStats.bpMetrics = _.get(
+            data,
+            `dailyStats.${todaysDate}.bp`,
+            this.userStats.bpMetrics
+          )
+          this.userStats.activityData = _.get(
+            data,
+            `dailyStats.${todaysDate}.activities`,
+            ''
+          )
 
           return cb(data)
         } catch (e) {
           console.log(e)
           return cb()
         }
-        // console.log(data)
-        // this.setIfStats(data[0]['goalCalories']);
-        // console.log(this.userStats.bpMetrics)
       })
   }
 
   public setIfStats(userProfileStats) {
-    if (userProfileStats) this.userStats.userStatsConatiner['nodata'] = false
-    else {
-      this.userStats.userStatsConatiner['nodata'] = true
-    }
+    if (userProfileStats)
+      _.set(this.userStats, 'userStatsContainer.nodata', false)
+    else _.set(this.userStats, 'userStatsContainer.nodata', true)
+
+    console.log(this.userStats.userStatsContainer)
   }
 
   writeFoodToDB(date, meal, foodname, data) {

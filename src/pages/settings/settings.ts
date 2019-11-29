@@ -38,7 +38,9 @@ export class SettingsPage {
     return this.fbService.Auth()
   }
 
-  revokefitbitAuth() {}
+  public revokefitbitAuth() {
+    return this.fbService.revokeAuth()
+  }
 
   public fitbitAuthStatus() {
     return this.fbService.getAuthStatus()

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core'
 import 'rxjs/add/operator/map'
 import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { URLSearchParams } from '@angular/http'
+import { HttpClient } from '@angular/common/http'
 import { UserStatsProvider } from './user.stats'
 import { DBService } from './db.service'
 import { AuthService } from './auth.service'
@@ -10,6 +11,7 @@ export class FitbitService {
   private client_id: string = '22DKK3'
   private redirect_uri: string = 'https://atria.coach/api/fitbit/auth'
   private fitbitAuthURL: string = 'https://www.fitbit.com/oauth2/authorize?'
+  private revokeURL: string = 'https://atria.coach/api/fitbit/revoketoken'
   private response_type: string = 'code'
   private scope =
     'activity heartrate location nutrition profile settings sleep social weight'
@@ -18,7 +20,8 @@ export class FitbitService {
     public inAppBrowser: InAppBrowser,
     public userStats: UserStatsProvider,
     public dbService: DBService,
-    public authService: AuthService
+    public authService: AuthService,
+    public http: HttpClient
   ) {}
 
   public Auth() {
@@ -42,6 +45,21 @@ export class FitbitService {
   }
 
   public getAuthStatus() {
-    if (this.userStats.fitbitAuth) return true
+    const fitbitAuthObj = this.userStats.fitbitAuth
+    return !!Object.keys(fitbitAuthObj).length
+  }
+
+  public revokeAuth() {
+    const token = this.userStats.fitbitAuth['refresh_token'] || ''
+
+    let params = new URLSearchParams()
+    params.set('token', token)
+    params.set('firebaseUID', this.authService.getUID())
+    const url = this.revokeURL + '?' + params.toString()
+
+    return this.http.get(url).subscribe(
+      res => {},
+      err => console.log(err)
+    )
   }
 }
