@@ -57,7 +57,12 @@ export class WelcomePage {
   ionViewDidLoad() {}
 
   public push(page) {
-    this.getStarted = this.personalDetails = this.withings = this.withingsAuth = false
+    this.getStarted = false
+    this.personalDetails = false
+    this.withings = false
+    this.withingsAuth = false
+    this.fitbit = false
+    this.fitbitAuth = false
 
     switch (page) {
       case 'getStarted':
@@ -75,7 +80,7 @@ export class WelcomePage {
       case 'fitbit':
         this.fitbit = true
         break
-      case 'fibitAuth':
+      case 'fitbitAuth':
         this.fitbitAuth = true
         break
     }

@@ -107,7 +107,45 @@
     </button>
   </div>
 
-  <div *ngIf="this.withings" ng-include src"'./withings.html'"></div>
+  <div *ngIf="this.withings">
+    <ion-card class="card">
+      <h1 class="title">Withings</h1>
+      <p>
+        - Download Health Mate by Withings from the Google PlayStore.<br /><br />
+        - Sign-up for a Withings account and follow the instructions for
+        connecting your Blood Pressure monitor.<br /><br />
+      </p>
+    </ion-card>
+    <button
+      ion-button
+      block
+      type="submit"
+      color="light"
+      class="button slideLeft"
+      (click)="goToPlayStore('withings')"
+    >
+      Go to PlayStore
+    </button>
+    <button
+      ion-button
+      outline
+      type="submit"
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('personalDetails')"
+    >
+      Back
+    </button>
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="push('withingsAuth')"
+    >
+      Next
+    </button>
+  </div>
 
   <div *ngIf="this.withingsAuth">
     <ion-card class="card">
@@ -133,6 +171,84 @@
       color="light"
       class="button slideRight smallButton whiteText"
       (click)="push('withings')"
+    >
+      Back
+    </button>
+
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="push('fitbit')"
+    >
+      Next
+    </button>
+  </div>
+
+  <div *ngIf="this.fitbit">
+    <ion-card class="card">
+      <h1 class="title">Fitbit</h1>
+      <p>
+        - Download Fitbit from the Google PlayStore.<br /><br />
+        - Sign-up for a Fitbit account and connect you fitbit watch.<br /><br />
+      </p>
+    </ion-card>
+    <button
+      ion-button
+      block
+      type="submit"
+      color="light"
+      class="button slideLeft"
+      (click)="goToPlayStore('fitbit')"
+    >
+      Go to PlayStore
+    </button>
+    <button
+      ion-button
+      outline
+      type="submit"
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('withingsAuth')"
+    >
+      Back
+    </button>
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="push('fitbitAuth')"
+    >
+      Next
+    </button>
+  </div>
+
+  <div *ngIf="this.fitbitAuth">
+    <ion-card class="card">
+      <h1 class="title">Fitbit</h1>
+      <p>
+        Authenticate Atria with Fitbit.
+      </p>
+    </ion-card>
+    <button
+      ion-button
+      block
+      type="submit"
+      color="light"
+      class="button slideLeft"
+      (click)="getfitbitAuth()"
+    >
+      Authenticate
+    </button>
+    <button
+      ion-button
+      outline
+      type="submit"
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('fitbit')"
     >
       Back
     </button>
