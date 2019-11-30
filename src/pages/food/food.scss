@@ -1,112 +1,96 @@
 page-food {
-    ion-content{
-        // background-color: color($colors, food) !important;    
-        background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%) !important;
+  ion-content {
+    // background-color: color($colors, food) !important;
+    background: linear-gradient(
+      60deg,
+      rgba(106, 90, 205, 1) 0%,
+      rgb(156, 145, 230) 100%
+    ) !important;
+  }
 
+  ion-header {
+    .toolbar-title {
+      color: white;
     }
+  }
 
-    ion-header{
-        
-        .toolbar-title{
-            color: white;
+  .refresh {
+    float: right;
+  }
+
+  .food-background {
+    max-height: 70vh;
+
+    .area1 {
+      padding: 5%;
+      color: #fff;
+
+      .title {
+        h2 {
+          font-size: 30px;
+          max-width: 100px;
+          font-weight: 300;
+        }
+      }
+      .subtitle {
+        font-size: 4vw;
+      }
+
+      round-progress {
+        display: block;
+        top: 5%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 25%;
+      }
+
+      .progress-text {
+        position: absolute;
+        top: 15%;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+
+        h2 {
+          font-size: 30px;
+          font-weight: 300;
+          color: rgb(234, 234, 234);
         }
 
-        
-    }
-
-
-
-    .refresh{
-            float: right;
+        h5 {
+          font-weight: 300;
         }
-    
-        
 
-
-    .food-background{
-
-        max-height: 70vh;
-
-        .area1{
-            padding:5%;
-            color: #fff;
-
-            .title{
-                
-                h2{
-                    font-size: 30px;
-                    max-width: 100px;
-                    font-weight: 300;
-                }
-            }
-            .subtitle{
-                font-size: 4vw;
-            }
-
-            
-                            
-            round-progress{
-                display: block;
-                top: 5%;
-                left: 0;
-                right: 0;
-                margin: auto;
-                width: 25%;
-            }
-
-            .progress-text{
-                    position: absolute;
-                    top: 15%;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    text-align: center;
-                
-
-                h2{
-                    font-size: 30px;
-                    font-weight: 300;
-                    color:rgb(234, 234, 234);
-                }
-
-                h5{
-                    font-weight: 300;
-                }
-                
-                hr{
-                    width: 15%;
-                    max-width: 66px;
-                    margin: 0 auto;
-                    height: 3px;
-
-                }
-
-            }
-
-            .breakdown {
-                margin: 10% auto;
-                max-width: 250px;
-                
-                .macro-container, .micro-containter{
-               
-                    h3{
-                        font-size: 16px;
-                        font-weight: 400;
-                        text-align: center;
-                        color:rgb(234, 234, 234);
-                    }
-                }
-            
-            }
-
-            .addFoodButton{
-                color: white;
-                background-color: #45ccce;
-                padding: 25px 0;
-                
-            }
-        
+        hr {
+          width: 15%;
+          max-width: 66px;
+          margin: 0 auto;
+          height: 3px;
         }
-    }
+      }
 
+      .breakdown {
+        margin: 10% auto;
+        max-width: 250px;
+
+        .macro-container,
+        .micro-containter {
+          h3 {
+            font-size: 16px;
+            font-weight: 400;
+            text-align: center;
+            color: rgb(234, 234, 234);
+          }
+        }
+      }
+
+      .addFoodButton {
+        color: white;
+        background-color: #45ccce;
+        padding: 25px 0;
+      }
+    }
+  }
 }

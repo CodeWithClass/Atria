@@ -42,7 +42,6 @@ export class HomePage {
       display: false
     }
   }
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

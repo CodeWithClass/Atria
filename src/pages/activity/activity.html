@@ -5,13 +5,48 @@
 </ion-header>
 
 <ion-content padding>
-  <button
-    *ngIf="!fitbitAuthStatus()"
-    ion-button
-    block
-    class="fitbitAuthBtn"
-    (click)="fitbitAuth()"
-  >
-    fitbit auth
-  </button>
+  <ion-grid class="activity-background">
+    <ion-row col-lg-6 class="area1">
+      <round-progress
+        id="round-progress"
+        [current]="userStats.getActivityData('caloriesOut')"
+        [max]="userStats.getActivityData('calroiesOut')"
+        [color]="'#45ccce'"
+        [background]="'rgba(104, 226, 162, 0.7)'"
+        [radius]="100"
+        [stroke]="10"
+        [semicircle]="false"
+        [responsive]="false"
+        [duration]="800"
+        [animation]="'easeInOutQuart'"
+        [animationDelay]="0"
+        [stroke]="4"
+      ></round-progress>
+
+      <div class="progress-text">
+        <img class="burn-icon" src="../../assets/imgs/burn.png" />
+        <h2>
+          {{ userStats.getActivityData('caloriesOut') || 0}}
+        </h2>
+        <h5>Calories</h5>
+      </div>
+    </ion-row>
+
+    <ion-row col-lg-6 class="area2">
+      <ul>
+        <li>
+          <h1></h1>
+        </li>
+      </ul>
+    </ion-row>
+    <button
+      *ngIf="!fitbitAuthStatus()"
+      ion-button
+      block
+      class="fitbitAuthBtn"
+      (click)="fitbitAuth()"
+    >
+      fitbit auth
+    </button>
+  </ion-grid>
 </ion-content>

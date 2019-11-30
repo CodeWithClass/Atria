@@ -25,14 +25,19 @@ export class DBService {
           this.userStats.fitbitAuth = _.get(data, 'fitbitAuth', '')
           this.userStats.userStatsContainer = _.get(data, 'stats', '')
           this.userStats.foodIntake = _.get(data, 'meals', '')
+          this.userStats.userDailyStats = _.get(
+            data,
+            `dailyStats.${todaysDate}`,
+            ''
+          )
           this.userStats.bpMetrics = _.get(
             data,
             `dailyStats.${todaysDate}.bp`,
             this.userStats.bpMetrics
           )
           this.userStats.activityData = _.get(
-            data,
-            `dailyStats.${todaysDate}.activities`,
+            this.userStats.userDailyStats,
+            'activities',
             ''
           )
 

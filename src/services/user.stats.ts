@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-
+import _ from 'lodash'
 @Injectable()
 export class UserStatsProvider {
   todaysDate: string = '0000-00-00'
@@ -124,8 +124,12 @@ export class UserStatsProvider {
 
   setgoalCalories(Max: any) {}
 
-  sayHello() {
-    console.log('infancy')
-    return 'a word from our sponsors'
+  //================= activity ====================/
+
+  getActivityGoal(path) {
+    return _.get(this.activityData, `goals.${path}`, 0)
+  }
+  getActivityData(path) {
+    return _.get(this.activityData, `summary.${path}`, 0)
   }
 }
