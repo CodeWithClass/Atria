@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { FoodServiceProvider } from '../../../services/food.service';
-import { UserStatsProvider } from '../../../services/user.stats';
-import { DBService } from '../../../services/db.service';
+import { Component } from '@angular/core'
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ViewController
+} from 'ionic-angular'
+import { FoodServiceProvider } from '../../../services/food.service'
+import { UserStatsProvider } from '../../../services/user.stats'
+import { DBService } from '../../../services/db.service'
 
 /**
  * Generated class for the EditfoodmodalPage page.
@@ -14,17 +19,17 @@ import { DBService } from '../../../services/db.service';
 @IonicPage()
 @Component({
   selector: 'page-editfoodmodal',
-  templateUrl: 'editfoodmodal.html',
+  templateUrl: 'editfoodmodal.html'
 })
 export class EditfoodModal {
-  pageTitle;
-  ndbno;
-  record = this.navParams.get('Record');
-  completeRecord = [];
-  name = this.record.name;
-  manu = this.record.manu;
-  NoOfServ = parseFloat(this.record.servings);
-  showMicroNutrients = false;
+  pageTitle
+  ndbno
+  record = this.navParams.get('Record')
+  completeRecord = []
+  name = this.record.name
+  manu = this.record.manu
+  NoOfServ = parseFloat(this.record.servings)
+  showMicroNutrients = false
 
   constructor(
     public navCtrl: NavController,
@@ -32,22 +37,18 @@ export class EditfoodModal {
     public viewCtrl: ViewController,
     public foodServ: FoodServiceProvider,
     public userStats: UserStatsProvider,
-    public dbService: DBService,
-
+    public dbService: DBService
   ) {
-    this.pageTitle = navParams.get('PageTitle');
+    this.pageTitle = navParams.get('PageTitle')
     // console.log(this.navParams.get('Record'))
   }
 
-  calcServings(event){
-    if(!event.value)
-      return;
+  calcServings(event) {
+    if (!event.value) return
 
-     this.NoOfServ = this.NoOfServ *  (event.value/this.NoOfServ)
-    return  this.NoOfServ;
-
+    this.NoOfServ = this.NoOfServ * (event.value / this.NoOfServ)
+    return this.NoOfServ
   }
-
 
   /*
 	Function: getMacroData(_macro)
@@ -59,30 +60,26 @@ export class EditfoodModal {
   who's name element and returns that element's value as a number.
   */
   getMacroData(_macro: string) {
-    let macro;
-    let recordData = this.findRecordData(this.record);
+    let macro
+    let recordData = this.findRecordData(this.record)
 
     //remove last element which has the meta data
     // recordData.pop();
-  
+
     try {
-      macro = recordData.find((element) => {
-        return element.name == _macro;
-      });
-      
+      macro = recordData.find(element => {
+        return element.name == _macro
+      })
+
       if (macro) {
-        return parseFloat(macro.value) * this.NoOfServ;
+        return parseFloat(macro.value) * this.NoOfServ
+      } else {
+        return 0
       }
-      else {
-        return 0;
-      }
-    }
-    catch (err) {
+    } catch (err) {
       console.log(err)
     }
   }
-
-
 
   /*
 	Function: getAllNutrients(record, prop)
@@ -94,15 +91,12 @@ export class EditfoodModal {
   by the number of servings (NoOfServ). Else it returns the nutrient.prop.
     */
   getAllNutrients(record, prop) {
-    if (prop == "value" && record.value) {
-      return parseFloat(record.value) * this.NoOfServ;
-    }
-    else {
-      return record[prop];
+    if (prop == 'value' && record.value) {
+      return parseFloat(record.value) * this.NoOfServ
+    } else {
+      return record[prop]
     }
   }
-
-
 
   /*
 	Function: getServMeasure()
@@ -116,23 +110,27 @@ export class EditfoodModal {
 
   */
   getServMeasure() {
-    let servMes;
+    let servMes
 
     try {
-      let servMesArr = this.completeRecord[0].measures[0];
+      let servMesArr = this.completeRecord[0].measures[0]
 
-      if (servMesArr.label == "OZA" || servMesArr.label == "ONZ")
-        servMesArr.label = "oz"
+      if (servMesArr.label == 'OZA' || servMesArr.label == 'ONZ')
+        servMesArr.label = 'oz'
 
-      servMes = servMesArr.qty + " " + servMesArr.label + " (" + servMesArr.eqv + servMesArr.eunit + ")";
-      return servMes;
-    }
-    catch (e) {
-    }
-    
+      servMes =
+        servMesArr.qty +
+        ' ' +
+        servMesArr.label +
+        ' (' +
+        servMesArr.eqv +
+        servMesArr.eunit +
+        ')'
+      return servMes
+    } catch (e) {}
   }
 
-/*
+  /*
 	Function: findRecordData(record)
 	Parameter: Object
   Return: Object of Arrays
@@ -142,29 +140,31 @@ export class EditfoodModal {
 
   findRecordData(record) {
     //get the food loaded food data for today's date
-    let relavantMealEntries = this.userStats.foodIntake[this.userStats.todaysDate][this.record.meal]
+    let relavantMealEntries = this.userStats.foodIntake[
+      this.userStats.todaysDate
+    ][this.record.meal]
     //convert obj to array
     relavantMealEntries = Object.values(relavantMealEntries)
-    let metaData;
-    let counter = 0;
-    let _element = [];
+    let metaData
+    let _element = []
+    let counter: number
 
     relavantMealEntries.forEach(element => {
-
       element = Object.values(element)
 
       //get entire record then get the last element of said record
-      metaData = element[element.length-1]
+      metaData = element[element.length - 1]
 
       //if the both the uid of the record and arr element matches (date is just extra checking)
-      if ((metaData.uid == record['uid']) && (metaData.date == this.userStats.todaysDate)) {
+      if (
+        metaData.uid == record['uid'] &&
+        metaData.date == this.userStats.todaysDate
+      ) {
         this.completeRecord = _element = element
-        return;
-      }
-      else
-        counter++;
-    });
-    return _element;
+        return
+      } else counter++
+    })
+    return _element
   }
 
   /*
@@ -175,27 +175,27 @@ export class EditfoodModal {
   Gets todays userstats then decrements the current record (to be re-added)
   */
   updateRecordNut(record) {
-    let statRecord;
+    let statRecord
     if (this.userStats.userDailyStats[this.userStats.todaysDate]) {
-      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate]["nutrients"];
+      statRecord = this.userStats.userDailyStats[this.userStats.todaysDate][
+        'nutrients'
+      ]
     }
- 
+
     let metaData = record[record.length - 1]
 
-    //for each elment in the record subtract its value from the total 
-    record.forEach((element) => {
-      try{
+    //for each elment in the record subtract its value from the total
+    record.forEach(element => {
+      try {
         //ensure it is not food's name being decremented (causes NaN err)
-        if(element.name != this.name)
-          statRecord[element.name] -= (element.value * metaData['servings']);
-      }
-      catch(err){
+        if (element.name != this.name)
+          statRecord[element.name] -= element.value * metaData['servings']
+      } catch (err) {
         console.log(err)
       }
-    });
-    return statRecord;
+    })
+    return statRecord
   }
-
 
   /*
 	Function: toggleMicroNutrients()
@@ -206,11 +206,8 @@ export class EditfoodModal {
   showMicroNutrients is delcared initially as false.
   */
   toggleMicroNutrients() {
-    this.showMicroNutrients = !this.showMicroNutrients;
+    this.showMicroNutrients = !this.showMicroNutrients
   }
-
-
-
 
   /*
 	Function: toggleMicroNutrients()
@@ -222,63 +219,73 @@ export class EditfoodModal {
   Push foodNutdata to foodIntake array, then closes the foodModal.
   */
   saveAndCloseModal() {
-
-    
-    this.record.date = this.userStats.todaysDate;
+    this.record.date = this.userStats.todaysDate
     // this.record.meal = this.pageTitle;
-    let statRecord = this.updateRecordNut(this.completeRecord);
-    
+    let statRecord = this.updateRecordNut(this.completeRecord)
 
     //update serving size of selected food
     this.completeRecord.forEach(element => {
       let lastArrElement = this.completeRecord[this.completeRecord.length - 1]
       if (element.name == 'Energy') {
-        lastArrElement.calories = ((parseFloat(element.value) * this.NoOfServ) || 0);
-        lastArrElement.servings = this.NoOfServ;
-        lastArrElement.uid = Math.random();
+        lastArrElement.calories = parseFloat(element.value) * this.NoOfServ || 0
+        lastArrElement.servings = this.NoOfServ
+        lastArrElement.uid = Math.random()
       }
 
       if (element.name == 'Sodium, Na') {
-        let color = "black";
-        let value = (parseFloat(element.value) * this.NoOfServ);
+        let color = 'black'
+        let value = parseFloat(element.value) * this.NoOfServ
 
-        if ((value > 500 && element.unit == "mg") || (value > 50 && element.unit == "g"))
-          color = "red";
-        else if ((value > 299 && element.unit == "mg") || (value > 29 && element.unit == "g"))
-          color = "orange"
-     
-        lastArrElement.sodium = { value: value || 0, unit: (element.unit.toLowerCase() || "mg"), color: color }
+        if (
+          (value > 500 && element.unit == 'mg') ||
+          (value > 50 && element.unit == 'g')
+        )
+          color = 'red'
+        else if (
+          (value > 299 && element.unit == 'mg') ||
+          (value > 29 && element.unit == 'g')
+        )
+          color = 'orange'
+
+        lastArrElement.sodium = {
+          value: value || 0,
+          unit: element.unit.toLowerCase() || 'mg',
+          color: color
+        }
       }
-
 
       //convert the values to type number
-      element.value = ((parseFloat(element.value) || 0));
+      element.value = parseFloat(element.value) || 0
 
-      
       //check if element already exits or if name is not food's name
-      if(!statRecord[element.name] && element.name != this.name) {
-        statRecord[element.name] = 0;
+      if (!statRecord[element.name] && element.name != this.name) {
+        statRecord[element.name] = 0
       }
       //check if name is not food's name
-      if(element.name != this.name) {
-        statRecord[element.name] += (element.value * this.NoOfServ);
+      if (element.name != this.name) {
+        statRecord[element.name] += element.value * this.NoOfServ
       }
+    })
 
-    });
+    this.dbService.writeFoodToDB(
+      this.record.date,
+      this.record.meal,
+      this.record.name,
+      this.completeRecord
+    )
+    this.dbService.writeDailyStatsToDB(
+      this.record.date,
+      statRecord,
+      'nutrients'
+    )
 
-    this.dbService.writeFoodToDB(this.record.date, this.record.meal, this.record.name, this.completeRecord);
-    this.dbService.writeDailyStatsToDB(this.record.date, statRecord, "nutrients");
-
-    this.closeModal();
+    this.closeModal()
   }
 
   strCleanUp(str) {
-    let STR = str.replace(/:[.#$\[\]\///\._]/g, ' ');
-    return STR;
+    let STR = str.replace(/:[.#$\[\]\///\._]/g, ' ')
+    return STR
   }
-
-
-
 
   /*
 	Function: closeModal()
@@ -288,8 +295,6 @@ export class EditfoodModal {
   Closes the modal when called.
   */
   closeModal() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss()
   }
-
-
 }

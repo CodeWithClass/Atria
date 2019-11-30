@@ -16,9 +16,9 @@ export class UserStatsProvider {
     age: 0,
     heightFeet: '',
     heightInches: '',
-    goalCalories: 0
+    goalCaloriesIn: 0
   }
-  goalCalories: number = 2000
+  goalCaloriesIn: number = 2000
   currCalories: number = 0
 
   bpMetrics: any[] = [
@@ -111,7 +111,11 @@ export class UserStatsProvider {
   getgoalCalories() {
     try {
       if (Object.keys(this.userStatsContainer).length > 0) {
-        return this.userStatsContainer['goalCalories']
+        return (
+          this.userStatsContainer['goalCaloriesIn'] ||
+          this.userStatsContainer['goalCalories'] ||
+          0
+        )
       } else {
         return 0
       }

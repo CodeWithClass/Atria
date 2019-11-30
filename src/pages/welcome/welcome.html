@@ -1,17 +1,6 @@
-
-<!-- <ion-header>
-
-  <ion-navbar>
-    <ion-title>welcome</ion-title>
-  </ion-navbar>
-
-</ion-header> -->
-
-
 <ion-content class="background" padding>
-
-  <div class="logo-container" >
-    <img *ngIf="this.getStarted" class="logo" src="assets/imgs/AtriaLogo.png">
+  <div class="logo-container">
+    <img *ngIf="this.getStarted" class="logo" src="assets/imgs/AtriaLogo.png" />
   </div>
   <div *ngIf="this.getStarted">
     <ion-card class="card">
@@ -20,72 +9,105 @@
         Let's get you setup and on your way to a healthier lifestyle.
       </p>
     </ion-card>
-    <button ion-button block type="submit" color="light" class="confirmButton slideLeft" (click)="push('personalDetails')">Start</button>
+    <button
+      ion-button
+      block
+      type="submit"
+      color="light"
+      class="confirmButton slideLeft"
+      (click)="push('personalDetails')"
+    >
+      Start
+    </button>
   </div>
 
   <div *ngIf="this.personalDetails">
-      <h1 class="title">Personal Details</h1>
-      <ion-card class="card no-padding" >
-        <form (ngSubmit)="savePersonalDetails()" [formGroup]="form">
-          <ion-list inset>
-        
-            <ion-item class="input">
-              <ion-input type="text" placeholder="First name" formControlName="fname"></ion-input>
-            </ion-item>
-            <div class="input-err" ngxErrors="fname">
-            </div>
+    <h1 class="title">Personal Details</h1>
+    <ion-card class="card no-padding">
+      <form (ngSubmit)="savePersonalDetails()" [formGroup]="form">
+        <ion-list inset>
+          <ion-item class="input">
+            <ion-input
+              type="text"
+              placeholder="First name"
+              formControlName="fname"
+            ></ion-input>
+          </ion-item>
+          <div class="input-err" ngxErrors="fname"></div>
 
-            <ion-item class="input">
-              <ion-input type="text" placeholder="Last name" formControlName="lname"></ion-input>
-            </ion-item>
-            <div class="input-err" ngxErrors="lname">
-            </div>
-        
-            <ion-item class="input">
-              <ion-input type="number" placeholder="Age" formControlName="age"></ion-input>
-            </ion-item>
-            <div class="input-err" ngxErrors="age">
-            </div>
+          <ion-item class="input">
+            <ion-input
+              type="text"
+              placeholder="Last name"
+              formControlName="lname"
+            ></ion-input>
+          </ion-item>
+          <div class="input-err" ngxErrors="lname"></div>
 
-            <ion-item class="input">
-              <ion-label color="darktext">Height</ion-label>
-              <ion-select formControlName="heightFeet" multiple="false" name="height">
-                <ion-option *ngFor="let i of [3,4,5,6,7,8]">{{i}}<span>&nbsp;ft</span></ion-option>
-              </ion-select>
-              <ion-select formControlName="heightInches" multiple="false" name="height">
-                <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]">{{i}}<span>&nbsp;inches</span></ion-option>
-              </ion-select>
-            </ion-item>
-            <div class="input-err" ngxErrors="height">
-            </div>
+          <ion-item class="input">
+            <ion-input
+              type="number"
+              placeholder="Age"
+              formControlName="age"
+            ></ion-input>
+          </ion-item>
+          <div class="input-err" ngxErrors="age"></div>
 
-            <ion-item class="input">
-              <ion-input type="number" placeholder="Goal Calories" formControlName="goalCalories"></ion-input>
-            </ion-item>
-            <div class="input-err" ngxErrors="calories">
-            </div>
-          </ion-list>
-    
-        </form>
+          <ion-item class="input">
+            <ion-label color="darktext">Height</ion-label>
+            <ion-select
+              formControlName="heightFeet"
+              multiple="false"
+              name="height"
+            >
+              <ion-option *ngFor="let i of [3,4,5,6,7,8]"
+                >{{i}}<span>&nbsp;ft</span></ion-option
+              >
+            </ion-select>
+            <ion-select
+              formControlName="heightInches"
+              multiple="false"
+              name="height"
+            >
+              <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]"
+                >{{i}}<span>&nbsp;inches</span></ion-option
+              >
+            </ion-select>
+          </ion-item>
+          <div class="input-err" ngxErrors="height"></div>
+
+          <ion-item class="input">
+            <ion-input
+              type="number"
+              placeholder="Goal Calories"
+              formControlName="goalCaloriesIn"
+            ></ion-input>
+          </ion-item>
+          <div class="input-err" ngxErrors="calories"></div>
+        </ion-list>
+      </form>
     </ion-card>
-    <button ion-button outline color="light" class="button slideRight smallButton whiteText" (click)="push('getStarted')">Back
+    <button
+      ion-button
+      outline
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('getStarted')"
+    >
+      Back
     </button>
-    <button ion-button type="submit" color="dark" class="button slideLeft smallButton" (click)="savePersonalDetails('withings')">Next</button>
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="savePersonalDetails('withings')"
+    >
+      Next
+    </button>
   </div>
 
-  <div *ngIf="this.withings">
-    <ion-card class="card">
-      <h1 class="title">Withings</h1>
-      <p>
-        - Download Health Mate by Withings from the Google PlayStore.<br><br>
-        - Sign-up for a Withings account and follow the instructions for connecting your Blood Pressure monitor.<br><br>
-      </p>
-    </ion-card>
-    <button ion-button block type="submit" color="light" class="button slideLeft" (click)="goToPlayStore()">Go to PlayStore</button>
-    <button ion-button outline type="submit" color="light" class="button slideRight smallButton whiteText" (click)="push('personalDetails')">Back </button>
-    <button ion-button type="submit" color="dark" class="button slideLeft smallButton" (click)="push('withingsAuth')">Next</button>
-  </div>
-
+  <div *ngIf="this.withings" ng-include src"'./withings.html'"></div>
 
   <div *ngIf="this.withingsAuth">
     <ion-card class="card">
@@ -94,13 +116,34 @@
         Authenticate Atria with Withings.
       </p>
     </ion-card>
-    <button ion-button block type="submit" color="light" class="button slideLeft" (click)="getWithingsAuth()"> Authenticate
+    <button
+      ion-button
+      block
+      type="submit"
+      color="light"
+      class="button slideLeft"
+      (click)="getWithingsAuth()"
+    >
+      Authenticate
     </button>
-    <button ion-button outline type="submit" color="light" class="button slideRight smallButton whiteText" (click)="push('withings')">Back
+    <button
+      ion-button
+      outline
+      type="submit"
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('withings')"
+    >
+      Back
     </button>
-    <button ion-button type="submit" color="dark" class="button slideLeft smallButton" (click)="done()">Done</button>
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="done()"
+    >
+      Done
+    </button>
   </div>
-
-
-  
 </ion-content>

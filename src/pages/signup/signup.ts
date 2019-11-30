@@ -17,7 +17,7 @@ export class SignupPage {
     age: 0,
     fname: '',
     lname: '',
-    goalCalories: 2000,
+    goalCaloriesIn: 2000,
     heightFeet: ' ',
     heightInches: ''
   }

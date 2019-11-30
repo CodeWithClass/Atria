@@ -19,12 +19,20 @@
     <!-- ================= fName ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">First Name</ion-label>
-      <ion-input type="text" [(ngModel)]="mystats.fname" name="fname"></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="mystats.fname"
+        name="fname"
+      ></ion-input>
     </ion-item>
     <!-- ================= lName ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Last Name</ion-label>
-      <ion-input type="text" [(ngModel)]="mystats.lname" name="lname"></ion-input>
+      <ion-input
+        type="text"
+        [(ngModel)]="mystats.lname"
+        name="lname"
+      ></ion-input>
     </ion-item>
     <!-- ================= Age ================== -->
     <ion-item class="Input">
@@ -34,17 +42,33 @@
     <!-- ================= Height ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Height</ion-label>
-      <ion-select [(ngModel)]="mystats.heightFeet" multiple="false" name="height">
-        <ion-option *ngFor="let i of [1,2,3,4,5,6,7]">{{i}}<span>&nbsp;ft</span></ion-option>
+      <ion-select
+        [(ngModel)]="mystats.heightFeet"
+        multiple="false"
+        name="height"
+      >
+        <ion-option *ngFor="let i of [1,2,3,4,5,6,7]"
+          >{{i}}<span>&nbsp;ft</span></ion-option
+        >
       </ion-select>
-      <ion-select [(ngModel)]="mystats.heightInches" multiple="false" name="height2">
-        <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]">{{i}}<span>&nbsp;in</span></ion-option>
+      <ion-select
+        [(ngModel)]="mystats.heightInches"
+        multiple="false"
+        name="height2"
+      >
+        <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]"
+          >{{i}}<span>&nbsp;in</span></ion-option
+        >
       </ion-select>
     </ion-item>
     <!-- ================= Max/Goal Calories ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Goal Calories</ion-label>
-      <ion-input type="number" [(ngModel)]="mystats.goalCalories" name="goalCalories"></ion-input>
+      <ion-input
+        type="number"
+        [(ngModel)]="mystats.goalCaloriesIn"
+        name="goalCaloriesIn"
+      ></ion-input>
     </ion-item>
 
     <button ion-button type="submit" block color="base">Save</button>

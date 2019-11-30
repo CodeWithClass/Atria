@@ -16,7 +16,7 @@ export class MyStatsPage {
     age: 0,
     fname: '',
     lname: '',
-    goalCalories: 0,
+    goalCaloriesIn: 0,
     heightFeet: '',
     heightInches: ''
   }
