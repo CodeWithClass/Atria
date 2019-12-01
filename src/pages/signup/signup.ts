@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { DBService } from '../../services/db.service'
 import { WelcomePage } from '../welcome/welcome'
+import { LoginPage } from '../login/login'
 
 @Component({
   selector: 'page-signup',
@@ -59,5 +60,10 @@ export class SignupPage {
       },
       error => (this.signupError = error.message)
     )
+  }
+
+  public pushPage(page) {
+    if (page === 'login') return this.navCtrl.push(LoginPage)
+    return
   }
 }

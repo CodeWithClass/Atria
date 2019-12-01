@@ -13,7 +13,12 @@ export class DBService {
     public userStats: UserStatsProvider
   ) {}
 
-  loadDBdata(cb) {
+  loadDBdata(cb, signout: string = '') {
+    if (signout === 'gracefulSignout') {
+      this.fdb.database.goOffline()
+      return cb()
+    }
+
     this.fdb
       .object('users/' + this.authService.getUID())
       .valueChanges()

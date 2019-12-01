@@ -1,11 +1,11 @@
 import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular'
-import { LoginPage } from '../login/login'
+import { SignupPage } from '../signup/signup'
 import { AuthService } from '../../services/auth.service'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { FitbitService } from '../../services/fitbit.service'
-
-// import { AngularFireDatabase } from "angularfire2/database"
+import { AngularFireDatabase } from 'angularfire2/database'
+import { DBService } from '../../services/db.service'
 import { WelcomePage } from '../welcome/welcome'
 
 @IonicPage()
@@ -19,17 +19,19 @@ export class SettingsPage {
     public navParams: NavParams,
     public app: App,
     public auth: AuthService,
-    // private fdb: AngularFireDatabase,
     public afAuth: AngularFireAuth,
+    public dbService: DBService,
     public fbService: FitbitService
   ) {}
 
   logout() {
-    this.afAuth.auth.signOut().then(() => {
-      // this.fdb.database.goOffline();
-      this.navCtrl.setRoot(LoginPage)
-    })
+    this.dbService.loadDBdata(() => {
+      this.afAuth.auth.signOut().then(() => {
+        this.navCtrl.setRoot(SignupPage)
+      })
+    }, 'gracefulSignout')
   }
+
   public pushPage(page) {
     this.navCtrl.push(WelcomePage, {}, { animate: true, direction: 'forward' })
   }
