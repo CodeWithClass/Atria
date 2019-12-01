@@ -23,4 +23,8 @@ export class ActivityPage {
   public fitbitAuthStatus() {
     return this.fbService.getAuthStatus()
   }
+
+  public fetchActData(manual: boolean = false) {
+    return this.fbService.getData(manual, 'activities')
+  }
 }

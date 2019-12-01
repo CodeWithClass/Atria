@@ -8,11 +8,15 @@ page-activity {
   }
 
   .activity-background {
-    max-height: 70vh;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     .area1 {
       padding: 0;
       color: #fff;
+      max-height: 300px;
 
       .title {
         h2 {
@@ -53,15 +57,26 @@ page-activity {
     }
 
     .area2 {
+      // margin-top: 40px;
       color: white;
       ul {
-        border: red solid 2px;
         width: 100%;
         list-style-type: none;
         padding: 0;
         margin: 0;
 
         li {
+          margin: 5vh 0;
+          border-bottom: 2px rgba($color: #fff, $alpha: 0.1) solid;
+          h1 {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 20px;
+            .value {
+              font-size: 30px;
+            }
+          }
         }
       }
       .item {

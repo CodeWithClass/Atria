@@ -1,30 +1,72 @@
 page-signup {
-    .bkground{
-        background: -webkit-gradient(top, color($colors,bkGradienttop), color($colors,bkGradientbottom));
-        background: -o-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
-        background: -moz-linear-gradient(bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
-        background: linear-gradient(to bottom, color($colors,bkGradienttop), color($colors,bkGradientbottom));
+  ion-content {
+    background: -webkit-gradient(
+      top,
+      color($colors, bkGradienttop),
+      color($colors, bkGradientbottom)
+    );
+    background: -o-linear-gradient(
+      bottom,
+      color($colors, bkGradienttop),
+      color($colors, bkGradientbottom)
+    );
+    background: -moz-linear-gradient(
+      bottom,
+      color($colors, bkGradienttop),
+      color($colors, bkGradientbottom)
+    );
+    background: linear-gradient(
+      to bottom,
+      color($colors, bkGradienttop),
+      color($colors, bkGradientbottom)
+    );
+  }
+  .bkground {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 
+    .logo-containter {
+      width: 100%;
+      .logo {
+        width: 50%;
+        display: block;
+        margin: 5vh auto auto;
+      }
     }
 
-    .Input{
-        border-radius: 4px;
-        background-color: rgba(256, 256, 256, 0.7);
-        margin: 18px auto;
-    }
-
-    .Input .item-inner{
+    .Input {
+      border-radius: 4px;
+      background-color: rgba(256, 256, 256, 0.7);
+      margin: 18px auto;
+      .item-inner {
         border-bottom: none !important;
         color: color($colors, darktext);
+      }
     }
 
-  .signupButton{
-        background-color: #fff;
-        // color: #fff;
+    .signupButton {
+      background-color: #fff;
+      // color: #fff;
+      padding: 25px 0 25px 0;
+      color: color($colors, darktext);
+      border-radius: 4px;
+    }
+
+    .loginContainer {
+      margin: 0 10vw;
+      h2 {
+        color: #fff;
+        font-size: 18px;
+        font-weight: 300;
+      }
+      .loginButton {
+        background-color: color($colors, secondary);
         padding: 25px 0 25px 0;
-        color: color($colors, darktext);
+        color: color($colors, light);
         border-radius: 4px;
+      }
+    }
   }
-
-
 }

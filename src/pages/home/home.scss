@@ -1,366 +1,364 @@
 page-home {
-    .home-page {
+  .home-page {
+    // background-color: #fff !important;
 
+    ion-navbar {
+      background-color: transparent;
 
-        // background-color: #fff !important;
+      .atria-title {
+        color: color($colors, primary);
+      }
+    }
+    ion-card {
+      position: relative;
+      min-height: 250px;
+      // width: 100%;
+      // margin: 0;
+      border-radius: 4%;
+      margin-top: 5%;
+      // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
+    }
 
-        ion-navbar{
-            background-color: transparent;
+    .card-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
 
-            .atria-title{
-                color: color($colors, primary);
-            }
+    .chevron {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 40px;
+      font-weight: lighter;
+      opacity: 0.5;
+      color: #fff;
+      padding: 2%;
+    }
+
+    .card-title {
+      font-size: 1.4em;
+      color: #fff;
+      margin: 0 0 1% 0%;
+      padding: 3%;
+    }
+
+    .card-subtitle {
+      font-size: 1.2em;
+      color: #fff;
+      margin: 0 %4 %4 4%;
+    }
+
+    .card1 {
+      //  background: steelblue;
+      color: #fff;
+      // background-color: rgba(2, 211, 127, 1);
+      // background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
+      // background-color: #445;
+      background-color: transparent;
+
+      width: 100%;
+      margin: 0;
+      border-radius: 0%;
+      min-height: 200px;
+      box-shadow: none;
+
+      .card-subtitle {
+        margin-bottom: 0;
+      }
+      .card-content {
+        padding: 5% 10% 5% 10%;
+
+        .left {
+          width: 50%;
+
+          img {
+            border-radius: 50%;
+            width: 50%;
+            margin: 0 auto;
+          }
+
+          h4 {
+            color: #fff;
+            margin: 5% 0 0 0;
+            font-size: 100%;
+            text-align: center;
+          }
         }
-        ion-card {
-            position: relative;
-            min-height: 250px;
-            // width: 100%;
-            // margin: 0;
-            border-radius: 4%;
-            margin-top: 5%;
-            // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
+
+        .recommendation {
+          // border: rgba(117, 255, 200, 0.6) 2px solid;
+          background: rgba(255, 255, 255, 0.3);
+          color: #fff;
+          border-radius: 4px;
+          margin: 20px 0;
         }
 
-        .card-img{
+        h3 {
+          color: steelblue;
+          font-size: 130%;
+        }
+
+        p {
+          color: white;
+          margin-top: 20px;
+          font-size: 8px;
+        }
+      }
+    }
+
+    .card2 {
+      // background-color: color($colors, bloodpressure);
+      background: linear-gradient(
+        60deg,
+        rgb(214, 68, 42) 0%,
+        rgb(226, 143, 128) 100%
+      );
+
+      .bp-chart {
+        color: #fff !important;
+        margin: 4% auto;
+      }
+
+      .bp-readings {
+        margin: 5% 5% 15% 5%;
+        text-align: center;
+
+        .previous {
+          margin-top: 4vh;
+
+          h3 {
+            font-size: 5vw;
+            font-weight: 200;
+            color: white;
+          }
+          .label {
+            font-size: 4vw;
+            font-weight: 500;
+          }
+        }
+
+        .predicted {
+          margin-top: 4vh;
+
+          h3 {
+            font-size: 5vw;
+            font-weight: 200;
+            color: white;
+          }
+          .label {
+            font-size: 4vw;
+            font-weight: 400;
+          }
+        }
+
+        .current {
+          border: solid 5px rgba(255, 255, 255, 0);
+          border-radius: 50%;
+          box-shadow: 0px 0px 14px 10px rgba(255, 255, 255, 0.8);
+          margin: 0 auto;
+          padding: 1%;
+          width: 30vw;
+          height: 30vw;
+
+          .systolic {
+            font-size: 8vw;
+            color: white;
+            margin: 10% 10% 0 10%;
+          }
+          .diastolic {
+            font-size: 8vw;
+            color: white;
+          }
+          .label {
+            color: white;
+            margin-top: 30px;
+          }
+        }
+      }
+    }
+
+    .card3 {
+      //   background-color: color($colors, food);
+      // background-color: rgba(106,90,205,0.9);
+      background: linear-gradient(
+        60deg,
+        rgba(106, 90, 205, 1) 0%,
+        rgb(156, 145, 230) 100%
+      );
+
+      .card-content {
+        .prog-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          .progress-text {
+            position: absolute;
+            left: 50;
+            right: -50;
+            // text-align: center;
+          }
+
+          .progress-text h2 {
+            font-size: 30px;
+            font-weight: 300;
+            color: rgb(234, 234, 234);
+            text-align: center;
+          }
+
+          .progress-text hr {
+            width: 90%;
+            max-width: 100px;
+            margin: 0 auto;
+            height: 2px;
+            background-color: #888;
+          }
+        }
+        .card-subtitle {
+          margin: 4%;
+          text-align: center;
+        }
+
+        .meta-container {
+          // display: block;
+          margin: 30px 20%;
+
+          h3 {
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+            color: rgb(234, 234, 234);
+          }
+        }
+      }
+    }
+
+    .card4 {
+      background: linear-gradient(
+        60deg,
+        rgb(16, 150, 79) 0%,
+        rgb(104, 226, 162) 100%
+      );
+
+      .card-content {
+        .prog-container {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+
+          round-progress {
+            margin: auto;
+          }
+          .burn-icon {
+            display: block;
+            margin: 10px auto 0px auto;
+            width: 10vw;
+          }
+
+          .progress-text {
             position: absolute;
             top: 0;
             left: 0;
-            z-index: -1;
+            right: 0;
+            margin: auto;
+            text-align: center;
+
+            h2 {
+              font-size: 40px;
+              font-weight: 300;
+              color: #fff;
+            }
+            h5 {
+              font-weight: 300;
+              color: #fff;
+            }
+          }
         }
-
-        .chevron{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 40px;
-            font-weight: lighter;
-            opacity: 0.5;
-            color: #fff;
-            padding: 2%;
-        }
-
-        
-
-        .card-title {
-            
-            font-size: 1.4em;
-            color: #fff;
-            margin: 0 0 1% 0%;
-            padding: 3%;
-        }
-
         .card-subtitle {
-            font-size: 1.2em;
-            color: #fff;
-            margin: 0 %4 %4 4%
-        }
-        
-  
-        .card1{
-            //  background: steelblue;
-            color: #fff;
-            // background-color: rgba(2, 211, 127, 1);
-            // background: linear-gradient( 180deg, rgba(2, 211, 127, 1) 50%, rgb(101, 223, 174) 100%) ;
-            // background-color: #445;
-            background-color: transparent;
-
-            width: 100%;
-            margin: 0;
-            border-radius: 0%;
-            min-height: 200px;
-            box-shadow: none;
-
-            
-
-            .card-subtitle{
-                margin-bottom: 0;
-            }
-            .card-content{
-                padding: 5% 10% 5% 10%;
-
-                .left{
-                    width: 50%;
-
-
-                    img{
-                        border-radius: 50%;
-                        width: 50%;
-                        margin: 0 auto;
-                    }
-
-                    h4{
-                        color: #fff;
-                        margin: 5% 0 0 0;
-                        font-size: 100%;
-                        text-align: center;
-                    }
-                }
-
-                .recommendation{
-                    // border: rgba(117, 255, 200, 0.6) 2px solid;
-                    background: rgba(255, 255, 255, 0.3);
-                    color: #fff;
-                    border-radius: 4px;
-                    margin: 20px 0;
-                }
-            
-                h3{
-                    color: steelblue;
-                    font-size: 130%;
-                }
-
-                p{  
-                    color: white;
-                    margin-top: 20px;
-                    font-size: 8px;
-                }
-            }
-            
-        }
-        
-        .card2{
-            // background-color: color($colors, bloodpressure);
-                background: linear-gradient( 60deg,rgb(214, 68, 42) 0%,rgb(226, 143, 128) 100%);
-
-            .bp-chart {
-                color: #fff !important;
-                margin: 4% auto;
-            }
-
-            .bp-readings{
-                margin: 5% 5% 15% 5%;
-                text-align: center;
-                
-                .previous{
-                    margin-top: 4vh;
-
-                    h3{
-                        font-size: 5vw;
-                        font-weight: 200;
-                        color: white
-                    }
-                    .label{
-                        font-size: 4vw;
-                        font-weight: 500;
-                    }
-                }
-
-                .predicted{
-                    margin-top: 4vh;
-
-                    h3{
-                        font-size: 5vw;
-                        font-weight: 200;
-                        color: white
-                    }
-                    .label{
-                        font-size: 4vw;
-                        font-weight: 400;
-                    }
-                }
-
-
-                .current{
-                    border: solid 5px rgba(255,255,255, 0);
-                    border-radius: 50%;
-                    box-shadow: 0px 0px 14px 10px rgba(255,255,255, 0.8);
-                    margin:0 auto;
-                    padding: 1%;
-                    width: 30vw;
-                    height: 30vw;
-
-                    .systolic {
-                        font-size: 8vw;
-                        color: white; 
-                        margin: 10% 10% 0 10%;                  
-                    }
-                    .diastolic {
-                        font-size: 8vw;
-                        color: white;                   
-                    }
-                    .label{
-                        color: white;
-                        margin-top: 30px;
-                    }
-                }
-            }
-
-            
-
-        }
-        
-        .card3{
-            //   background-color: color($colors, food);
-            // background-color: rgba(106,90,205,0.9);
-            background: linear-gradient( 60deg,rgba(106,90,205, 1) 0%,rgb(156, 145, 230) 100%);
-
-            .card-content{
-                .prog-container{
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    position: relative;
-
-                    .progress-text{
-                        position: absolute;
-                        left: 50;
-                        right: -50;
-                        // text-align: center;
-                    }
-
-                    .progress-text h2{
-                        font-size: 30px;
-                        font-weight: 300;
-                        color:rgb(234, 234, 234);
-                        text-align: center;
-
-                    }
-
-                    .progress-text hr{
-                        width: 90%;
-                        max-width: 100px;
-                        margin: 0 auto;
-                        height: 2px;
-                        background-color:#888;
-
-                    }
-                }
-                .card-subtitle{
-                    margin: 4%;
-                    text-align: center;
-                }
-
-                .meta-container{
-                    // display: block;
-                    margin: 30px 20% ;
-
-                    h3{
-                        font-size: 18px;
-                        font-weight: 400;
-                        text-align: center;
-                        color:rgb(234, 234, 234);
-                    }
-                }
-            }
-
+          margin: 4%;
+          text-align: center;
         }
 
-        .card4{
-            background: linear-gradient( 60deg,rgb(16, 150, 79) 0%,rgb(104, 226, 162) 100%);
+        .meta-container {
+          // display: block;
+          margin: 30px 20%;
 
-            .card-content{
-                .prog-container{
-                    width: 100%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    position: relative;
-
-                    .progress-text{
-                        position: absolute;
-                        left: 50;
-                        right: -50;
-                        // text-align: center;
-
-                        h1{
-                            font-size: 30px;
-                            font-weight: 300;
-                            color:rgb(255, 255, 255);
-                            text-align: center;
-
-                        }
-                        span{
-                            font-size: 20px;
-                            font-weight: 300;
-                            text-align: center;
-                            color:rgb(255, 255, 255);
-                        }
-                    }
-                }
-                .card-subtitle{
-                    margin: 4%;
-                    text-align: center;
-                }
-
-                .meta-container{
-                    // display: block;
-                    margin: 30px 20% ;
-
-                    h3{
-                        font-size: 18px;
-                        font-weight: 400;
-                        text-align: center;
-                        color:rgb(234, 234, 234);
-                    }
-                }
-            }
+          h3 {
+            font-size: 18px;
+            font-weight: 400;
+            text-align: center;
+            color: rgb(234, 234, 234);
+          }
         }
-
-        .card5{
-            // background-color: rgba(70,130,180,0.8);
-            background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
-
-            .card-content{
-                display: flex;
-                justify-content: center;
-                .chart-key{
-                    width:40%;
-                    // float: left;
-
-                    ul{
-                        list-style: none;
-                        width:100%;
-                        li{
-                            color: #fff;
-                            margin: 0% 0 15% 0%;
-                            font-size: larger;
-                            text-align: center;
-                            border-radius: 14px;
-                            padding: 3% 0;
-                            
-                        }
-
-                        li:first-of-type{
-                            border-bottom: solid 4px rgba(167,72,195,0.8);
-                            background: rgba(167,72,195,0.8)//#af5ac9;
-                        }
-                        li:nth-of-type(2){
-                            border-bottom: solid 4px rgba(110,89,201,0.8); //#6e59c9;
-                            background: rgba(110,89,201,0.8);//#af5ac9;
-
-                        }
-                        li:nth-of-type(3){
-                            border-bottom: solid 4px rgba(85,173,224,0.8);//#55ade0;
-                            background: rgba(85,173,224,0.8)//#af5ac9;
-                        }
-                    }
-
-                    
-
-                }
-                
-                .chart-container{
-                    width: 50%;
-                    height: 160px;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    .chart-total{
-                        position: absolute;
-                        left: 50;
-                        right: -50;
-                        text-align: center;
-                        color: #fff;
-                        font-size: 20px;
-
-                    }
-                 
-                }
-                
-            }
-        }
+      }
     }
+
+    .card5 {
+      // background-color: rgba(70,130,180,0.8);
+      background: linear-gradient(
+        60deg,
+        rgba(70, 130, 180, 1) 0%,
+        rgb(128, 176, 215) 100%
+      );
+
+      .card-content {
+        display: flex;
+        justify-content: center;
+        .chart-key {
+          width: 40%;
+          // float: left;
+
+          ul {
+            list-style: none;
+            width: 100%;
+            li {
+              color: #fff;
+              margin: 0% 0 15% 0%;
+              font-size: larger;
+              text-align: center;
+              border-radius: 14px;
+              padding: 3% 0;
+            }
+
+            li:first-of-type {
+              border-bottom: solid 4px rgba(167, 72, 195, 0.8);
+              background: rgba(167, 72, 195, 0.8); //#af5ac9;
+            }
+            li:nth-of-type(2) {
+              border-bottom: solid 4px rgba(110, 89, 201, 0.8); //#6e59c9;
+              background: rgba(110, 89, 201, 0.8); //#af5ac9;
+            }
+            li:nth-of-type(3) {
+              border-bottom: solid 4px rgba(85, 173, 224, 0.8); //#55ade0;
+              background: rgba(85, 173, 224, 0.8); //#af5ac9;
+            }
+          }
+        }
+
+        .chart-container {
+          width: 50%;
+          height: 160px;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .chart-total {
+            position: absolute;
+            left: 50;
+            right: -50;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
 }

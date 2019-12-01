@@ -1,23 +1,28 @@
 <ion-header no-border>
   <ion-navbar>
-    <ion-title>Activity</ion-title>
+    <ion-title
+      >Activity
+      <span class="refresh">
+        <ion-icon name="refresh" (click)="fetchActData(true)"></ion-icon>
+      </span>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid class="activity-background">
-    <ion-row col-lg-6 class="area1">
+  <div class="activity-background">
+    <div class="area1">
       <round-progress
         id="round-progress"
         [current]="userStats.getActivityData('caloriesOut')"
-        [max]="userStats.getActivityData('calroiesOut')"
-        [color]="'#45ccce'"
-        [background]="'rgba(104, 226, 162, 0.7)'"
+        [max]="userStats.getActivityGoal('caloriesOut')"
+        [color]="'rgba(250, 250, 250, 1)'"
+        [background]="'rgba(104, 226, 162, 0.5)'"
         [radius]="100"
         [stroke]="10"
         [semicircle]="false"
         [responsive]="false"
-        [duration]="800"
+        [duration]="1500"
         [animation]="'easeInOutQuart'"
         [animationDelay]="0"
         [stroke]="4"
@@ -30,15 +35,50 @@
         </h2>
         <h5>Calories</h5>
       </div>
-    </ion-row>
+    </div>
 
-    <ion-row col-lg-6 class="area2">
+    <div col-lg-6 class="area2">
       <ul>
         <li>
-          <h1></h1>
+          <h1>
+            <span class="label">Steps</span>
+            <span class="value">{{userStats.getActivityData('steps')}}</span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Fairly Active Minutes</span>
+            <span class="value"
+              >{{userStats.getActivityData('fairlyActiveMinutes')}}
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Fairly Active Minutes</span>
+            <span class="value"
+              >{{userStats.getActivityData('fairlyActiveMinutes')}}
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Lightly Active Minutes</span>
+            <span class="value"
+              >{{userStats.getActivityData('lightlyActiveMinutes')}}
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Sedentary Minutes</span>
+            <span class="value"
+              >{{userStats.getActivityData('sedentaryMinutes')}}
+            </span>
+          </h1>
         </li>
       </ul>
-    </ion-row>
+    </div>
     <button
       *ngIf="!fitbitAuthStatus()"
       ion-button
@@ -48,5 +88,5 @@
     >
       fitbit auth
     </button>
-  </ion-grid>
+  </div>
 </ion-content>

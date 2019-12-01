@@ -130,10 +130,10 @@ export class UserStatsProvider {
 
   //================= activity ====================/
 
-  getActivityGoal(path) {
-    return _.get(this.activityData, `goals.${path}`, 0)
+  getActivityGoal(path: string) {
+    return _.get(this.activityData, `goals.${path}`, 500)
   }
-  getActivityData(path) {
+  getActivityData(path: string) {
     return _.get(this.activityData, `summary.${path}`, 0)
   }
 }

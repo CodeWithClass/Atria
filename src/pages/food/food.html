@@ -18,16 +18,15 @@
           id="round-progress"
           [current]="userStats.getCurrCalories()"
           [max]="userStats.getgoalCalories()"
-          [color]="'#45ccce'"
-          [background]="'#eaeaea'"
+          [color]="'rgb(255,255,255)'"
+          [background]="'rgba(159, 147, 237, 0.5)'"
           [radius]="100"
-          [stroke]="4"
+          [stroke]="10"
           [semicircle]="false"
           [responsive]="false"
-          [duration]="800"
+          [duration]="1500"
           [animation]="'easeInOutQuart'"
           [animationDelay]="0"
-          [stroke]="4"
         >
         </round-progress>
         <div class="progress-text">

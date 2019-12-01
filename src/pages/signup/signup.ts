@@ -34,6 +34,10 @@ export class SignupPage {
       password: [
         '',
         Validators.compose([Validators.required, Validators.minLength(6)])
+      ],
+      confirmPassword: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(6)])
       ]
     })
   }
@@ -42,7 +46,8 @@ export class SignupPage {
     let data = this.form.value
     let credentials = {
       email: data.email,
-      password: data.password
+      password: data.password,
+      confirmPassword: data.confirmPassword
     }
     this.auth.signUp(credentials).then(
       () => {

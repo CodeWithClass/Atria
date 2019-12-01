@@ -2,20 +2,23 @@
   <ion-navbar>
     <ion-title>
       <span class="atria-title">Atria</span>
-      <ion-icon class="settingsCog" name="settings" (click)="pushPage('settings')"></ion-icon>
+      <ion-icon
+        class="settingsCog"
+        name="settings"
+        (click)="pushPage('settings')"
+      ></ion-icon>
     </ion-title>
   </ion-navbar>
-
 
   <ion-card class="card1" (click)="pushPage('stats')">
     <div class="card-content">
       <ion-item class="recommendation">
         <ion-label>Drink 16 oz of water</ion-label>
-        <ion-checkbox item-right ></ion-checkbox>
+        <ion-checkbox item-right></ion-checkbox>
       </ion-item>
       <ion-item class="recommendation">
         <ion-label>Perform 20 Squats</ion-label>
-        <ion-checkbox item-right ></ion-checkbox>
+        <ion-checkbox item-right></ion-checkbox>
       </ion-item>
       <p>**Based on your activity level, blood pressure and diet.</p>
     </div>
@@ -23,20 +26,32 @@
 
   <ion-card class="card2" (click)="pushPage('bloodpressure')">
     <div class="card-content">
-      <div class="card-title">Blood Pressure</div>      
+      <div class="card-title">Blood Pressure</div>
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
-          <h3 class="systolic">{{(userStats.bpMetrics[1].measurement.systolic | number:'1.0-0') || 0}}</h3>
-          <h3 class="diastolic">{{(userStats.bpMetrics[1].measurement.diastolic | number:'1.0-0')|| 0}}</h3>
+          <h3 class="systolic">
+            {{(userStats.bpMetrics[1].measurement.systolic | number:'1.0-0') ||
+            0}}
+          </h3>
+          <h3 class="diastolic">
+            {{(userStats.bpMetrics[1].measurement.diastolic | number:'1.0-0')||
+            0}}
+          </h3>
           <h3 class="label">Previous</h3>
         </ion-col>
         <ion-col>
           <div class="current">
-            <h3 class="systolic">{{(userStats.bpMetrics[0].measurement.systolic | number:'1.0-0') || 0}}</h3>
-            <h3 class="diastolic">{{(userStats.bpMetrics[0].measurement.diastolic | number:'1.0-0') || 0}}</h3>
+            <h3 class="systolic">
+              {{(userStats.bpMetrics[0].measurement.systolic | number:'1.0-0')
+              || 0}}
+            </h3>
+            <h3 class="diastolic">
+              {{(userStats.bpMetrics[0].measurement.diastolic | number:'1.0-0')
+              || 0}}
+            </h3>
           </div>
         </ion-col>
-        <ion-col col-12 col-sm-3  col-md-1 class="predicted">
+        <ion-col col-12 col-sm-3 col-md-1 class="predicted">
           <h3 class="systolic">140</h3>
           <h3 class="diastolic">90</h3>
           <h3 class="label">Predicted</h3>
@@ -44,98 +59,95 @@
       </ion-row>
     </div>
   </ion-card>
-  
+
   <ion-card class="card3" (click)="pushPage('food')">
-    <div class="card-title">Diet</div>    
+    <div class="card-title">Diet</div>
     <div class="card-content">
       <div class="prog-container">
-        <round-progress 
+        <round-progress
           id="round-progress"
           [current]="userStats.getCurrCalories()"
           [max]="userStats.getgoalCalories()"
-          [color]="'#45ccce'" 
-          [background]="'rgba(159, 147, 237, 0.7)'" 
-          [radius]="80" 
-          [stroke]="6" 
-          [semicircle]="false" 
-          [responsive]="false" 
-          [duration]="800" 
+          [color]="'rgba(250, 250, 250, 1)'"
+          [background]="'rgba(159, 147, 237, 0.5)'"
+          [radius]="80"
+          [stroke]="6"
+          [semicircle]="false"
+          [responsive]="false"
+          [duration]="1500"
           [animation]="'easeInOutQuart'"
-          [animationDelay]="0" 
+          [animationDelay]="0"
           [stroke]="4"
         ></round-progress>
         <div class="progress-text">
-          <h2>{{(userStats.getCurrCalories()| number:'1.0-0') || 0}}
-            <hr>{{userStats.getgoalCalories() || 0}}
+          <h2>
+            {{(userStats.getCurrCalories()| number:'1.0-0') || 0}}
+            <hr />
+            {{userStats.getgoalCalories() || 0}}
           </h2>
         </div>
       </div>
       <div class="card-subtitle">Calories</div>
 
-      <div>
-
-      </div>
+      <div></div>
     </div>
   </ion-card>
 
   <ion-card class="card4" (click)="pushPage('activity')">
     <div class="card-title">Activity</div>
-  
+
     <div class="card-content">
       <div class="prog-container">
-        <round-progress 
+        <round-progress
           id="round-progress"
-          [current]="userStats.getCurrCalories()"
-          [max]="userStats.getgoalCalories()"
-          [color]="'#45ccce'" 
-          [background]="'rgba(104, 226, 162, 0.7)'" 
-          [radius]="80" 
-          [stroke]="6" 
-          [semicircle]="false" 
-          [responsive]="false" 
-          [duration]="800" 
+          [[current]="userStats.getActivityData('caloriesOut')"
+          [max]="userStats.getActivityGoal('caloriesOut')"
+          [color]="'rgba(250, 250, 250, 1)'"
+          [background]="'rgba(104, 226, 162, 0.5)'"
+          [radius]="80"
+          [stroke]="6"
+          [semicircle]="false"
+          [responsive]="false"
+          [duration]="1500"
           [animation]="'easeInOutQuart'"
-          [animationDelay]="0" 
+          [animationDelay]="0"
           [stroke]="4"
         ></round-progress>
         <div class="progress-text">
-          <h1>{{ 453 || 0}}</h1><span>steps</span>
-          <h3></h3>
+          <img class="burn-icon" src="../../assets/imgs/burn.png" />
+          <h2>
+            {{ userStats.getActivityData('caloriesOut') || 0}}
+          </h2>
+          <h5>Calories</h5>
         </div>
-  
       </div>
     </div>
   </ion-card>
-  
-  
-  
+
   <ion-card class="card5" (click)="pushPage('sleep')">
     <div class="card-title">Sleep</div>
-      <div class="card-content">
-        <div class="chart-key">
-          <ul>
-            <li>Deep Sleep</li>
-            <li>Light Sleep</li>
-            <li>Wake Sleep</li>
-          </ul>
-        </div>
-        <div class="chart-container">
-          <div class="chart-total">
-            {{sleepTotal[0]}}h<br>{{sleepTotal[1]}}m
-          </div>
-          <canvas baseChart
-              [data]="sleepChartData"  
-              [chartType]="sleepChartType"
-              [colors] = "sleepChartColors"
-              [options]="sleepChartOptions"
-              (chartClick)="chartClicked($event)">
-          </canvas>
-        </div>
-        
-        
+    <div class="card-content">
+      <div class="chart-key">
+        <ul>
+          <li>Deep Sleep</li>
+          <li>Light Sleep</li>
+          <li>Wake Sleep</li>
+        </ul>
       </div>
+      <div class="chart-container">
+        <div class="chart-total">
+          {{sleepTotal[0]}}h<br />{{sleepTotal[1]}}m
+        </div>
+        <canvas
+          baseChart
+          [data]="sleepChartData"
+          [chartType]="sleepChartType"
+          [colors]="sleepChartColors"
+          [options]="sleepChartOptions"
+          (chartClick)="chartClicked($event)"
+        >
+        </canvas>
+      </div>
+    </div>
   </ion-card>
-    
-
-
 </ion-content>

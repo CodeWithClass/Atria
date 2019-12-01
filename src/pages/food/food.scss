@@ -87,8 +87,11 @@ page-food {
       }
 
       .addFoodButton {
-        color: white;
-        background-color: #45ccce;
+        color: #333;
+        font-size: larger;
+        // background-color: #45ccce;
+        background-color: #fff;
+
         padding: 25px 0;
       }
     }

@@ -1,36 +1,74 @@
-
 <ion-header no-border>
-
   <ion-navbar>
     <ion-title>Sign Up</ion-title>
   </ion-navbar>
-
 </ion-header>
 
-
-<ion-content class="bkground">
-  <form (ngSubmit)="signup()" [formGroup]="form">
-    <ion-list inset>
-  
-      <ion-item class="Input">
-        <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
-      </ion-item>
-  
-      <div ngxErrors="email" >
-      </div>
-  
-      <ion-item class="Input">
-        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-      </ion-item>
-  
-      <div ngxErrors="password" >
-      </div>
-    </ion-list>
-  
-    <div padding-horizontal>
-      <div class="form-error">{{signupError}}</div>
-  
-      <button ion-button full type="submit" [disabled]="!form.valid" block type="submit" color="light" class="signupButton">Sign up</button>
+<ion-content>
+  <div class="bkground">
+    <div class="logo-containter">
+      <img class="logo" src="assets/imgs/AtriaLogo.png" />
     </div>
-  </form>
+
+    <form (ngSubmit)="signup()" [formGroup]="form">
+      <ion-list inset>
+        <ion-item class="Input">
+          <ion-input
+            type="text"
+            placeholder="Email"
+            formControlName="email"
+          ></ion-input>
+        </ion-item>
+
+        <div ngxErrors="email"></div>
+
+        <ion-item class="Input">
+          <ion-input
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          ></ion-input>
+        </ion-item>
+        <ion-item class="Input">
+          <ion-input
+            type="password"
+            placeholder="Confirm Password"
+            formControlName="confirmPassword"
+          ></ion-input>
+        </ion-item>
+
+        <div ngxErrors="password"></div>
+      </ion-list>
+
+      <div padding-horizontal>
+        <div class="form-error">{{signupError}}</div>
+
+        <button
+          ion-button
+          full
+          type="submit"
+          [disabled]="!form.valid"
+          block
+          type="submit"
+          color="light"
+          class="signupButton"
+        >
+          Sign up
+        </button>
+      </div>
+    </form>
+
+    <div padding-horizontal class="loginContainer">
+      <h2>Already have an account?</h2>
+      <button
+        ion-button
+        center
+        block
+        class="loginButton"
+        (click)="pushPage('login')"
+      >
+        Login
+      </button>
+    </div>
+  </div>
 </ion-content>
