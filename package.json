@@ -1,6 +1,6 @@
 {
   "name": "Atria",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "author": "Dominic Evans",
   "homepage": "http://atria.coach/",
   "private": true,
@@ -9,7 +9,8 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "buildapk": "ionic cordova build --release android && cd platforms/android/app/build/outputs/apk/release && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore atria-release-key.keystore app-release-unsigned.apk alias_name && /Users/dominicevans/Library/Android/sdk/build-tools/28.0.1/zipalign -v 4 app-release-unsigned.apk Atria.apk"
   },
   "dependencies": {
     "@angular/common": "5.0.3",
