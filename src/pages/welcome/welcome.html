@@ -45,10 +45,32 @@
           <div class="input-err" ngxErrors="lname"></div>
 
           <ion-item class="input">
+            <ion-label class="label">Gender</ion-label>
+            <ion-select
+              multiple="false"
+              name="userGender"
+              formControlName="gender"
+            >
+              <ion-option>Male</ion-option>
+              <ion-option>Female</ion-option>
+            </ion-select>
+          </ion-item>
+          <div class="input-err" ngxErrors="gender"></div>
+
+          <ion-item class="input">
             <ion-input
               type="number"
               placeholder="Age"
               formControlName="age"
+            ></ion-input>
+          </ion-item>
+          <div class="input-err" ngxErrors="age"></div>
+
+          <ion-item class="input">
+            <ion-input
+              type="number"
+              placeholder="Body weight"
+              formControlName="weight"
             ></ion-input>
           </ion-item>
           <div class="input-err" ngxErrors="age"></div>
@@ -77,13 +99,19 @@
           <div class="input-err" ngxErrors="height"></div>
 
           <ion-item class="input">
-            <ion-input
-              type="number"
-              placeholder="Goal Calories"
-              formControlName="goalCaloriesIn"
-            ></ion-input>
+            <ion-label class="label">I excerise</ion-label>
+            <ion-select
+              multiple="false"
+              name="activity"
+              formControlName="activityLevel"
+            >
+              <ion-option>5 - 7 days per week</ion-option>
+              <ion-option>3 - 4 days per week</ion-option>
+              <ion-option>1 - 2 days per week</ion-option>
+              <ion-option>0 days per week</ion-option>
+            </ion-select>
           </ion-item>
-          <div class="input-err" ngxErrors="calories"></div>
+          <div class="input-err" ngxErrors="activityLevel"></div>
         </ion-list>
       </form>
     </ion-card>
@@ -93,6 +121,56 @@
       color="light"
       class="button slideRight smallButton whiteText"
       (click)="push('getStarted')"
+    >
+      Back
+    </button>
+    <button
+      ion-button
+      type="submit"
+      color="dark"
+      class="button slideLeft smallButton"
+      (click)="push('healthGoal')"
+    >
+      Next
+    </button>
+  </div>
+
+  <div *ngIf="this.healthGoal">
+    <ion-card class="card">
+      <h1 class="title">General Health Goals</h1>
+      <p>
+        Alongside with managing your Blood Pressure level, What is your health
+        goal?<br /><br />
+      </p>
+      <ion-list
+        radio-group
+        (ionChange)="healthGoalChange($event)"
+        class="healthGoalSelect"
+      >
+        <ion-item>
+          <ion-label>Lose weight</ion-label>
+          <ion-radio slot="start" value="weightLoss" checked></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Maintain my weight</ion-label>
+          <ion-radio slot="start" value="maintainWeight"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Gain weight</ion-label>
+          <ion-radio slot="start" value="weightGain"></ion-radio>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+    <button
+      ion-button
+      outline
+      type="submit"
+      color="light"
+      class="button slideRight smallButton whiteText"
+      (click)="push('personalDetails')"
     >
       Back
     </button>
@@ -132,7 +210,7 @@
       type="submit"
       color="light"
       class="button slideRight smallButton whiteText"
-      (click)="push('personalDetails')"
+      (click)="push('healthGoal')"
     >
       Back
     </button>

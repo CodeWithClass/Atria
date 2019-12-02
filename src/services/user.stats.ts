@@ -14,8 +14,10 @@ export class UserStatsProvider {
     fname: '',
     lname: '',
     age: 0,
+    gender: '',
     heightFeet: '',
     heightInches: '',
+    healthGoal: '',
     goalCaloriesIn: 0
   }
   goalCaloriesIn: number = 2000

@@ -6,7 +6,7 @@ import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { HomePage } from '../home/home'
-
+import _ from 'lodash'
 @IonicPage()
 @Component({
   selector: 'page-welcome',
@@ -15,6 +15,7 @@ import { HomePage } from '../home/home'
 export class WelcomePage {
   getStarted: boolean = true
   personalDetails: boolean = false
+  healthGoal: boolean = false
   withings: boolean = false
   withingsAuth: boolean = false
   fitbit: boolean = false
@@ -25,13 +26,16 @@ export class WelcomePage {
   fitbitPlaystorUrl: string =
     'https://play.google.com/store/apps/details?id=com.fitbit.FitbitMobile&hl=en'
   stats = {
-    age: 0,
     fname: '',
     lname: '',
+    age: 0,
+    gender: '',
     goalCaloriesIn: 2000,
     goalCaloriesOut: 500,
     heightFeet: '',
-    heightInches: ''
+    heightInches: '',
+    activityLevel: '',
+    healthGoal: 'Lose weight'
   }
 
   constructor(
@@ -46,11 +50,12 @@ export class WelcomePage {
     this.form = fb.group({
       fname: '',
       lname: '',
+      gender: '',
       age: '',
+      weight: '',
       heightFeet: '',
       heightInches: '',
-      goalCaloriesIn: '',
-      goalCaloriesOut: ''
+      activityLevel: ''
     })
   }
 
@@ -59,6 +64,7 @@ export class WelcomePage {
   public push(page) {
     this.getStarted = false
     this.personalDetails = false
+    this.healthGoal = false
     this.withings = false
     this.withingsAuth = false
     this.fitbit = false
@@ -70,6 +76,9 @@ export class WelcomePage {
         break
       case 'personalDetails':
         this.personalDetails = true
+        break
+      case 'healthGoal':
+        this.healthGoal = true
         break
       case 'withings':
         this.withings = true
@@ -86,14 +95,45 @@ export class WelcomePage {
     }
   }
   savePersonalDetails(page) {
-    let data = this.form.value
-    for (var key in data) {
-      if (!data[key]) data[key] = this.stats[key]
-    }
-
-    console.log(data)
-    this.dbService.writeStatsToDB(data)
+    let data = { ...this.stats, ...this.form.value }
+    const goalCaloriesIn = _.round(this.calcTDEE(data))
+    this.dbService.writeStatsToDB({ ...data, goalCaloriesIn })
     return this.push(page)
+  }
+
+  healthGoalChange(healthGoal) {
+    return _.set(this.stats, 'healthGoal', healthGoal)
+  }
+
+  calcTDEE(data) {
+    /*Mifflin = (10.m + 6.25h - 5.0a) + s
+    m is mass in kg, h is height in cm, a is
+     age in years, s is +5 for males and -151 
+     for females*/
+    const weight = parseInt(data.weight)
+    const age = parseInt(data.age)
+    const heightFeet = parseInt(data.heightFeet.replace(/\D/g, ''))
+    const heightInches = parseInt(data.heightInches.replace(/\D/g, ''))
+    const { gender, activityLevel, healthGoal } = data
+
+    //convert to metric
+    const heightcm = (heightFeet * 12 + heightInches) * 2.54
+    const weightKg = weight / 2.2 //lbs to kg
+    const genderInt = gender === 'Male' ? 5 : -151
+
+    // prettier-ignore
+    let TDEE: number = ((10*weightKg) + (6.25*heightcm) - (5*age)) + genderInt
+    if (activityLevel === '5 - 7 days per week') TDEE = TDEE * 2
+    if (activityLevel === '3 - 4 days per week') TDEE = TDEE * 1.6
+    if (activityLevel === '1 - 2 days per week') TDEE = TDEE * 1.3
+
+    return this.calcGoalCalories(TDEE, healthGoal)
+  }
+
+  calcGoalCalories(TDEE, healthGoal) {
+    if (healthGoal === 'Lose weight') return TDEE - 500
+    if (healthGoal === 'Gain weight') return TDEE + 500
+    return TDEE
   }
 
   goToPlayStore(app) {
