@@ -1,6 +1,4 @@
-
 <ion-header no-border>
-
   <ion-navbar>
     <ion-title>
       Blood Pressure
@@ -9,44 +7,54 @@
       </span>
     </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
   <ion-row class="bp-readings">
     <ion-col col-12 col-sm-3 col-md-1 class="previous">
-      <h3 class="systolic">{{(userStats.bpMetrics[1].measurement.systolic | number:'1.0-0') || 0}}</h3>
-      <h3 class="diastolic">{{(userStats.bpMetrics[1].measurement.diastolic | number:'1.0-0')|| 0}}</h3>
+      <h3 class="systolic">
+        {{(userStats.bpMetrics[1].measurement.systolic | number:'1.0-0') || 0}}
+      </h3>
+      <h3 class="diastolic">
+        {{(userStats.bpMetrics[1].measurement.diastolic | number:'1.0-0')|| 0}}
+      </h3>
       <h3 class="label">Previous</h3>
     </ion-col>
     <ion-col>
       <div class="current">
-        <h3 class="systolic">{{(userStats.bpMetrics[0].measurement.systolic | number:'1.0-0') || 0}}</h3>
-        <h3 class="diastolic">{{(userStats.bpMetrics[0].measurement.diastolic | number:'1.0-0') || 0}}</h3>
+        <h3 class="systolic">
+          {{(userStats.bpMetrics[0].measurement.systolic | number:'1.0-0') ||
+          0}}
+        </h3>
+        <h3 class="diastolic">
+          {{(userStats.bpMetrics[0].measurement.diastolic | number:'1.0-0') ||
+          0}}
+        </h3>
         <h3 class="label">Current</h3>
       </div>
     </ion-col>
     <ion-col col-12 col-sm-3 col-md-1 class="predicted">
-      <h3 class="systolic">{{false || 140}}</h3>
-      <h3 class="diastolic">{{false || 90}}</h3>
-      <h3 class="label">Predicted</h3> 
+      <h3 class="systolic">{{false || 120}}</h3>
+      <h3 class="diastolic">{{false || 80}}</h3>
+      <h3 class="label">Predicted</h3>
     </ion-col>
-  
+
     <ion-col cols-12 col-md-6 col-lg-4 col-xl-3 class="bp-chart">
-            <canvas baseChart height="240" id="bpChart"
-              [datasets]="lineChartData" 
-              [labels]="lineChartLabels" 
-              [options]="lineChartOptions"
-              [colors]="lineChartColors" 
-              [legend]="lineChartLegend" 
-              [chartType]="lineChartType" 
-              >
-            </canvas>
-          </ion-col>
+      <canvas
+        baseChart
+        height="240"
+        id="bpChart"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"
+      >
+      </canvas>
+    </ion-col>
   </ion-row>
   <!-- <button ion-button (click)="launchManualAdd()" block color="light" class="addBPButton">Manual Update</button> -->
   <!-- <button ion-button (click)="bpAuth()" block color="light" class="addBPButton">bp auth </button> -->
   <!-- <button ion-button (click)="fetchBPdata(true)" block class="addBPButton">fetch bp data </button> -->
-
-
 </ion-content>
