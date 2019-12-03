@@ -49,13 +49,10 @@
     color($colors, bkGradienttop),
     color($colors, bkGradientbottom)
   );
+
   .pulse {
     width: 30%;
-    animation: shrink 1.5s;
-  }
-  .name {
-    margin-top: 10px;
-    width: 40%;
+    animation: pulse 0.5s infinite;
   }
 }
 
@@ -120,20 +117,17 @@ ion-content {
   width: (width + 50%);
 }
 
-@keyframes grow {
-  from {
-    width: 30%;
+@keyframes pulse {
+  0% {
+    // width: 30%;
+    transform: scale(1);
   }
-  to {
-    width: 200%;
+  50% {
+    // width: 35%;
+    transform: scale(1.2);
   }
-}
-
-@keyframes shrink {
-  from {
-    width: 200%;
-  }
-  to {
-    width: 30%;
+  100% {
+    // width: 30;
+    transform: scale(1);
   }
 }

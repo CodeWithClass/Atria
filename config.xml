@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.ionic.starter" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Atria</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>A Healthier way.</description>
+    <author email="dominiccevans@gmail.com" href="http://atria.coach">Dominic Evans</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -93,8 +93,9 @@
     <allow-navigation href="http://192.168.100.15:8100" />
     <allow-navigation href="http://192.168.100.17:8100" />
     <allow-navigation href="http://10.99.99.39:8100" />
+    <allow-navigation href="http://192.168.1.143:8101" />
+    <allow-navigation href="http://192.168.1.143:8100" />
     <engine name="android" spec="7.0.0" />
     <engine name="ios" spec="4.5.4" />
     <engine name="browser" spec="5.0.4" />
-    <allow-navigation href="http://192.168.1.143:8101" />
 </widget>

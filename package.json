@@ -10,6 +10,8 @@
     "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
+    "android": "ionic cordova emulate android",
+    "android:device": "ionic cordova run android --device",
     "buildapk": "ionic cordova build --release android && cd platforms/android/app/build/outputs/apk/release && jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore atria-release-key.keystore app-release-unsigned.apk alias_name && /Users/dominicevans/Library/Android/sdk/build-tools/28.0.1/zipalign -v 4 app-release-unsigned.apk Atria.apk"
   },
   "dependencies": {

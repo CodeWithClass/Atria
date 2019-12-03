@@ -28,32 +28,29 @@ export class MyApp {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.splashScreen.show()
+      this.splashScreen.hide()
+
       this.auth.afAuth.authState.subscribe(
         user => {
           if (user) {
             this.dbServ.loadDBdata(data => {
-              this.showSplash = false
-              this.splashScreen.hide()
-
               if (_.get(data, 'user.completedWelcome', false))
-                return (this.rootPage = HomePage)
-              return (this.rootPage = WelcomePage)
+                this.rootPage = HomePage
+              else this.rootPage = WelcomePage
             })
           } else {
             this.rootPage = SignupPage
           }
           setTimeout(() => {
             this.showSplash = false
-            this.splashScreen.hide()
-          }, 500)
+          }, 3000)
         },
         () => {
+          this.rootPage = SignupPage
+
           setTimeout(() => {
             this.showSplash = false
-            this.splashScreen.hide()
-          }, 500)
-          this.rootPage = SignupPage
+          }, 1000)
         }
       )
     })
