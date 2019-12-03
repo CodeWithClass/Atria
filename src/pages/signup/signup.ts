@@ -52,11 +52,7 @@ export class SignupPage {
     }
     this.auth.signUp(credentials).then(
       () => {
-        // this.userStats.userStatsContainer = this.mystats;
-        // this.dbService.writeStatsToDB(this.mystats);
-        this.dbService.user({ completedWelcome: false, withingsAuth: false })
         this.navCtrl.setRoot(WelcomePage)
-        // this.navCtrl.push(MyStatsPage);
       },
       error => (this.signupError = error.message)
     )

@@ -74,7 +74,7 @@ export class BPService {
 		let params = new URLSearchParams()
 		params.set("RefreshToken", this.userStats.withingsAuth["refresh_token"] || "none")
 		params.set("Uid", this.authService.getUID() || "none")
-
+		
 		let url = this.withingsRefreshTokenUrl + params.toString()
 		this.http.get(url).subscribe(
 			() => {

@@ -26,16 +26,16 @@ export class WelcomePage {
   fitbitPlaystorUrl: string =
     'https://play.google.com/store/apps/details?id=com.fitbit.FitbitMobile&hl=en'
   stats = {
-    fname: '',
-    lname: '',
-    age: 0,
-    gender: '',
+    fname: 'Jon',
+    lname: 'Doe',
+    age: 99,
+    gender: 'Male',
     goalCaloriesIn: 2000,
     goalCaloriesOut: 500,
-    heightFeet: '',
-    heightInches: '',
-    activityLevel: '',
-    healthGoal: 'Lose weight'
+    heightFeet: '0',
+    heightInches: '0',
+    activityLevel: '0',
+    healthGoal: 'None'
   }
 
   constructor(
@@ -94,15 +94,33 @@ export class WelcomePage {
         break
     }
   }
-  savePersonalDetails(page) {
-    let data = { ...this.stats, ...this.form.value }
-    const goalCaloriesIn = _.round(this.calcTDEE(data))
-    this.dbService.writeStatsToDB({ ...data, goalCaloriesIn })
-    return this.push(page)
-  }
-
   healthGoalChange(healthGoal) {
     return _.set(this.stats, 'healthGoal', healthGoal)
+  }
+
+  savePersonalDetails(page) {
+    let data = this.AuditData(this.stats, this.form.value)
+    const goalCaloriesIn = _.round(this.calcTDEE(data)) || 0
+
+    _.set(data, 'goalCaloriesIn', goalCaloriesIn)
+
+    this.dbService.writeStatsToDB(data)
+    this.push(page)
+
+    return
+  }
+
+  AuditData = (baseObj: object, donorObj: object) => {
+    let data: object = {}
+    _.forEach(baseObj, (val, key) => {
+      val.toString().replace(/\W/g, '')
+      if (donorObj[key]) {
+        return _.set(data, key, donorObj[key])
+      }
+      return _.set(data, key, val)
+    })
+
+    return data
   }
 
   calcTDEE(data) {

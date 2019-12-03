@@ -82,7 +82,7 @@ export class DBService {
   }
 
   writeStatsToDB(data) {
-    this.fdb.list('users/' + this.authService.getUID()).set('stats', data)
+    this.fdb.list('users').update(`${this.authService.getUID()}/stats`, data)
   }
 
   storewithingsAuth(data) {
@@ -92,7 +92,8 @@ export class DBService {
   }
 
   user(data) {
-    this.fdb.list('users/' + this.authService.getUID()).set('user', data)
+    this.fdb.list('users').update(`${this.authService.getUID()}/user`, data)
+    console.log('setting ', data, 'to', this.authService.getUID())
   }
 
   strCleanUp(str) {
