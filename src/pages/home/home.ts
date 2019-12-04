@@ -4,6 +4,8 @@ import { SettingsPage } from '../settings/settings'
 import { UserStatsProvider } from '../../services/user.stats'
 import { DBService } from '../../services/db.service'
 import { BPService } from '../../services/bp.service'
+import { FitbitService } from '../../services/fitbit.service'
+
 import { FoodPage } from '../food/food'
 import { MyStatsPage } from '../mystats/mystats'
 import { BloodPressurePage } from '../bloodpressure/bloodpressure'
@@ -47,11 +49,13 @@ export class HomePage {
     public navParams: NavParams,
     public userStats: UserStatsProvider,
     public dbServ: DBService,
-    public bpServ: BPService
+    public bpServ: BPService,
+    public fbServ: FitbitService
   ) {}
 
   ionViewDidLoad() {
     this.bpServ.fetchBPdata()
+    this.fbServ.getData(false, 'activities')
   }
 
   public checkIfStats() {

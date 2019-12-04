@@ -81,10 +81,9 @@ export class FitbitService {
     params.set('date', this.userStats.todaysDate)
 
     const url = this.fitbitDataUrl + params.toString()
-    console.log(url)
     this.http.get(url).subscribe(
       res => {
-        if (_.get(res, 'response.statusCode') !== 200)
+        if (_.get(res, 'response.fbstatus') !== 200)
           console.log('fitbit.com data fetch err: ', res)
       },
       err => {
