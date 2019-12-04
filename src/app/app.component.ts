@@ -26,9 +26,8 @@ export class MyApp {
     private dbServ: DBService
   ) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.splashScreen.hide()
+      if (this.platform.is('android')) this.statusBar.hide()
 
       this.auth.afAuth.authState.subscribe(
         user => {
