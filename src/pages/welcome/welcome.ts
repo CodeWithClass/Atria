@@ -100,7 +100,7 @@ export class WelcomePage {
 
   savePersonalDetails(page) {
     let data = this.AuditData(this.stats, this.form.value)
-    const goalCaloriesIn = _.round(this.calcTDEE(data)) || 0
+    const goalCaloriesIn = _.round(this.calcTDEE(data)) || 2000
 
     _.set(data, 'goalCaloriesIn', goalCaloriesIn)
 
@@ -171,11 +171,9 @@ export class WelcomePage {
   }
 
   done() {
-    let withingsAuth = false
-
-    if (this.userStats.withingsAuth) withingsAuth = true
-
-    this.dbService.user({ completedWelcome: true, withingsAuth }) //check if auth and write to db
+    this.dbService.user({
+      completedWelcome: true
+    })
     this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' })
   }
 }

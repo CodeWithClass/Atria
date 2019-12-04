@@ -65,7 +65,6 @@ export class FitbitService {
   }
 
   public getData(manual: boolean = false, category: string) {
-    // console.log(this.userStats.withingsAuth, manual)
     if (!this.userStats.fitbitAuth && manual) return this.Auth()
     else if (!this.userStats.fitbitAuth) return
 

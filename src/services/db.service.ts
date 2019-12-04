@@ -93,7 +93,6 @@ export class DBService {
 
   user(data) {
     this.fdb.list('users').update(`${this.authService.getUID()}/user`, data)
-    console.log('setting ', data, 'to', this.authService.getUID())
   }
 
   strCleanUp(str) {
