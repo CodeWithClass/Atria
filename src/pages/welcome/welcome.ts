@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { DBService } from '../../services/db.service'
 import { BPService } from '../../services/bp.service'
@@ -41,6 +41,7 @@ export class WelcomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
     public fb: FormBuilder,
     public dbService: DBService,
     public bpService: BPService,
@@ -59,7 +60,9 @@ export class WelcomePage {
     })
   }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.events.publish('welcomeLoaded')
+  }
 
   public push(page) {
     this.getStarted = false
