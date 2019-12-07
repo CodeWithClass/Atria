@@ -1,7 +1,5 @@
-import { Component, ɵConsole } from '@angular/core'
+import { Component } from '@angular/core'
 import { NavController } from 'ionic-angular'
-import { SignupPage } from '../signup/signup'
-// import { TabsPage } from '../tabs/tabs';
 import { HomePage } from '../home/home'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from '../../services/auth.service'

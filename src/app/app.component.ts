@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { Component } from '@angular/core'
-import { Platform } from 'ionic-angular'
+import { Platform, Events } from 'ionic-angular'
 import { StatusBar } from '@ionic-native/status-bar'
 import { SplashScreen } from '@ionic-native/splash-screen'
 import { AuthService } from '../services/auth.service'
@@ -22,36 +22,75 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
+    public events: Events,
     private auth: AuthService,
     private dbServ: DBService
   ) {
+    if (this.platform.is('android')) this.statusBar.hide()
     platform.ready().then(() => {
       this.splashScreen.hide()
-      if (this.platform.is('android')) this.statusBar.hide()
 
       this.auth.afAuth.authState.subscribe(
         user => {
           if (user) {
             this.dbServ.loadDBdata(data => {
-              if (_.get(data, 'user.completedWelcome', false))
+              if (_.get(data, 'user.completedWelcome', false)) {
                 this.rootPage = HomePage
-              else this.rootPage = WelcomePage
+                this.HideSplash('HomePage')
+              } else {
+                this.rootPage = WelcomePage
+                this.HideSplash('WelcomePage')
+              }
             })
           } else {
             this.rootPage = SignupPage
+            this.HideSplash('SignupPage')
           }
-          setTimeout(() => {
-            this.showSplash = false
-          }, 3000)
         },
         () => {
           this.rootPage = SignupPage
-
-          setTimeout(() => {
-            this.showSplash = false
-          }, 1000)
+          this.HideSplash('SignupPage')
         }
       )
+
+      this.HideSplash('') //just hide the thing
     })
+  }
+
+  public HideSplash(rootPage) {
+    console.log('root ', rootPage)
+    switch (rootPage) {
+      case 'SignupPage':
+        this.events.subscribe('signUpLoaded', () => {
+          console.log('Signup Loaded')
+          setTimeout(() => {
+            this.showSplash = false
+          }, 300)
+        })
+        break
+
+      case 'WelcomePage':
+        this.events.subscribe('welcomeLoaded', () => {
+          console.log('Welcome Loaded')
+          setTimeout(() => {
+            this.showSplash = false
+          }, 300)
+        })
+        break
+      case 'HomePage':
+        this.events.subscribe('homeLoaded', () => {
+          console.log('Home Loaded')
+          setTimeout(() => {
+            this.showSplash = false
+          }, 300)
+        })
+        break
+      default:
+        setTimeout(() => {
+          console.log('None loaded')
+
+          this.showSplash = false
+        }, 3000)
+    }
   }
 }

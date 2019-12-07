@@ -1,11 +1,10 @@
 import { Component } from '@angular/core'
-import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular'
 import { SettingsPage } from '../settings/settings'
 import { UserStatsProvider } from '../../services/user.stats'
 import { DBService } from '../../services/db.service'
 import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
-
 import { FoodPage } from '../food/food'
 import { MyStatsPage } from '../mystats/mystats'
 import { BloodPressurePage } from '../bloodpressure/bloodpressure'
@@ -47,6 +46,7 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
     public userStats: UserStatsProvider,
     public dbServ: DBService,
     public bpServ: BPService,
@@ -54,6 +54,7 @@ export class HomePage {
   ) {}
 
   ionViewDidLoad() {
+    this.events.publish('homeLoaded')
     this.bpServ.fetchBPdata()
     this.fbServ.getData(false, 'activities')
   }

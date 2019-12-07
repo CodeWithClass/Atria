@@ -4,7 +4,6 @@ import { SignupPage } from '../signup/signup'
 import { AuthService } from '../../services/auth.service'
 import { AngularFireAuth } from 'angularfire2/auth'
 import { FitbitService } from '../../services/fitbit.service'
-import { AngularFireDatabase } from 'angularfire2/database'
 import { DBService } from '../../services/db.service'
 import { WelcomePage } from '../welcome/welcome'
 

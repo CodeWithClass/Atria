@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { NavController } from 'ionic-angular'
+import { NavController, Events } from 'ionic-angular'
 import { AuthService } from '../../services/auth.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { DBService } from '../../services/db.service'
@@ -26,6 +26,7 @@ export class SignupPage {
   constructor(
     fb: FormBuilder,
     private navCtrl: NavController,
+    private events: Events,
     private auth: AuthService,
     public userStats: UserStatsProvider,
     public dbService: DBService
@@ -41,6 +42,10 @@ export class SignupPage {
         Validators.compose([Validators.required, Validators.minLength(6)])
       ]
     })
+  }
+
+  ionViewDidLoad() {
+    this.events.publish('signUpLoaded')
   }
 
   public signup() {
