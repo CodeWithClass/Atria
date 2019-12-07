@@ -1,38 +1,58 @@
-import { Component } from "@angular/core"
-import { IonicPage, NavController, NavParams } from "ionic-angular"
-import { UserStatsProvider } from "../../services/user.stats"
+import { Component } from '@angular/core'
+import { IonicPage, NavController, NavParams } from 'ionic-angular'
+import { FitbitService } from '../../services/fitbit.service'
+import { UserStatsProvider } from '../../services/user.stats'
 @IonicPage()
 @Component({
-	selector: "page-sleep",
-	templateUrl: "sleep.html",
+  selector: 'page-sleep',
+  templateUrl: 'sleep.html'
 })
 export class SleepPage {
-	public sleepChartType: string = "doughnut"
-	public sleepChartColors: any[] = [
-		{ backgroundColor: ["rgba(167,72,195,0.8)", "rgba(110,89,201,0.8)", "rgba(85,173,224,0.8)"] },
-	]
-	public sleepChartData: any[] = [350, 450, 100]
-	public sleepTotal: number[] = [8, 39]
-	public sleepChartOptions: any = {
-		responsive: true,
-		maintainAspectRatio: false,
-		elements: {
-			arc: {
-				borderWidth: 0,
-			},
-		},
-		legend: {
-			display: false,
-		},
-	}
+  public sleepChartType: string = 'doughnut'
+  public sleepChartColors: any[] = [
+    {
+      backgroundColor: [
+        'rgba(167,72,195,0.8)',
+        'rgba(110,89,201,0.8)',
+        'rgba(85,173,224,0.8)'
+      ]
+    }
+  ]
+  public sleepChartData: any[] = [350, 450, 100]
+  public sleepTotal: number[] = [8, 39]
+  public sleepChartOptions: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    elements: {
+      arc: {
+        borderWidth: 0
+      }
+    },
+    legend: {
+      display: false
+    }
+  }
 
-	constructor(
-		public navCtrl: NavController,
-		public navParams: NavParams,
-		public userStats: UserStatsProvider,
-	) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public fbService: FitbitService,
+    public userStats: UserStatsProvider
+  ) {}
 
-	ionViewDidLoad() {}
+  ionViewDidLoad() {}
 
-	public chartClicked($event) {}
+  public chartClicked($event) {}
+
+  public fitbitAuth() {
+    return this.fbService.Auth()
+  }
+
+  public fitbitAuthStatus() {
+    return this.fbService.getAuthStatus()
+  }
+
+  public fetchActData(manual: boolean = false) {
+    return this.fbService.getData(manual, 'sleep')
+  }
 }

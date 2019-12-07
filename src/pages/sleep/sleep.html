@@ -1,18 +1,22 @@
-
 <ion-header no-border>
   <ion-navbar>
-    <ion-title>Sleep</ion-title>
+    <ion-title
+      >Sleep
+      <span class="refresh">
+        <ion-icon name="refresh" (click)="fetchActData(true)"></ion-icon>
+      </span>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <canvas baseChart
-              [data]="sleepChartData"  
-              [chartType]="sleepChartType"
-              [colors] = "sleepChartColors"
-              [options]="sleepChartOptions"
-              (chartClick)="chartClicked($event)">
-          </canvas>
-
+  <canvas
+    baseChart
+    [data]="sleepChartData"
+    [chartType]="sleepChartType"
+    [colors]="sleepChartColors"
+    [options]="sleepChartOptions"
+    (chartClick)="chartClicked($event)"
+  >
+  </canvas>
 </ion-content>

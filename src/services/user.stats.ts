@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import _ from 'lodash'
+import { formatDate } from '../helpers/formatting'
 @Injectable()
 export class UserStatsProvider {
   todaysDate: string = '0000-00-00'
@@ -7,6 +8,7 @@ export class UserStatsProvider {
   foodIntake: any
   bpData: any
   activityData: any
+  sleepData: object
   withingsAuth: object
   fitbitAuth: object
   userDailyStats: any
@@ -34,13 +36,7 @@ export class UserStatsProvider {
   bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted']
 
   constructor() {
-    let fullDate = new Date()
-    this.todaysDate = this.ABSOLUTE_DATE =
-      fullDate.getFullYear() +
-      '-' +
-      (fullDate.getMonth() + 1) +
-      '-' +
-      fullDate.getDate()
+    this.todaysDate = this.ABSOLUTE_DATE = formatDate(new Date())
   }
 
   getBP(reading: string): number[] {
