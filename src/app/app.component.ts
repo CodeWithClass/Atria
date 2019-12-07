@@ -52,12 +52,15 @@ export class MyApp {
           this.HideSplash('SignupPage')
         }
       )
-
-      this.HideSplash('') //just hide the thing
+      setTimeout(() => {
+        this.HideSplash('') //just hide the thing
+        console.log('just hide the thing')
+      }, 4000)
     })
   }
 
   public HideSplash(rootPage) {
+    if (!this.showSplash) return
     console.log('root ', rootPage)
     switch (rootPage) {
       case 'SignupPage':
@@ -86,11 +89,7 @@ export class MyApp {
         })
         break
       default:
-        setTimeout(() => {
-          console.log('None loaded')
-
-          this.showSplash = false
-        }, 3000)
+        this.showSplash = false
     }
   }
 }
