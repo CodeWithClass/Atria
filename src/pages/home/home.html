@@ -137,14 +137,13 @@
       <div class="chart-container">
         <div class="chart-total">
           {{userStats.getSleepTotalHrs()}}h<br />{{userStats.getSleepTotalMins()}}m
-          <h4>in bed</h4>
         </div>
         <canvas
           baseChart
           [data]="userStats.getSleepChartData()"
           [chartType]="slpProps['chartType']"
           [colors]="slpProps['colors']"
-          [options]="slpProps['chartType']"
+          [options]="slpProps['optionsHP']"
         >
         </canvas>
       </div>

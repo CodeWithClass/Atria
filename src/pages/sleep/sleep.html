@@ -10,12 +10,24 @@
 </ion-header>
 
 <ion-content padding>
-  <canvas
-    baseChart
-    [data]="userStats.getSleepChartData()"
-    [chartType]="slpProps['chartType']"
-    [colors]="slpProps['colors']"
-    [options]="slpProps['optionsSP']"
-  >
-  </canvas>
+  <div class="chart-total">
+    You spent
+    <span class="emph">
+      {{userStats.getSleepTotalHrs()}}h {{userStats.getSleepTotalMins()}}m</span
+    >
+    in bed.
+  </div>
+  <div class="chart-container">
+    <div class="chart">
+      <canvas
+        baseChart
+        [data]="userStats.getSleepChartData()"
+        [chartType]="slpProps['chartType']"
+        [colors]="slpProps['colors']"
+        [options]="slpProps['optionsSP']"
+        [labels]="slpProps['labels']"
+      >
+      </canvas>
+    </div>
+  </div>
 </ion-content>

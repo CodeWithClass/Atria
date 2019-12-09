@@ -157,7 +157,6 @@ export class UserStatsProvider {
       awake += _.get(slp, 'awakeDuration', 0)
       restless += _.get(slp, 'restlessDuration', 0)
     })
-    console.log(alseep, restless, awake)
     return [alseep, restless, awake]
   }
 }

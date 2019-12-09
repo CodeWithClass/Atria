@@ -1,5 +1,41 @@
 page-sleep {
-    ion-content{
-        background: linear-gradient( 60deg,rgba(70,130,180, 1) 0%,rgb(128, 176, 215) 100%);
+  ion-content {
+    background: linear-gradient(
+      60deg,
+      rgba(70, 130, 180, 1) 0%,
+      rgb(128, 176, 215) 100%
+    );
+    .chart-container {
+      width: 100%;
+      padding-right: 1vw;
+
+      .chart {
+        width: 100%;
+      }
     }
+    .chart-total {
+      // text-align: center;
+      color: #fff;
+      font-size: 20px;
+      margin: 4vh 2vw;
+      text-align: center;
+      animation: slideLeft 0.7s;
+      position: relative;
+
+      .emph {
+        font-size: 30px;
+        font-weight: 600;
+
+        color: inherit;
+      }
+    }
+  }
+  @keyframes slideLeft {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 0;
+    }
+  }
 }

@@ -1,7 +1,7 @@
 export const sleepChartProperties: object = {
   // public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
 
-  chartTypeS: 'doughnut',
+  chartType: 'pie',
   colors: [
     {
       backgroundColor: [
@@ -14,11 +14,15 @@ export const sleepChartProperties: object = {
   optionsSP: {
     responsive: true,
     maintainAspectRatio: false,
-    cutoutPercentage: 70,
+    // cutoutPercentage: 70,
     elements: {
       arc: {
         borderWidth: 0
       }
+    },
+    legend: {
+      labels: { fontColor: 'white', fontSize: 16 },
+      position: 'right'
     }
   },
   optionsHP: {
@@ -31,10 +35,12 @@ export const sleepChartProperties: object = {
       }
     },
     legend: {
-      display: false
+      labels: { fontColor: 'white', fontSize: 16 },
+      position: 'bottom'
     },
     tooltips: {
-      enabled: false
+      enabled: true
     }
-  }
+  },
+  labels: ['Asleep', 'Restless', 'Awake']
 }
