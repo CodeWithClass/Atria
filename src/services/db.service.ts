@@ -41,6 +41,11 @@ export class DBService {
             `${todaysDate}.activities`,
             ''
           )
+          this.userStats.sleepData = _.get(
+            this.userStats.userDailyStats,
+            `${todaysDate}.sleep`,
+            ''
+          )
 
           return cb(data)
         } catch (e) {

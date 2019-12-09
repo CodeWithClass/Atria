@@ -12,11 +12,10 @@
 <ion-content padding>
   <canvas
     baseChart
-    [data]="sleepChartData"
-    [chartType]="sleepChartType"
-    [colors]="sleepChartColors"
-    [options]="sleepChartOptions"
-    (chartClick)="chartClicked($event)"
+    [data]="userStats.getSleepChartData()"
+    [chartType]="slpProps['chartType']"
+    [colors]="slpProps['colors']"
+    [options]="slpProps['optionsSP']"
   >
   </canvas>
 </ion-content>

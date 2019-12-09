@@ -129,22 +129,22 @@
     <div class="card-content">
       <div class="chart-key">
         <ul>
-          <li>Deep Sleep</li>
-          <li>Light Sleep</li>
-          <li>Wake Sleep</li>
+          <li>Asleep</li>
+          <li>Restless</li>
+          <li>Awake</li>
         </ul>
       </div>
       <div class="chart-container">
         <div class="chart-total">
-          {{sleepTotal[0]}}h<br />{{sleepTotal[1]}}m
+          {{userStats.getSleepTotalHrs()}}h<br />{{userStats.getSleepTotalMins()}}m
+          <h4>in bed</h4>
         </div>
         <canvas
           baseChart
-          [data]="sleepChartData"
-          [chartType]="sleepChartType"
-          [colors]="sleepChartColors"
-          [options]="sleepChartOptions"
-          (chartClick)="chartClicked($event)"
+          [data]="userStats.getSleepChartData()"
+          [chartType]="slpProps['chartType']"
+          [colors]="slpProps['colors']"
+          [options]="slpProps['chartType']"
         >
         </canvas>
       </div>

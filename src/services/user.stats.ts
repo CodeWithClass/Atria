@@ -134,4 +134,30 @@ export class UserStatsProvider {
   getActivityData(path: string) {
     return _.get(this.activityData, `summary.${path}`, 0)
   }
+
+  // =================== sleep ====================
+
+  getSleepTotalHrs() {
+    const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
+    return Math.floor(totalMins / 60)
+  }
+
+  getSleepTotalMins() {
+    const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
+    return totalMins % 60
+  }
+
+  getSleepChartData() {
+    const sleepDetails = _.get(this.sleepData, 'sleep', {})
+    const alseep = _.get(this.sleepData, 'summary.totalMinutesAsleep', 0)
+    let awake = 0
+    let restless = 0
+
+    sleepDetails.forEach(slp => {
+      awake += _.get(slp, 'awakeDuration', 0)
+      restless += _.get(slp, 'restlessDuration', 0)
+    })
+    console.log(alseep, restless, awake)
+    return [alseep, restless, awake]
+  }
 }

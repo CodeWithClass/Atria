@@ -355,7 +355,13 @@ page-home {
             right: -50;
             text-align: center;
             color: #fff;
-            font-size: 20px;
+            font-size: 26px;
+
+            h4 {
+              font-size: 16px;
+
+              color: inherit;
+            }
           }
         }
       }

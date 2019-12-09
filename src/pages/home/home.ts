@@ -11,6 +11,7 @@ import { BloodPressurePage } from '../bloodpressure/bloodpressure'
 import { SleepPage } from '../sleep/sleep'
 import { WelcomePage } from '../welcome/welcome'
 import { ActivityPage } from '../activity/activity'
+import { sleepChartProperties } from '../../helpers/charts'
 
 @IonicPage()
 @Component({
@@ -18,31 +19,7 @@ import { ActivityPage } from '../activity/activity'
   templateUrl: 'home.html'
 })
 export class HomePage {
-  // public sleepChartLabels: string[] = ['Deep Sleep', 'Light Sleep', 'Wake Sleep'];
-  public sleepChartType: string = 'doughnut'
-  public sleepChartColors: object[] = [
-    {
-      backgroundColor: [
-        'rgba(167,72,195,0.8)',
-        'rgba(110,89,201,0.8)',
-        'rgba(85,173,224,0.8)'
-      ]
-    }
-  ]
-  public sleepChartData: number[] = [350, 450, 100]
-  public sleepTotal: number[] = [8, 39]
-  public sleepChartOptions: any = {
-    responsive: true,
-    maintainAspectRatio: false,
-    elements: {
-      arc: {
-        borderWidth: 0
-      }
-    },
-    legend: {
-      display: false
-    }
-  }
+  public slpProps: object = sleepChartProperties
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
