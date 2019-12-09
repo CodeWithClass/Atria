@@ -58,6 +58,8 @@ page-activity {
 
     .area2 {
       // margin-top: 40px;
+      padding: 0 5%;
+
       color: white;
       ul {
         width: 100%;
@@ -68,13 +70,14 @@ page-activity {
         li {
           margin: 5vh 0;
           border-bottom: 2px rgba($color: #fff, $alpha: 0.1) solid;
+
           h1 {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
-            font-size: 20px;
+            font-size: 16px;
             .value {
-              font-size: 30px;
+              font-size: 24px;
             }
           }
         }

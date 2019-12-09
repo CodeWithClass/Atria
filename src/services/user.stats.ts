@@ -137,17 +137,17 @@ export class UserStatsProvider {
 
   // =================== sleep ====================
 
-  getSleepTotalHrs() {
+  getBedTotalHrs() {
     const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
     return Math.floor(totalMins / 60)
   }
 
-  getSleepTotalMins() {
+  getBedTotalMins() {
     const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
     return totalMins % 60
   }
 
-  getSleepChartData() {
+  getSleepDetails() {
     const sleepDetails = _.get(this.sleepData, 'sleep', {})
     const alseep = _.get(this.sleepData, 'summary.totalMinutesAsleep', 0)
     let awake = 0
@@ -158,5 +158,18 @@ export class UserStatsProvider {
       restless += _.get(slp, 'restlessDuration', 0)
     })
     return [alseep, restless, awake]
+  }
+
+  formatSleepDetails(cat) {
+    const detailArr = this.getSleepDetails()
+    let index
+    if (cat === 'asleep') index = 0
+    if (cat === 'restless') index = 1
+    if (cat === 'awake') index = 2
+
+    const hrs = Math.floor(detailArr[index] / 60)
+    const mins = detailArr[index] % 60
+    if (hrs > 0) return `${hrs}h ${mins}m`
+    return `${mins}m`
   }
 }
