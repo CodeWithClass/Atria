@@ -14,7 +14,7 @@ export const sleepChartProperties: object = {
   optionsSP: {
     responsive: true,
     maintainAspectRatio: false,
-    // cutoutPercentage: 70,
+    // cutoutPercentage: 60,
     elements: {
       arc: {
         borderWidth: 0
