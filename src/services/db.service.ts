@@ -36,12 +36,10 @@ export class DBService {
             `dailyStats.${todaysDate}.bp`,
             this.userStats.bpMetrics
           )
-          this.userStats.activityData = _.get(
-            this.userStats.userDailyStats,
-            `${todaysDate}.activities`,
-            ''
+          this.userStats.processActivityData(
+            _.get(this.userStats.userDailyStats, `${todaysDate}.activities`, '')
           )
-          this.userStats.processData(
+          this.userStats.processSleepData(
             _.get(this.userStats.userDailyStats, `${todaysDate}.sleep`, '')
           )
 

@@ -7,7 +7,19 @@ export class UserStatsProvider {
   ABSOLUTE_DATE: string = '0000-00-00'
   foodIntake: any
   bpData: any
-  activityData: any
+  activityData = {
+    activeScore: 0,
+    activityCalories: 0,
+    caloriesBMR: 0,
+    caloriesOut: 0,
+    distances: [],
+    fairlyActiveMinutes: 0,
+    lightlyActiveMinutes: 0,
+    marginalCalories: 0,
+    sedentaryMinutes: 0,
+    steps: 0,
+    veryActiveMinutes: 0
+  }
   sleepData = {
     mainSleep: {
       startTime: '',
@@ -35,7 +47,8 @@ export class UserStatsProvider {
     heightFeet: '',
     heightInches: '',
     healthGoal: '',
-    goalCaloriesIn: 0
+    goalCaloriesIn: 0,
+    goalCaloriesOut: 0
   }
   goalCaloriesIn: number = 2000
   currCalories: number = 0
@@ -142,7 +155,9 @@ export class UserStatsProvider {
   setgoalCalories(Max: any) {}
 
   //================= activity ====================/
-
+  processActivityData(data) {
+    this.activityData = _.get(data, `summary`, {})
+  }
   getActivityGoal(path: string) {
     return _.get(this.activityData, `goals.${path}`, 500)
   }
@@ -151,7 +166,7 @@ export class UserStatsProvider {
   }
 
   // =================== sleep ====================
-  processData(data) {
+  processSleepData(data) {
     this.formatMainSleep(data)
   }
 
