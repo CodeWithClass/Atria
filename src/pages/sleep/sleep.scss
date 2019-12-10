@@ -11,7 +11,7 @@ page-sleep {
       justify-content: space-between;
       align-items: center;
       min-height: 90vh;
-      border: solid red 2px;
+      // border: solid red 2px;
 
       .sleepSummary {
         display: flex;
@@ -20,7 +20,7 @@ page-sleep {
         align-items: center;
         min-height: 35vh;
         width: 100%;
-        border: solid orchid 2px;
+        // border: solid orchid 2px;
 
         .chart-container {
           display: flex;
@@ -29,7 +29,6 @@ page-sleep {
         }
 
         .chart-summary {
-          // text-align: center;
           color: #fff;
           font-size: 20px;
           text-align: center;
