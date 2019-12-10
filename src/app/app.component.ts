@@ -54,18 +54,15 @@ export class MyApp {
       )
       setTimeout(() => {
         this.HideSplash('') //just hide the thing
-        console.log('just hide the thing')
       }, 4000)
     })
   }
 
   public HideSplash(rootPage) {
     if (!this.showSplash) return
-    console.log('root ', rootPage)
     switch (rootPage) {
       case 'SignupPage':
         this.events.subscribe('signUpLoaded', () => {
-          console.log('Signup Loaded')
           setTimeout(() => {
             this.showSplash = false
           }, 300)
@@ -74,7 +71,6 @@ export class MyApp {
 
       case 'WelcomePage':
         this.events.subscribe('welcomeLoaded', () => {
-          console.log('Welcome Loaded')
           setTimeout(() => {
             this.showSplash = false
           }, 300)
@@ -82,7 +78,6 @@ export class MyApp {
         break
       case 'HomePage':
         this.events.subscribe('homeLoaded', () => {
-          console.log('Home Loaded')
           setTimeout(() => {
             this.showSplash = false
           }, 300)
