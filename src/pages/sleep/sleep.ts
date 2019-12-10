@@ -10,6 +10,18 @@ import { sleepChartProperties } from '../../helpers/charts'
   templateUrl: 'sleep.html'
 })
 export class SleepPage {
+  public mainSleep = {
+    startTime: '',
+    timeInBed: [0, 0],
+    minutesAsleep: 0,
+    sleepTime: [0, 0],
+    awakeningsCount: 0,
+    awakeDuration: 0,
+    awakeTime: [0, 0],
+    restlessCount: 0,
+    restlessDuration: 0,
+    restlessTime: [0, 0]
+  }
   public slpProps: object = sleepChartProperties
 
   constructor(
@@ -17,7 +29,9 @@ export class SleepPage {
     public navParams: NavParams,
     public fbService: FitbitService,
     public userStats: UserStatsProvider
-  ) {}
+  ) {
+    this.mainSleep = userStats.sleepData.mainSleep
+  }
 
   ionViewDidLoad() {}
 

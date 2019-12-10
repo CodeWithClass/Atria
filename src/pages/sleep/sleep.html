@@ -13,7 +13,8 @@
   <div class="chart-total">
     You spent
     <span class="emph">
-      {{userStats.getBedTotalHrs()}}h {{userStats.getBedTotalMins()}}m</span
+      {{userStats.sleepData.mainSleep.timeInBed[0]}}h
+      {{userStats.sleepData.mainSleep.timeInBed[1]}}m</span
     >
     in bed.
   </div>
@@ -21,7 +22,9 @@
     <div class="chart">
       <canvas
         baseChart
-        [data]="userStats.getSleepDetails()"
+        [data]="[mainSleep.minutesAsleep,
+        mainSleep.restlessDuration,
+        mainSleep.awakeDuration]"
         [chartType]="slpProps['chartType']"
         [colors]="slpProps['colors']"
         [options]="slpProps['optionsSP']"
@@ -35,32 +38,33 @@
       <li>
         <h1>
           <span class="label">Asleep</span>
-          <span class="value">{{userStats.formatSleepDetails('asleep')}}</span>
+          <span class="value">
+            <span class="value">{{mainSleep.sleepTime[0]}}hrs</span>
+            <span class="value">{{mainSleep.sleepTime[1]}}m</span>
+          </span>
         </h1>
       </li>
       <li>
         <h1>
           <span class="label">Restless</span>
-          <span class="value"
-            >{{userStats.formatSleepDetails('restless')}}
-          </span>
+          <span class="value">{{''}} </span>
         </h1>
       </li>
       <li>
         <h1>
           <span class="label">Awake</span>
-          <span class="value">{{userStats.formatSleepDetails('awake')}} </span>
-        </h1>
-      </li>
-      <!-- <li>
-        <h1>
-          <span class="label">Sleep Time</span>
-          <span class="value"
-            >{{userStats.getActivityData('lightlyActiveMinutes')}}
-          </span>
+          <span class="value">{{''}} </span>
         </h1>
       </li>
       <li>
+        <h1>
+          <span class="label">Start Time</span>
+          <span class="value"
+            >{{userStats.sleepData.mainSleep.startTime}}
+          </span>
+        </h1>
+      </li>
+      <!--<li>
         <h1>
           <span class="label">Sedentary Minutes</span>
           <span class="value"

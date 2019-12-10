@@ -8,7 +8,20 @@ export class UserStatsProvider {
   foodIntake: any
   bpData: any
   activityData: any
-  sleepData: object
+  sleepData = {
+    mainSleep: {
+      startTime: '',
+      timeInBed: [0, 0],
+      minutesAsleep: 0,
+      sleepTime: [0, 0],
+      awakeningsCount: 0,
+      awakeDuration: 0,
+      awakeTime: [0, 0],
+      restlessCount: 0,
+      restlessDuration: 0,
+      restlessTime: [0, 0]
+    }
+  }
   withingsAuth: object
   fitbitAuth: object
   userDailyStats: any
@@ -136,40 +149,25 @@ export class UserStatsProvider {
   }
 
   // =================== sleep ====================
-
-  getBedTotalHrs() {
-    const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
-    return Math.floor(totalMins / 60)
+  processData(data) {
+    this.formatMainSleep(data)
   }
 
-  getBedTotalMins() {
-    const totalMins = _.get(this.sleepData, 'summary.totalTimeInBed', 0)
-    return totalMins % 60
+  formatTime(totalMins, key) {
+    const hrs = Math.floor(totalMins / 60)
+    const mins = totalMins % 60
+    this.sleepData.mainSleep[key] = [hrs, mins]
   }
 
-  getSleepDetails() {
-    const sleepDetails = _.get(this.sleepData, 'sleep', {})
-    const alseep = _.get(this.sleepData, 'summary.totalMinutesAsleep', 0)
-    let awake = 0
-    let restless = 0
-
-    sleepDetails.forEach(slp => {
-      awake += _.get(slp, 'awakeDuration', 0)
-      restless += _.get(slp, 'restlessDuration', 0)
+  formatMainSleep(data) {
+    const sleepDetails = _.get(data, 'sleep', [])
+    const mainSleep = sleepDetails.filter(slpElem => {
+      return slpElem.isMainSleep === true
     })
-    return [alseep, restless, awake]
-  }
-
-  formatSleepDetails(cat) {
-    const detailArr = this.getSleepDetails()
-    let index
-    if (cat === 'asleep') index = 0
-    if (cat === 'restless') index = 1
-    if (cat === 'awake') index = 2
-
-    const hrs = Math.floor(detailArr[index] / 60)
-    const mins = detailArr[index] % 60
-    if (hrs > 0) return `${hrs}h ${mins}m`
-    return `${mins}m`
+    _.set(this.sleepData, 'mainSleep', {
+      ...mainSleep[0]
+    })
+    this.formatTime(mainSleep[0].timeInBed, 'timeInBed')
+    this.formatTime(mainSleep[0].minutesAsleep, 'sleepTime')
   }
 }
