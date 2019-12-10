@@ -16,8 +16,8 @@
       <ion-col col-lg-6 class="area1">
         <round-progress
           id="round-progress"
-          [current]="userStats.getCurrCalories()"
-          [max]="userStats.getgoalCalories()"
+          [current]="userStats?.nutrientData?.Energy "
+          [max]="userStats.userStatsContainer.goalCaloriesIn"
           [color]="'rgb(255,255,255)'"
           [background]="'rgba(159, 147, 237, 0.5)'"
           [radius]="100"
@@ -31,9 +31,9 @@
         </round-progress>
         <div class="progress-text">
           <h2>
-            {{(userStats.getCurrCalories() | number:'1.0-0') || 0}}
+            {{(userStats?.nutrientData?.Energy | number:'1.0-0') || 0}}
             <hr />
-            {{userStats.getgoalCalories() || 2000}}
+            {{userStats?.userStatsContainer?.goalCaloriesIn}}
           </h2>
           <h5>Calories</h5>
         </div>
@@ -42,21 +42,20 @@
             <ion-col col-4>
               <h3>Protein</h3>
               <h3>
-                {{(userStats.calcMacros('Protein', 4) | number:'1.0-0') || 0}}%
+                {{(userStats.macroPercentages.Protein | number:'1.0-0') || 0}}%
               </h3>
             </ion-col>
             <ion-col col-4>
               <h3>Carbs</h3>
               <h3>
-                {{(userStats.calcMacros('Carbohydrate, by difference', 4) |
-                number:'1.0-0') || 0}}%
+                {{(userStats.macroPercentages.Carbohydrate | number:'1.0-0') ||
+                0}}%
               </h3>
             </ion-col>
             <ion-col col-4>
               <h3>Fats</h3>
               <h3>
-                {{(userStats.calcMacros('Total lipid (fat)', 9) |
-                number:'1.0-0') || 0}}%
+                {{(userStats.macroPercentages.Fat | number:'1.0-0') || 0}}%
               </h3>
             </ion-col>
           </ion-row>
@@ -64,13 +63,15 @@
             <ion-col col-4>
               <h3>Sodium</h3>
               <h3>
-                {{(userStats.getMicro('Sodium, Na') | number:'1.0-0') || 0}}mg
+                {{(userStats?.nutrientData['Sodium, Na'] | number:'1.0-0') ||
+                0}}mg
               </h3>
             </ion-col>
             <ion-col col-4>
               <h3>Cholesterol</h3>
               <h3>
-                {{(userStats.getMicro('Cholesterol') | number:'1.0-0') || 0}}mg
+                {{(userStats?.nutrientData?.Cholesterol| number:'1.0-0') ||
+                0}}mg
               </h3>
             </ion-col>
           </ion-row>

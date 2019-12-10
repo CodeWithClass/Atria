@@ -66,8 +66,8 @@
       <div class="prog-container">
         <round-progress
           id="round-progress"
-          [current]="userStats.getCurrCalories()"
-          [max]="userStats.getgoalCalories()"
+          [current]="userStats?.nutrientData?.Energy "
+          [max]="userStats.userStatsContainer.goalCaloriesIn"
           [color]="'rgba(250, 250, 250, 1)'"
           [background]="'rgba(159, 147, 237, 0.5)'"
           [radius]="80"
@@ -81,9 +81,9 @@
         ></round-progress>
         <div class="progress-text">
           <h2>
-            {{(userStats.getCurrCalories()| number:'1.0-0') || 0}}
+            {{(userStats?.nutrientData?.Energy | number:'1.0-0') || 0}}
             <hr />
-            {{userStats.getgoalCalories() || 0}}
+            {{userStats.userStatsContainer.goalCaloriesIn || 0}}
           </h2>
         </div>
       </div>
@@ -100,8 +100,8 @@
       <div class="prog-container">
         <round-progress
           id="round-progress"
-          [[current]="userStats.getActivityData('caloriesOut')"
-          [max]="userStats.getActivityGoal('caloriesOut')"
+          [current]="userStats.activityData.caloriesOut"
+          [max]="userStats.userStatsContainer.goalCaloriesOut"
           [color]="'rgba(250, 250, 250, 1)'"
           [background]="'rgba(104, 226, 162, 0.5)'"
           [radius]="80"
@@ -116,7 +116,7 @@
         <div class="progress-text">
           <img class="burn-icon" src="assets/imgs/burn.png" />
           <h2>
-            {{ userStats.getActivityData('caloriesOut') || 0}}
+            {{ userStats.activityData.caloriesOut || 0}}
           </h2>
           <h5>Calories</h5>
         </div>

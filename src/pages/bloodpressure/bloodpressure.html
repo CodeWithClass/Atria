@@ -44,12 +44,12 @@
         baseChart
         height="240"
         id="bpChart"
-        [datasets]="lineChartData"
-        [labels]="lineChartLabels"
-        [options]="lineChartOptions"
-        [colors]="lineChartColors"
-        [legend]="lineChartLegend"
-        [chartType]="lineChartType"
+        [datasets]="[chartData.systolic, chartData.diastolic]"
+        [labels]="bpChartProps['labels']"
+        [options]="bpChartProps['options']"
+        [colors]="bpChartProps['colors']"
+        [legend]="bpChartProps['legend']"
+        [chartType]="bpChartProps['type']"
       >
       </canvas>
     </ion-col>

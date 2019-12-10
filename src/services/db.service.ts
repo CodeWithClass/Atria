@@ -42,6 +42,9 @@ export class DBService {
           this.userStats.processSleepData(
             _.get(this.userStats.userDailyStats, `${todaysDate}.sleep`, '')
           )
+          this.userStats.processNutrientData(
+            _.get(this.userStats.userDailyStats, `${todaysDate}.nutrients`, '')
+          )
 
           return cb(data)
         } catch (e) {

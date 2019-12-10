@@ -6,7 +6,16 @@ export class UserStatsProvider {
   todaysDate: string = '0000-00-00'
   ABSOLUTE_DATE: string = '0000-00-00'
   foodIntake: any
-  bpData: any
+  nutrientData = {
+    Energy: 0,
+    'Sodium, Na': 0,
+    Cholesterol: 0
+  }
+  macroPercentages = {
+    Protein: 0,
+    Carbohydrate: 0,
+    Fat: 0
+  }
   activityData = {
     activeScore: 0,
     activityCalories: 0,
@@ -50,126 +59,49 @@ export class UserStatsProvider {
     goalCaloriesIn: 0,
     goalCaloriesOut: 0
   }
-  goalCaloriesIn: number = 2000
+
   currCalories: number = 0
 
   bpMetrics: any[] = [
-    {
-      measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 }
-    },
-    {
-      measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 }
-    }
+    { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } },
+    { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } }
   ]
-  bpTimeline: string[] = ['Earlier', 'Previous', 'Current', 'Predicted']
 
   constructor() {
     this.todaysDate = this.ABSOLUTE_DATE = formatDate(new Date())
   }
 
-  getBP(reading: string): number[] {
-    if (!this.bpMetrics) return [0, 0]
-    // let bpMetrics = this.bpMetrics
-    let eIndex = this.bpMetrics.length - 4
-    let pIndex = this.bpMetrics.length - 3
-    let cIndex = this.bpMetrics.length - 2
-    let predIndex = this.bpMetrics.length - 1
-    // console.log(this.bpMetrics)
+  // ================= Food / Nutrients ================
+  calcMacros() {
+    const currCals = this.nutrientData.Energy
+    const macros = [
+      { name: 'Protein', multiplier: 4 },
+      { name: 'Carbohydrate, by difference', multiplier: 4 },
+      { name: 'Total lipid (fat)', multiplier: 9 }
+    ]
 
-    if (reading == 'earlier') {
-      let Systolic: number = this.bpMetrics[eIndex]['HP'] || 0
-      let Diastolic: number = this.bpMetrics[eIndex]['LP'] || 0
-      return [Systolic, Diastolic]
-    } else if (reading == 'pevious') {
-      let Systolic: number = this.bpMetrics[pIndex]['HP'] || 0
-      let Diastolic: number = this.bpMetrics[pIndex]['LP'] || 0
-      return [Systolic, Diastolic]
-    } else if (reading == 'current') {
-      let Systolic: number = this.bpMetrics[cIndex]['HP'] || 0
-      let Diastolic: number = this.bpMetrics[cIndex]['LP'] || 0
-      return [Systolic, Diastolic]
-    } else if (reading == 'predicted') {
-      let Systolic: number = this.bpMetrics[predIndex]['HP'] || 0
-      let Diastolic: number = this.bpMetrics[predIndex]['LP'] || 0
-      return [Systolic, Diastolic]
-    } else {
-      let notfound: any[] = [999, 999]
-      return notfound
-    }
+    this.macroPercentages.Protein =
+      ((this.nutrientData[macros[0].name] * macros[0].multiplier) / currCals) *
+      100
+    this.macroPercentages.Carbohydrate =
+      ((this.nutrientData[macros[1].name] * macros[1].multiplier) / currCals) *
+      100
+    this.macroPercentages.Fat =
+      ((this.nutrientData[macros[2].name] * macros[2].multiplier) / currCals) *
+      100
   }
 
-  calcMacros(macro: string | number, multiplier: number) {
-    let percent: number
-
-    try {
-      if (this.userDailyStats[this.todaysDate]) {
-        percent =
-          ((this.userDailyStats[this.todaysDate]['nutrients'][macro] *
-            multiplier) /
-            this.getCurrCalories()) *
-          100
-        return percent
-      } else return 0
-    } catch (e) {}
+  processNutrientData(data) {
+    this.nutrientData = data
+    this.calcMacros()
   }
-
-  getMicro(microNutrient: string | number) {
-    let micro: any
-    try {
-      if (this.userDailyStats[this.todaysDate]) {
-        micro = this.userDailyStats[this.todaysDate]['nutrients'][microNutrient]
-        return micro
-      } else return 0
-    } catch (e) {}
-  }
-
-  getCurrCalories() {
-    try {
-      if (this.userDailyStats[this.todaysDate])
-        return this.userDailyStats[this.todaysDate]['nutrients']['Energy']
-      else return 0
-    } catch (e) {
-      // console.log(e)
-      // return 0;
-    }
-  }
-
-  getgoalCalories() {
-    try {
-      if (Object.keys(this.userStatsContainer).length > 0) {
-        return (
-          this.userStatsContainer['goalCaloriesIn'] ||
-          this.userStatsContainer['goalCalories'] ||
-          0
-        )
-      } else {
-        return 0
-      }
-    } catch (e) {
-      return 0
-    }
-  }
-
-  setCurrCalories(Curr: any) {}
-
-  setgoalCalories(Max: any) {}
 
   //================= activity ====================/
   processActivityData(data) {
     this.activityData = _.get(data, `summary`, {})
   }
-  getActivityGoal(path: string) {
-    return _.get(this.activityData, `goals.${path}`, 500)
-  }
-  getActivityData(path: string) {
-    return _.get(this.activityData, `summary.${path}`, 0)
-  }
 
   // =================== sleep ====================
-  processSleepData(data) {
-    this.formatMainSleep(data)
-  }
-
   formatMainSleep(data) {
     const sleepDetails = _.get(data, 'sleep', [])
     const mainSleep = sleepDetails.filter(slpElem => {
@@ -183,5 +115,8 @@ export class UserStatsProvider {
     this.sleepData.mainSleep.awakeTime = formatMinutes(mainSleep[0].awakeDuration) // prettier-ignore
     this.sleepData.mainSleep.startTime = timeAmPm(mainSleep[0].startTime) // prettier-ignore
     this.sleepData.mainSleep.endTime = timeAmPm(mainSleep[0].endTime) // prettier-ignore
+  }
+  processSleepData(data) {
+    this.formatMainSleep(data)
   }
 }
