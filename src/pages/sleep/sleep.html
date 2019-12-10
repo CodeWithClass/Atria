@@ -10,80 +10,90 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="chart-total">
-    You spent
-    <span class="emph">
-      {{userStats.sleepData.mainSleep?.timeInBed[0]}}h
-      {{userStats.sleepData.mainSleep?.timeInBed[1]}}m
-    </span>
-    in bed.
-  </div>
-  <div class="chart-container">
-    <div class="chart">
-      <canvas
-        baseChart
-        [data]="[userStats.sleepData.mainSleep?.minutesAsleep,
+  <div class="pageContainer">
+    <div class="sleepSummary">
+      <div class="chart-summary chart-summary-top">
+        You spent
+        <span class="emph">
+          {{userStats.sleepData.mainSleep?.timeInBed[0]}}h
+          {{userStats.sleepData.mainSleep?.timeInBed[1]}}m
+        </span>
+        in bed.
+      </div>
+      <div class="chart-container">
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="[userStats.sleepData.mainSleep?.minutesAsleep,
         userStats.sleepData.mainSleep?.restlessDuration,
         userStats.sleepData.mainSleep?.awakeDuration]"
-        [chartType]="slpProps['chartType']"
-        [colors]="slpProps['colors']"
-        [options]="slpProps['optionsSP']"
-        [labels]="slpProps['labels']"
-      >
-      </canvas>
+            [chartType]="slpProps['chartType']"
+            [colors]="slpProps['colors']"
+            [options]="slpProps['optionsSP']"
+            [labels]="slpProps['labels']"
+          >
+          </canvas>
+        </div>
+      </div>
+      <div class="chart-summary chart-summary-bottom">
+        Your sleep efficiency is
+        <span class="emph">
+          {{userStats.sleepData.mainSleep?.efficiency}}%
+        </span>
+      </div>
     </div>
-  </div>
-  <div col-lg-6 class="sleepDetails">
-    <ul>
-      <li>
-        <h1>
-          <span class="label">Asleep</span>
-          <span class="value">
-            <span *ngIf="userStats.sleepData.mainSleep.sleepTime[0] > 0"
-              >{{userStats.sleepData.mainSleep.sleepTime[0]}}hrs</span
-            >
-            <span>{{userStats.sleepData.mainSleep.sleepTime[1]}}m</span>
-          </span>
-        </h1>
-      </li>
-      <li>
-        <h1>
-          <span class="label">Restless</span>
-          <span class="value">
-            <span *ngIf="userStats.sleepData.mainSleep.restlessTime[0] > 0"
-              >{{userStats.sleepData.mainSleep.restlessTime[0]}}hrs</span
-            >
-            <span>{{userStats.sleepData.mainSleep.restlessTime[1]}}m</span>
-          </span>
-        </h1>
-      </li>
-      <li>
-        <h1>
-          <span class="label">Awake</span>
-          <span class="value">
-            <span *ngIf="userStats.sleepData.mainSleep.awakeTime[0] > 0"
-              >{{userStats.sleepData.mainSleep.awakeTime[0]}}hrs</span
-            >
-            <span>{{userStats.sleepData.mainSleep.awakeTime[1]}}m</span>
-          </span>
-        </h1>
-      </li>
-      <li>
-        <h1>
-          <span class="label">Start Time</span>
-          <span class="value smaller"
-            >{{userStats.sleepData.mainSleep.startTime}}
-          </span>
-        </h1>
-      </li>
-      <li>
-        <h1>
-          <span class="label">End Time</span>
-          <span class="value smaller"
-            >{{userStats.sleepData.mainSleep.endTime}}
-          </span>
-        </h1>
-      </li>
-    </ul>
+    <div class="sleepDetails">
+      <ul>
+        <li>
+          <h1>
+            <span class="label">Asleep</span>
+            <span class="value">
+              <span *ngIf="userStats.sleepData.mainSleep.sleepTime[0] > 0"
+                >{{userStats.sleepData.mainSleep.sleepTime[0]}}hrs</span
+              >
+              <span>{{userStats.sleepData.mainSleep.sleepTime[1]}}m</span>
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Restless</span>
+            <span class="value">
+              <span *ngIf="userStats.sleepData.mainSleep.restlessTime[0] > 0"
+                >{{userStats.sleepData.mainSleep.restlessTime[0]}}hrs</span
+              >
+              <span>{{userStats.sleepData.mainSleep.restlessTime[1]}}m</span>
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Awake</span>
+            <span class="value">
+              <span *ngIf="userStats.sleepData.mainSleep.awakeTime[0] > 0"
+                >{{userStats.sleepData.mainSleep.awakeTime[0]}}hrs</span
+              >
+              <span>{{userStats.sleepData.mainSleep.awakeTime[1]}}m</span>
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">Start Time</span>
+            <span class="value smaller"
+              >{{userStats.sleepData.mainSleep.startTime}}
+            </span>
+          </h1>
+        </li>
+        <li>
+          <h1>
+            <span class="label">End Time</span>
+            <span class="value smaller"
+              >{{userStats.sleepData.mainSleep.endTime}}
+            </span>
+          </h1>
+        </li>
+      </ul>
+    </div>
   </div>
 </ion-content>

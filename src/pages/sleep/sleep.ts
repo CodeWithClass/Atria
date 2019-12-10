@@ -11,10 +11,6 @@ import { sleepChartProperties } from '../../helpers/charts'
 })
 export class SleepPage {
   public slpProps: object = sleepChartProperties
-  public timeInBed = [0, 0]
-  public sleepTime = [0, 0]
-  public restlessTime = [0, 0]
-  public awakeTime = [0, 0]
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

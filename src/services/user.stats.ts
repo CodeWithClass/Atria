@@ -20,7 +20,8 @@ export class UserStatsProvider {
       awakeTime: [0, 0],
       restlessCount: 0,
       restlessDuration: 0,
-      restlessTime: [0, 0]
+      restlessTime: [0, 0],
+      efficiency: 0
     }
   }
   withingsAuth: object
