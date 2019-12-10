@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import _ from 'lodash'
-import { formatDate } from '../helpers/formatting'
+import { formatDate, timeAmPm, formatMinutes } from '../helpers/formatting'
 @Injectable()
 export class UserStatsProvider {
   todaysDate: string = '0000-00-00'
@@ -11,6 +11,7 @@ export class UserStatsProvider {
   sleepData = {
     mainSleep: {
       startTime: '',
+      endTime: '',
       timeInBed: [0, 0],
       minutesAsleep: 0,
       sleepTime: [0, 0],
@@ -153,21 +154,18 @@ export class UserStatsProvider {
     this.formatMainSleep(data)
   }
 
-  formatTime(totalMins, key) {
-    const hrs = Math.floor(totalMins / 60)
-    const mins = totalMins % 60
-    this.sleepData.mainSleep[key] = [hrs, mins]
-  }
-
   formatMainSleep(data) {
     const sleepDetails = _.get(data, 'sleep', [])
     const mainSleep = sleepDetails.filter(slpElem => {
       return slpElem.isMainSleep === true
     })
-    _.set(this.sleepData, 'mainSleep', {
-      ...mainSleep[0]
-    })
-    this.formatTime(mainSleep[0].timeInBed, 'timeInBed')
-    this.formatTime(mainSleep[0].minutesAsleep, 'sleepTime')
+
+    this.sleepData.mainSleep = { ...mainSleep[0] }
+    this.sleepData.mainSleep.timeInBed = formatMinutes(mainSleep[0].timeInBed) // prettier-ignore
+    this.sleepData.mainSleep.sleepTime = formatMinutes(mainSleep[0].minutesAsleep) // prettier-ignore
+    this.sleepData.mainSleep.restlessTime = formatMinutes( mainSleep[0].restlessDuration) // prettier-ignore
+    this.sleepData.mainSleep.awakeTime = formatMinutes(mainSleep[0].awakeDuration) // prettier-ignore
+    this.sleepData.mainSleep.startTime = timeAmPm(mainSleep[0].startTime) // prettier-ignore
+    this.sleepData.mainSleep.endTime = timeAmPm(mainSleep[0].endTime) // prettier-ignore
   }
 }

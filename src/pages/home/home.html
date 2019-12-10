@@ -136,16 +136,18 @@
       </div>
       <div class="chart-container">
         <div class="chart-total">
-          <!-- {{userStats.getBedTotalHrs()}}h<br />{{userStats.getBedTotalMins()}}m -->
+          {{userStats.sleepData.mainSleep.timeInBed[0]}}h<br />
+          {{userStats.sleepData.mainSleep.timeInBed[1]}}m
         </div>
-        <!-- <canvas
+        <canvas
           baseChart
-          [data]="userStats.getSleepDetails()"
+          [data]="[userStats.sleepData.mainSleep?.minutesAsleep,
+        userStats.sleepData.mainSleep?.restlessDuration,
+        userStats.sleepData.mainSleep?.awakeDuration]"
           [chartType]="slpProps['chartType']"
           [colors]="slpProps['colors']"
           [options]="slpProps['optionsHP']"
-        >
-        </canvas> -->
+        ></canvas>
       </div>
     </div>
   </ion-card>

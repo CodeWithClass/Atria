@@ -10,28 +10,17 @@ import { sleepChartProperties } from '../../helpers/charts'
   templateUrl: 'sleep.html'
 })
 export class SleepPage {
-  public mainSleep = {
-    startTime: '',
-    timeInBed: [0, 0],
-    minutesAsleep: 0,
-    sleepTime: [0, 0],
-    awakeningsCount: 0,
-    awakeDuration: 0,
-    awakeTime: [0, 0],
-    restlessCount: 0,
-    restlessDuration: 0,
-    restlessTime: [0, 0]
-  }
   public slpProps: object = sleepChartProperties
-
+  public timeInBed = [0, 0]
+  public sleepTime = [0, 0]
+  public restlessTime = [0, 0]
+  public awakeTime = [0, 0]
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public fbService: FitbitService,
     public userStats: UserStatsProvider
-  ) {
-    this.mainSleep = userStats.sleepData.mainSleep
-  }
+  ) {}
 
   ionViewDidLoad() {}
 
@@ -47,5 +36,10 @@ export class SleepPage {
 
   public fetchActData(manual: boolean = false) {
     return this.fbService.getData(manual, 'sleep')
+  }
+
+  public shouldDisplay(val) {
+    if (val > 0) return true
+    return false
   }
 }
