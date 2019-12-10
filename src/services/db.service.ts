@@ -31,10 +31,10 @@ export class DBService {
           this.userStats.userStatsContainer = _.get(data, 'stats', '')
           this.userStats.foodIntake = _.get(data, 'meals', '')
           this.userStats.userDailyStats = _.get(data, `dailyStats`, '')
-          this.userStats.bpMetrics = _.get(
+          this.userStats.bpData = _.get(
             data,
             `dailyStats.${todaysDate}.bp`,
-            this.userStats.bpMetrics
+            this.userStats.bpData
           )
           this.userStats.processActivityData(
             _.get(this.userStats.userDailyStats, `${todaysDate}.activities`, '')

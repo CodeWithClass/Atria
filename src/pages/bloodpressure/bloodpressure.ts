@@ -30,15 +30,15 @@ export class BloodPressurePage {
     public userStats: UserStatsProvider,
     public bpService: BPService // public inAppBrowser: InAppBrowser
   ) {
-    this.chartData.systolic.data = this.userStats.bpMetrics.map(each => {
+    this.chartData.systolic.data = this.userStats.bpData.map(each => {
       return each.measurement.systolic || 0
     })
-    this.chartData.diastolic.data = this.userStats.bpMetrics.map(each => {
+    this.chartData.diastolic.data = this.userStats.bpData.map(each => {
       return each.measurement.diastolic || 0
     })
 
     //ensure only last 4 readings
-    // let noOfBpReadings = this.userStats.bpMetrics.length
+    // let noOfBpReadings = this.userStats.bpData.length
     // myChartData[0].data.slice(noOfBpReadings - 4, noOfBpReadings -1)
     // myChartData[1].data.slice(noOfBpReadings - 4, noOfBpReadings- 1)
   }

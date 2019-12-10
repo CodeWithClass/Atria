@@ -62,7 +62,7 @@ export class UserStatsProvider {
 
   currCalories: number = 0
 
-  bpMetrics: any[] = [
+  bpData: any[] = [
     { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } },
     { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } }
   ]
