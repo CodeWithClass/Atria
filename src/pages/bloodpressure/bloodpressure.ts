@@ -28,29 +28,18 @@ export class BloodPressurePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public userStats: UserStatsProvider,
-    public bpService: BPService // public inAppBrowser: InAppBrowser
+    public bpService: BPService
   ) {
-    this.chartData.systolic.data = this.userStats.bpData.map(each => {
+    const allSystolicEntries = this.userStats.bpData.map(each => {
       return each.measurement.systolic || 0
     })
-    this.chartData.diastolic.data = this.userStats.bpData.map(each => {
+    const allDiastolicEntries = this.userStats.bpData.map(each => {
       return each.measurement.diastolic || 0
     })
-
-    //ensure only last 4 readings
-    // let noOfBpReadings = this.userStats.bpData.length
-    // myChartData[0].data.slice(noOfBpReadings - 4, noOfBpReadings -1)
-    // myChartData[1].data.slice(noOfBpReadings - 4, noOfBpReadings- 1)
+    //last 4 reading and reverse them for chart
+    this.chartData.systolic.data = allSystolicEntries.slice(0, 4).reverse()
+    this.chartData.diastolic.data = allDiastolicEntries.slice(0, 4).reverse()
   }
-
-  // line chart events
-  // public chartClicked(e: any): void {
-  //   console.log(e)
-  // }
-
-  // public chartHovered(e: any): void {
-  //   console.log(e);
-  // }
 
   bpAuth() {
     return this.bpService.withingsAuth()

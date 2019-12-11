@@ -30,28 +30,32 @@
       <ion-row class="bp-readings">
         <ion-col col-12 col-sm-3 col-md-1 class="previous">
           <h3 class="systolic">
-            {{(userStats.bpData[1].measurement.systolic | number:'1.0-0') || 0}}
+            {{(userStats.bpData[2].measurement.systolic | number:'1.0-0') || 0}}
           </h3>
           <h3 class="diastolic">
-            {{(userStats.bpData[1].measurement.diastolic | number:'1.0-0')|| 0}}
+            {{(userStats.bpData[2].measurement.diastolic | number:'1.0-0')|| 0}}
           </h3>
           <h3 class="label">Previous</h3>
         </ion-col>
         <ion-col>
           <div class="current">
             <h3 class="systolic">
-              {{(userStats.bpData[0].measurement.systolic | number:'1.0-0') ||
+              {{(userStats.bpData[1].measurement.systolic | number:'1.0-0') ||
               0}}
             </h3>
             <h3 class="diastolic">
-              {{(userStats.bpData[0].measurement.diastolic | number:'1.0-0') ||
+              {{(userStats.bpData[1].measurement.diastolic | number:'1.0-0') ||
               0}}
             </h3>
           </div>
         </ion-col>
         <ion-col col-12 col-sm-3 col-md-1 class="predicted">
-          <h3 class="systolic">120</h3>
-          <h3 class="diastolic">80</h3>
+          <h3 class="systolic">
+            {{userStats.bpData[0].measurement.systolic||0}}
+          </h3>
+          <h3 class="diastolic">
+            {{userStats.bpData[0].measurement.diastolic || 0}}
+          </h3>
           <h3 class="label">Predicted</h3>
         </ion-col>
       </ion-row>

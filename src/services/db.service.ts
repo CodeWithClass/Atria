@@ -45,7 +45,16 @@ export class DBService {
           this.userStats.processNutrientData(
             _.get(this.userStats.userDailyStats, `${todaysDate}.nutrients`, '')
           )
-
+          //MACHING LEARNING PLACEHOLDER
+          this.userStats.bpData.unshift({
+            measurement: {
+              date: '0000-00-00',
+              diastolic: 80,
+              systolic: 120,
+              hr: 60
+            }
+          })
+          // ==============================
           return cb(data)
         } catch (e) {
           console.log(e)
