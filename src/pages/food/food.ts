@@ -18,7 +18,13 @@ export class FoodPage {
     this.refresh()
   }
 
-  refresh() {
+  refresh(event = { complete: () => {} }, manual = false) {
+    if (manual)
+      return setTimeout(() => {
+        this.userStats.todaysDate = this.userStats.ABSOLUTE_DATE
+        event.complete()
+      }, 500)
+    event.complete()
     this.userStats.todaysDate = this.userStats.ABSOLUTE_DATE
   }
 

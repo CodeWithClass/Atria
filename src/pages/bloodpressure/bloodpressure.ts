@@ -24,6 +24,7 @@ export class BloodPressurePage {
     }
   }
   public bpChartProps = bpChartProperties
+  public syncErr = false
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,25 +41,30 @@ export class BloodPressurePage {
     this.chartData.systolic.data = allSystolicEntries.slice(0, 4).reverse()
     this.chartData.diastolic.data = allDiastolicEntries.slice(0, 4).reverse()
   }
+  ionViewDidLoad() {}
 
   bpAuth() {
     return this.bpService.withingsAuth()
-  }
-
-  fetchBPdata(manual) {
-    return this.bpService.fetchBPdata(manual)
   }
 
   launchManualAdd() {
     this.navCtrl.push(ManualbpPage, {}, { animate: true, direction: 'forward' })
   }
 
-  ngAfterViewInit() {}
+  public refresh(event = { complete: () => {} }) {
+    this.bpService
+      .fetchBPdata(true)
+      .then(() => {
+        event.complete()
+        this.chart.ngOnChanges({})
+      })
+      .catch(() => {
+        this.syncErr = true
+        event.complete()
 
-  ionViewDidLoad() {}
-
-  public refresh() {
-    this.bpService.fetchBPdata(true)
-    this.chart.ngOnChanges({})
+        setTimeout(() => {
+          this.syncErr = false
+        }, 2000)
+      })
   }
 }

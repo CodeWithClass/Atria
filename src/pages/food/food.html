@@ -2,15 +2,18 @@
   <ion-navbar>
     <ion-title>
       Diet
-      <!-- <span class="settingsCog"><ion-icon name="settings" (click)="launchSettings()"></ion-icon></span> -->
-      <span class="refresh">
-        <ion-icon name="refresh" (click)="this.refresh()"></ion-icon>
-      </span>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
+  <ion-refresher (ionRefresh)="refresh($event, true)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to Sync"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid class="food-background">
     <ion-row>
       <ion-col col-lg-6 class="area1">

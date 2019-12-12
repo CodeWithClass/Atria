@@ -65,29 +65,37 @@ export class FitbitService {
   }
 
   public getData(manual: boolean = false, category: string) {
-    if (!this.userStats.fitbitAuth && manual) return this.Auth()
-    else if (!this.userStats.fitbitAuth) return
+    return new Promise((resolve, reject) => {
+      if (!this.userStats.fitbitAuth && manual) return this.Auth()
+      else if (!this.userStats.fitbitAuth) return
 
-    if (Object.keys(this.userStats.fitbitAuth).length === 0 && manual)
-      return this.Auth()
-    else if (Object.keys(this.userStats.fitbitAuth).length === 0) return
+      if (Object.keys(this.userStats.fitbitAuth).length === 0 && manual)
+        return this.Auth()
+      else if (Object.keys(this.userStats.fitbitAuth).length === 0) return
 
-    const params = new URLSearchParams()
-    const refresh_token = _.get(this.userStats, 'fitbitAuth.refresh_token', '')
-    params.set('refresh_token', refresh_token)
-    params.set('firebaseUID', this.authService.getUID())
-    params.set('category', category)
-    params.set('date', this.userStats.todaysDate)
+      const params = new URLSearchParams()
+      const refresh_token = _.get(
+        this.userStats,
+        'fitbitAuth.refresh_token',
+        ''
+      )
+      params.set('refresh_token', refresh_token)
+      params.set('firebaseUID', this.authService.getUID())
+      params.set('category', category)
+      params.set('date', this.userStats.todaysDate)
 
-    const url = this.fitbitDataUrl + params.toString()
-    this.http.get(url).subscribe(
-      res => {
-        if (_.get(res, 'response.fbstatus') !== 200)
-          console.log('fitbit.com data fetch err: ', res)
-      },
-      err => {
-        console.log('fitbit data fetch err: ', err)
-      }
-    )
+      const url = this.fitbitDataUrl + params.toString()
+      this.http.get(url).subscribe(
+        res => {
+          if (_.get(res, 'response.fbstatus') !== 200)
+            console.log('fitbit.com data fetch err: ', res)
+          resolve(res)
+        },
+        err => {
+          console.log('fitbit data fetch err: ', err)
+          reject(err)
+        }
+      )
+    })
   }
 }

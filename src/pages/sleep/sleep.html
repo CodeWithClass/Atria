@@ -1,16 +1,22 @@
 <ion-header no-border>
   <ion-navbar>
-    <ion-title
-      >Sleep
-      <span class="refresh">
-        <ion-icon name="refresh" (click)="fetchActData(true)"></ion-icon>
-      </span>
-    </ion-title>
+    <ion-title>Sleep </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <div class="sleep-background">
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to Sync"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="syncErr" *ngIf="syncErr">
+    Sync failed.<br />
+    Check your network connection
+  </div>
+  <div class="sleep-background" *ngIf="!syncErr">
     <div class="sleepSummary">
       <div class="chart-summary chart-summary-top">
         You spent

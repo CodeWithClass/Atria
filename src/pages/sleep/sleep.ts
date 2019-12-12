@@ -11,6 +11,8 @@ import { sleepChartProperties } from '../../helpers/charts'
 })
 export class SleepPage {
   public slpProps: object = sleepChartProperties
+  public syncErr = false
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,12 +32,24 @@ export class SleepPage {
     return this.fbService.getAuthStatus()
   }
 
-  public fetchActData(manual: boolean = false) {
-    return this.fbService.getData(manual, 'sleep')
-  }
-
   public shouldDisplay(val) {
     if (val > 0) return true
     return false
+  }
+  public refresh(event = { complete: () => {} }) {
+    this.syncErr = false
+    this.fbService
+      .getData(true, 'sleep')
+      .then(() => {
+        event.complete()
+      })
+      .catch(() => {
+        this.syncErr = true
+        event.complete()
+
+        setTimeout(() => {
+          this.syncErr = false
+        }, 2000)
+      })
   }
 }

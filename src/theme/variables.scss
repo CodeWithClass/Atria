@@ -42,6 +42,10 @@ $colors: (
   sleep: steelblue
 );
 
+//refresher
+$refresher-height: 100px;
+$refresher-icon-color: #fff;
+$refresher-text-color: #fff;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -68,10 +72,6 @@ $grid-breakpoints: (
   md: 768px,
   lg: 1024px
 );
-
-// App Windows Variables
-// --------------------------------------------------
-// Windows only Sass variables can go here
 
 // App Theme
 // --------------------------------------------------

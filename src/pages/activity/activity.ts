@@ -9,6 +9,8 @@ import { UserStatsProvider } from '../../services/user.stats'
   templateUrl: 'activity.html'
 })
 export class ActivityPage {
+  public syncErr = false
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,7 +26,20 @@ export class ActivityPage {
     return this.fbService.getAuthStatus()
   }
 
-  public fetchActData(manual: boolean = false) {
-    return this.fbService.getData(manual, 'activities')
+  public refresh(event = { complete: () => {} }) {
+    this.syncErr = false
+    this.fbService
+      .getData(true, 'activities')
+      .then(() => {
+        event.complete()
+      })
+      .catch(() => {
+        this.syncErr = true
+        event.complete()
+
+        setTimeout(() => {
+          this.syncErr = false
+        }, 2000)
+      })
   }
 }

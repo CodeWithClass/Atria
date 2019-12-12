@@ -2,15 +2,24 @@
   <ion-navbar>
     <ion-title>
       Blood Pressure
-      <span class="refresh">
-        <ion-icon name="refresh" (click)="refresh()"></ion-icon>
-      </span>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-row class="bp-readings">
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to Sync"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="syncErr" *ngIf="syncErr">
+    Sync failed.<br />
+    Check your network connection
+  </div>
+
+  <ion-row class="bp-readings" *ngIf="!syncErr">
     <ion-col col-12 col-sm-3 col-md-1 class="previous">
       <h3 class="systolic">
         {{(userStats.bpData[2].measurement.systolic | number:'1.0-0') || 0}}
