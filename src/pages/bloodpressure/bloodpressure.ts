@@ -64,7 +64,11 @@ export class BloodPressurePage {
 
         setTimeout(() => {
           this.syncErr = false
-        }, 2000)
+        }, 6000)
       })
+  }
+
+  public dismissSyncErr() {
+    this.syncErr = false
   }
 }

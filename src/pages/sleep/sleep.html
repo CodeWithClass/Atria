@@ -12,11 +12,9 @@
     >
     </ion-refresher-content>
   </ion-refresher>
-  <div class="syncErr" *ngIf="syncErr">
-    Sync failed.<br />
-    Check your network connection
-  </div>
-  <div class="sleep-background" *ngIf="!syncErr">
+  <sync-error *ngIf="syncErr" (click)="dismissSyncErr()"></sync-error>
+
+  <div class="sleep-background">
     <div class="sleepSummary">
       <div class="chart-summary chart-summary-top">
         You spent

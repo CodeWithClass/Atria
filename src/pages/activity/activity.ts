@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
+import { ThrowStmt } from '@angular/compiler'
 
 @IonicPage()
 @Component({
@@ -9,8 +10,7 @@ import { UserStatsProvider } from '../../services/user.stats'
   templateUrl: 'activity.html'
 })
 export class ActivityPage {
-  public syncErr = false
-
+  public syncErr: boolean = false
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -28,6 +28,7 @@ export class ActivityPage {
 
   public refresh(event = { complete: () => {} }) {
     this.syncErr = false
+
     this.fbService
       .getData(true, 'activities')
       .then(() => {
@@ -39,7 +40,11 @@ export class ActivityPage {
 
         setTimeout(() => {
           this.syncErr = false
-        }, 2000)
+        }, 6000)
       })
+  }
+
+  public dismissSyncErr() {
+    this.syncErr = false
   }
 }

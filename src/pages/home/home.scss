@@ -5,8 +5,9 @@ page-home {
     ion-navbar {
       background-color: transparent;
 
-      .atria-title {
+      .atria-logo {
         color: color($colors, primary);
+        width: 20vw;
       }
     }
     ion-card {

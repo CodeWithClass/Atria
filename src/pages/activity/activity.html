@@ -12,11 +12,8 @@
     >
     </ion-refresher-content>
   </ion-refresher>
-  <div class="syncErr" *ngIf="syncErr">
-    Sync failed.<br />
-    Check your network connection
-  </div>
-  <div class="activity-background" *ngIf="!syncErr">
+  <sync-error *ngIf="syncErr" (click)="dismissSyncErr()"></sync-error>
+  <div class="activity-background">
     <div class="area1">
       <round-progress
         id="round-progress"

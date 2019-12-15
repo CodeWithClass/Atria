@@ -14,12 +14,9 @@
     >
     </ion-refresher-content>
   </ion-refresher>
-  <div class="syncErr" *ngIf="syncErr">
-    Sync failed.<br />
-    Check your network connection
-  </div>
+  <sync-error *ngIf="syncErr" (click)="dismissSyncErr()"></sync-error>
 
-  <ion-row class="bp-readings" *ngIf="!syncErr">
+  <ion-row class="bp-readings">
     <ion-col col-12 col-sm-3 col-md-1 class="previous">
       <h3 class="systolic">
         {{(userStats.bpData[2].measurement.systolic | number:'1.0-0') || 0}}
