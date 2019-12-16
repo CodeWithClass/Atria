@@ -7,9 +7,7 @@
 <ion-header no-border>
   <ion-navbar>
     <ion-title>
-      My Stats
-      <ion-icon class="settingsCog" name="settings" (click)="launchSettings()">
-      </ion-icon>
+      Me
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -34,10 +32,27 @@
         name="lname"
       ></ion-input>
     </ion-item>
+    <!-- ================= Gender ================== -->
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Gender</ion-label>
+      <ion-select [(ngModel)]="mystats.gender" multiple="false" name="gender">
+        <ion-option>Male</ion-option>
+        <ion-option>Female</ion-option>
+      </ion-select>
+    </ion-item>
     <!-- ================= Age ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Age</ion-label>
       <ion-input type="number" [(ngModel)]="mystats.age" name="age"></ion-input>
+    </ion-item>
+    <!-- ================= Weight ================== -->
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Weight</ion-label>
+      <ion-input
+        type="number"
+        [(ngModel)]="mystats.weight"
+        name="weight"
+      ></ion-input>
     </ion-item>
     <!-- ================= Height ================== -->
     <ion-item class="Input">

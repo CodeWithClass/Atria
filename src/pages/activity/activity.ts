@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
-import { ThrowStmt } from '@angular/compiler'
 
 @IonicPage()
 @Component({

@@ -1,14 +1,27 @@
 page-settings {
-    
-    .userEmail{
-        color: #fff;
-        padding: 2%;
-        text-align: center;
+  .background {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
 
+    ion-button {
+      display: block;
     }
-    
-    button{
-            padding: 25px 0 25px 0;
-            border-radius: 4px;
-        }
+    ion-item,
+    ion-item-divider {
+      background-color: transparent;
+      color: inherit;
+    }
+    .userEmail {
+      color: #fff;
+      padding: 2%;
+      text-align: center;
+    }
+
+    button {
+      padding: 25px 0 25px 0;
+      border-radius: 4px;
+    }
+  }
 }

@@ -18,7 +18,9 @@ export class MyStatsPage {
     lname: '',
     goalCaloriesIn: 0,
     heightFeet: '',
-    heightInches: ''
+    heightInches: '',
+    weight: 0,
+    gender: 'Male'
   }
 
   constructor(

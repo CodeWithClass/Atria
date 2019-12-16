@@ -11,13 +11,17 @@ export class DBService {
     private fdb: AngularFireDatabase,
     public authService: AuthService,
     public userStats: UserStatsProvider
-  ) {}
+  ) {
+  }
 
   loadDBdata(cb, signout: string = '') {
     if (signout === 'gracefulSignout') {
       this.fdb.database.goOffline()
       return cb()
     }
+
+    console.log ('eeff', this.userStats.sleepData.mainSleep.efficiency)
+
 
     this.fdb
       .object('users/' + this.authService.getUID())
@@ -37,13 +41,13 @@ export class DBService {
             this.userStats.bpData
           )
           this.userStats.processActivityData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.activities`, '')
+            _.get(this.userStats.userDailyStats, `${todaysDate}.activities`, {})
           )
           this.userStats.processSleepData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.sleep`, '')
+            _.get(this.userStats.userDailyStats, `${todaysDate}.sleep`, {})
           )
           this.userStats.processNutrientData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.nutrients`, '')
+            _.get(this.userStats.userDailyStats, `${todaysDate}.nutrients`, {})
           )
           //MACHING LEARNING PLACEHOLDER
           this.userStats.bpData.unshift({

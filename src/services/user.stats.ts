@@ -73,22 +73,29 @@ export class UserStatsProvider {
 
   // ================= Food / Nutrients ================
   calcMacros() {
-    const currCals = this.nutrientData.Energy
-    const macros = [
-      { name: 'Protein', multiplier: 4 },
-      { name: 'Carbohydrate, by difference', multiplier: 4 },
-      { name: 'Total lipid (fat)', multiplier: 9 }
-    ]
+    try {
+      const currCals = this.nutrientData.Energy
+      const macros = [
+        { name: 'Protein', multiplier: 4 },
+        { name: 'Carbohydrate, by difference', multiplier: 4 },
+        { name: 'Total lipid (fat)', multiplier: 9 }
+      ]
 
-    this.macroPercentages.Protein =
-      ((this.nutrientData[macros[0].name] * macros[0].multiplier) / currCals) *
-      100
-    this.macroPercentages.Carbohydrate =
-      ((this.nutrientData[macros[1].name] * macros[1].multiplier) / currCals) *
-      100
-    this.macroPercentages.Fat =
-      ((this.nutrientData[macros[2].name] * macros[2].multiplier) / currCals) *
-      100
+      this.macroPercentages.Protein =
+        ((this.nutrientData[macros[0].name] * macros[0].multiplier) /
+          currCals) *
+        100
+      this.macroPercentages.Carbohydrate =
+        ((this.nutrientData[macros[1].name] * macros[1].multiplier) /
+          currCals) *
+        100
+      this.macroPercentages.Fat =
+        ((this.nutrientData[macros[2].name] * macros[2].multiplier) /
+          currCals) *
+        100
+    } catch (e) {
+      console.log(e)
+    }
   }
 
   processNutrientData(data) {
@@ -103,18 +110,24 @@ export class UserStatsProvider {
 
   // =================== sleep ====================
   formatMainSleep(data) {
-    const sleepDetails = _.get(data, 'sleep', [])
-    const mainSleep = sleepDetails.filter(slpElem => {
-      return slpElem.isMainSleep === true
-    })
-
-    this.sleepData.mainSleep = { ...mainSleep[0] }
-    this.sleepData.mainSleep.timeInBed = formatMinutes(mainSleep[0].timeInBed) // prettier-ignore
-    this.sleepData.mainSleep.sleepTime = formatMinutes(mainSleep[0].minutesAsleep) // prettier-ignore
-    this.sleepData.mainSleep.restlessTime = formatMinutes( mainSleep[0].restlessDuration) // prettier-ignore
-    this.sleepData.mainSleep.awakeTime = formatMinutes(mainSleep[0].awakeDuration) // prettier-ignore
-    this.sleepData.mainSleep.startTime = timeAmPm(mainSleep[0].startTime) // prettier-ignore
-    this.sleepData.mainSleep.endTime = timeAmPm(mainSleep[0].endTime) // prettier-ignore
+    try {
+      const sleepDetails = _.get(data, 'sleep', [])
+      const mainSleep = sleepDetails.filter(slpElem => {
+        return slpElem.isMainSleep === true
+      })
+      this.sleepData.mainSleep = { ...mainSleep[0] }
+      this.sleepData.mainSleep.timeInBed = formatMinutes(
+        _.get(mainSleep[0], 'timeInBed', 0)
+      )
+      this.sleepData.mainSleep.sleepTime = formatMinutes(_.get(mainSleep[0], 'minutesAsleep', 0)) // prettier-ignore
+      this.sleepData.mainSleep.restlessTime = formatMinutes(_.get(mainSleep[0], 'restlessDuration', 0)) // prettier-ignore
+      this.sleepData.mainSleep.awakeTime = formatMinutes(_.get(mainSleep[0], 'awakeDuration', 0)) // prettier-ignore
+      this.sleepData.mainSleep.startTime = timeAmPm(_.get(mainSleep[0], 'startTime', 0)) // prettier-ignore
+      this.sleepData.mainSleep.endTime = timeAmPm(_.get(mainSleep[0], 'endTime', 0)) // prettier-ignore
+      this.sleepData.mainSleep.efficiency = _.get(mainSleep[0], 'efficiency', 0) // prettier-ignore
+    } catch (e) {
+      console.log(e)
+    }
   }
   processSleepData(data) {
     this.formatMainSleep(data)

@@ -1,22 +1,32 @@
 page-home {
+  ion-header {
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 !important;
+    padding-bottom: 1vh;
+    ion-icon {
+      color: white;
+      font-size: 2em;
+      padding: 1vh 4vw 0 4vw;
+    }
+    .atria-logo {
+      color: color($colors, primary);
+      width: 20vw;
+      padding-top: 1vh;
+    }
+  }
   .home-page {
     // background-color: #fff !important;
 
-    ion-navbar {
-      background-color: transparent;
-
-      .atria-logo {
-        color: color($colors, primary);
-        width: 20vw;
-      }
-    }
     ion-card {
       position: relative;
       min-height: 250px;
       // width: 100%;
       // margin: 0;
       border-radius: 4%;
-      margin-top: 5%;
+      // margin-top: 5%;
       // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
     }
 
@@ -201,22 +211,27 @@ page-home {
             position: absolute;
             left: 50;
             right: -50;
-            // text-align: center;
-          }
+            h2 {
+              font-size: 3em;
+              font-weight: 300;
+              color: rgb(234, 234, 234);
+              text-align: center;
+            }
+            hr {
+              width: 50%;
+              max-width: 100px;
+              margin: 1vh auto;
+              height: 2px;
+              background-color: #888;
+            }
 
-          .progress-text h2 {
-            font-size: 30px;
-            font-weight: 300;
-            color: rgb(234, 234, 234);
-            text-align: center;
-          }
-
-          .progress-text hr {
-            width: 90%;
-            max-width: 100px;
-            margin: 0 auto;
-            height: 2px;
-            background-color: #888;
+            h5 {
+              margin: 0;
+              text-align: center;
+              font-size: 1.4em;
+              font-weight: 300;
+              color: #fff;
+            }
           }
         }
         .card-subtitle {

@@ -60,11 +60,8 @@
   text-align: center;
   display: inline-block;
   color: white !important;
-}
-
-.toolbar-content ion-title ion-icon {
-  float: right;
-  font-size: 25px;
+  position: absolute;
+  right: 7vw;
 }
 
 .has-refresher .scroll-content {

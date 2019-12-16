@@ -1,16 +1,14 @@
+<ion-header no-border>
+  <ion-icon name="person" (click)="pushPage('stats')"></ion-icon>
+  <img src="assets/imgs/atria.svg" class="atria-logo" />
+  <ion-icon
+    class="settingsCog"
+    name="settings"
+    (click)="pushPage('settings')"
+  ></ion-icon>
+</ion-header>
 <ion-content class="home-page">
-  <ion-navbar>
-    <ion-title>
-      <img src="assets/imgs/atria.svg" class="atria-logo" />
-      <ion-icon
-        class="settingsCog"
-        name="settings"
-        (click)="pushPage('settings')"
-      ></ion-icon>
-    </ion-title>
-  </ion-navbar>
-
-  <ion-card class="card1" (click)="pushPage('stats')">
+  <ion-card class="card1">
     <div class="card-content">
       <ion-item class="recommendation">
         <ion-label>Drink 16 oz of water</ion-label>
@@ -84,9 +82,11 @@
         <div class="progress-text">
           <h2>
             {{(userStats?.nutrientData?.Energy | number:'1.0-0') || 0}}
-            <hr />
-            {{userStats.userStatsContainer.goalCaloriesIn || 0}}
           </h2>
+          <hr />
+          <h5>
+            {{( userStats?.userStatsContainer?.goalCaloriesIn )}}
+          </h5>
         </div>
       </div>
       <div class="card-subtitle">Calories</div>

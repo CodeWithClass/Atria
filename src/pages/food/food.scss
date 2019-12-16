@@ -47,24 +47,31 @@ page-food {
 
       .progress-text {
         position: absolute;
-        top: 15%;
+        top: 18%;
         left: 0;
         right: 0;
-        margin: auto;
+        margin: 0 auto;
+        padding: 0;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         h2 {
-          font-size: 30px;
+          margin: 0;
+          font-size: 3em;
           font-weight: 300;
           color: rgb(234, 234, 234);
         }
 
         h5 {
+          margin: 0;
+          font-size: 1.4em;
           font-weight: 300;
         }
 
         hr {
-          width: 15%;
+          width: 25%;
           max-width: 66px;
           margin: 0 auto;
           height: 3px;
