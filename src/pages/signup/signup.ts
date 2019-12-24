@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { FormBuilder, FormGroup } from '@angular/forms'
 import { NavController, Events } from 'ionic-angular'
 import { AuthService } from '../../services/auth.service'
 import { UserStatsProvider } from '../../services/user.stats'

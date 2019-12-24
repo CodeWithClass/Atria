@@ -3,6 +3,7 @@ import _ from 'lodash'
 import { formatDate, timeAmPm, formatMinutes } from '../helpers/formatting'
 @Injectable()
 export class UserStatsProvider {
+  allData = {}
   todaysDate: string = '0000-00-00'
   ABSOLUTE_DATE: string = '0000-00-00'
   foodIntake: any
@@ -63,9 +64,9 @@ export class UserStatsProvider {
   currCalories: number = 0
 
   bpData = [
-    { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } },
-    { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } },
-    { measurement: { date: 0, diastolic: 0, systolic: 0, hr: 0 } }
+    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } },
+    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } },
+    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } }
   ]
 
   constructor() {
@@ -113,6 +114,8 @@ export class UserStatsProvider {
   formatMainSleep(data) {
     try {
       const sleepDetails = _.get(data, 'sleep', [])
+      if (sleepDetails.length === 0) return
+
       const mainSleep = sleepDetails.filter(slpElem => {
         return slpElem.isMainSleep === true
       })

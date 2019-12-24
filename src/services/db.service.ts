@@ -26,29 +26,29 @@ export class DBService {
         if (!data) return cb()
         try {
           const { todaysDate } = this.userStats
+          this.userStats.allData = data
           this.userStats.withingsAuth = _.get(data, 'withingsAuth', '')
           this.userStats.fitbitAuth = _.get(data, 'fitbitAuth', '')
           this.userStats.userStatsContainer = _.get(data, 'stats', '')
           this.userStats.foodIntake = _.get(data, 'meals', '')
-          this.userStats.userDailyStats = _.get(data, `dailyStats`, '')
           this.userStats.bpData = _.get(
             data,
             `dailyStats.${todaysDate}.bp`,
             this.userStats.bpData
           )
           this.userStats.processActivityData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.activities`, {})
+            _.get(data, `dailyStats.${todaysDate}.activities`, {})
           )
           this.userStats.processSleepData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.sleep`, {})
+            _.get(data, `dailyStats.${todaysDate}.sleep`, {})
           )
           this.userStats.processNutrientData(
-            _.get(this.userStats.userDailyStats, `${todaysDate}.nutrients`, {})
+            _.get(data, `dailyStats.${todaysDate}.nutrients`, {})
           )
           //MACHING LEARNING PLACEHOLDER
           this.userStats.bpData.unshift({
             measurement: {
-              date: '0000-00-00',
+              date: '',
               diastolic: 80,
               systolic: 120,
               hr: 60

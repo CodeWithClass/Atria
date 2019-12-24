@@ -1,6 +1,8 @@
 import { Component } from '@angular/core'
 import { formatDateShort, timeTravel } from '../../helpers/formatting'
 import { UserStatsProvider } from '../../services/user.stats'
+import _ from 'lodash'
+
 @Component({
   selector: 'time-travel',
   templateUrl: 'time-travel.html'
@@ -8,28 +10,49 @@ import { UserStatsProvider } from '../../services/user.stats'
 export class TimeTravelComponent {
   date: string
   displayDate: string
-  notToday: boolean = false
+  preventForward: boolean = true
   constructor(public userStats: UserStatsProvider) {
     this.date = userStats.ABSOLUTE_DATE
     this.checkIfToday()
   }
 
   checkIfToday() {
-    if (this.userStats.todaysDate === this.userStats.ABSOLUTE_DATE)
+    if (this.userStats.todaysDate === this.userStats.ABSOLUTE_DATE) {
       this.displayDate = 'Today'
-    else this.displayDate = formatDateShort(this.date)
+      this.preventForward = true
+    } else {
+      this.displayDate = formatDateShort(this.userStats.todaysDate)
+      this.preventForward = false
+    }
   }
   goBack() {
-    console.log(this.date)
-    this.date = timeTravel(this.date, 'past')
-    this.displayDate = formatDateShort(this.date)
-    this.userStats.todaysDate = this.date
-    this.checkIfToday() //dont need this gonna stop forward when present
+    this.preventForward = false
+    this.userStats.todaysDate = timeTravel(this.userStats.todaysDate, 'past')
+    this.displayDate = formatDateShort(this.userStats.todaysDate)
+    this.processData(this.userStats.allData)
   }
   goForward() {
-    this.date = timeTravel(this.date, 'future')
-    this.displayDate = formatDateShort(this.date)
-    this.userStats.todaysDate = this.date
+    this.userStats.todaysDate = timeTravel(this.userStats.todaysDate, 'future')
+    this.displayDate = formatDateShort(this.userStats.todaysDate)
     this.checkIfToday()
+    this.processData(this.userStats.allData)
+  }
+
+  public processData(data = {}) {
+    const { todaysDate } = this.userStats
+    this.userStats.bpData = _.get(
+      data,
+      `dailyStats.${todaysDate}.bp`,
+      this.userStats.bpData
+    )
+    this.userStats.processActivityData(
+      _.get(data, `dailyStats.${todaysDate}.activities`, {})
+    )
+    this.userStats.processSleepData(
+      _.get(data, `dailyStats.${todaysDate}.sleep`, {})
+    )
+    this.userStats.processNutrientData(
+      _.get(data, `dailyStats.${todaysDate}.nutrients`, {})
+    )
   }
 }
