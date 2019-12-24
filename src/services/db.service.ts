@@ -11,17 +11,13 @@ export class DBService {
     private fdb: AngularFireDatabase,
     public authService: AuthService,
     public userStats: UserStatsProvider
-  ) {
-  }
+  ) {}
 
   loadDBdata(cb, signout: string = '') {
     if (signout === 'gracefulSignout') {
       this.fdb.database.goOffline()
       return cb()
     }
-
-    console.log ('eeff', this.userStats.sleepData.mainSleep.efficiency)
-
 
     this.fdb
       .object('users/' + this.authService.getUID())

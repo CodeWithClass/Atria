@@ -1,0 +1,9 @@
+<img class="icon" (click)="goBack()" src="assets/imgs/chevron-left.svg" />
+<div class="date">{{displayDate}}</div>
+<img
+  class="icon"
+  *ngIf="!notToday"
+  (click)="goForward()"
+  src="assets/imgs/chevron-right.svg"
+/>
+<span class="icon" *ngIf="notToday"></span>

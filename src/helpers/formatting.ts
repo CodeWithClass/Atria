@@ -3,7 +3,9 @@ import moment from 'moment'
 export const formatDate = (date = new Date()) => {
   return moment(date).format('YYYY-MM-DD')
 }
-
+export const formatDateShort = (date: any = new Date()) => {
+  return moment(date).format('MMM, DD')
+}
 export const formatDateDetailed = (date = new Date()) => {
   return moment(date).format('YYYY-MM-DD HH:mm:ss')
 }

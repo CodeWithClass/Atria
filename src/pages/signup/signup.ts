@@ -13,6 +13,15 @@ import { LoginPage } from '../login/login'
 })
 export class SignupPage {
   signupError: string
+  emailErr: string = ''
+  isEmailErr: boolean = false
+
+  passwordErr: string = ''
+  isPasswordErr: boolean = false
+
+  confPasswordError: string = ''
+  isConfPasswordError: boolean = false
+
   form: FormGroup
   mystats = {
     age: 0,
@@ -32,15 +41,9 @@ export class SignupPage {
     public dbService: DBService
   ) {
     this.form = fb.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
-      ],
-      confirmPassword: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
-      ]
+      email: [''],
+      password: [''],
+      confirmPassword: ['']
     })
   }
 
@@ -48,8 +51,32 @@ export class SignupPage {
     this.events.publish('signUpLoaded')
   }
 
+  public checkEmail(ema: string) {}
+
+  public checkPassword(pass: string, confPass: string) {
+    if (!confPass) {
+      this.signupError = ''
+      this.confPasswordError = ''
+      this.isPasswordErr = false
+      return false
+    }
+    if (pass === confPass) {
+      this.signupError = ''
+      this.confPasswordError = ''
+      this.isConfPasswordError = false
+      return true
+    }
+    this.signupError = 'Passwords must match'
+    this.isConfPasswordError = true
+    this.isPasswordErr = true
+
+    return false
+  }
+
   public signup() {
     let data = this.form.value
+    if (!this.checkPassword(data.password, data.confirmPassword)) return
+
     let credentials = {
       email: data.email,
       password: data.password,
@@ -63,7 +90,7 @@ export class SignupPage {
     )
   }
 
-  public pushPage(page) {
+  public pushPage(page: string) {
     if (page === 'login') return this.navCtrl.push(LoginPage)
     return
   }

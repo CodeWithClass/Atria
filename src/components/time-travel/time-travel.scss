@@ -1,0 +1,17 @@
+time-travel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: white;
+
+  .icon {
+    width: 18vw;
+    color: white;
+    padding: 6vw;
+  }
+
+  .date {
+    font-size: 1.5em;
+    padding: 6vw 0;
+  }
+}
