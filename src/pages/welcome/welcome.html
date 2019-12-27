@@ -19,6 +19,18 @@
     >
       Start
     </button>
+    <button
+      *ngIf="completedWelcome"
+      ion-button
+      outline
+      block
+      type="submit"
+      color="light"
+      class="button slideRight whiteText"
+      (click)="popPage()"
+    >
+      Back
+    </button>
   </div>
 
   <div *ngIf="this.personalDetails">

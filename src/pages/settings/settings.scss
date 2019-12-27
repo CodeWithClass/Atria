@@ -4,9 +4,14 @@ page-settings {
     flex-direction: column;
     justify-content: space-between;
     color: white;
+    min-height: 80vh;
 
     ion-button {
       display: block;
+    }
+
+    ion-item-group {
+      margin: 0 auto 5vh auto;
     }
     ion-item,
     ion-item-divider {

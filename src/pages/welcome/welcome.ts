@@ -20,6 +20,7 @@ import {
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
+  completedWelcome: boolean = false
   getStarted: boolean = true
   personalDetails: boolean = false
   healthGoal: boolean = false
@@ -58,6 +59,11 @@ export class WelcomePage {
     public fbService: FitbitService,
     public userStats: UserStatsProvider
   ) {
+    this.completedWelcome = _.get(
+      this.userStats.allData,
+      'user.completedWelcome',
+      false
+    )
     this.form = fb.group({
       fname: '',
       lname: '',
@@ -106,6 +112,10 @@ export class WelcomePage {
         this.fitbitAuth = true
         break
     }
+  }
+
+  public popPage() {
+    this.navCtrl.pop()
   }
 
   public validate(form: any) {

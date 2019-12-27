@@ -13,6 +13,7 @@ import { WelcomePage } from '../welcome/welcome'
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
+  fitbitAuthStatus: boolean
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -21,7 +22,9 @@ export class SettingsPage {
     public afAuth: AngularFireAuth,
     public dbService: DBService,
     public fbService: FitbitService
-  ) {}
+  ) {
+    this.fitbitAuthStatus = this.fbService.getAuthStatus()
+  }
 
   logout() {
     this.dbService.loadDBdata(() => {
@@ -35,15 +38,8 @@ export class SettingsPage {
     this.navCtrl.push(WelcomePage, {}, { animate: true, direction: 'forward' })
   }
 
-  fitbitAuth() {
-    return this.fbService.Auth()
-  }
-
-  public revokefitbitAuth() {
-    return this.fbService.revokeAuth()
-  }
-
-  public fitbitAuthStatus() {
-    return this.fbService.getAuthStatus()
+  fibitToggle() {
+    if (this.fitbitAuthStatus === false) return this.fbService.revokeAuth()
+    if (this.fitbitAuthStatus === true) return this.fbService.Auth()
   }
 }
