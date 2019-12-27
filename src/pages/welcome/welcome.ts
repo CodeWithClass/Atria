@@ -1,12 +1,19 @@
 import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular'
 import { FormBuilder, FormGroup } from '@angular/forms'
+import _ from 'lodash'
 import { DBService } from '../../services/db.service'
 import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { HomePage } from '../home/home'
-import _ from 'lodash'
+import { calcTDEE } from '../../helpers/calories'
+import {
+  ageValidation,
+  weightValidation,
+  nameValidation,
+  notBlank
+} from '../../helpers/validators'
 @IonicPage()
 @Component({
   selector: 'page-welcome',
@@ -32,11 +39,14 @@ export class WelcomePage {
     gender: 'Male',
     goalCaloriesIn: 2000,
     goalCaloriesOut: 500,
+    weight: '0',
     heightFeet: '0',
     heightInches: '0',
-    activityLevel: '0',
+    activityLevel: '',
     healthGoal: 'None'
   }
+  validateErr: string = ''
+  isValidateErr: boolean = true
 
   constructor(
     public navCtrl: NavController,
@@ -97,13 +107,39 @@ export class WelcomePage {
         break
     }
   }
-  healthGoalChange(healthGoal) {
+
+  public validate(form: any) {
+    const {
+      fname,
+      lname,
+      gender,
+      age,
+      weight,
+      heightFeet,
+      heightInches,
+      activityLevel
+    } = form
+    if (
+      nameValidation(fname) &&
+      nameValidation(lname) &&
+      notBlank(gender) &&
+      notBlank(heightFeet) &&
+      notBlank(heightInches) &&
+      notBlank(activityLevel) &&
+      ageValidation(age) &&
+      weightValidation(weight)
+    ) {
+      this.isValidateErr = false
+    } else this.isValidateErr = true
+  }
+
+  healthGoalChange(healthGoal: string) {
     return _.set(this.stats, 'healthGoal', healthGoal)
   }
 
-  savePersonalDetails(page) {
-    let data = this.AuditData(this.stats, this.form.value)
-    const goalCaloriesIn = _.round(this.calcTDEE(data)) || 2000
+  savePersonalDetails(page: string) {
+    let data = this.auditData(this.stats, this.form.value)
+    const goalCaloriesIn = _.round(calcTDEE(data)) || 2000
 
     _.set(data, 'goalCaloriesIn', goalCaloriesIn)
 
@@ -113,7 +149,7 @@ export class WelcomePage {
     return
   }
 
-  AuditData = (baseObj: object, donorObj: object) => {
+  auditData = (baseObj: object, donorObj: object) => {
     let data: object = {}
     _.forEach(baseObj, (val, key) => {
       val.toString().replace(/\W/g, '')
@@ -126,38 +162,7 @@ export class WelcomePage {
     return data
   }
 
-  calcTDEE(data) {
-    /*Mifflin = (10.m + 6.25h - 5.0a) + s
-    m is mass in kg, h is height in cm, a is
-     age in years, s is +5 for males and -151 
-     for females*/
-    const weight = parseInt(data.weight)
-    const age = parseInt(data.age)
-    const heightFeet = parseInt(data.heightFeet.replace(/\D/g, ''))
-    const heightInches = parseInt(data.heightInches.replace(/\D/g, ''))
-    const { gender, activityLevel, healthGoal } = data
-
-    //convert to metric
-    const heightcm = (heightFeet * 12 + heightInches) * 2.54
-    const weightKg = weight / 2.2 //lbs to kg
-    const genderInt = gender === 'Male' ? 5 : -151
-
-    // prettier-ignore
-    let TDEE: number = ((10*weightKg) + (6.25*heightcm) - (5*age)) + genderInt
-    if (activityLevel === '5 - 7 days per week') TDEE = TDEE * 2
-    if (activityLevel === '3 - 4 days per week') TDEE = TDEE * 1.6
-    if (activityLevel === '1 - 2 days per week') TDEE = TDEE * 1.3
-
-    return this.calcGoalCalories(TDEE, healthGoal)
-  }
-
-  calcGoalCalories(TDEE, healthGoal) {
-    if (healthGoal === 'Lose weight') return TDEE - 500
-    if (healthGoal === 'Gain weight') return TDEE + 500
-    return TDEE
-  }
-
-  goToPlayStore(app) {
+  goToPlayStore(app: string) {
     if (app === 'withings')
       return window.open(this.withingPlaystoreUrl, '_system')
     else if (app === 'fitbit')

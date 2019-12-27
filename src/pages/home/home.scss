@@ -13,7 +13,7 @@ page-home {
     }
     .atria-logo {
       color: color($colors, primary);
-      width: 20vw;
+      width: 23vw;
       padding-top: 1vh;
     }
   }
@@ -23,11 +23,7 @@ page-home {
     ion-card {
       position: relative;
       min-height: 250px;
-      // width: 100%;
-      // margin: 0;
       border-radius: 4%;
-      // margin-top: 5%;
-      // box-shadow: inset 1px 17px 26px -4px rgba(255, 255, 255, 0.43);
     }
 
     .card-img {

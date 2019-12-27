@@ -9,16 +9,7 @@ import { addmealPage } from '../addmeal/addmeal'
 import { FoodServiceProvider } from '../../../services/food.service'
 import { UserStatsProvider } from '../../../services/user.stats'
 import { DBService } from '../../../services/db.service'
-// import { AddFoodModal } from './addmeal/addfoodmodal/addfoodmodal';
 import { EditfoodModal } from '../editfoodmodal/editfoodmodal'
-import { formatDate, timeTravel } from '../../../helpers/formatting'
-
-/**
- * Generated class for the AddfoodPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -28,8 +19,6 @@ import { formatDate, timeTravel } from '../../../helpers/formatting'
 export class AddFoodPage {
   addfoodDate: any = {}
   dateCounter = 0
-  fullDate
-  dateColor = 'white'
 
   constructor(
     public navCtrl: NavController,
@@ -38,9 +27,7 @@ export class AddFoodPage {
     public foodServ: FoodServiceProvider,
     public userStats: UserStatsProvider,
     public dbService: DBService
-  ) {
-    this.fullDate = formatDate()
-  }
+  ) {}
 
   launchAddFoodSubPage(_pageTitle) {
     this.navCtrl.push(
@@ -125,20 +112,6 @@ export class AddFoodPage {
     })
     //call db service to write new nutrition stats
     this.dbService.writeDailyStatsToDB(metaData.date, statRecord, 'nutrients')
-  }
-
-  changeDay(time) {
-    //depending on the argument, either decrement or increment the date
-
-    this.fullDate = timeTravel(this.fullDate, time)
-    this.userStats.todaysDate = this.addfoodDate = this.fullDate
-
-    //if the date is not == today's date change the date to red
-    if (this.userStats.todaysDate != this.userStats.ABSOLUTE_DATE) {
-      this.dateColor = '#ff2626'
-    } else {
-      this.dateColor = 'white'
-    }
   }
 
   reopenFoodModal(_foodrecord) {

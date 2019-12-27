@@ -1,33 +1,32 @@
 page-mystats {
-    .userStatsForm{
-        padding: 2%;
+  .userStatsForm {
+    padding: 2%;
 
-         ion-item{
-            margin: 5% auto;
-            // border-bottom: #eee solid 2px;
+    ion-item {
+      margin: 5% auto;
+      // border-bottom: #eee solid 2px;
 
-            ion-input .text-input{
-            text-align: right;
-            }
-        }
-
-        .Input{
-            border-radius: 4px;
-            background-color: rgba(256, 256, 256, 0.9);
-            margin: 18px auto;
-        }
-
-        .Input .item-inner{
-            border-bottom: none !important;
-            color: color($colors, darktext);
-            padding: 2% 2% 2% 0;
-        }
-        
-       
-        button{
-            padding: 25px 0 25px 0;
-            color: color($colors, darktext);
-            border-radius: 4px;
-        }
+      ion-input .text-input {
+        text-align: right;
+      }
     }
-}   
+
+    .Input {
+      border-radius: 4px;
+      background-color: rgba(256, 256, 256, 0.9);
+      margin: 18px auto;
+    }
+
+    .Input .item-inner {
+      border-bottom: none !important;
+      color: color($colors, darktext);
+      padding: 2% 2% 2% 0;
+    }
+
+    button {
+      padding: 25px 0 25px 0;
+      color: color($colors, darktext);
+      border-radius: 4px;
+    }
+  }
+}

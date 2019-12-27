@@ -13,13 +13,14 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="addData()" class="userStatsForm">
+  <form (ngSubmit)="saveData()" class="userStatsForm">
     <!-- ================= fName ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">First Name</ion-label>
       <ion-input
         type="text"
         [(ngModel)]="mystats.fname"
+        (ngModelChange)="validate()"
         name="fname"
       ></ion-input>
     </ion-item>
@@ -29,6 +30,7 @@
       <ion-input
         type="text"
         [(ngModel)]="mystats.lname"
+        (ngModelChange)="validate()"
         name="lname"
       ></ion-input>
     </ion-item>
@@ -43,7 +45,12 @@
     <!-- ================= Age ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Age</ion-label>
-      <ion-input type="number" [(ngModel)]="mystats.age" name="age"></ion-input>
+      <ion-input
+        type="number"
+        [(ngModel)]="mystats.age"
+        (ngModelChange)="validate()"
+        name="age"
+      ></ion-input>
     </ion-item>
     <!-- ================= Weight ================== -->
     <ion-item class="Input">
@@ -51,6 +58,7 @@
       <ion-input
         type="number"
         [(ngModel)]="mystats.weight"
+        (ngModelChange)="validate()"
         name="weight"
       ></ion-input>
     </ion-item>
@@ -59,6 +67,7 @@
       <ion-label color="bkGradientbottom">Height</ion-label>
       <ion-select
         [(ngModel)]="mystats.heightFeet"
+        (ngModelChange)="validate()"
         multiple="false"
         name="height"
       >
@@ -68,6 +77,7 @@
       </ion-select>
       <ion-select
         [(ngModel)]="mystats.heightInches"
+        (ngModelChange)="validate()"
         multiple="false"
         name="height2"
       >
@@ -76,16 +86,41 @@
         >
       </ion-select>
     </ion-item>
+    <!-- ================= Activity lvl ================== -->
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">I excerise</ion-label>
+      <ion-select
+        multiple="false"
+        name="activity"
+        [(ngModel)]="mystats.activityLevel"
+        (ngModelChange)="validate()"
+      >
+        <ion-option>5 - 7 days per week</ion-option>
+        <ion-option>3 - 4 days per week</ion-option>
+        <ion-option>1 - 2 days per week</ion-option>
+        <ion-option>0 days per week</ion-option>
+      </ion-select>
+    </ion-item>
+
     <!-- ================= Max/Goal Calories ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Goal Calories</ion-label>
       <ion-input
         type="number"
         [(ngModel)]="mystats.goalCaloriesIn"
+        (ngModelChange)="validate()"
         name="goalCaloriesIn"
       ></ion-input>
     </ion-item>
 
-    <button ion-button type="submit" block color="base">Save</button>
+    <button
+      ion-button
+      type="submit"
+      block
+      color="base"
+      [disabled]="isValidateErr"
+    >
+      Save
+    </button>
   </form>
 </ion-content>

@@ -1,90 +1,68 @@
 page-addfood {
+  ion-header {
+    background-color: color($colors, food);
 
-    ion-header{
-        background-color: color($colors, food);
-        
-
-        .toolbar-background{
-            background-color: color($colors, food) !important;
-            
-        }
-
-        .toolbar-title{
-            color: white;
-        }
-
-        
+    .toolbar-background {
+      background-color: color($colors, food) !important;
     }
 
-    ion-content{
-        margin-top: 50px;
+    .toolbar-title {
+      color: white;
     }
-    .time-travel{
-        background-color: #555;
-        // color: white;
-        padding: 2%;
+  }
+
+  ion-content {
+    margin-top: 10vh;
+  }
+  .time-travel {
+    background-color: #555;
+    text-align: center;
+    position: fixed;
+    z-index: 999;
+    width: 100vw;
+  }
+
+  ion-card-header {
+    background-color: color($colors, food);
+    color: white !important;
+  }
+
+  ion-card-content {
+    ion-item {
+      * {
+        text-transform: capitalize;
+      }
+
+      ion-label {
+        margin: 8px 2px !important;
+      }
+
+      .importVals {
+        * {
+          text-transform: none !important;
+        }
+        display: inline-block;
+        padding: 2% 4%;
         text-align: center;
-        position: fixed;
-        z-index: 999;
-        width: 100%;
+      }
 
-        span{
-            margin: 0 auto;
-            font-size: 20px;
-        }
-
-        ion-icon{
-            padding: 0 12%;
-            font-size: 24px;
-        }
+      ion-icon {
+        position: relative;
+        left: 10px;
+        color: red;
+      }
+      background-color: #eee !important;
+      margin-top: 10px !important;
+      padding: 0px initial !important;
+      border: solid 2px red;
     }
-
-
-    ion-card-header{
-        background-color: color($colors, food);
-        color: white !important;
+    button {
+      padding: 30px 0 20px 0 !important;
+      color: #555 !important;
     }
-    
-    ion-card-content{
-        ion-item {
-            * {
-                text-transform: capitalize;
-            }
+  }
 
-            ion-label{
-                margin: 8px 2px !important;
-
-            }
-
-            .importVals{
-                *{
-                text-transform: none !important;                    
-                }
-                display: inline-block;
-                padding: 2% 4%;
-                text-align: center;
-            }
-
-            ion-icon{
-                position: relative;
-                left: 10px;
-                color:red;
-            }
-            background-color: #eee !important;
-            margin-top: 10px !important;
-            padding: 0px initial !important;
-            border: solid 2px red;
-        
-        }
-        button{
-            padding: 30px 0 20px 0 !important;
-            color: #555 !important;
-
-        }
-    }
-
-    .snacks-card{
-        margin-bottom: 40%;
-    }
-
+  .snacks-card {
+    margin-bottom: 40%;
+  }
 }

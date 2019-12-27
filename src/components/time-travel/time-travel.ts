@@ -11,6 +11,8 @@ export class TimeTravelComponent {
   date: string
   displayDate: string
   preventForward: boolean = true
+  dateColor: string = 'white'
+
   constructor(public userStats: UserStatsProvider) {
     this.date = userStats.ABSOLUTE_DATE
     this.checkIfToday()
@@ -20,15 +22,18 @@ export class TimeTravelComponent {
     if (this.userStats.todaysDate === this.userStats.ABSOLUTE_DATE) {
       this.displayDate = 'Today'
       this.preventForward = true
+      this.dateColor = '#fff'
     } else {
       this.displayDate = formatDateShort(this.userStats.todaysDate)
       this.preventForward = false
+      this.dateColor = '#F22'
     }
   }
   goBack() {
     this.preventForward = false
     this.userStats.todaysDate = timeTravel(this.userStats.todaysDate, 'past')
     this.displayDate = formatDateShort(this.userStats.todaysDate)
+    this.checkIfToday()
     this.processData(this.userStats.allData)
   }
   goForward() {

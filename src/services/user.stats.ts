@@ -54,11 +54,13 @@ export class UserStatsProvider {
     lname: '',
     age: 0,
     gender: '',
+    weight: 0,
     heightFeet: '',
     heightInches: '',
     healthGoal: '',
     goalCaloriesIn: 0,
-    goalCaloriesOut: 0
+    goalCaloriesOut: 0,
+    activityLevel: ''
   }
 
   currCalories: number = 0
