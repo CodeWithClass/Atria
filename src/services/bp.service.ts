@@ -26,6 +26,11 @@ export class BPService {
     public authService: AuthService
   ) {}
 
+  public getAuthStatus() {
+    const withingsAuth = this.userStats.withingsAuth
+    return !!Object.keys(withingsAuth).length
+  }
+
   public withingsAuth() {
     let params = new URLSearchParams()
     params.set('client_id', this.client_id)

@@ -19,17 +19,24 @@
         </ion-item-divider>
 
         <ion-item (click)="pushPage('welcome')">
-          <ion-label>Welcome Wizard</ion-label>
+          <ion-label
+            >Setup wizard <ion-icon name="ios-arrow-forward"></ion-icon>
+          </ion-label>
+          <ion-icon name="ios-arrow-forward"></ion-icon>
         </ion-item>
       </ion-item-group>
 
       <ion-item-group>
         <ion-item-divider>
-          <ion-label>Connected Devices</ion-label>
+          <ion-label>Connected Accounts</ion-label>
         </ion-item-divider>
 
         <ion-item>
           <ion-label>Withings</ion-label>
+          <ion-toggle
+            [(ngModel)]="withingsAuthStatus"
+            (ionChange)="withingsToggle()"
+          ></ion-toggle>
         </ion-item>
         <ion-item>
           <ion-label>Fitbit</ion-label>

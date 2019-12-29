@@ -30,22 +30,8 @@ export class UserStatsProvider {
     steps: 0,
     veryActiveMinutes: 0
   }
-  sleepData = {
-    mainSleep: {
-      startTime: '',
-      endTime: '',
-      timeInBed: [0, 0],
-      minutesAsleep: 0,
-      sleepTime: [0, 0],
-      awakeningsCount: 0,
-      awakeDuration: 0,
-      awakeTime: [0, 0],
-      restlessCount: 0,
-      restlessDuration: 0,
-      restlessTime: [0, 0],
-      efficiency: 0
-    }
-  }
+
+  sleepData: any
   withingsAuth: object
   fitbitAuth: object
   userDailyStats: any
@@ -108,15 +94,33 @@ export class UserStatsProvider {
   }
 
   //================= activity ====================/
-  processActivityData(data) {
+  processActivityData(data: object) {
     this.activityData = _.get(data, `summary`, {})
   }
 
   // =================== sleep ====================
-  formatMainSleep(data) {
+  formatMainSleep(data: object) {
+    const sleepDataInit = {
+      mainSleep: {
+        startTime: '',
+        endTime: '',
+        timeInBed: [0, 0],
+        minutesAsleep: 0,
+        sleepTime: [0, 0],
+        awakeningsCount: 0,
+        awakeDuration: 0,
+        awakeTime: [0, 0],
+        restlessCount: 0,
+        restlessDuration: 0,
+        restlessTime: [0, 0],
+        efficiency: 0
+      }
+    }
+    this.sleepData = sleepDataInit
+
     try {
       const sleepDetails = _.get(data, 'sleep', [])
-      if (sleepDetails.length === 0) return
+      if (sleepDetails.length === 0) return //if no sleep data from db
 
       const mainSleep = sleepDetails.filter(slpElem => {
         return slpElem.isMainSleep === true

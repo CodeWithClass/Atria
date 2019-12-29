@@ -10,7 +10,6 @@ page-sleep {
       flex-direction: column;
       justify-content: space-between;
       min-height: 90vh;
-      // border: solid red 2px;
 
       .sleepSummary {
         display: flex;
@@ -19,7 +18,6 @@ page-sleep {
         align-items: center;
         min-height: 35vh;
         width: 100%;
-        // border: solid orchid 2px;
 
         .chart-container {
           display: flex;

@@ -13,7 +13,19 @@ page-settings {
     ion-item-group {
       margin: 0 auto 5vh auto;
     }
-    ion-item,
+
+    ion-item {
+      background-color: transparent;
+      color: inherit;
+      padding: 2vh 0;
+
+      ion-icon {
+        float: right;
+        font-size: 1.5em;
+        margin-bottom: 1vh;
+      }
+    }
+
     ion-item-divider {
       background-color: transparent;
       color: inherit;
