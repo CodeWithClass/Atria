@@ -61,6 +61,7 @@ import { UserStatsProvider } from '../services/user.stats'
 import { FoodServiceProvider } from '../services/food.service'
 import { BPService } from '../services/bp.service'
 import { FitbitService } from '../services/fitbit.service'
+import { RecommenderProvider } from '../providers/recommender/recommender';
 
 @NgModule({
   declarations: [MyApp, TabsPage],
@@ -124,7 +125,8 @@ import { FitbitService } from '../services/fitbit.service'
     DBService,
     Keyboard,
     BPService,
-    FitbitService
+    FitbitService,
+    RecommenderProvider
   ]
 })
 export class AppModule {}

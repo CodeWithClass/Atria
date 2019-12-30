@@ -56,7 +56,6 @@ page-home {
 
       width: 100%;
       margin: 0;
-      border-radius: 0%;
       min-height: 200px;
       box-shadow: none;
 
@@ -64,7 +63,7 @@ page-home {
         margin-bottom: 0;
       }
       .card-content {
-        padding: 5% 10% 5% 10%;
+        padding: 5%;
 
         .left {
           width: 50%;
@@ -84,11 +83,32 @@ page-home {
         }
 
         .recommendation {
-          // border: rgba(117, 255, 200, 0.6) 2px solid;
-          background: rgba(255, 255, 255, 0.3);
+          // background: rgba(255, 255, 255, 0.3);
           color: #fff;
-          border-radius: 4px;
-          margin: 20px 0;
+          font-size: 1.3em;
+          border-radius: 10px;
+          margin: 4px 0;
+          min-height: 10vh;
+          button ion-icon {
+            font-size: 2em;
+          }
+          .item,
+          .item-inner,
+          .label {
+            margin: 0;
+            padding: 0;
+          }
+          .item-inner {
+            display: block;
+            min-height: 10vh;
+          }
+          .item-header {
+            background-color: #efefef;
+            padding: 2vw;
+          }
+          .item-content {
+            padding: 2vh 0 2vh 2vh;
+          }
         }
 
         h3 {

@@ -1,0 +1,22 @@
+<ion-item-sliding class="recommendation" (ionDrag)="this.logDrag($event)" #item>
+  <ion-item>
+    <div class="item-header">
+      Recommendation
+    </div>
+    <div class="item-content">
+      Item
+    </div>
+  </ion-item>
+  <ion-item-options side="left">
+    <button ion-button color="secondary" (click)="this.skip(item)">
+      <ion-icon name="archive"></ion-icon>
+      Skip
+    </button>
+  </ion-item-options>
+  <ion-item-options side="right">
+    <button ion-button (click)="this.completed(item)">
+      <ion-icon name="checkmark-circle-outline"></ion-icon>
+      Completed
+    </button>
+  </ion-item-options>
+</ion-item-sliding>
