@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
-
-/**
- * Generated class for the RecommenderComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+import { Component } from '@angular/core'
+import { RecommenderProvider } from '../../providers/recommender/recommender.service'
+import { UserStatsProvider } from '../../services/user.stats'
 @Component({
   selector: 'recommender',
   templateUrl: 'recommender.html'
 })
 export class RecommenderComponent {
+  public recommendations
+  public one
+  public two
+  public fname: string
+  public summary = { key: '', msg: '' }
 
-  text: string;
-
-  constructor() {
-    console.log('Hello RecommenderComponent Component');
-    this.text = 'Hello World';
+  constructor(rProv: RecommenderProvider, uStats: UserStatsProvider) {
+    this.recommendations = rProv.recommendations
+    this.one = rProv.currRecommendation[0]
+    this.two = rProv.currRecommendation[1]
+    this.fname = uStats.userStatsContainer.fname
+    this.summary = rProv.currSummary.msg
   }
 
+  getCurrRecommendation() {}
 }

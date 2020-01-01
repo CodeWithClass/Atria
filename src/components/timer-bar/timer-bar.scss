@@ -1,0 +1,21 @@
+timer-bar {
+  .outer {
+    width: 100%;
+    height: 0.5vh;
+  }
+  .inner {
+    position: relative;
+    width: 100%;
+    animation: progressbar 5s linear;
+    height: 0.5vh;
+  }
+}
+
+@keyframes progressbar {
+  from {
+    right: -100%;
+  }
+  to {
+    right: 0;
+  }
+}

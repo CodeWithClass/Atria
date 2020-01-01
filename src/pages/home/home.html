@@ -8,14 +8,8 @@
   ></ion-icon>
 </ion-header>
 <ion-content class="home-page">
-  <ion-card class="card1">
-    <div class="card-content">
-      <ion-list>
-        <recommendation></recommendation>
-      </ion-list>
-      <!-- <p>**Based on your activity level, blood pressure and diet.</p> -->
-    </div>
-  </ion-card>
+  <recommender></recommender>
+
   <time-travel></time-travel>
   <ion-card class="card2" (click)="pushPage('bloodpressure')">
     <div class="card-content">

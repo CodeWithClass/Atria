@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core'
+import { formatDateDetailed } from '../../helpers/formatting'
 
 @Component({
   selector: 'recommendation',
@@ -6,32 +7,57 @@ import { Component, Input } from '@angular/core'
 })
 export class RecommendationComponent {
   @Input() title: string
-  @Input() id: number
+  @Input() recommendation = {
+    id: 0,
+    done: false,
+    doneTime: '',
+    show: true,
+    skipCount: 0,
+    skipTime: '',
+    text: ''
+  }
+  showConfirmation = false
+  countdown
 
-  private recomendations = [
-    { id: 0, text: 'Drink 8 oz of water' },
-    { id: 1, text: 'Drink 16 oz of water' },
-    { id: 2, text: 'Perform 10 jumping jax' },
-    { id: 3, text: 'Perform 20 squats' }
-  ]
   constructor() {}
 
   logDrag(item) {
     const percent = item.getSlidingPercent()
-    console.log(this.id)
-
     if (percent > 2) {
-      return this.completed()
+      return this.done()
     }
     if (percent < -2) {
-      return this.skip(item)
+      return this.skip()
     }
   }
 
-  skip(item) {
-    console.log('skip', item)
+  skip() {
+    this.confirmation('skip')
   }
-  completed() {
-    console.log('completely')
+  done() {
+    this.confirmation('done')
+  }
+
+  confirmation(action: string) {
+    this.showConfirmation = true
+    this.recommendation.show = false
+    this.countdown = setTimeout(() => {
+      this.showConfirmation = false
+
+      if (action === 'skip') {
+        this.recommendation.skipCount += 1
+        this.recommendation.skipTime = formatDateDetailed()
+      }
+      if (action === 'done') {
+        this.recommendation.done = true
+        this.recommendation.doneTime = formatDateDetailed()
+      }
+    }, 5000)
+
+    if (action === 'cancel') {
+      clearTimeout(this.countdown)
+      this.showConfirmation = false
+      this.recommendation.show = true
+    }
   }
 }

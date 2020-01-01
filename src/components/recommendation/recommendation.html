@@ -1,22 +1,33 @@
-<ion-item-sliding class="recommendation" (ionDrag)="this.logDrag($event)" #item>
+<ion-item-sliding
+  *ngIf="recommendation.show"
+  class="recommendation"
+  (ionDrag)="this.logDrag($event)"
+  #item
+>
   <ion-item>
-    <div class="item-header">
-      Recommendation
-    </div>
     <div class="item-content">
-      Item
+      {{recommendation.text}}
     </div>
   </ion-item>
   <ion-item-options side="left">
-    <button ion-button color="secondary" (click)="this.skip(item)">
+    <button ion-button color="secondary" (click)="this.skip()">
       <ion-icon name="archive"></ion-icon>
       Skip
     </button>
   </ion-item-options>
   <ion-item-options side="right">
-    <button ion-button (click)="this.completed(item)">
+    <button ion-button (click)="this.done(item)">
       <ion-icon name="checkmark-circle-outline"></ion-icon>
-      Completed
+      Done
     </button>
   </ion-item-options>
 </ion-item-sliding>
+
+<div
+  *ngIf="showConfirmation"
+  (click)="confirmation('cancel')"
+  class="recommendation-cancel"
+>
+  <h3>Tap to cancel</h3>
+  <timer-bar [outerColor]="'#13a369'" [innerColor]="'#fff'"></timer-bar>
+</div>

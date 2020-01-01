@@ -1,4 +1,9 @@
-<!-- Generated template for the RecommenderComponent component -->
-<div>
-  {{text}}
+<div class="background">
+  <h1>Hey <span class="fname">{{fname}}</span>,</h1>
+  <p>{{summary}}</p>
+
+  <ion-list>
+    <recommendation [recommendation]="one"></recommendation>
+    <recommendation [recommendation]="two"></recommendation>
+  </ion-list>
 </div>

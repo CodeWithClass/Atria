@@ -17,29 +17,7 @@ sync-error {
     font-weight: 400;
     text-align: center;
     margin: 0;
-  }
-  .outer {
-    margin-top: 1vh;
-    width: 100%;
-    background-color: #777;
-    height: 0.5vh;
-  }
-  .inner {
-    position: relative;
-    // right: -100%;
-    width: 100%;
-    background-color: #333;
-    animation: progressbar 5s linear;
-    height: 0.5vh;
-  }
-}
-
-@keyframes progressbar {
-  from {
-    right: -100%;
-  }
-  to {
-    right: 0;
+    margin-bottom: 1vh;
   }
 }
 
