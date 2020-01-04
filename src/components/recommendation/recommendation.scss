@@ -1,9 +1,8 @@
 .recommendation {
   color: #efefef;
-  font-size: 1.3em;
   border-radius: 10px;
   margin: 2vh 0;
-  min-height: 7vh;
+  min-height: 10vh;
   button ion-icon {
     font-size: 1.5em;
   }
@@ -17,12 +16,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    // text-align: center;
-    min-height: 7vh;
+    min-height: 10vh;
+    max-width: 90vw;
   }
-  .item-content {
+  .item-content p {
     padding-left: 2vw;
-
+    font-size: 1.3em;
     // padding: 2vh 0 2vh 2vh;
   }
 }
@@ -30,18 +29,81 @@
 .recommendation-cancel {
   background-color: #efefef;
   color: #333;
-  font-size: 1.3em;
   text-align: center;
   border-radius: 10px;
   margin: 2vh 0;
-  min-height: 7vh;
+  min-height: 10vh;
   padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  h2 {
+    font-size: 1.3em;
+  }
+
+  h3 {
+    padding-top: 0.8vh;
+    font-size: 1.2em;
+  }
+}
+
+.recommendation-congrats {
+  color: color($colors, bkGradienttop);
+  font-size: 1.3em;
+  text-align: center;
+  margin: 2vh 0;
+  min-height: 7vh;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  animation: upAndOut 0.8s linear;
+  animation-delay: 0.6s;
+  z-index: 999;
+  h3 {
+    margin-top: 1vh;
+  }
+}
+
+.recommendation-skippedToast {
+  color: #eee;
+  font-size: 1.3em;
+  text-align: center;
+  margin: 4vh 0 2vh 0;
+  min-height: 7vh;
+  padding: 0;
+  width: 100%;
+  z-index: 999;
+  animation: fadeInOut 0.8s linear;
+  animation-delay: 0.2s;
 
   h3 {
     margin-top: 1vh;
+  }
+}
+
+@keyframes upAndOut {
+  0% {
+    top: 0;
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    top: -70px;
+    opacity: 0;
+  }
+  100% {
+    top: -100px;
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }

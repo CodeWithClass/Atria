@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular'
 import { SettingsPage } from '../settings/settings'
 import { UserStatsProvider } from '../../services/user.stats'
+import { RecommenderProvider } from '../../providers/recommender/recommender.service'
 import { DBService } from '../../services/db.service'
 import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
@@ -27,7 +28,8 @@ export class HomePage {
     public userStats: UserStatsProvider,
     public dbServ: DBService,
     public bpServ: BPService,
-    public fbServ: FitbitService
+    public fbServ: FitbitService,
+    public recProv: RecommenderProvider
   ) {}
 
   ionViewDidLoad() {

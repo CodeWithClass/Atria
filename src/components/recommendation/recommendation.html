@@ -4,10 +4,8 @@
   (ionDrag)="this.logDrag($event)"
   #item
 >
-  <ion-item>
-    <div class="item-content">
-      {{recommendation.text}}
-    </div>
+  <ion-item class="item-content">
+    <p>{{recommendation.text}}</p>
   </ion-item>
   <ion-item-options side="left">
     <button ion-button color="secondary" (click)="this.skip()">
@@ -25,9 +23,22 @@
 
 <div
   *ngIf="showConfirmation"
-  (click)="confirmation('cancel')"
+  (click)="cancelConfirmation()"
   class="recommendation-cancel"
 >
+  <h2>{{userAction}}...</h2>
   <h3>Tap to cancel</h3>
-  <timer-bar [outerColor]="'#13a369'" [innerColor]="'#fff'"></timer-bar>
+  <timer-bar
+    [outerColor]="'#13a369'"
+    [innerColor]="'#fff'"
+    [duration]="'2.5s'"
+  ></timer-bar>
+</div>
+
+<div *ngIf="showCongratsToast" class="recommendation-congrats">
+  <h3>Well done!</h3>
+</div>
+
+<div *ngIf="showSkippedToast" class="recommendation-skippedToast">
+  <h3>Skipped</h3>
 </div>

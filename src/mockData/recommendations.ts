@@ -15,7 +15,7 @@ export let recData = [
     show: true,
     skipCount: 0,
     skipTime: '',
-    text: 'Take a minute to sit and practice deep breathing'
+    text: 'Sit and practice deep breathing'
   },
   {
     id: 0,

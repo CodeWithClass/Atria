@@ -8,9 +8,24 @@
   ></ion-icon>
 </ion-header>
 <ion-content class="home-page">
-  <recommender></recommender>
+  <div class="recommender-background">
+    <h1>
+      Hey <span class="fname">{{userStats.userStatsContainer.fname}}</span>,
+    </h1>
+    <p>{{recProv.currSummary.msg}}</p>
+
+    <ion-list>
+      <recommendation
+        [(recommendation)]="recProv.currRecommendation[0]"
+      ></recommendation>
+      <recommendation
+        [(recommendation)]="recProv.currRecommendation[1]"
+      ></recommendation>
+    </ion-list>
+  </div>
 
   <time-travel></time-travel>
+
   <ion-card class="card2" (click)="pushPage('bloodpressure')">
     <div class="card-content">
       <div class="card-title">Blood Pressure</div>

@@ -13,5 +13,7 @@ import { Component, Input } from '@angular/core'
 export class TimerBarComponent {
   @Input() outerColor = '#000'
   @Input() innerColor = '#fff'
+  @Input() duration = '5s'
+
   constructor() {}
 }

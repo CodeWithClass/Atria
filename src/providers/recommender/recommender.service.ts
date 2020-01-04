@@ -5,9 +5,9 @@ import { sumData } from '../../mockData/summaries'
 @Injectable()
 export class RecommenderProvider {
   public recommendations = recData
-  public currRecommendation
+  public currRecommendation: object[]
   public summaries = sumData
-  public currSummary
+  public currSummary = { key: '', msg: '' }
 
   constructor() {
     this.randomize()
@@ -19,7 +19,6 @@ export class RecommenderProvider {
     while (rand1 === rand2) {
       rand2 = Math.floor(Math.random() * 4)
     }
-    console.log(rand1, rand2)
     this.currRecommendation = [
       this.recommendations[rand1],
       this.recommendations[rand2]
