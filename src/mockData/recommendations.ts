@@ -9,7 +9,7 @@ export let recData = [
     text: 'Drink 8 oz of water'
   },
   {
-    id: 0,
+    id: 1,
     done: false,
     doneTime: '',
     show: true,
@@ -18,7 +18,7 @@ export let recData = [
     text: 'Sit and practice deep breathing'
   },
   {
-    id: 0,
+    id: 2,
     done: false,
     doneTime: '',
     show: true,
@@ -27,7 +27,7 @@ export let recData = [
     text: 'Perform 10 jumping jax'
   },
   {
-    id: 0,
+    id: 3,
     done: false,
     doneTime: '',
     show: true,

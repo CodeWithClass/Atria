@@ -25,9 +25,10 @@
   *ngIf="showConfirmation"
   (click)="cancelConfirmation()"
   class="recommendation-cancel"
+  [ngStyle]="{'background-color': bkgColor}"
 >
-  <h2>{{userAction}}...</h2>
-  <h3>Tap to cancel</h3>
+  <h2 [ngStyle]="{'color': txtColor}">{{userAction}}...</h2>
+  <h3 [ngStyle]="{'color': txtColor}">Tap to cancel</h3>
   <timer-bar
     [outerColor]="'#13a369'"
     [innerColor]="'#fff'"

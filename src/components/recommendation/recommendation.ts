@@ -13,8 +13,9 @@ export class RecommendationComponent {
   showSkippedToast: boolean = false
 
   countdown: number
-  // userCancel: boolean = false  //remove if works in a few days from 4/1/20
   userAction: string = ''
+  bkgColor: string = ''
+  txtColor: string = ''
   constructor(public rProv: RecommenderProvider, public ngZone: NgZone) {}
 
   logDrag(item) {
@@ -37,9 +38,16 @@ export class RecommendationComponent {
   confirmation(action: string) {
     this.showConfirmation = true
     this.recommendation.show = false
-    // this.userCancel = false
-    if (action === 'skip') this.userAction = 'Skipping'
-    if (action === 'done') this.userAction = 'Calculating'
+    if (action === 'skip') {
+      this.userAction = 'Skipping'
+      this.bkgColor = '#488aff'
+      this.txtColor = '#fff'
+    }
+    if (action === 'done') {
+      this.userAction = 'Calculating'
+      this.bkgColor = '#2ffcaa'
+      this.txtColor = '#222'
+    }
 
     clearTimeout(this.countdown)
 
@@ -48,11 +56,13 @@ export class RecommendationComponent {
         this.recommendation.skipCount += 1
         this.recommendation.skipTime = formatDateDetailed()
         this.showSkipped()
+        this.rProv.process(this.recommendation)
       }
       if (action === 'done') {
         this.recommendation.done = true
         this.recommendation.doneTime = formatDateDetailed()
         this.showCongrats()
+        this.rProv.process(this.recommendation)
       }
       this.ngZone.run(() => {
         this.showConfirmation = false
@@ -61,7 +71,6 @@ export class RecommendationComponent {
   }
 
   cancelConfirmation() {
-    // this.userCancel = true
     clearTimeout(this.countdown)
     this.showConfirmation = false
     this.showCongratsToast = false
@@ -70,7 +79,6 @@ export class RecommendationComponent {
   }
 
   showCongrats() {
-    // if (this.userCancel) return
     this.showCongratsToast = true
 
     setTimeout(() => {
@@ -81,7 +89,6 @@ export class RecommendationComponent {
   }
 
   showSkipped() {
-    // if (this.userCancel) return
     this.showSkippedToast = true
 
     setTimeout(() => {

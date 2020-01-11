@@ -83,12 +83,11 @@ export class FitbitService {
       params.set('firebaseUID', this.authService.getUID())
       params.set('category', category)
       params.set('date', this.userStats.todaysDate)
-
       const url = this.fitbitDataUrl + params.toString()
       this.http.get(url).subscribe(
         res => {
           if (_.get(res, 'response.fbstatus') !== 200)
-            console.log('fitbit.com data fetch err: ', res)
+            console.log('fitbit.com data fetch res err: ', res)
           resolve(res)
         },
         err => {

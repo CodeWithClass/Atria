@@ -45,6 +45,7 @@ export class DBService {
           this.userStats.processNutrientData(
             _.get(data, `dailyStats.${todaysDate}.nutrients`, {})
           )
+          this.userStats.currRec = _.get(data, 'currRec', {})
           //MACHING LEARNING PLACEHOLDER
           this.userStats.bpData.unshift({
             measurement: {

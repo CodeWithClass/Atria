@@ -23,6 +23,7 @@ export class MyStatsPage {
   dataToAdd
   mystats = this.userStats.userStatsContainer || {
     age: 0,
+    dob: '',
     fname: '',
     lname: '',
     goalCaloriesIn: 0,

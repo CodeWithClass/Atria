@@ -39,6 +39,7 @@ export class UserStatsProvider {
     fname: '',
     lname: '',
     age: 0,
+    dob: '',
     gender: '',
     weight: 0,
     heightFeet: '',
@@ -56,6 +57,9 @@ export class UserStatsProvider {
     { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } },
     { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } }
   ]
+
+  // TODO add keys for recommendation arr
+  currRec = { recommendations: [{}], summary: { key: '', msg: '' } }
 
   constructor() {
     this.todaysDate = this.ABSOLUTE_DATE = formatDate(new Date())

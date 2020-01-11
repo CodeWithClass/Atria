@@ -36,6 +36,7 @@ export class HomePage {
     this.events.publish('homeLoaded')
     this.bpServ.fetchBPdata()
     this.fbServ.getData(false, 'activities')
+    this.recProv.generateRec()
   }
 
   public checkIfStats() {
