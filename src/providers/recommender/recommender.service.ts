@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { Injectable } from '@angular/core'
+//TODO remove mockdata
 import { recData } from '../../mockData/recommendations'
 import { sumData } from '../../mockData/summaries'
 import { AuthService } from '../../services/auth.service'
@@ -79,7 +80,7 @@ export class RecommenderProvider {
     if (!_.isEmpty(this.currSummary)) this.sumExists = true
     if (!_.isEmpty(this.currRecommendation)) this.recExists = true
   }
-
+  // TODO remove randomize
   public randomize() {
     let rand1 = Math.floor(Math.random() * 4)
     let rand2 = Math.floor(Math.random() * 4)
