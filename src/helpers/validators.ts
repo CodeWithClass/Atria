@@ -1,7 +1,14 @@
-export const ageValidation = (_age: any) => {
-  const age = parseInt(_age)
+import moment from 'moment'
+
+export const ageValidation = (_dob: any) => {
+  const age = moment().diff(_dob, 'years', false)
   if (age > 1 && age < 121) return true
   return false
+}
+
+export const dobValidation = (_dob: string) => {
+  const age = moment().diff(_dob, 'years')
+  return ageValidation(age)
 }
 
 export const weightValidation = (_weight: any) => {

@@ -39,9 +39,10 @@
       <form (ngSubmit)="savePersonalDetails()" [formGroup]="form">
         <ion-list inset>
           <ion-item class="input">
+            <ion-label color="darktext" padding-left>First name</ion-label>
+
             <ion-input
               type="text"
-              placeholder="First name"
               formControlName="fname"
               (keyup)="validate(form.value)"
             ></ion-input>
@@ -49,9 +50,9 @@
           <div class="input-err" ngxErrors="fname"></div>
 
           <ion-item class="input">
+            <ion-label color="darktext" padding-left>Last name</ion-label>
             <ion-input
               type="text"
-              placeholder="Last name"
               formControlName="lname"
               (keyup)="validate(form.value)"
             ></ion-input>
@@ -72,7 +73,7 @@
           </ion-item>
           <div class="input-err" ngxErrors="gender"></div>
 
-          <ion-item class="input">
+          <!-- <ion-item class="input">
             <ion-input
               type="number"
               max="120"
@@ -81,13 +82,25 @@
               (keyup)="validate(form.value)"
             ></ion-input>
           </ion-item>
+          <div class="input-err"></div> -->
+          <ion-item class="input">
+            <ion-label color="darktext">Date of Birth</ion-label>
+            <ion-datetime
+              formControlName="dob"
+              displayFormat="YYYY/MM/DD"
+              min="1901-01-01"
+              max="2010-01-01"
+              value="1901-01-01"
+              (ionChange)="validate(form.value)"
+            ></ion-datetime>
+          </ion-item>
           <div class="input-err"></div>
 
           <ion-item class="input">
+            <ion-label color="darktext" padding-left>Body weight</ion-label>
             <ion-input
               type="number"
               max="800"
-              placeholder="Body weight"
               formControlName="weight"
               (keyup)="validate(form.value)"
             ></ion-input>

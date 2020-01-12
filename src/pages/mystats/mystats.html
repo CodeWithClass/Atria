@@ -43,7 +43,7 @@
       </ion-select>
     </ion-item>
     <!-- ================= Age ================== -->
-    <ion-item class="Input">
+    <!-- <ion-item class="Input">
       <ion-label color="bkGradientbottom">Age</ion-label>
       <ion-input
         type="number"
@@ -51,12 +51,22 @@
         (ngModelChange)="validate()"
         name="age"
       ></ion-input>
-    </ion-item>
+    </ion-item> -->
     <!-- ================= DOB ================== -->
 
-    <!-- <ion-item class="Input"
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Date of Birth</ion-label>
 
-    ></ion-item> -->
+      <ion-datetime
+        [(ngModel)]="mystats.dob"
+        name="dob"
+        displayFormat="YYYY/MM/DD"
+        min="1901-01-01"
+        max="2010-01-01"
+        value="1901-01-01"
+        (ngModelChange)="validate()"
+      ></ion-datetime>
+    </ion-item>
     <!-- ================= Weight ================== -->
     <ion-item class="Input">
       <ion-label color="bkGradientbottom">Weight</ion-label>

@@ -1,3 +1,5 @@
+import moment from 'moment'
+
 export const calcTDEE = (data: any) => {
   /*Mifflin = (10.m + 6.25h - 5.0a) + s
     m is mass in kg, h is height in cm, a is
@@ -26,4 +28,9 @@ const calcGoalCalories = (TDEE: number, healthGoal: string) => {
   if (healthGoal === 'Lose weight') return TDEE - 500
   if (healthGoal === 'Gain weight') return TDEE + 500
   return TDEE
+}
+
+export const calcAge = dob => {
+  const age = moment().diff(dob, 'years', false)
+  return age
 }

@@ -40,26 +40,16 @@ page-welcome {
 
   .input {
     border-radius: 4px;
-    background: rgba(256, 256, 256, 1);
     width: 100%;
     .label {
-      color: #666;
+      color: color($colors, darktext);
     }
   }
+
   .input-err {
     height: 15px;
   }
 
-  // .input .item-inner{
-  //     border-bottom: none !important;
-  //     color: color($colors, darktext);
-  //     background: rgba(256, 256, 256, .001);
-
-  //     }
-  // .text-input-md{
-  //     margin: 0;
-  //     background: none;
-  // }
   .card {
     min-height: 200px;
     margin: 3% auto;

@@ -5,7 +5,7 @@ import { SettingsPage } from '../settings/settings'
 import { DBService } from '../../services/db.service'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { UserStatsProvider } from '../../services/user.stats'
-import { calcTDEE } from '../../helpers/calories'
+import { calcTDEE, calcAge } from '../../helpers/calculate'
 import {
   ageValidation,
   weightValidation,
@@ -54,7 +54,7 @@ export class MyStatsPage {
       fname,
       lname,
       gender,
-      age,
+      dob,
       weight,
       heightFeet,
       heightInches,
@@ -69,16 +69,13 @@ export class MyStatsPage {
       notBlank(heightInches) &&
       notBlank(activityLevel) &&
       calorieValidation(goalCaloriesIn) &&
-      ageValidation(age) &&
+      ageValidation(dob) &&
       weightValidation(weight)
     ) {
       this.isValidateErr = false
+      this.mystats.age = calcAge(this.mystats.dob)
       this.mystats.goalCaloriesIn = _.round(calcTDEE(this.mystats))
     } else this.isValidateErr = true
-  }
-
-  public calcCals() {
-    calcTDEE(this.mystats)
   }
 
   saveData() {

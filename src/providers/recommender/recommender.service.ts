@@ -5,7 +5,7 @@ import { recData } from '../../mockData/recommendations'
 import { sumData } from '../../mockData/summaries'
 import { AuthService } from '../../services/auth.service'
 import { HttpClient } from '@angular/common/http'
-import { formatDate } from '../../helpers/formatting'
+import { formatDate } from '../../helpers/time'
 import { UserStatsProvider } from '../../services/user.stats'
 
 @Injectable()

@@ -1,5 +1,5 @@
 import { Component, Input, NgZone } from '@angular/core'
-import { formatDateDetailed } from '../../helpers/formatting'
+import { formatDateDetailed } from '../../helpers/time'
 import { RecommenderProvider } from '../../providers/recommender/recommender.service'
 
 @Component({

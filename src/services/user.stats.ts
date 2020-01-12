@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import _ from 'lodash'
-import { formatDate, timeAmPm, formatMinutes } from '../helpers/formatting'
+import { formatDate, timeAmPm, formatMinutes } from '../helpers/time'
 @Injectable()
 export class UserStatsProvider {
   allData = {}

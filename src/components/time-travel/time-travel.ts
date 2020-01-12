@@ -1,5 +1,5 @@
 import { Component } from '@angular/core'
-import { formatDateShort, timeTravel } from '../../helpers/formatting'
+import { formatDateShort, timeTravel } from '../../helpers/time'
 import { UserStatsProvider } from '../../services/user.stats'
 import _ from 'lodash'
 

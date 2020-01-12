@@ -7,7 +7,7 @@ import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { HomePage } from '../home/home'
-import { calcTDEE } from '../../helpers/calories'
+import { calcTDEE } from '../../helpers/calculate'
 import {
   ageValidation,
   weightValidation,
@@ -37,6 +37,7 @@ export class WelcomePage {
     fname: 'Jon',
     lname: 'Doe',
     age: 99,
+    dob: '1900-01-01',
     gender: 'Male',
     goalCaloriesIn: 2000,
     goalCaloriesOut: 500,
@@ -68,7 +69,8 @@ export class WelcomePage {
       fname: '',
       lname: '',
       gender: '',
-      age: '',
+      // age: '',
+      dob: '',
       weight: '',
       heightFeet: '',
       heightInches: '',
@@ -123,7 +125,7 @@ export class WelcomePage {
       fname,
       lname,
       gender,
-      age,
+      dob,
       weight,
       heightFeet,
       heightInches,
@@ -136,7 +138,7 @@ export class WelcomePage {
       notBlank(heightFeet) &&
       notBlank(heightInches) &&
       notBlank(activityLevel) &&
-      ageValidation(age) &&
+      ageValidation(dob) &&
       weightValidation(weight)
     ) {
       this.isValidateErr = false
