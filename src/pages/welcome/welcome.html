@@ -44,7 +44,7 @@
             <ion-input
               type="text"
               formControlName="fname"
-              (keyup)="validate(form.value)"
+              (ionBlur)="validate(form.value)"
             ></ion-input>
           </ion-item>
           <div class="input-err" ngxErrors="fname"></div>
@@ -54,7 +54,7 @@
             <ion-input
               type="text"
               formControlName="lname"
-              (keyup)="validate(form.value)"
+              (ionBlur)="validate(form.value)"
             ></ion-input>
           </ion-item>
           <div class="input-err" ngxErrors="lname"></div>
@@ -65,7 +65,6 @@
               multiple="false"
               name="userGender"
               formControlName="gender"
-              (ionChange)="validate(form.value)"
             >
               <ion-option>Male</ion-option>
               <ion-option>Female</ion-option>
@@ -97,7 +96,9 @@
           <div class="input-err"></div>
 
           <ion-item class="input">
-            <ion-label color="darktext" padding-left>Body weight</ion-label>
+            <ion-label color="darktext" padding-left
+              >Body weight (lbs)</ion-label
+            >
             <ion-input
               type="number"
               max="800"
@@ -112,7 +113,7 @@
             <ion-select
               formControlName="heightFeet"
               multiple="false"
-              name="height"
+              heightFeet="height"
               (ionChange)="validate(form.value)"
             >
               <ion-option *ngFor="let i of [3,4,5,6,7,8]"
@@ -122,7 +123,7 @@
             <ion-select
               formControlName="heightInches"
               multiple="false"
-              name="height"
+              name="heightInches"
               (ionChange)="validate(form.value)"
             >
               <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]"

@@ -1,9 +1,3 @@
-<!--
-  Generated template for the MystatsPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header no-border>
   <ion-navbar>
     <ion-title>
@@ -20,7 +14,7 @@
       <ion-input
         type="text"
         [(ngModel)]="mystats.fname"
-        (ngModelChange)="validate()"
+        (ionBlur)="validate()"
         name="fname"
       ></ion-input>
     </ion-item>
@@ -30,7 +24,7 @@
       <ion-input
         type="text"
         [(ngModel)]="mystats.lname"
-        (ngModelChange)="validate()"
+        (ionBlur)="validate()"
         name="lname"
       ></ion-input>
     </ion-item>
@@ -73,7 +67,7 @@
       <ion-input
         type="number"
         [(ngModel)]="mystats.weight"
-        (ngModelChange)="validate()"
+        (ionBlur)="validate()"
         name="weight"
       ></ion-input>
     </ion-item>
@@ -84,7 +78,7 @@
         [(ngModel)]="mystats.heightFeet"
         (ngModelChange)="validate()"
         multiple="false"
-        name="height"
+        name="heightFeet"
       >
         <ion-option *ngFor="let i of [1,2,3,4,5,6,7]"
           >{{i}}<span>&nbsp;ft</span></ion-option
@@ -94,7 +88,7 @@
         [(ngModel)]="mystats.heightInches"
         (ngModelChange)="validate()"
         multiple="false"
-        name="height2"
+        name="heightInches"
       >
         <ion-option *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11]"
           >{{i}}<span>&nbsp;in</span></ion-option
@@ -114,6 +108,21 @@
         <ion-option>3 - 4 days per week</ion-option>
         <ion-option>1 - 2 days per week</ion-option>
         <ion-option>0 days per week</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- ================= Health goal ================== -->
+    <ion-item class="Input">
+      <ion-label color="bkGradientbottom">Health Goal</ion-label>
+      <ion-select
+        multiple="false"
+        name="healthGoal"
+        [(ngModel)]="mystats.healthGoal"
+        (ngModelChange)="validate()"
+      >
+        <ion-option value="weightLoss">Weight Loss</ion-option>
+        <ion-option value="maintainWeight">Maintain body weight</ion-option>
+        <ion-option value="weightGain">Weight Gain</ion-option>
       </ion-select>
     </ion-item>
 

@@ -7,7 +7,7 @@ import { BPService } from '../../services/bp.service'
 import { FitbitService } from '../../services/fitbit.service'
 import { UserStatsProvider } from '../../services/user.stats'
 import { HomePage } from '../home/home'
-import { calcTDEE } from '../../helpers/calculate'
+import { calcTDEE, calcGoalCaloriesOut } from '../../helpers/calculate'
 import {
   ageValidation,
   weightValidation,
@@ -45,7 +45,7 @@ export class WelcomePage {
     heightFeet: '0',
     heightInches: '0',
     activityLevel: '',
-    healthGoal: 'None'
+    healthGoal: 'weightLoss'
   }
   validateErr: string = ''
   isValidateErr: boolean = true
@@ -152,8 +152,9 @@ export class WelcomePage {
   savePersonalDetails(page: string) {
     let data = this.auditData(this.stats, this.form.value)
     const goalCaloriesIn = _.round(calcTDEE(data)) || 2000
-
+    const goalCaloriesOut = _.round(calcGoalCaloriesOut(goalCaloriesIn, data))
     _.set(data, 'goalCaloriesIn', goalCaloriesIn)
+    _.set(data, 'goalCaloriesOut', goalCaloriesOut)
 
     this.dbService.writeStatsToDB(data)
     this.push(page)

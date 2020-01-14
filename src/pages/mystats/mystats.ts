@@ -5,7 +5,7 @@ import { SettingsPage } from '../settings/settings'
 import { DBService } from '../../services/db.service'
 import { AngularFireDatabase } from 'angularfire2/database'
 import { UserStatsProvider } from '../../services/user.stats'
-import { calcTDEE, calcAge } from '../../helpers/calculate'
+import { calcTDEE, calcAge, calcGoalCaloriesOut } from '../../helpers/calculate'
 import {
   ageValidation,
   weightValidation,
@@ -27,13 +27,15 @@ export class MyStatsPage {
     fname: '',
     lname: '',
     goalCaloriesIn: 0,
+    goalCaloriesOut: 0,
     heightFeet: '',
     heightInches: '',
     weight: 0,
     gender: 'Male',
-    activityLevel: ''
+    activityLevel: '',
+    healthGoal: ''
   }
-  isValidateErr: boolean = false
+  isValidateErr: boolean = true
 
   constructor(
     public navCtrl: NavController,
@@ -41,9 +43,7 @@ export class MyStatsPage {
     public fdb: AngularFireDatabase,
     public dbService: DBService,
     public userStats: UserStatsProvider
-  ) {
-    this.validate()
-  }
+  ) {}
 
   launchSettings() {
     this.navCtrl.push(SettingsPage)
@@ -73,9 +73,16 @@ export class MyStatsPage {
       weightValidation(weight)
     ) {
       this.isValidateErr = false
-      this.mystats.age = calcAge(this.mystats.dob)
-      this.mystats.goalCaloriesIn = _.round(calcTDEE(this.mystats))
+      this.calc()
     } else this.isValidateErr = true
+  }
+
+  calc() {
+    this.mystats.age = calcAge(this.mystats.dob)
+    this.mystats.goalCaloriesIn = _.round(calcTDEE(this.mystats))
+    this.mystats.goalCaloriesOut = _.round(
+      calcGoalCaloriesOut(this.mystats.goalCaloriesIn, this.mystats)
+    )
   }
 
   saveData() {

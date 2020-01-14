@@ -21,15 +21,22 @@ export const calcTDEE = (data: any) => {
   if (activityLevel === '5 - 7 days per week') TDEE = TDEE * 2
   if (activityLevel === '3 - 4 days per week') TDEE = TDEE * 1.6
   if (activityLevel === '1 - 2 days per week') TDEE = TDEE * 1.3
-  return calcGoalCalories(TDEE, healthGoal)
+  return calcGoalCaloriesIn(TDEE, healthGoal)
 }
 
-const calcGoalCalories = (TDEE: number, healthGoal: string) => {
-  if (healthGoal === 'Lose weight') return TDEE - 500
-  if (healthGoal === 'Gain weight') return TDEE + 500
+const calcGoalCaloriesIn = (TDEE: number, healthGoal: string) => {
+  if (healthGoal === 'weightLoss') return TDEE - 250
+  if (healthGoal === 'weightGain') return TDEE + 250
   return TDEE
 }
+export const calcGoalCaloriesOut = (calsIn: number, data: any) => {
+  const { healthGoal } = data
+  let calsOut = calsIn
 
+  if (healthGoal === 'weightLoss') calsOut = calsIn + 250
+  if (healthGoal === 'weightGain') calsOut = calsIn - 250
+  return calsOut
+}
 export const calcAge = dob => {
   const age = moment().diff(dob, 'years', false)
   return age
