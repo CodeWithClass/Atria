@@ -47,14 +47,15 @@ export class DBService {
           )
           this.userStats.currRec = _.get(data, 'currRec', {})
           //MACHING LEARNING PLACEHOLDER
-          this.userStats.bpData.unshift({
-            measurement: {
-              date: '',
-              diastolic: 80,
-              systolic: 120,
-              hr: 60
-            }
-          })
+          // this.userStats.bpData.unshift({
+          //   measurement: {
+          //     pid: _.random(1221226674, 8321226674),
+          //     date: '',
+          //     diastolic: 80,
+          //     systolic: 120,
+          //     hr: 60
+          //   }
+          // })
           // ==============================
           return cb(data)
         } catch (e) {
@@ -90,6 +91,7 @@ export class DBService {
   }
 
   writeDailyStatsToDB(date, data, cat) {
+    console.log('uea', data)
     this.fdb
       .list('users/' + this.authService.getUID() + '/dailyStats/' + date)
       .set(cat, data)

@@ -53,9 +53,9 @@ export class UserStatsProvider {
   currCalories: number = 0
 
   bpData = [
-    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } },
-    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } },
-    { measurement: { date: '', diastolic: 0, systolic: 0, hr: 0 } }
+    { measurement: { pid: 0, date: '', diastolic: 0, systolic: 0, hr: 0 } },
+    { measurement: { pid: 0, date: '', diastolic: 0, systolic: 0, hr: 0 } },
+    { measurement: { pid: 0, date: '', diastolic: 0, systolic: 0, hr: 0 } }
   ]
 
   // TODO add keys for recommendation arr
