@@ -59,7 +59,29 @@ export class UserStatsProvider {
   ]
 
   // TODO add keys for recommendation arr
-  currRec = { recommendations: [{}], summary: { key: '', msg: '' } }
+  currRec = {
+    recommendations: [
+      {
+        done: false,
+        doneTime: '',
+        id: 2,
+        show: false,
+        skipCount: 0,
+        skipTime: '',
+        text: ''
+      },
+      {
+        done: false,
+        doneTime: '',
+        id: 2,
+        show: false,
+        skipCount: 0,
+        skipTime: '',
+        text: ''
+      }
+    ],
+    summary: { key: '', msg: '' }
+  }
 
   constructor() {
     this.todaysDate = this.ABSOLUTE_DATE = formatDate(new Date())
