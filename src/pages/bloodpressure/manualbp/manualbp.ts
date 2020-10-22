@@ -24,7 +24,8 @@ export class ManualbpPage {
   ) {}
 
   public addData() {
-    console.log(this.bpData)
+    //insert at 1st position
+    this.bpData.shift()
     this.bpData.unshift({
       measurement: {
         pid: _.random(1221226674, 8321226674),
@@ -40,5 +41,7 @@ export class ManualbpPage {
       this.bpData,
       'bp'
     )
+
+    this.navCtrl.pop()
   }
 }
