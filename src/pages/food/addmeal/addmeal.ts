@@ -62,7 +62,7 @@ composes a url and passes the url to foodServ.makeFoodAPICall
     genFoodUrl(_searchQuery) {
         let searchQuery = encodeURIComponent(_searchQuery)
         this.url =
-            'https://api.nal.usda.gov/ndb/search/?format=json&q=' +
+            'https://api.nal.usda.gov/fdc/v1/foods/search/?format=json&q=' +
             searchQuery +
             '&sort=r&max=20&offset=' +
             this.foodServ.offset +
